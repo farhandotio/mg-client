@@ -8,7 +8,7 @@ import Brand from './components/Brand';
 
 export default function page() {
   return (
-    <div>
+    <div className='max-w-7xl mx-auto'>
       <Hero />
       <Category />
       <Feature />

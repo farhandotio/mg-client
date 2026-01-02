@@ -153,4 +153,19 @@ export const products = [
       },
     ],
   },
+  {
+    _id: 'g3',
+    title: 'PlayStation 5 Pro',
+    brand: 'Sony',
+    category: 'Gaming',
+    price: { base: 699 },
+    rating: 4.9,
+    numReviews: 8934,
+    isNew: true,
+    images: [
+      {
+        url: 'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?q=80&w=1000&auto=format&fit=crop',
+      },
+    ],
+  },
 ];

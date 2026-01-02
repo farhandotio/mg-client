@@ -1,4 +1,6 @@
+'use client';
 import React from 'react';
+import Link from 'next/link';
 
 export default function Button({
   text,
@@ -8,6 +10,8 @@ export default function Button({
   size = 'md',
   bgColor = 'bg-primary',
   className = '',
+  type = 'button',
+  loading = false,
   ...props
 }) {
   const sizeClasses =
@@ -21,59 +25,66 @@ export default function Button({
       ? 'h-14 px-10 text-lg'
       : 'h-10 px-6 text-sm';
 
-  const baseClasses = `relative inline-flex items-center gap-3 overflow-hidden group font-semibold justify-center text-pText whitespace-nowrap ${bgColor} hover:from-primary hover:to-card transition-colors w-full cursor-pointer shadow-lg ${
-    bgColor === 'bg-primary' ? 'shadow-primary/50 text-white' : 'shadow-card border border-border'
+  const baseClasses = `relative inline-flex items-center gap-3 overflow-hidden group font-black justify-center text-text whitespace-nowrap rounded-2xl transition-all w-full cursor-pointer shadow-lg disabled:opacity-70 ${bgColor} ${
+    bgColor === 'bg-primary' ? 'shadow-primary/40 text-bg' : 'shadow-card border border-border'
   } ${sizeClasses} ${className}`;
 
-  const innerSpanClasses = `absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-linear-to-r from-transparent via-white/60 to-transparent pointer-events-none`;
+  const innerSpanClasses = `absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none`;
 
-  if (href) {
+  const content = (
+    <>
+      {loading ? (
+        <span className="flex items-center gap-2">
+          <svg
+            className="animate-spin h-5 w-5 text-current"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              className="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="4"
+            ></circle>
+            <path
+              className="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+            ></path>
+          </svg>
+          Processing...
+        </span>
+      ) : (
+        <>
+          {Icon && <Icon className="w-5 h-5" />}
+          <span className="uppercase tracking-widest">{text}</span>
+        </>
+      )}
+      <span className={innerSpanClasses}></span>
+    </>
+  );
+
+  if (href)
     return (
-      <a
-        href={href}
-        className={baseClasses}
-        target={href.startsWith('http') ? '_blank' : undefined}
-        rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-        {...props}
-      >
-        {Icon && <Icon className="w-4 h-4 mr-2 shrink-0" />}
-        <span>{text}</span>
-        <span className={innerSpanClasses}></span>
+      <a href={href} className={baseClasses} {...props}>
+        {content}
       </a>
     );
-  }
 
-  if (url) {
-    if (url.startsWith('http') || url.startsWith('#')) {
-      return (
-        <a
-          href={url}
-          className={baseClasses}
-          target={url.startsWith('http') ? '_blank' : undefined}
-          rel={url.startsWith('http') ? 'noopener noreferrer' : undefined}
-          {...props}
-        >
-          {Icon && <Icon className="w-4 h-4 mr-2 shrink-0" />}
-          <span>{text}</span>
-          <span className={innerSpanClasses}></span>
-        </a>
-      );
-    }
-
+  // Next.js Link এর জন্য url চেক
+  if (url)
     return (
-      <Link to={url} className={baseClasses} {...props}>
-        {Icon && <Icon className="w-4 h-4 mr-2 shrink-0" />}
-        <span>{text}</span>
-        <span className={innerSpanClasses}></span>
+      <Link href={url} className={baseClasses} {...props}>
+        {content}
       </Link>
     );
-  }
 
   return (
-    <button type="button" className={baseClasses} {...props}>
-      {Icon && <Icon className="w-4 h-4 mr-2 shrink-0" />}
-      <span>{text}</span>
-      <span className={innerSpanClasses}></span>
+    <button type={type} className={baseClasses} disabled={loading} {...props}>
+      {content}
     </button>
   );
 }

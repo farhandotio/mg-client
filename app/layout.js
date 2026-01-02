@@ -3,6 +3,8 @@ import './globals.css';
 import { ReduxProvider } from '@/store/Provider';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import Script from 'next/script';
+import AuthInit from '@/components/AuthInit';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -21,14 +23,42 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        suppressHydrationWarning
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col dark`}
+      >
         <ReduxProvider>
-          <Navbar />
+          <AuthInit>
+            <Navbar />
 
-          <main className="grow">{children}</main>
+            <main className="grow">{children}</main>
 
-          <Footer />
+            {/* Crisp Chat – Client-only safe injection */}
+            <Script
+              id="crisp-chat"
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `
+      window.$crisp = [];
+      window.CRISP_WEBSITE_ID = "33f66088-4450-4ed2-b515-97244996f25e";
+
+      // গ্রিন কালার সেট করার কমান্ড
+      window.$crisp.push(["set", "theme:color", ["#29fc56"]]);
+
+      (function () {
+        var d = document;
+        var s = d.createElement("script");
+        s.src = "https://client.crisp.chat/l.js";
+        s.async = 1;
+        d.head.appendChild(s);
+      })();
+    `,
+              }}
+            />
+
+            <Footer />
+          </AuthInit>
         </ReduxProvider>
       </body>
     </html>
