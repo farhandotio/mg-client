@@ -4,6 +4,7 @@ import Category from './components/Category';
 import Feature from './components/Feature';
 import Flash from './components/Flash';
 import Best from './components/Best';
+import Brand from './components/Brand';
 
 export default function page() {
   return (
@@ -13,6 +14,7 @@ export default function page() {
       <Feature />
       <Flash />
       <Best />
+      <Brand />
     </div>
   );
 }

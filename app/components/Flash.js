@@ -2,72 +2,9 @@
 import React from 'react';
 import { ArrowRight, Zap } from 'lucide-react';
 import ProductCard from '@/components/ProductCard';
+import { products } from '@/context/data';
 
 export default function Flash() {
-  // স্ক্রিনশট অনুযায়ী ডামি ডাটা
-  const flashProducts = [
-    {
-      _id: 'f1',
-      title: 'Sony WH-1000XM5',
-      brand: 'Sony',
-      category: 'Headphones',
-      price: { base: 349, original: 399 },
-      rating: 4.7,
-      numReviews: 4521,
-      isBestSeller: true,
-      discountPercentage: 13,
-      images: [
-        {
-          url: 'https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?q=80&w=1000&auto=format&fit=crop',
-        },
-      ],
-    },
-    {
-      _id: 'f2',
-      title: 'Amazon Echo Show 10',
-      brand: 'Amazon',
-      category: 'Smart-Home',
-      price: { base: 249, original: 299 },
-      rating: 4.5,
-      numReviews: 2156,
-      discountPercentage: 17,
-      images: [
-        {
-          url: 'https://images.unsplash.com/photo-1543512214-318c7553f230?q=80&w=1000&auto=format&fit=crop',
-        },
-      ],
-    },
-    {
-      _id: 'f3',
-      title: 'Dell XPS 15',
-      brand: 'Dell',
-      category: 'Laptops',
-      price: { base: 1899, original: 2099 },
-      rating: 4.6,
-      numReviews: 1823,
-      discountPercentage: 10,
-      images: [
-        {
-          url: 'https://images.unsplash.com/photo-1593642632823-8f785ba67e45?q=80&w=1000&auto=format&fit=crop',
-        },
-      ],
-    },
-    {
-      _id: 'f4',
-      title: 'Samsung Galaxy Watch 6',
-      brand: 'Samsung',
-      category: 'Smartwatches',
-      price: { base: 329, original: 379 },
-      rating: 4.5,
-      numReviews: 987,
-      discountPercentage: 13,
-      images: [
-        {
-          url: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1000&auto=format&fit=crop',
-        },
-      ],
-    },
-  ];
 
   return (
     <section className="py-20 px-6 bg-bg">
@@ -98,7 +35,7 @@ export default function Flash() {
 
         {/* Product Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {flashProducts.map((product) => (
+          {products.map((product) => (
             <ProductCard key={product._id} product={product} />
           ))}
         </div>
