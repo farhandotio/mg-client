@@ -41,7 +41,7 @@ export default function ProductCard({ product }) {
 
       {/* --- Image Container --- */}
       <div className="relative aspect-square md:aspect-10/11 overflow-hidden rounded-xl bg-bg flex items-center justify-center">
-        <Link href={`/shop/${product?._id}`} className="w-full h-full">
+        <Link href={`/shop/${product?.slug}`} className="w-full h-full">
           {/* image cover হিসেবে সেট করা হয়েছে আপনার রিকোয়েস্ট অনুযায়ী */}
           <img
             src={product?.images?.[0]?.url || 'https://via.placeholder.com/300'}
@@ -62,7 +62,7 @@ export default function ProductCard({ product }) {
           </motion.button>
 
           <Link
-            href={`/shop/${product?._id}`}
+            href={`/shop/${product?.slug}`}
             className="hidden md:flex bg-white/90 backdrop-blur-md p-4 rounded-2xl text-black shadow-xl hover:scale-110 active:scale-95 transition-all opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 duration-300 delay-75"
           >
             <Eye size={22} strokeWidth={2.5} />
@@ -72,7 +72,7 @@ export default function ProductCard({ product }) {
 
       {/* --- Product Details --- */}
       <div className="mt-4 md:mt-5 px-1 md:px-2 pb-1">
-        <Link href={`/shop/${product?._id}`} className="block space-y-1">
+        <Link href={`/shop/${product?.slug}`} className="block space-y-1">
           <p className="text-pText text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] opacity-60">
             {product?.brand}
           </p>
