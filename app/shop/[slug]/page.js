@@ -82,16 +82,16 @@ export default function ProductDetailsPage({ params }) {
           </Link>
           <ChevronRight size={12} />
           <span className="text-primary">{product.category?.name}</span>
-          <ChevronRight size={12} />
-          <span className="opacity-50 truncate max-w-[150px]">{product.title}</span>
+          <ChevronRight className={product.category?.name ? 'block' : 'hidden'} size={12} />
+          <span className="opacity-50 truncate max-w-37">{product.title}</span>
         </nav>
 
         {/* Product Section */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-6">
             <ProductGallery images={product.images || []} title={product.title} />
           </div>
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-6">
             <ProductInfo product={product} />
           </div>
         </div>

@@ -23,6 +23,8 @@ export default function Button({
       ? 'h-12 px-8 text-base'
       : size === 'xl'
       ? 'h-14 px-10 text-lg'
+      : size === '2xl'
+      ? 'h-20 px-14 text-2xl tracking-tighter'
       : 'h-10 px-6 text-sm';
 
   const baseClasses = `relative inline-flex items-center gap-3 overflow-hidden group font-black justify-center text-text whitespace-nowrap rounded-2xl transition-all w-full cursor-pointer shadow-lg disabled:opacity-70 ${bgColor} ${
