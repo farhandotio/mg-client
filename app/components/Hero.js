@@ -1,42 +1,47 @@
 'use client';
 import React from 'react';
-import { ArrowRight, Star, Zap, ShieldCheck, Globe } from 'lucide-react';
+import { ArrowRight, Star, Zap, ShieldCheck, Globe, Trophy } from 'lucide-react';
 import Button from '@/components/Button';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function Hero() {
   return (
-    <section className="relative w-full min-h-190 bg-bg flex items-center justify-center py-12 md:pt-0 px-6 lg:px-12 overflow-hidden">
+    <section className="relative w-full min-h-150 bg-bg flex items-center py-10 px-6 max-w-7xl mx-auto overflow-hidden">
       {/* --- Ambient Background Elements --- */}
-      {/* বড় গ্লোয়িং সার্কেল */}
-      <div className="absolute top-[-10%] right-[-5%] w-150 h-150 bg-primary/20 blur-[150px] rounded-full -z-10 animate-pulse"></div>
-      <div className="absolute bottom-[-10%] left-[-5%] w-100 h-100 bg-[#00A3FF]/10 blur-[120px] rounded-full -z-10"></div>
+      <div className="absolute top-[-10%] right-[-5%] w-125 h-125 bg-primary/10 blur-[120px] rounded-full -z-10 pointer-events-none"></div>
+      <div className="absolute bottom-[-10%] left-[-5%] w-100 h-100 bg-secondary/10 blur-[100px] rounded-full -z-10 pointer-events-none"></div>
 
-      {/* Abstract Grid Pattern (Optional) */}
+      {/* Subtle Grid Pattern */}
       <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none -z-10"
+        className="absolute inset-0 opacity-[0.15] pointer-events-none -z-10"
         style={{
-          backgroundImage: `radial-linear(var(--color-text) 1px, transparent 1px)`,
-          size: '40px 40px',
+          backgroundImage: `radial-linear(var(--color-border) 1px, transparent 1px)`,
+          size: '30px 30px',
+          backgroundSize: '30px 30px',
         }}
       ></div>
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className="flex justify-between w-full max-md:flex-wrap gap-16 items-center">
         {/* --- Left Column: Content --- */}
-        <div className="relative z-20 space-y-10">
-          {/* Top Badge: Floating Style */}
-          <div className="inline-flex items-center gap-3 bg-card/40 backdrop-blur-xl border border-border/50 px-5 py-2.5 rounded-2xl shadow-xl animate-bounce-slow">
-            <div className="bg-primary/20 p-1.5 rounded-lg">
-              <Zap size={18} className="text-primary fill-primary" />
-            </div>
-            <span className="text-text text-sm font-bold tracking-tight">
-              New Year Sale <span className="text-primary">— Up to 40% Off</span>
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative z-20 space-y-8"
+        >
+          {/* Top Badge */}
+          <div className="inline-flex items-center gap-3 bg-card/50 backdrop-blur-md border border-border/50 px-4 py-2 rounded-2xl shadow-sm">
+            <Trophy size={16} className="text-primary" />
+            <span className="text-text text-[11px] font-black uppercase tracking-widest">
+              N°1 Tech Store in 2026
             </span>
           </div>
 
-          {/* Main Typography: High Contrast */}
-          <div className="space-y-4">
+          {/* Main Typography */}
+          <div className="space-y-6">
             <h1 className="text-6xl md:text-7xl font-black text-text leading-[0.95] tracking-tighter">
-              Discover the <br />
+              Discover the  {" "} <br/>
               <span className="relative">
                 <span className="relative z-10 text-transparent bg-clip-text bg-linear-to-r from-primary via-[#00D1FF] to-primary">
                   Future
@@ -50,111 +55,129 @@ export default function Hero() {
                     opacity="0.3"
                   />
                 </svg>
-              </span>{' '}
-              <br />
+              </span>{' '} <br className='md:hidden' />
               of Tech.
             </h1>
-            <p className="text-pText text-xl max-w-130 leading-relaxed font-medium">
-              Elevate your lifestyle with premium gadgets and next-gen electronics. Experience tech
-              like never before.
+            <p className="text-pText text-lg md:text-xl max-w-xl leading-relaxed font-medium">
+              Premium gadgets verified by experts. Get the latest tech with worldwide shipping and
+              2-year secured warranty.
             </p>
           </div>
 
-          {/* Buttons: 3D Glossy Style */}
-          <div className="flex max-md:flex-col gap-6 items-center">
-            <Button size="xl" icon={ArrowRight} text={'Shop Now'} className="rounded-2xl" />
-
+          {/* Functional Buttons */}
+          <div className="flex max-md:flex-wrap gap-4 pt-4 w-full">
             <Button
-              size="xl"
-              bgColor="bg-bg"
+              url="/shop"
+              size="lg"
               icon={ArrowRight}
-              text={'View Deals'}
-              className="rounded-2xl"
+              text="Explore Shop"
+              className="shadow-2xl w-full shadow-primary/20"
+            />
+            <Button
+              url="/deals"
+              size="lg"
+              bgColor="bg-transparent"
+              text="View Weekly Deals"
+              className="border w-full border-border hover:border-primary/50 transition-colors"
             />
           </div>
 
           {/* Trust Indicators */}
-          <div className="pt-10 flex flex-wrap gap-10 items-center opacity-80">
-            <div className="flex items-center gap-3">
-              <ShieldCheck className="text-primary" />
-              <span className="text-sm font-bold text-pText uppercase tracking-widest">
-                2 Year Warranty
+          <div className="pt-10 flex flex-wrap gap-8 items-center border-t border-border/30">
+            <div className="flex items-center gap-3 group">
+              <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
+                <ShieldCheck size={20} className="text-primary" />
+              </div>
+              <span className="text-[10px] font-black text-pText uppercase tracking-widest">
+                2-Year Warranty
               </span>
             </div>
-            <div className="flex items-center gap-3">
-              <Globe className="text-[#00A3FF]" />
-              <span className="text-sm font-bold text-pText uppercase tracking-widest">
+            <div className="flex items-center gap-3 group">
+              <div className="p-2 bg-secondary/10 rounded-lg group-hover:bg-secondary/20 transition-colors">
+                <Globe size={20} className="text-secondary" />
+              </div>
+              <span className="text-[10px] font-black text-pText uppercase tracking-widest">
                 Global Shipping
               </span>
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        {/* --- Right Column: Visual Mockup --- */}
-        <div className="relative group flex justify-center items-center">
-          {/* Animated Background Rings */}
-          <div className="absolute w-[120%] aspect-square border-0.5 border-border/20 rounded-full scale-75 lg:scale-100"></div>
-          <div className="absolute w-[90%] aspect-square border-0.5 border-primary/10 rounded-full animate-ping-slow"></div>
+        {/* --- Right Column: Visual Showcase --- */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1 }}
+          className="relative flex justify-center items-center"
+        >
+          {/* Decorative Circles */}
+          <div className="absolute w-[110%] aspect-square border border-border/10 rounded-full animate-[spin_20s_linear_infinite]"></div>
 
-          {/* Main Showcase Card */}
-          <div className="relative z-10 w-full max-w-125 aspect-4/5 bg-linear-to-br from-card to-bg border border-border/50 rounded-[4rem] p-4 shadow-2xl backdrop-blur-3xl overflow-hidden group-hover:border-primary/30 transition-colors duration-500">
-            {/* Glossy Overlay */}
-            <div className="absolute inset-0 bg-linear-to-tr from-transparent via-white/5 to-transparent opacity-30 group-hover:rotate-12 transition-transform duration-1000"></div>
-
-            {/* Inner "Device" Screen */}
-            <div className="relative h-full w-full bg-[#080808] rounded-[3.2rem] overflow-hidden border-[6px] border-text/5 flex flex-col items-center justify-center shadow-inner">
-              {/* Floating Badges inside Screen */}
-              <div className="absolute top-10 left-6 bg-primary px-3 py-1 rounded-full text-[10px] font-black text-bg z-20 shadow-lg animate-pulse">
-                HOT DEAL
+          {/* Main Visual Card */}
+          <div className="relative z-10 w-full max-w-md aspect-square bg-card border border-border/50 rounded-[3rem] p-3 shadow-2xl overflow-hidden group">
+            {/* Inner "Screen" */}
+            <div className="relative h-full w-full bg-[#0c0c0c] rounded-[2.5rem] overflow-hidden flex flex-col items-center justify-center border border-white/5">
+              {/* Status Badge */}
+              <div className="absolute top-8 right-8 z-20 bg-primary/10 backdrop-blur-md border border-primary/20 px-3 py-1 rounded-full flex items-center gap-2">
+                <div className="w-1.5 h-1.5 bg-primary rounded-full animate-ping"></div>
+                <span className="text-[10px] font-black text-primary uppercase">In Stock</span>
               </div>
 
+              {/* Product Image with Subtle Hover Float */}
               <img
                 src="https://imgs.search.brave.com/G1lrzAcX4OiD6m7GZyK955F66uo3VaIkURzpxPS5n8E/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9maWxl/LmFpcXVpY2tkcmF3/LmNvbS9pbWdjb21w/cmVzc2VkL2ltZy9j/b21wcmVzc2VkXzEw/YmM2NGIwNDRmN2I2/MjhhZTljNzcyZDI3/MzU1YzBlLndlYnA"
-                alt="Featured Product"
-                className="w-[85%] h-auto object-contain z-10 transition-transform duration-700 group-hover:scale-110 group-hover:-rotate-3 drop-shadow-[0_35px_60px_rgba(0,0,0,0.8)]"
+                alt="Iphone 15 Pro"
+                className="w-[80%] h-auto object-contain z-10 transition-all duration-700 group-hover:scale-105 group-hover:-translate-y-4 drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
               />
 
-              {/* Product Info Overlay inside Screen */}
-              <div className="absolute bottom-8 left-0 right-0 px-8 z-20 translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                <div className="bg-card/80 backdrop-blur-xl border border-border/50 p-4 rounded-2xl flex justify-between items-center shadow-2xl">
+              {/* Product Info - Permanent Visibility for Trust */}
+              <div className="absolute bottom-6 inset-x-6 z-20">
+                <div className="bg-card/90 backdrop-blur-xl border border-border/50 p-5 rounded-3xl flex justify-between items-center">
                   <div>
-                    <p className="text-[10px] font-bold text-primary uppercase">Iphone 15 Pro</p>
-                    <p className="text-text font-black text-lg">$999.00</p>
+                    <p className="text-[10px] font-black text-primary uppercase tracking-tighter">
+                      Featured Hardware
+                    </p>
+                    <h3 className="text-text font-black text-xl italic tracking-tighter">
+                      IPHONE 15 PRO
+                    </h3>
                   </div>
-                  <button className="bg-primary text-bg p-2.5 rounded-xl shadow-lg">
-                    <ArrowRight size={18} />
-                  </button>
+                  <Link
+                    href="/shop/iphone-15-pro"
+                    className="bg-primary text-bg p-3 rounded-2xl hover:scale-105 transition-transform"
+                  >
+                    <ArrowRight size={20} strokeWidth={3} />
+                  </Link>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Side Floating Element: Rating Card */}
-          <div className="absolute -bottom-6 -left-10 z-30 bg-card/60 backdrop-blur-2xl border border-border p-5 rounded-3xl shadow-2xl hidden md:block animate-float">
-            <div className="flex items-center gap-4">
+          {/* Social Proof Floating Card */}
+          <div className="absolute -bottom-4 -left-6 z-30 bg-card/80 backdrop-blur-2xl border border-border/50 p-4 rounded-2xl shadow-2xl hidden md:block">
+            <div className="flex items-center gap-3">
               <div className="flex -space-x-3">
                 {[1, 2, 3].map((i) => (
-                  <div
+                  <img
                     key={i}
-                    className="w-10 h-10 rounded-full border-2 border-card bg-secondary/20 overflow-hidden"
-                  >
-                    <img src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="user" />
-                  </div>
+                    src={`https://i.pravatar.cc/100?u=${i}`}
+                    className="w-8 h-8 rounded-full border-2 border-card"
+                    alt="User"
+                  />
                 ))}
               </div>
               <div>
-                <div className="flex items-center gap-1 text-primary">
-                  <Star size={14} className="fill-primary" />
-                  <Star size={14} className="fill-primary" />
-                  <Star size={14} className="fill-primary" />
-                  <Star size={14} className="fill-primary" />
-                  <Star size={14} className="fill-primary" />
+                <div className="flex gap-0.5 text-primary">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} size={10} className="fill-current" />
+                  ))}
                 </div>
-                <p className="text-[10px] font-bold text-pText mt-1">50K+ ACTIVE USERS</p>
+                <p className="text-[9px] font-black text-pText uppercase mt-0.5 tracking-tighter">
+                  Loved by 50k+ Geeks
+                </p>
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
