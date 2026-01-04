@@ -84,7 +84,7 @@ export default function Navbar() {
         variants={{ visible: { y: 0 }, hidden: { y: '-100%' } }}
         animate={hidden ? 'hidden' : 'visible'}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className="sticky top-0 z-[100] w-full bg-card/80 backdrop-blur-2xl border-b border-border/50"
+        className="sticky top-0 z-100 w-full bg-card/80 backdrop-blur-2xl border-b border-border/50"
       >
         <nav className="max-w-7xl mx-auto px-4 md:px-8 py-3 flex items-center justify-between">
           {/* Logo & Mobile Menu */}

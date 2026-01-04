@@ -13,6 +13,7 @@ import {
   RotateCcw,
   Zap,
 } from 'lucide-react';
+import { toast } from 'react-hot-toast';
 import Button from '@/components/Button';
 
 export default function ProductInfo({ product }) {
@@ -21,15 +22,14 @@ export default function ProductInfo({ product }) {
   const [isWishlisted, setIsWishlisted] = useState(false);
 
   const { isAuthenticated } = useSelector((state) => state.auth);
-  const { loading } = useSelector((state) => state.cart);
+  const { cartLoading } = useSelector((state) => state.cart);
 
-  // Schema অনুযায়ী ক্যালকুলেটেড প্রাইস
   const basePrice = product.price?.base || 0;
   const salePrice = product.price?.discounted || basePrice;
   const discountPercent = product.offer?.percentage || 0;
   const isOutOfStock = product.stock <= 0;
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
     const cartItem = {
       productId: product._id,
       title: product.title,
@@ -39,167 +39,162 @@ export default function ProductInfo({ product }) {
       slug: product.slug,
       stock: product.stock,
     };
-    isAuthenticated ? dispatch(addToCartAPI(cartItem)) : dispatch(addToCartLocal(cartItem));
+
+    try {
+      if (isAuthenticated) {
+        await dispatch(addToCartAPI(cartItem)).unwrap();
+      } else {
+        dispatch(addToCartLocal(cartItem));
+      }
+      toast.success(`${product.title} added to cart!`, {
+        style: { background: '#111', color: '#29fc56', border: '1px solid #29fc56' },
+      });
+    } catch (err) {
+      toast.error('Failed to add item');
+    }
   };
 
   return (
-    <div className="flex flex-col gap-5 md:gap-7 animate-in fade-in slide-in-from-right-10 duration-700">
-      {/* 1. Header: Brand & Title */}
-      <div className="space-y-2 text-center md:text-left">
-        <div className="flex flex-wrap justify-center md:justify-start items-center gap-2">
-          <span className="text-primary font-black uppercase tracking-widest text-[9px] bg-primary/10 px-2 py-1 rounded-md border border-primary/20">
-            {product.brand?.name || 'Exclusive'}
+    <div className="flex flex-col gap-6 md:gap-8 lg:pl-4">
+      {/* Header Section */}
+      <div className="space-y-4">
+        <div className="flex flex-wrap items-center gap-3">
+          <span className="px-3 py-1 bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-widest rounded-lg">
+            {product.brand?.name}
           </span>
-          {product.productType !== 'Regular' && (
-            <span className="bg-text text-bg text-[9px] font-black px-2 py-1 rounded-md uppercase tracking-tighter">
-              {product.productType}
-            </span>
-          )}
-          {product.stock > 0 && product.stock < 10 && (
-            <span className="text-orange-500 font-black text-[9px] uppercase animate-pulse">
-              Low Stock: {product.stock} left
-            </span>
-          )}
+          <span className="px-3 py-1 bg-card border border-border text-pText text-[10px] font-black uppercase tracking-widest rounded-lg">
+            SKU: {product.sku}
+          </span>
         </div>
 
-        <h1 className="text-3xl md:text-5xl lg:text-6xl font-black uppercase leading-[0.95] tracking-tighter italic text-text">
+        <h1 className="text-4xl md:text-6xl font-black uppercase italic tracking-tighter leading-[0.9] text-text">
           {product.title}
         </h1>
 
-        <div className="flex items-center justify-center md:justify-start gap-4">
-          <div className="flex items-center gap-1.5">
-            <Star size={14} className="fill-primary text-primary" />
-            <span className="font-black text-xs">
-              {product.ratings?.average?.toFixed(1) || '0.0'}
+        <div className="flex items-center gap-6">
+          <div className="flex items-center gap-2">
+            {[...Array(5)].map((_, i) => (
+              <Star
+                key={i}
+                size={14}
+                className={
+                  i < Math.round(product.ratings?.average)
+                    ? 'fill-primary text-primary'
+                    : 'text-border'
+                }
+              />
+            ))}
+            <span className="font-black text-sm ml-1 italic">
+              {product.ratings?.average?.toFixed(1)}
             </span>
           </div>
-          <div className="h-1 w-1 rounded-full bg-border" />
-          <span className="text-pText text-[10px] font-black uppercase opacity-40">
-            {product.ratings?.count || 0} Reviews
+          <div className="w-1.5 h-1.5 rounded-full bg-border" />
+          <span className="text-xs font-bold text-pText opacity-50 uppercase tracking-widest">
+            {product.ratings?.count} Verified Reviews
           </span>
         </div>
       </div>
 
-      {/* 2. Pricing Section: Schema-based integration */}
-      <div className="flex items-center justify-center md:justify-start gap-5 py-4 px-6 bg-card/30 border border-border/40 rounded-3xl backdrop-blur-md w-full md:w-fit">
+      {/* Pricing Card */}
+      <div className="flex items-center gap-6 p-6 bg-card/40 border border-border/50 rounded-3xl backdrop-blur-sm w-fit">
         <div className="flex flex-col">
-          <span className="text-4xl md:text-5xl font-black text-text tracking-tighter italic leading-none">
+          <span className="text-5xl font-black text-text italic tracking-tighter leading-none">
             ${salePrice}
           </span>
-          <span className="text-[9px] font-black uppercase text-pText/40 mt-1">Sale Price</span>
+          <span className="text-[9px] font-black uppercase tracking-[0.2em] mt-2 ml-1 text-primary">
+            Live Market Price
+          </span>
         </div>
 
         {discountPercent > 0 && (
-          <div className="flex flex-col border-l border-border/50 pl-5">
-            <span className="text-lg text-pText/40 line-through font-bold decoration-primary/40">
+          <div className="flex flex-col border-l border-border/50 pl-6">
+            <span className="text-xl text-pText/30 line-through font-bold decoration-primary/40">
               ${basePrice}
             </span>
-            <span className="text-[10px] font-black text-primary bg-primary/10 px-2 py-0.5 rounded-full mt-1">
+            <span className="text-[10px] font-black text-bg bg-primary px-3 py-1 rounded-full mt-2 animate-pulse">
               -{discountPercent}% OFF
             </span>
           </div>
         )}
       </div>
 
-      {/* 3. Description: Compacted */}
-      <p className="text-pText/80 text-sm md:text-base leading-relaxed border-l-2 border-primary/30 pl-4 italic font-medium max-w-lg text-center md:text-left line-clamp-3">
-        {product.shortDescription || product.description}
+      {/* Brief Description */}
+      <p className="text-pText/70 leading-relaxed font-medium italic border-l-4 border-primary/20 pl-6 max-w-xl">
+        {product.shortDescription ||
+          'Engineered for elite performance and unmatched reliability in every mission.'}
       </p>
 
-      {/* 4. Actions: Optimized for Mobile */}
-      <div className="flex flex-col gap-3">
-        <div className="flex flex-col sm:flex-row gap-3">
-          {/* Quantity and Wishlist Row */}
-          <div className="flex gap-2 h-12 md:h-14">
-            <div className="flex grow items-center bg-card/80 border border-border rounded-2xl px-1 shadow-inner overflow-hidden">
-              <button
-                disabled={quantity <= 1 || isOutOfStock}
-                onClick={() => setQuantity((q) => q - 1)}
-                className="w-10 h-full flex items-center justify-center hover:text-primary transition-colors disabled:opacity-10"
-              >
-                <Minus size={16} strokeWidth={3} />
-              </button>
-              <span className="grow text-center font-black text-lg italic tabular-nums">
-                {quantity}
-              </span>
-              <button
-                disabled={quantity >= product.stock || isOutOfStock}
-                onClick={() => setQuantity((q) => q + 1)}
-                className="w-10 h-full flex items-center justify-center hover:text-primary transition-colors disabled:opacity-10"
-              >
-                <Plus size={16} strokeWidth={3} />
-              </button>
-            </div>
-
+      {/* Actions */}
+      <div className="space-y-4">
+        <div className="flex flex-wrap gap-4">
+          <div className="flex justify-between px-5 items-center bg-card border border-border rounded-2xl p-1 h-14 w-40">
             <button
-              onClick={() => setIsWishlisted(!isWishlisted)}
-              className="w-12 md:w-14 flex items-center justify-center bg-card border border-border rounded-2xl group transition-all"
+              disabled={quantity <= 1 || isOutOfStock}
+              onClick={() => setQuantity((q) => q - 1)}
+              className="hover:text-primary transition-all disabled:opacity-20"
             >
-              <Heart
-                size={20}
-                className={`${
-                  isWishlisted ? 'fill-red-500 text-red-500' : 'text-pText'
-                } transition-transform group-active:scale-125`}
-              />
+              <Minus size={18} strokeWidth={3} />
+            </button>
+            <span className="text-center font-black text-xl italic">{quantity}</span>
+            <button
+              disabled={quantity >= product.stock || isOutOfStock}
+              onClick={() => setQuantity((q) => q + 1)}
+              className="hover:text-primary transition-all disabled:opacity-20"
+            >
+              <Plus size={18} strokeWidth={3} />
             </button>
           </div>
 
-          {/* Add to Cart */}
-          <div className="grow">
+          <button
+            onClick={() => setIsWishlisted(!isWishlisted)}
+            className="h-14 w-14 flex items-center justify-center bg-card border border-border rounded-2xl hover:border-red-500/50 transition-all group"
+          >
+            <Heart
+              size={24}
+              className={
+                isWishlisted ? 'fill-red-500 text-red-500' : 'text-pText group-hover:text-red-500'
+              }
+            />
+          </button>
+
+          <div className="flex-1 min-w-50">
             <Button
-              text={isOutOfStock ? 'Sold Out' : 'Add to Cart'}
+              text={isOutOfStock ? 'Out of Stock' : 'Deploy to Cart'}
               icon={ShoppingCart}
               onClick={handleAddToCart}
-              loading={loading}
+              loading={cartLoading}
               disabled={isOutOfStock}
-              size="xl"
-              className="h-12 md:h-14 rounded-2xl"
+              className="h-14 rounded-2xl w-full"
             />
           </div>
         </div>
 
-        {/* Direct Checkout */}
         {!isOutOfStock && (
-          <Button
-            text="Buy It Now"
-            icon={Zap}
-            bgColor="bg-card"
-            size="lg"
-            className="rounded-2xl border-primary/20 text-primary hover:border-primary transition-all italic tracking-[0.2em] text-xs h-11"
-          />
+          <button className="w-full h-12 rounded-2xl border-2 border-primary/20 hover:border-primary text-primary text-[10px] font-black uppercase tracking-[0.3em] italic transition-all flex items-center justify-center gap-3 group">
+            <Zap size={14} className="group-hover:fill-primary" /> Instant Transmission (Buy Now)
+          </button>
         )}
       </div>
 
-      {/* 5. Premium Value Badges - Redesigned */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-8 border-t border-border/20">
-        <Badge icon={<Truck size={22} />} label="Express Shipping" sub="Delivery in 2-4 days" />
-        <Badge
-          icon={<ShieldCheck size={22} />}
-          label="Secure Warranty"
-          sub="1 Year Brand Warranty"
-        />
-        <Badge icon={<RotateCcw size={22} />} label="Easy Returns" sub="30 Days Return Policy" />
+      {/* Trust Badges */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8 border-t border-border/20">
+        <InfoBadge icon={<Truck size={20} />} title="Fast Lane" desc="2-4 Day Delivery" />
+        <InfoBadge icon={<ShieldCheck size={20} />} title="Encrypted" desc="Secure Payment" />
+        <InfoBadge icon={<RotateCcw size={20} />} title="Fallback" desc="30-Day Returns" />
       </div>
     </div>
   );
 }
 
-// Compact & Premium Badge Component
-function Badge({ icon, label, sub }) {
+function InfoBadge({ icon, title, desc }) {
   return (
-    <div className="flex items-center sm:flex-col lg:flex-row gap-4 p-3 rounded-2xl bg-card/20 border border-border/30 hover:bg-card/50 hover:border-primary/30 transition-all duration-500 group">
-      {/* Icon Sphere */}
-      <div className="w-12 h-12 shrink-0 rounded-xl bg-bg border border-border/50 flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-bg transition-all duration-500 shadow-inner">
-        {icon}
-      </div>
-
-      <div className="flex flex-col min-w-0">
-        <span className="text-[10px] font-black uppercase tracking-widest text-text leading-tight group-hover:text-primary transition-colors">
-          {label}
-        </span>
-        <span className="text-[9px] font-bold text-pText/40 italic truncate uppercase tracking-tighter mt-0.5">
-          {sub}
-        </span>
+    <div className="flex items-center gap-4 p-4 rounded-2xl bg-card/20 border border-border/20 hover:bg-card/40 transition-all group">
+      <div className="text-primary group-hover:scale-110 transition-transform">{icon}</div>
+      <div>
+        <div className="text-[10px] font-black uppercase tracking-widest text-text leading-none">
+          {title}
+        </div>
+        <div className="text-[9px] font-bold text-pText/40 uppercase mt-1">{desc}</div>
       </div>
     </div>
   );

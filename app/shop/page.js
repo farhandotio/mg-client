@@ -121,7 +121,7 @@ export default function ShopPage() {
 
           {/* --- Mobile Sidebar (Drawer) --- */}
           {isMobileFilterOpen && (
-            <div className="fixed inset-0 z-[100] lg:hidden">
+            <div className="fixed inset-0 z-100 lg:hidden">
               <div
                 className="absolute inset-0 bg-black/90 backdrop-blur-md animate-in fade-in duration-300"
                 onClick={() => setIsMobileFilterOpen(false)}
@@ -154,7 +154,7 @@ export default function ShopPage() {
                 </p>
               </div>
             ) : products && products.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">
+              <div className="grid grid-cols-2 sm:grid-cols-2 xl:grid-cols-4 gap-6 md:gap-8">
                 {products.map((product, index) => (
                   <div
                     key={product._id}

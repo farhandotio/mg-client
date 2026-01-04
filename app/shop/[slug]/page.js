@@ -5,22 +5,21 @@ import {
   fetchProductBySlug,
   fetchRelatedProducts,
   clearSingleProduct,
-  resetProductState,
 } from '@/store/features/productSlice';
+
+// Sub-components
+import Breadcrumbs from './components/Breadcrumbs';
 import ProductGallery from './components/ProductGallery';
 import ProductInfo from './components/ProductInfo';
-import ProductCard from '@/components/ProductCard';
-import { ChevronRight, Loader2, RefreshCw, ArrowLeft } from 'lucide-react';
+import ProductTabs from './components/ProductTabs';
+import RelatedProducts from './components/RelatedProducts';
+import { Loader2, ArrowLeft, Zap } from 'lucide-react';
 import Link from 'next/link';
 
 export default function ProductDetailsPage({ params }) {
-  // ১. স্লাগ আনর্যাপ করা (Next.js 15 এর নিয়ম)
-  const resolvedParams = use(params);
-  const slug = resolvedParams?.slug;
-
+  const { slug } = use(params);
   const dispatch = useDispatch();
 
-  // ২. রিডাক্স স্টেট
   const {
     singleProduct: product,
     relatedProducts,
@@ -28,102 +27,116 @@ export default function ProductDetailsPage({ params }) {
     error,
   } = useSelector((state) => state.products);
 
-  // ৩. মেইন প্রোডাক্ট ফেচ করা
+  // ১. স্লাগ চেঞ্জ হলে আগের প্রোডাক্ট ক্লিয়ার করে নতুনটি ফেচ করা
   useEffect(() => {
     if (slug) {
+      dispatch(clearSingleProduct()); // আগে ক্লিয়ার করা জরুরি
       dispatch(fetchProductBySlug(slug));
     }
-
-    // ক্লিনআপ: পেজ থেকে বেরিয়ে গেলে স্টেট ক্লিয়ার হবে
-    return () => {
-      dispatch(clearSingleProduct());
-      dispatch(resetProductState());
-    };
+    return () => dispatch(clearSingleProduct());
   }, [slug, dispatch]);
 
-  // ৪. রিলেটেড প্রোডাক্ট ফেচ করা
+  // ২. ক্যাটাগরি আইডি পাওয়ার পর রিলেটেড প্রোডাক্ট ফেচ করা
   useEffect(() => {
-    if (product?.category?._id) {
+    if (product?._id && product?.category?._id) {
       dispatch(fetchRelatedProducts(product.category._id));
     }
-  }, [product?.category?._id, dispatch]);
+  }, [product?._id, product?.category?._id, dispatch]);
 
-  // ৫. লোডিং ভিউ
-  if (loading) {
-    return (
-      <div className="min-h-[80vh] flex flex-col items-center justify-center gap-6">
-        <Loader2 className="animate-spin text-primary" size={40} />
-        <p className="text-pText font-black uppercase tracking-widest text-xs animate-pulse">
-          Loading Hardware Details...
-        </p>
-      </div>
-    );
-  }
+  // লোডিং হ্যান্ডলিং: যদি লোডিং ট্রু হয় অথবা প্রোডাক্টের স্লাগ বর্তমান স্লাগের সাথে না মিলে
+  const isSyncing = loading || !product || product.slug !== slug;
 
-  // ৬. এরর বা নট ফাউন্ড ভিউ
-  if (error || (!product && !loading)) {
-    return (
-      <div className="min-h-[80vh] flex flex-col items-center justify-center gap-6 text-center">
-        <h2 className="text-4xl font-black uppercase italic">Product Not Found</h2>
-        <Link href="/shop" className="flex items-center gap-2 text-primary font-bold">
-          <ArrowLeft size={18} /> Back to Shop
-        </Link>
-      </div>
-    );
-  }
+  if (isSyncing && !error) return <LoadingScreen />;
+  if (error) return <ErrorScreen />;
+  if (!product && !loading) return <ErrorScreen />;
 
   return (
-    <div className="bg-bg min-h-screen text-text pt-8 pb-24 px-4 md:px-12">
+    <div className="bg-bg min-h-screen pt-6 pb-24 px-4 md:px-12 animate-in fade-in duration-700">
       <div className="max-w-7xl mx-auto">
-        {/* Breadcrumbs */}
-        <nav className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-pText mb-12">
-          <Link href="/shop" className="hover:text-primary">
-            Shop
-          </Link>
-          <ChevronRight size={12} />
-          <span className="text-primary">{product.category?.name}</span>
-          <ChevronRight className={product.category?.name ? 'block' : 'hidden'} size={12} />
-          <span className="opacity-50 truncate max-w-37">{product.title}</span>
-        </nav>
+        <Breadcrumbs category={product.category} title={product.title} />
 
-        {/* Product Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
-          <div className="lg:col-span-6">
-            <ProductGallery images={product.images || []} title={product.title} />
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+          <div className="lg:col-span-6 md:sticky top-24 z-10">
+            <ProductGallery
+              images={product.images}
+              title={product.title}
+              discount={product.offer?.percentage}
+              price={product.price}
+            />
           </div>
+
           <div className="lg:col-span-6">
             <ProductInfo product={product} />
           </div>
         </div>
 
-        {/* Specs */}
-        <div className="mt-32 border-t border-border/50 pt-20">
-          <h3 className="text-4xl font-black uppercase italic mb-12">Technical Specs</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20">
-            {product.specifications?.map((spec, i) => (
-              <div key={i} className="flex justify-between py-6 border-b border-border/20">
-                <span className="text-pText font-black uppercase text-[10px]">{spec.key}</span>
-                <span className="font-bold text-sm">{spec.value}</span>
-              </div>
-            ))}
-          </div>
+        <div className="mt-20">
+          <ProductTabs product={product} />
+          <RelatedProducts products={relatedProducts} currentId={product._id} />
         </div>
-
-        {/* Related */}
-        {relatedProducts?.length > 1 && (
-          <div className="mt-32">
-            <h2 className="text-4xl font-black uppercase italic mb-12">Related Gadgets</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              {relatedProducts
-                .filter((p) => p._id !== product._id)
-                .slice(0, 4)
-                .map((item) => (
-                  <ProductCard key={item._id} product={item} />
-                ))}
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );
 }
+
+// --- Loading Screen Component (Enhanced) ---
+const LoadingScreen = () => (
+  <div className="fixed inset-0 z-999 bg-bg flex flex-col items-center justify-center gap-6">
+    <div className="relative">
+      {/* Outer spinning ring */}
+      <div className="w-16 h-16 rounded-full border-2 border-primary/5 border-t-primary animate-spin" />
+      {/* Inner pulsing icon */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <Zap size={20} className="text-primary animate-pulse" />
+      </div>
+    </div>
+
+    <div className="space-y-2 text-center">
+      <h2 className="text-primary font-black uppercase tracking-[0.6em] text-[10px] animate-pulse">
+        Syncing_Hardware
+      </h2>
+      <div className="w-32 h-1 bg-primary/10 overflow-hidden relative">
+        <div
+          className="absolute inset-0 bg-primary -translate-x-full animate-shimmer"
+          style={{ animation: 'shimmer 1.5s infinite' }}
+        />
+      </div>
+    </div>
+
+    <style jsx>{`
+      @keyframes shimmer {
+        100% {
+          transform: translateX(100%);
+        }
+      }
+    `}</style>
+  </div>
+);
+
+// --- Error Screen Component ---
+const ErrorScreen = () => (
+  <div className="min-h-[85vh] flex flex-col items-center justify-center text-center px-6">
+    <div className="relative mb-8">
+      <h2 className="text-[12vw] font-black uppercase italic tracking-tighter text-white/5 leading-none">
+        VOID_ERR
+      </h2>
+      <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-pText/40 font-black uppercase tracking-[0.4em] text-[10px]">
+        Signal Lost / Data Corrupted
+      </p>
+    </div>
+
+    <Link href="/shop" className="group flex items-center gap-4 text-primary transition-all">
+      <div className="p-4 rounded-full border border-primary/20 group-hover:bg-primary group-hover:text-bg transition-all">
+        <ArrowLeft size={20} />
+      </div>
+      <div className="text-left">
+        <span className="block text-[10px] font-black uppercase tracking-widest opacity-50">
+          Back to Terminal
+        </span>
+        <span className="block text-sm font-black uppercase tracking-widest">
+          Re-Initialize Shop
+        </span>
+      </div>
+    </Link>
+  </div>
+);
