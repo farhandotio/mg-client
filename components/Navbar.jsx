@@ -1,10 +1,10 @@
 'use client';
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import { logoutUser } from '@/store/features/authSlice';
-import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
+import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
 import {
   ShoppingCart,
   User,
@@ -19,14 +19,15 @@ import {
   LogOut,
   Package,
   Search,
+  LogIn,
 } from 'lucide-react';
 
-// Sub-components
+import Button from '@/components/Button';
 import SearchOverlay from './SearchOverlay';
 import MobileSidebar from './MobileSidebar';
 
 export default function Navbar() {
-  const [mounted, setMounted] = useState(false); // Hydration fix এর জন্য
+  const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -34,21 +35,35 @@ export default function Navbar() {
   const [hidden, setHidden] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
+  // Dropdown বাইরে ক্লিক করলে বন্ধ করার জন্য Ref
+  const categoryRef = useRef(null);
+  const profileRef = useRef(null);
+
   const pathname = usePathname();
   const dispatch = useDispatch();
   const { scrollY } = useScroll();
 
-  // --- Optimized Redux Selection ---
   const { user, isAuthenticated } = useSelector((state) => state.auth, shallowEqual);
   const cartItems = useSelector((state) => state.cart?.cartItems || [], shallowEqual);
   const allProducts = useSelector((state) => state.products?.products || [], shallowEqual);
 
-  // --- Hydration Fix ---
   useEffect(() => {
     setMounted(true);
+
+    // বাইরে ক্লিক করলে ড্রপডাউন বন্ধ করার লজিক
+    const handleClickOutside = (event) => {
+      if (categoryRef.current && !categoryRef.current.contains(event.target)) {
+        setIsCategoryOpen(false);
+      }
+      if (profileRef.current && !profileRef.current.contains(event.target)) {
+        setIsProfileOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // --- Memoized Search Results ---
   const filteredProducts = useMemo(() => {
     if (!searchQuery || !allProducts.length) return [];
     return allProducts
@@ -61,6 +76,7 @@ export default function Navbar() {
     if (latest > previous && latest > 150) {
       setHidden(true);
       setIsCategoryOpen(false);
+      setIsProfileOpen(false);
     } else {
       setHidden(false);
     }
@@ -70,6 +86,7 @@ export default function Navbar() {
     setIsOpen(false);
     setIsSearchOpen(false);
     setIsProfileOpen(false);
+    setIsCategoryOpen(false);
   }, [pathname]);
 
   const categories = [
@@ -85,10 +102,9 @@ export default function Navbar() {
         variants={{ visible: { y: 0 }, hidden: { y: '-100%' } }}
         animate={hidden ? 'hidden' : 'visible'}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className="sticky top-0 z-100 w-full bg-card/80 backdrop-blur-2xl border-b border-border/50"
+        className="sticky top-0 z-[100] w-full bg-card/80 backdrop-blur-2xl border-b border-border/50"
       >
         <nav className="max-w-7xl mx-auto px-4 md:px-8 py-3 flex items-center justify-between">
-          {/* Logo & Mobile Menu */}
           <div className="flex items-center gap-2">
             <button onClick={() => setIsOpen(true)} className="lg:hidden text-text p-1">
               <Menu size={26} />
@@ -98,7 +114,6 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-10 text-[11px] font-black uppercase tracking-[0.2em]">
             <Link
               href="/"
@@ -108,12 +123,11 @@ export default function Navbar() {
             >
               Home
             </Link>
-            <div
-              className="relative"
-              onMouseEnter={() => setIsCategoryOpen(true)}
-              onMouseLeave={() => setIsCategoryOpen(false)}
-            >
+
+            {/* Category Dropdown (Click Based) */}
+            <div className="relative" ref={categoryRef}>
               <button
+                onClick={() => setIsCategoryOpen(!isCategoryOpen)}
                 className={`flex items-center gap-1.5 py-4 transition-colors ${
                   isCategoryOpen ? 'text-primary' : 'text-text'
                 }`}
@@ -121,23 +135,35 @@ export default function Navbar() {
                 Categories{' '}
                 <ChevronDown
                   size={14}
-                  className={`transition-transform ${isCategoryOpen ? 'rotate-180' : ''}`}
+                  className={`transition-transform duration-300 ${
+                    isCategoryOpen ? 'rotate-180' : ''
+                  }`}
                 />
               </button>
-              {isCategoryOpen && (
-                <div className="absolute top-[90%] left-0 w-64 bg-card border border-border rounded-3xl shadow-2xl p-2 animate-in fade-in slide-in-from-top-2">
-                  {categories.map((cat) => (
-                    <Link
-                      key={cat.slug}
-                      href={`/shop?category=${cat.slug}`}
-                      className="flex items-center gap-4 px-4 py-4 hover:bg-white/5 hover:text-primary rounded-2xl transition-all font-bold"
-                    >
-                      <span className="text-primary">{cat.icon}</span> {cat.name}
-                    </Link>
-                  ))}
-                </div>
-              )}
+
+              <AnimatePresence>
+                {isCategoryOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    className="absolute top-[90%] left-0 w-64 bg-card border border-border rounded-3xl shadow-2xl p-2 z-50"
+                  >
+                    {categories.map((cat) => (
+                      <Link
+                        key={cat.slug}
+                        href={`/shop?category=${cat.slug}`}
+                        onClick={() => setIsCategoryOpen(false)}
+                        className="flex items-center gap-4 px-4 py-4 hover:bg-white/5 hover:text-primary rounded-xl transition-all font-bold"
+                      >
+                        <span className="text-primary">{cat.icon}</span> {cat.name}
+                      </Link>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
+
             <Link
               href="/shop"
               className={
@@ -156,21 +182,19 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Action Icons */}
           <div className="flex items-center gap-3">
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="p-2.5 bg-white/5 rounded-2xl text-text hover:text-primary transition-all"
+              className="p-2.5 bg-white/5 rounded-xl text-text hover:text-primary transition-all"
             >
               <Search size={22} />
             </button>
 
             <Link
               href="/cart"
-              className="relative p-2.5 bg-white/5 rounded-2xl text-text hover:text-primary transition-all"
+              className="relative p-2.5 bg-white/5 rounded-xl text-text hover:text-primary transition-all"
             >
               <ShoppingCart size={22} />
-              {/* Hydration Error সমাধান: mounted চেক করা হয়েছে */}
               {mounted && cartItems.length > 0 && (
                 <span className="absolute -top-1 -right-1 bg-primary text-bg text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-card">
                   {cartItems.length}
@@ -178,65 +202,80 @@ export default function Navbar() {
               )}
             </Link>
 
-            {/* User Profile / Login - mounted চেক এখানেও জরুরি */}
             {!mounted ? (
-              <div className="w-10 h-10 bg-white/5 rounded-2xl animate-pulse" />
+              <div className="w-24 h-10 bg-white/5 rounded-full animate-pulse" />
             ) : !isAuthenticated ? (
-              <Link
-                href="/auth"
-                className="px-6 py-3 bg-primary max-md:hidden text-bg font-black text-xs uppercase rounded-2xl shadow-lg hover:opacity-90 transition-all active:scale-95"
-              >
-                Login
-              </Link>
+              <div className="hidden md:block w-32">
+                <Button text="Login" url="/auth" icon={LogIn} size="md" className='rounded-xl' />
+              </div>
             ) : (
-              <div
-                className="relative hidden lg:block"
-                onMouseEnter={() => setIsProfileOpen(true)}
-                onMouseLeave={() => setIsProfileOpen(false)}
-              >
-                <button className="flex items-center gap-2 p-1 bg-bg border border-border rounded-2xl pr-4 transition-all">
-                  <div className="w-9 h-9 bg-primary text-bg rounded-xl flex items-center justify-center font-black">
+              /* Profile Dropdown (Click Based) */
+              <div className="relative hidden lg:block" ref={profileRef}>
+                <button
+                  onClick={() => setIsProfileOpen(!isProfileOpen)}
+                  className={`flex items-center gap-2 p-1 bg-card border rounded-xl pr-4 transition-all ${
+                    isProfileOpen ? 'border-primary' : 'border-primary/50'
+                  }`}
+                >
+                  <div className="w-8 h-8 bg-primary text-bg rounded-lg flex items-center justify-center font-black text-xs">
                     {user?.fullname?.charAt(0).toUpperCase()}
                   </div>
-                  <ChevronDown size={14} />
+                  <span className="text-[10px] font-black uppercase tracking-tighter text-text">
+                    {user?.fullname?.split(' ')[0]}
+                  </span>
+                  <ChevronDown
+                    size={12}
+                    className={`text-pText transition-transform duration-300 ${
+                      isProfileOpen ? 'rotate-180' : ''
+                    }`}
+                  />
                 </button>
-                {isProfileOpen && (
-                  <div className="absolute top-full right-0 w-60 bg-card border border-border mt-2 rounded-3xl shadow-2xl p-2 animate-in fade-in zoom-in-95">
-                    {user?.role === 'admin' && (
+
+                <AnimatePresence>
+                  {isProfileOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      className="absolute top-full right-0 w-60 bg-card border border-border mt-2 rounded-3xl shadow-2xl p-2 z-50"
+                    >
+                      {user?.role === 'admin' && (
+                        <Link
+                          href="/admin/dashboard"
+                          className="flex items-center gap-3 px-4 py-3 text-primary bg-primary/5 rounded-xl font-bold text-[10px] uppercase mb-1"
+                        >
+                          <LayoutDashboard size={16} /> Dashboard
+                        </Link>
+                      )}
                       <Link
-                        href="/admin/dashboard"
-                        className="flex items-center gap-3 px-4 py-3 text-primary bg-primary/5 rounded-2xl font-bold text-[10px] uppercase mb-1"
+                        href="/profile"
+                        className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 rounded-xl font-bold text-[10px] uppercase"
                       >
-                        <LayoutDashboard size={16} /> Dashboard
+                        <User size={16} /> Profile
                       </Link>
-                    )}
-                    <Link
-                      href="/profile"
-                      className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 rounded-2xl font-bold text-[10px] uppercase"
-                    >
-                      <User size={16} /> Profile
-                    </Link>
-                    <Link
-                      href="/orders"
-                      className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 rounded-2xl font-bold text-[10px] uppercase"
-                    >
-                      <Package size={16} /> Orders
-                    </Link>
-                    <div className="my-1 border-t border-border/50" />
-                    <button
-                      onClick={() => dispatch(logoutUser())}
-                      className="flex w-full items-center gap-3 px-4 py-3 text-red-500 hover:bg-red-500/10 rounded-2xl font-bold text-[10px] uppercase transition-colors"
-                    >
-                      <LogOut size={16} /> Logout
-                    </button>
-                  </div>
-                )}
+                      <Link
+                        href="/orders"
+                        className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 rounded-xl font-bold text-[10px] uppercase"
+                      >
+                        <Package size={16} /> Orders
+                      </Link>
+                      <div className="my-1 border-t border-border/50" />
+                      <button
+                        onClick={() => dispatch(logoutUser())}
+                        className="flex w-full items-center gap-3 px-4 py-3 text-red-500 hover:bg-red-500/10 rounded-xl font-bold text-[10px] uppercase transition-colors"
+                      >
+                        <LogOut size={16} /> Logout
+                      </button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             )}
           </div>
         </nav>
       </motion.header>
 
+      {/* অন্যান্য মোডালগুলো */}
       <SearchOverlay
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}
@@ -244,7 +283,6 @@ export default function Navbar() {
         setQuery={setSearchQuery}
         results={filteredProducts}
       />
-
       <MobileSidebar
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}

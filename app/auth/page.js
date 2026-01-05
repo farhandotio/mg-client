@@ -111,7 +111,6 @@ function AuthForm() {
                 type="submit"
                 text={success ? 'Success!' : isLogin ? 'Sign In' : 'Create Account'}
                 loading={loading}
-                bgColor={success ? 'bg-green-500' : 'bg-primary'}
                 size="xl"
                 icon={success ? CheckCircle2 : isLogin ? Lock : User}
               />

@@ -60,7 +60,7 @@ const InternalCartItem = React.memo(({ item, onUpdate, onRemove, isProcessing })
 
             <button
               onClick={() => onRemove(item.productId)}
-              className="shrink-0 w-10 h-10 flex items-center justify-center rounded-full border border-border/40 text-pText/60 hover:text-red-500 hover:border-red-500 transition-all active:scale-90 bg-white/5 hover:bg-red-500/10 shadow-lg"
+              className="shrink-0 w-10 h-10 flex items-center justify-center rounded-full border border-border/40 text-pText/60 hover:text-red-500 hover:border-red-500 transition-all active:scale-90 bg-white/5 hover:bg-red-500/10"
             >
               <Trash2 size={16} />
             </button>
@@ -255,11 +255,11 @@ export default function CartPage() {
           </div>
 
           {/* সমারি কার্ড ফিক্স */}
-          {cartItems.length > 0 && (
+          {/* {cartItems.length > 0 && ( */}
             <div className="lg:col-span-1 w-full sticky top-24">
               <OrderSummary subtotal={subtotal} />
             </div>
-          )}
+          {/* )} */}
         </div>
       </div>
 

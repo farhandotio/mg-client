@@ -1,13 +1,17 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Maximize2, X, Tag, Box } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Maximize2, X, Box } from 'lucide-react';
 
-export default function ProductGallery({ images = [], title, discount, price }) {
+export default function ProductGallery({ images = [], title, discount }) {
   const [activeImg, setActiveImg] = useState(0);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [mounted, setMounted] = useState(false);
+
+  // জুম ইফেক্টের জন্য স্টেট এবং রেফ
+  const [zoomPos, setZoomPos] = useState({ x: 0, y: 0, show: false });
+  const containerRef = useRef(null);
 
   useEffect(() => {
     setMounted(true);
@@ -17,6 +21,15 @@ export default function ProductGallery({ images = [], title, discount, price }) 
       document.body.style.overflow = 'unset';
     };
   }, [isFullScreen]);
+
+  // হোভার জুম লজিক
+  const handleMouseMove = (e) => {
+    if (!containerRef.current) return;
+    const { left, top, width, height } = containerRef.current.getBoundingClientRect();
+    const x = ((e.pageX - left) / width) * 100;
+    const y = ((e.pageY - top - window.scrollY) / height) * 100;
+    setZoomPos({ x, y, show: true });
+  };
 
   const nextImg = () => setActiveImg((prev) => (prev + 1) % images.length);
   const prevImg = () => setActiveImg((prev) => (prev - 1 + images.length) % images.length);
@@ -34,13 +47,18 @@ export default function ProductGallery({ images = [], title, discount, price }) 
   return (
     <div className="w-full space-y-4">
       {/* --- Main Display Area --- */}
-      <div className="relative aspect-square w-full bg-card/40 border border-border/40 rounded-3xl overflow-hidden group/gallery shadow-2xl">
+      <div
+        ref={containerRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={() => setZoomPos({ ...zoomPos, show: false })}
+        className="relative aspect-square w-full bg-card/40 border border-border/40 rounded-3xl overflow-hidden group/gallery shadow-2xl cursor-crosshair"
+      >
         {/* Cyberpunk Decor Corners */}
         <div className="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-primary/30 rounded-tl-3xl pointer-events-none z-10" />
         <div className="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-primary/30 rounded-br-3xl pointer-events-none z-10" />
 
         {/* --- Floating Badges --- */}
-        <div className="absolute top-5 left-5 z-20 flex flex-col gap-2">
+        <div className="absolute top-5 left-5 z-20 flex flex-col gap-2 pointer-events-none">
           {discount > 0 && (
             <motion.div
               initial={{ opacity: 0, x: -10 }}
@@ -66,23 +84,29 @@ export default function ProductGallery({ images = [], title, discount, price }) 
         </button>
 
         {/* Desktop Nav Buttons */}
-        <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 hidden md:flex justify-between z-30 opacity-0 group-hover/gallery:opacity-100 transition-all duration-300">
+        <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 hidden md:flex justify-between z-30 opacity-0 group-hover/gallery:opacity-100 transition-all duration-300 pointer-events-none">
           <button
-            onClick={prevImg}
-            className="p-3 bg-black/60 backdrop-blur-xl rounded-xl border border-white/10 text-white hover:bg-primary hover:text-bg transition-all shadow-xl"
+            onClick={(e) => {
+              e.stopPropagation();
+              prevImg();
+            }}
+            className="p-3 bg-black/60 backdrop-blur-xl rounded-xl border border-white/10 text-white hover:bg-primary hover:text-bg transition-all shadow-xl pointer-events-auto"
           >
             <ChevronLeft size={20} />
           </button>
           <button
-            onClick={nextImg}
-            className="p-3 bg-black/60 backdrop-blur-xl rounded-xl border border-white/10 text-white hover:bg-primary hover:text-bg transition-all shadow-xl"
+            onClick={(e) => {
+              e.stopPropagation();
+              nextImg();
+            }}
+            className="p-3 bg-black/60 backdrop-blur-xl rounded-xl border border-white/10 text-white hover:bg-primary hover:text-bg transition-all shadow-xl pointer-events-auto"
           >
             <ChevronRight size={20} />
           </button>
         </div>
 
-        {/* Main Image Container */}
-        <div className="w-full h-full cursor-grab active:cursor-grabbing ">
+        {/* Main Image & Zoom Layer */}
+        <div className="w-full h-full relative overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.img
               key={activeImg}
@@ -94,9 +118,24 @@ export default function ProductGallery({ images = [], title, discount, price }) 
               drag="x"
               dragConstraints={{ left: 0, right: 0 }}
               onDragEnd={onDragEnd}
-              className="w-full h-full object-cover select-none"
+              className={`w-full h-full object-cover select-none transition-opacity duration-300 ${
+                zoomPos.show ? 'opacity-0' : 'opacity-100'
+              }`}
             />
           </AnimatePresence>
+
+          {/* Zoomed Image Layer (শুধুমাত্র হোভার করলে দেখাবে) */}
+          {zoomPos.show && (
+            <div
+              className="absolute inset-0 pointer-events-none transition-transform duration-150 ease-out"
+              style={{
+                backgroundImage: `url(${images[activeImg]?.url})`,
+                backgroundPosition: `${zoomPos.x}% ${zoomPos.y}%`,
+                backgroundSize: '250%', // ২.৫ গুণ জুম
+                backgroundRepeat: 'no-repeat',
+              }}
+            />
+          )}
         </div>
 
         {/* Bottom Gradient Overlay */}
@@ -116,13 +155,13 @@ export default function ProductGallery({ images = [], title, discount, price }) 
         </div>
       </div>
 
-      {/* --- Thumbnails Area: ইউনিক সাইবার গ্রিড --- */}
+      {/* --- Thumbnails Area --- */}
       <div className="flex gap-3 overflow-x-auto no-scrollbar py-2">
         {images.map((img, index) => (
           <button
             key={index}
             onClick={() => setActiveImg(index)}
-            className={`relative min-w-[70px] h-[70px] md:min-w-[85px] md:h-[85px] rounded-xl overflow-hidden border-2 transition-all ${
+            className={`relative min-w-17.5 h-17.5 md:min-w-21.5 md:h-21.5 rounded-xl overflow-hidden border-2 transition-all ${
               activeImg === index
                 ? 'border-primary shadow-[0_0_10px_rgba(41,252,86,0.3)]'
                 : 'border-white/5 opacity-50 hover:opacity-100'
@@ -177,6 +216,13 @@ export default function ProductGallery({ images = [], title, discount, price }) 
       <style jsx>{`
         .clip-path-tag-gallery {
           clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
         }
       `}</style>
     </div>

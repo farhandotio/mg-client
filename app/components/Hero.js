@@ -41,7 +41,7 @@ export default function Hero() {
           {/* Main Typography */}
           <div className="space-y-6">
             <h1 className="text-6xl md:text-7xl font-black text-text leading-[0.95] tracking-tighter">
-              Discover the  {" "} <br/>
+              Discover the <br />
               <span className="relative">
                 <span className="relative z-10 text-transparent bg-clip-text bg-linear-to-r from-primary via-[#00D1FF] to-primary">
                   Future
@@ -55,7 +55,8 @@ export default function Hero() {
                     opacity="0.3"
                   />
                 </svg>
-              </span>{' '} <br className='md:hidden' />
+              </span>{' '}
+              <br className="md:hidden" />
               of Tech.
             </h1>
             <p className="text-pText text-lg md:text-xl max-w-xl leading-relaxed font-medium">
@@ -65,20 +66,13 @@ export default function Hero() {
           </div>
 
           {/* Functional Buttons */}
-          <div className="flex max-md:flex-wrap gap-4 pt-4 w-full">
+          <div className="md:w-fit">
             <Button
               url="/shop"
               size="lg"
               icon={ArrowRight}
               text="Explore Shop"
-              className="shadow-2xl w-full shadow-primary/20"
-            />
-            <Button
-              url="/deals"
-              size="lg"
-              bgColor="bg-transparent"
-              text="View Weekly Deals"
-              className="border w-full border-border hover:border-primary/50 transition-colors"
+              className="w-fit"
             />
           </div>
 

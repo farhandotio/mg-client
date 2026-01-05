@@ -12,6 +12,7 @@ import {
   ShieldCheck,
   RotateCcw,
   Zap,
+  Loader2,
 } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 import Button from '@/components/Button';
@@ -20,9 +21,11 @@ export default function ProductInfo({ product }) {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
   const [isWishlisted, setIsWishlisted] = useState(false);
+  const [isLocalLoading, setIsLocalLoading] = useState(false); // বাটন লেভেলে লোডিং দেখানোর জন্য
 
-  const { isAuthenticated } = useSelector((state) => state.auth);
-  const { cartLoading } = useSelector((state) => state.cart);
+  // Redux state থেকে ইউজার এবং গ্লোবাল লোডিং চেক
+  const { user } = useSelector((state) => state.auth || {});
+  const { loading: cartLoading } = useSelector((state) => state.cart);
 
   const basePrice = product.price?.base || 0;
   const salePrice = product.price?.discounted || basePrice;
@@ -30,27 +33,40 @@ export default function ProductInfo({ product }) {
   const isOutOfStock = product.stock <= 0;
 
   const handleAddToCart = async () => {
-    const cartItem = {
-      productId: product._id,
-      title: product.title,
-      price: salePrice,
-      image: product.images?.[0]?.url,
-      quantity,
-      slug: product.slug,
-      stock: product.stock,
-    };
+    if (isOutOfStock) return;
 
+    setIsLocalLoading(true);
     try {
-      if (isAuthenticated) {
-        await dispatch(addToCartAPI(cartItem)).unwrap();
+      if (user) {
+        // ফিক্স: API এর জন্য শুধু আইডি এবং কোয়ান্টিটি প্রয়োজন
+        await dispatch(
+          addToCartAPI({
+            productId: product._id,
+            quantity: quantity,
+          })
+        ).unwrap();
       } else {
+        // লোকাল কার্টের জন্য পুরো ডাটা প্রয়োজন
+        const cartItem = {
+          productId: product._id,
+          title: product.title,
+          price: salePrice,
+          image: product.images?.[0]?.url || product.images?.[0] || '/placeholder.png',
+          quantity,
+          slug: product.slug,
+          stock: product.stock,
+        };
         dispatch(addToCartLocal(cartItem));
       }
-      toast.success(`${product.title} added to cart!`, {
+
+      toast.success(`${product.title} deployed to cart!`, {
         style: { background: '#111', color: '#29fc56', border: '1px solid #29fc56' },
+        iconTheme: { primary: '#29fc56', secondary: '#111' },
       });
     } catch (err) {
-      toast.error('Failed to add item');
+      toast.error(err?.message || 'Failed to sync with neural network');
+    } finally {
+      setIsLocalLoading(false);
     }
   };
 
@@ -60,10 +76,10 @@ export default function ProductInfo({ product }) {
       <div className="space-y-4">
         <div className="flex flex-wrap items-center gap-3">
           <span className="px-3 py-1 bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-widest rounded-lg">
-            {product.brand?.name}
+            {product.brand?.name || product.brand}
           </span>
           <span className="px-3 py-1 bg-card border border-border text-pText text-[10px] font-black uppercase tracking-widest rounded-lg">
-            SKU: {product.sku}
+            SKU: {product.sku || 'N/A'}
           </span>
         </div>
 
@@ -78,19 +94,19 @@ export default function ProductInfo({ product }) {
                 key={i}
                 size={14}
                 className={
-                  i < Math.round(product.ratings?.average)
+                  i < Math.round(product.ratings?.average || 0)
                     ? 'fill-primary text-primary'
                     : 'text-border'
                 }
               />
             ))}
             <span className="font-black text-sm ml-1 italic">
-              {product.ratings?.average?.toFixed(1)}
+              {(product.ratings?.average || 0).toFixed(1)}
             </span>
           </div>
           <div className="w-1.5 h-1.5 rounded-full bg-border" />
           <span className="text-xs font-bold text-pText opacity-50 uppercase tracking-widest">
-            {product.ratings?.count} Verified Reviews
+            {product.ratings?.count || 0} Verified Reviews
           </span>
         </div>
       </div>
@@ -99,7 +115,7 @@ export default function ProductInfo({ product }) {
       <div className="flex items-center gap-6 p-6 bg-card/40 border border-border/50 rounded-3xl backdrop-blur-sm w-fit">
         <div className="flex flex-col">
           <span className="text-5xl font-black text-text italic tracking-tighter leading-none">
-            ${salePrice}
+            ৳{salePrice.toLocaleString()}
           </span>
           <span className="text-[9px] font-black uppercase tracking-[0.2em] mt-2 ml-1 text-primary">
             Live Market Price
@@ -109,7 +125,7 @@ export default function ProductInfo({ product }) {
         {discountPercent > 0 && (
           <div className="flex flex-col border-l border-border/50 pl-6">
             <span className="text-xl text-pText/30 line-through font-bold decoration-primary/40">
-              ${basePrice}
+              ৳{basePrice.toLocaleString()}
             </span>
             <span className="text-[10px] font-black text-bg bg-primary px-3 py-1 rounded-full mt-2 animate-pulse">
               -{discountPercent}% OFF
@@ -127,17 +143,18 @@ export default function ProductInfo({ product }) {
       {/* Actions */}
       <div className="space-y-4">
         <div className="flex flex-wrap gap-4">
+          {/* Quantity Selector */}
           <div className="flex justify-between px-5 items-center bg-card border border-border rounded-2xl p-1 h-14 w-40">
             <button
-              disabled={quantity <= 1 || isOutOfStock}
+              disabled={quantity <= 1 || isOutOfStock || isLocalLoading}
               onClick={() => setQuantity((q) => q - 1)}
               className="hover:text-primary transition-all disabled:opacity-20"
             >
               <Minus size={18} strokeWidth={3} />
             </button>
-            <span className="text-center font-black text-xl italic">{quantity}</span>
+            <span className="text-center font-black text-xl italic min-w-[2ch]">{quantity}</span>
             <button
-              disabled={quantity >= product.stock || isOutOfStock}
+              disabled={quantity >= (product.stock || 50) || isOutOfStock || isLocalLoading}
               onClick={() => setQuantity((q) => q + 1)}
               className="hover:text-primary transition-all disabled:opacity-20"
             >
@@ -145,9 +162,10 @@ export default function ProductInfo({ product }) {
             </button>
           </div>
 
+          {/* Wishlist Button */}
           <button
             onClick={() => setIsWishlisted(!isWishlisted)}
-            className="h-14 w-14 flex items-center justify-center bg-card border border-border rounded-2xl hover:border-red-500/50 transition-all group"
+            className="h-14 w-14 flex items-center justify-center bg-card border border-border rounded-full hover:border-red-500/50 transition-all group"
           >
             <Heart
               size={24}
@@ -157,14 +175,15 @@ export default function ProductInfo({ product }) {
             />
           </button>
 
+          {/* Add to Cart Button */}
           <div className="flex-1 min-w-50">
             <Button
               text={isOutOfStock ? 'Out of Stock' : 'Deploy to Cart'}
-              icon={ShoppingCart}
+              icon={isLocalLoading ? Loader2 : ShoppingCart}
               onClick={handleAddToCart}
-              loading={cartLoading}
-              disabled={isOutOfStock}
-              className="h-14 rounded-2xl w-full"
+              loading={isLocalLoading || cartLoading} // Redux loading এবং local loading দুটোর সমন্বয়
+              disabled={isOutOfStock || isLocalLoading}
+              className={`h-14 rounded-full w-full ${isLocalLoading ? 'animate-pulse' : ''}`}
             />
           </div>
         </div>

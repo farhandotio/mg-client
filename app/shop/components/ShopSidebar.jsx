@@ -87,7 +87,7 @@ export default function ShopSidebar({
         />
       </div>
 
-      <Button text="Reset Filters" size="sm" bgColor="bg-white/5" onClick={resetFilters} />
+      <Button text="Reset Filters" size="sm" onClick={resetFilters} />
     </div>
   );
 }

@@ -8,7 +8,6 @@ export default function Button({
   url,
   icon: Icon,
   size = 'md',
-  bgColor = 'bg-primary',
   className = '',
   type = 'button',
   loading = false,
@@ -27,18 +26,27 @@ export default function Button({
       ? 'h-20 px-14 text-2xl tracking-tighter'
       : 'h-10 px-6 text-sm';
 
-  const baseClasses = `relative inline-flex items-center gap-3 overflow-hidden group font-black justify-center text-text whitespace-nowrap rounded-2xl transition-all w-full cursor-pointer shadow-lg disabled:opacity-70 ${bgColor} ${
-    bgColor === 'bg-primary' ? 'shadow-primary/40 text-bg' : 'shadow-card border border-border'
-  } ${sizeClasses} ${className}`;
+  const baseClasses = `
+    relative inline-flex items-center gap-3 overflow-hidden group font-black justify-center 
+    text-text whitespace-nowrap rounded-xl transition-all duration-500 w-full cursor-pointer 
+    shadow-lg disabled:opacity-70 
+    bg-card/50 backdrop-blur-md border border-white/5 
+    hover:border-primary/50 hover:shadow-primary/20
+    ${sizeClasses} ${className}
+  `;
 
-  const innerSpanClasses = `absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none`;
+  const fillLayer = `
+    absolute bottom-0 left-0 w-full h-0 
+    bg-primary transition-all duration-500 ease-out 
+    group-hover:h-full -z-10
+  `;
 
   const content = (
     <>
       {loading ? (
         <span className="flex items-center gap-2">
           <svg
-            className="animate-spin h-5 w-5 text-current"
+            className="animate-spin h-5 w-5 text-primary group-hover:text-bg"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -57,15 +65,18 @@ export default function Button({
               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
             ></path>
           </svg>
-          Processing...
+          <span className="group-hover:text-bg transition-colors duration-300">Processing...</span>
         </span>
       ) : (
         <>
-          {Icon && <Icon className="w-5 h-5" />}
-          <span className="uppercase tracking-widest">{text}</span>
+          {Icon && <Icon className="w-5 h-5 group-hover:text-bg transition-colors duration-300" />}
+          <span className="uppercase tracking-widest group-hover:text-bg transition-colors duration-300">
+            {text}
+          </span>
         </>
       )}
-      <span className={innerSpanClasses}></span>
+      {/* ফিল লেয়ার */}
+      <span className={fillLayer}></span>
     </>
   );
 
@@ -76,7 +87,6 @@ export default function Button({
       </a>
     );
 
-  // Next.js Link এর জন্য url চেক
   if (url)
     return (
       <Link href={url} className={baseClasses} {...props}>

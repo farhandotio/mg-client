@@ -67,7 +67,6 @@ export default function ProfilePage() {
                 <div className="w-fit">
                   <Button
                     text="Settings"
-                    bgColor="bg-white/5"
                     size="sm"
                     icon={Settings}
                     className="rounded-xl w-fit"

@@ -120,11 +120,11 @@ export default function ProductCard({ product }) {
           {/* Wishlist Button */}
           <button
             onClick={toggleWishlist}
-            className={`absolute top-2 right-2 p-2 rounded-lg border transition-all duration-300 z-30 active:scale-90
+            className={`absolute top-2 right-2 p-2 rounded-full border transition-all duration-300 z-30 active:scale-90
               ${
                 isWishlisted
                   ? 'bg-red-500 border-red-500 text-white shadow-[0_0_10px_rgba(239,68,68,0.5)]'
-                  : 'bg-bg/40 border-white/10 text-text hover:bg-primary hover:text-bg'
+                  : 'bg-bg/40 border-white/10 text-text hover:bg-red-400 hover:text-bg'
               }`}
           >
             <Heart size={14} className={isWishlisted ? 'fill-current' : 'fill-none'} />
