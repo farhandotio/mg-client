@@ -26,6 +26,7 @@ import SearchOverlay from './SearchOverlay';
 import MobileSidebar from './MobileSidebar';
 
 export default function Navbar() {
+  const [mounted, setMounted] = useState(false); // Hydration fix এর জন্য
   const [isOpen, setIsOpen] = useState(false);
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -38,15 +39,16 @@ export default function Navbar() {
   const { scrollY } = useScroll();
 
   // --- Optimized Redux Selection ---
-  // shallowEqual ব্যবহার করলে অবজেক্টের ভেতরের ডাটা না বদলালে রি-রেন্ডার হবে না
   const { user, isAuthenticated } = useSelector((state) => state.auth, shallowEqual);
-
-  // আলাদাভাবে সিলেক্ট করা ভালো যাতে একটির পরিবর্তনে অন্যটি অকারণে রেন্ডার না হয়
   const cartItems = useSelector((state) => state.cart?.cartItems || [], shallowEqual);
   const allProducts = useSelector((state) => state.products?.products || [], shallowEqual);
 
+  // --- Hydration Fix ---
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   // --- Memoized Search Results ---
-  // এটি useSelector এর বাইরে useMemo দিয়ে করা উচিত যাতে পারফরম্যান্স ভালো থাকে
   const filteredProducts = useMemo(() => {
     if (!searchQuery || !allProducts.length) return [];
     return allProducts
@@ -65,7 +67,6 @@ export default function Navbar() {
   });
 
   useEffect(() => {
-    // pathname বদলালে সব মেনু বন্ধ হবে
     setIsOpen(false);
     setIsSearchOpen(false);
     setIsProfileOpen(false);
@@ -169,14 +170,18 @@ export default function Navbar() {
               className="relative p-2.5 bg-white/5 rounded-2xl text-text hover:text-primary transition-all"
             >
               <ShoppingCart size={22} />
-              {cartItems.length > 0 && (
+              {/* Hydration Error সমাধান: mounted চেক করা হয়েছে */}
+              {mounted && cartItems.length > 0 && (
                 <span className="absolute -top-1 -right-1 bg-primary text-bg text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-card">
                   {cartItems.length}
                 </span>
               )}
             </Link>
 
-            {!isAuthenticated ? (
+            {/* User Profile / Login - mounted চেক এখানেও জরুরি */}
+            {!mounted ? (
+              <div className="w-10 h-10 bg-white/5 rounded-2xl animate-pulse" />
+            ) : !isAuthenticated ? (
               <Link
                 href="/auth"
                 className="px-6 py-3 bg-primary max-md:hidden text-bg font-black text-xs uppercase rounded-2xl shadow-lg hover:opacity-90 transition-all active:scale-95"

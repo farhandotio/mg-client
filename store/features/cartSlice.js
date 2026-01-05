@@ -14,34 +14,42 @@ const getSessionId = () => {
 
 /**
  * ডাটা ম্যাপ করার হেল্পার
- * এটি নিশ্চিত করে যে ব্যাকএন্ড থেকে আসা ডাটা এবং লোকাল ডাটা একই ফরম্যাটে থাকে।
+ * ব্যাকএন্ডের পপুলেটেড ডাটা এবং লোকাল ডাটার মধ্যে সামঞ্জস্য বজায় রাখে
  */
 const mapCartItems = (serverItems) => {
   if (!Array.isArray(serverItems)) return [];
 
   return serverItems.map((item) => {
-    const p = item.product || item;
+    // পপুলেটেড ডাটা হ্যান্ডেলিং (ব্যাকএন্ডভেদে 'product' বা 'productId' থাকতে পারে)
+    const p = item.product || item.productId || item;
 
-    // ইমেজ চেক (অ্যারে বা অবজেক্ট হ্যান্ডেলিং)
+    // ১. ইমেজ এক্সট্রাকশন (অ্যারে/অবজেক্ট/স্ট্রিং যাই হোক)
     let finalImage = '/placeholder.png';
-    if (p.images && p.images.length > 0) {
-      finalImage = typeof p.images[0] === 'object' ? p.images[0].url : p.images[0];
-    } else if (item.image) {
-      finalImage = item.image;
+    const rawImages = p.images || item.images || [];
+    if (Array.isArray(rawImages) && rawImages.length > 0) {
+      finalImage = typeof rawImages[0] === 'object' ? rawImages[0].url : rawImages[0];
+    } else if (p.image || item.image) {
+      finalImage = p.image || item.image;
     }
 
-    // প্রাইস হ্যান্ডেলিং
-    const finalPrice = item.price?.discounted || item.price || p.price?.discounted || p.price || 0;
+    // ২. প্রাইস হ্যান্ডেলিং (ডিসকাউন্ট বা রেগুলার প্রাইস চেক)
+    const getPrice = (obj) =>
+      typeof obj === 'object' ? obj?.discounted || obj?.regular || 0 : obj || 0;
+    const finalPrice = getPrice(item.price) || getPrice(p.price) || 0;
+
+    // ৩. আইডি হ্যান্ডেলিং (নিশ্চিত করা যে এটি স্ট্রিং হিসেবে থাকে)
+    const rawId = p._id || item.productId || item._id;
+    const finalId = typeof rawId === 'object' ? rawId._id : rawId;
 
     return {
-      productId: p._id || item.productId || item._id,
-      title: p.title || item.title || 'Unknown Neural Unit',
+      productId: finalId,
+      title: p.title || item.title || 'Neural Unit',
       image: finalImage,
       slug: p.slug || item.slug || '',
       price: Number(finalPrice),
       quantity: Number(item.quantity || 1),
       stock: Number(p.stock || item.stock || 50),
-      brand: p.brand?.name || item.brand || 'GENERIC',
+      brand: (typeof p.brand === 'object' ? p.brand?.name : p.brand) || 'GENERIC',
     };
   });
 };
@@ -52,7 +60,8 @@ export const fetchCart = createAsyncThunk('cart/fetchCart', async (_, { rejectWi
   try {
     const sessionId = getSessionId();
     const response = await API.get(`/cart?sessionId=${sessionId}`);
-    return mapCartItems(response.data.cart?.items || response.data.items);
+    const items = response.data.cart?.items || response.data.items || [];
+    return mapCartItems(items);
   } catch (error) {
     return rejectWithValue(error.response?.data || 'Fetch Failed');
   }
@@ -64,7 +73,8 @@ export const addToCartAPI = createAsyncThunk(
     try {
       const sessionId = getSessionId();
       const response = await API.post(`/cart/add`, { productId, quantity, sessionId });
-      return mapCartItems(response.data.cart?.items || response.data.items);
+      const items = response.data.cart?.items || response.data.items || [];
+      return mapCartItems(items);
     } catch (error) {
       return rejectWithValue(error.response?.data);
     }
@@ -77,7 +87,8 @@ export const removeFromCartAPI = createAsyncThunk(
     try {
       const sessionId = getSessionId();
       const response = await API.post(`/cart/remove`, { productId, sessionId });
-      return mapCartItems(response.data.cart?.items || response.data.items);
+      const items = response.data.cart?.items || response.data.items || [];
+      return mapCartItems(items);
     } catch (error) {
       return rejectWithValue(error.response?.data);
     }
@@ -88,7 +99,8 @@ export const mergeCartAPI = createAsyncThunk('cart/merge', async (_, { rejectWit
   try {
     const sessionId = getSessionId();
     const response = await API.post(`/cart/merge`, { sessionId });
-    return mapCartItems(response.data.cart?.items || response.data.items);
+    const items = response.data.cart?.items || response.data.items || [];
+    return mapCartItems(items);
   } catch (error) {
     return rejectWithValue(error.response?.data);
   }
@@ -117,6 +129,7 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
+    // এই ফাংশনটি ProductCard এর বিল্ড এরর সমাধান করবে
     addToCartLocal: (state, action) => {
       const { productId, quantity, price, title, image, slug, stock } = action.payload;
       const existingItem = state.cartItems.find((item) => item.productId === productId);
@@ -165,7 +178,6 @@ const cartSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // ১. প্রথমে সব addCase লিখতে হবে
       .addCase(fetchCart.pending, (state) => {
         state.loading = true;
       })
@@ -182,8 +194,6 @@ const cartSlice = createSlice({
         state.cartItems = [];
         localStorage.removeItem('cartItems');
       })
-
-      // ২. সব addMatcher থাকবে সবার শেষে
       .addMatcher(
         (action) =>
           action.type.endsWith('/fulfilled') &&
@@ -197,6 +207,7 @@ const cartSlice = createSlice({
   },
 });
 
+// সবগুলো এক্সপোর্ট নিশ্চিত করা হয়েছে
 export const { addToCartLocal, updateQuantityLocal, removeFromCartLocal, clearCart } =
   cartSlice.actions;
 export default cartSlice.reducer;
