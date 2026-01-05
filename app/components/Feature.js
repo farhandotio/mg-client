@@ -17,11 +17,9 @@ export default function Feature() {
     dispatch(fetchAllProducts('limit=10&productType=Featured&sort=-createdAt'));
   }, [dispatch]);
 
-  // স্লাইডার কন্ট্রোল
   const scroll = (direction) => {
     if (scrollRef.current) {
-      const { clientWidth } = scrollRef.current;
-      const scrollAmount = clientWidth / 1.5;
+      const scrollAmount = scrollRef.current.clientWidth / 2; // হাফ স্ক্রিন স্ক্রল করবে স্মুথনেসের জন্য
       scrollRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth',
@@ -30,69 +28,82 @@ export default function Feature() {
   };
 
   return (
-    <section className="py-24 px-6 bg-bg relative overflow-hidden border-t border-border/10">
-      {/* Background Decor */}
+    <section className="py-20 px-4 md:px-6 bg-bg relative overflow-hidden border-t border-border/10">
+      {/* Background Glow */}
       <div className="absolute top-0 right-0 w-80 h-80 bg-primary/5 blur-[120px] rounded-full -z-10" />
 
       <div className="max-w-7xl mx-auto">
-        {/* --- Header Section --- */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
-          <div className="space-y-4">
+        {/* --- Header --- */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6">
+          <div className="space-y-2">
             <div className="flex items-center gap-2 text-primary">
-              <Sparkles size={16} className="animate-pulse" />
-              <span className="text-[10px] font-black uppercase tracking-[0.3em]">
-                Neural selection
+              <Sparkles size={14} className="animate-pulse" />
+              <span className="text-[9px] font-black uppercase tracking-[0.3em]">
+                Neural Hardware
               </span>
             </div>
-            <h2 className="text-4xl md:text-6xl font-black text-text tracking-tighter uppercase italic leading-none">
+            <h2 className="text-3xl md:text-5xl font-black text-text tracking-tighter uppercase italic leading-none">
               Featured <span className="text-primary">Gear</span>
             </h2>
           </div>
 
           <div className="flex items-center gap-4">
-            {/* Custom Navigation */}
             <div className="hidden md:flex gap-2">
               <button
                 onClick={() => scroll('left')}
-                className="p-3 bg-card border border-border/50 rounded-xl hover:border-primary/50 hover:text-primary transition-all"
+                className="p-2.5 bg-card border border-border/50 rounded-lg hover:border-primary/50 transition-all active:scale-90"
               >
-                <ChevronLeft size={20} />
+                <ChevronLeft size={18} />
               </button>
               <button
                 onClick={() => scroll('right')}
-                className="p-3 bg-card border border-border/50 rounded-xl hover:border-primary/50 hover:text-primary transition-all"
+                className="p-2.5 bg-card border border-border/50 rounded-lg hover:border-primary/50 transition-all active:scale-90"
               >
-                <ChevronRight size={20} />
+                <ChevronRight size={18} />
               </button>
             </div>
             <Link
               href="/shop?productType=Featured"
-              className="group flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-pText hover:text-primary transition-colors"
+              className="group flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-pText hover:text-primary"
             >
-              See Vault{' '}
+              Full Vault{' '}
               <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
         </div>
 
-        {/* --- Single Line Slider Area --- */}
+        {/* --- Slider Area: কার্ড সাইজ ছোট করা হয়েছে --- */}
         <div className="relative">
           <div
             ref={scrollRef}
-            className="flex gap-4 md:gap-6 overflow-x-auto no-scrollbar scroll-smooth snap-x"
+            className="flex gap-4 md:gap-5 overflow-x-auto py-5 no-scrollbar scroll-smooth snap-x snap-mandatory pb-6"
           >
             {loading ? (
-              <Skeleton type="product" count={5} />
+              [...Array(6)].map((_, i) => (
+                <div
+                  key={i}
+                  className="min-w-[65%] sm:min-w-[40%] md:min-w-[25%] lg:min-w-[19%] snap-start"
+                >
+                  <Skeleton type="product" />
+                </div>
+              ))
             ) : products.length > 0 ? (
               products.map((product) => (
-                <div key={product._id} className="min-w-35 md:min-w-55 snap-start">
+                /* Mobile: 65% (আগে ৭৫% ছিল, এখন আরও একটু ছোট করা হয়েছে)
+                   Tablet: 30% 
+                   Desktop/LG: 19% (এখন একসাথে ৫টি কার্ড দেখা যাবে)
+                */
+                <div
+                  key={product._id}
+                  className="min-w-[65%] sm:min-w-[35%] md:min-w-[28%] lg:min-w-[19%] snap-start"
+                >
                   <ProductCard product={product} />
                 </div>
               ))
             ) : (
-              <div className="w-full py-20 text-center border border-dashed border-border/20 rounded-3xl">
-                <p className="text-pText font-black uppercase tracking-widest opacity-30 text-sm italic">
-                  No Featured Hardware Detected
+              <div className="w-full py-16 text-center border border-dashed border-border/10 rounded-2xl">
+                <p className="text-pText opacity-40 text-xs italic uppercase font-bold tracking-widest">
+                  No Gear Detected In This Sector
                 </p>
               </div>
             )}

@@ -2,41 +2,93 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Eye, Heart, Star, ShoppingCart, ShieldCheck } from 'lucide-react';
+import { Heart, Star, ShoppingCart, ShieldCheck, Loader2 } from 'lucide-react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCartAPI, addToCartLocal } from '@/store/features/cartSlice';
+import { toast } from 'react-hot-toast';
 
 export default function ProductCard({ product }) {
+  const dispatch = useDispatch();
   const [isWishlisted, setIsWishlisted] = useState(false);
+  const [isAdding, setIsAdding] = useState(false);
 
+  // Redux থেকে ইউজার এবং কার্ট স্টেট চেক
+  const { user } = useSelector((state) => state.auth || {});
+  const { cartItems } = useSelector((state) => state.cart);
+
+  // ক্যালকুলেশন
   const basePrice = product?.price?.base || 0;
   const salePrice = product?.price?.discounted || basePrice;
   const discount = product?.offer?.percentage || 0;
   const isOutOfStock = product?.stock <= 0;
 
-  // স্মুথ স্ক্রল ফাংশন
+  // কার্টে অলরেডি আছে কি না চেক (UI ফিডব্যাক এর জন্য)
+  const isInCart = cartItems.some((item) => item.productId === product._id);
+
   const handleScrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   const toggleWishlist = (e) => {
     e.preventDefault();
     setIsWishlisted(!isWishlisted);
+    toast.success(isWishlisted ? 'Removed from wishlist' : 'Added to wishlist');
+  };
+
+  // --- Cart Handle Function (Core Update) ---
+  const handleAddToCart = async (e) => {
+    e.preventDefault();
+    if (isOutOfStock) return;
+
+    // কার্ট ডেটা অবজেক্ট (লোকাল স্টোরেজের জন্য)
+    const cartData = {
+      productId: product._id,
+      title: product.title,
+      price: salePrice,
+      image: product.images?.[0]?.url || '',
+      slug: product.slug,
+      quantity: 1,
+      stock: product.stock || 50,
+    };
+
+    setIsAdding(true);
+    try {
+      if (user) {
+        // ১. যদি ইউজার লগইন থাকে (Server Action)
+        await dispatch(
+          addToCartAPI({
+            productId: product._id,
+            quantity: 1,
+          })
+        ).unwrap();
+      } else {
+        // ২. যদি গেস্ট ইউজার হয় (Local Action)
+        dispatch(addToCartLocal(cartData));
+      }
+      toast.success('SYNCED TO NEURAL CART');
+    } catch (err) {
+      console.error(err);
+      toast.error(err?.message || 'Transmission Interrupted');
+    } finally {
+      setIsAdding(false);
+    }
   };
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4 }}
-      className="group relative w-full transition-all duration-500"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.4, ease: 'easeOut' }}
+      className="group relative w-full will-change-transform transition-all duration-500 max-w-60 mx-auto"
     >
-      {/* --- Cyber Background --- */}
-      <div className="absolute inset-0 bg-card/40 backdrop-blur-sm border border-border/40 clip-path-cyber rounded-2xl transition-all duration-500 group-hover:border-primary/50 group-hover:bg-card/80 group-hover:-translate-y-1 shadow-xl" />
+      {/* Background Cyber Frame */}
+      <div className="absolute inset-0 bg-card/60 md:bg-card/40 md:backdrop-blur-sm border border-border/40 clip-path-cyber rounded-2xl transition-all duration-500 group-hover:border-primary/50 group-hover:bg-card/80 md:group-hover:-translate-y-1 shadow-lg" />
 
       <div className="relative z-10 p-2 md:p-4">
-        {/* --- Image Area --- */}
+        {/* Image Container */}
         <div className="relative aspect-square overflow-hidden clip-path-cyber-inner bg-bg/50">
           <Link
             href={`/shop/${product?.slug}`}
@@ -47,15 +99,20 @@ export default function ProductCard({ product }) {
               src={product?.images?.[0]?.url || '/placeholder.png'}
               alt={product?.title}
               loading="lazy"
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[0.2] group-hover:grayscale-0"
+              className="w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-110 grayscale-[0.2] md:group-hover:grayscale-0"
             />
           </Link>
 
-          {/* Badges */}
+          {/* Tags */}
           <div className="absolute top-2 left-2 flex flex-col gap-2">
             {discount > 0 && (
-              <span className="bg-primary text-bg text-[8px] md:text-[10px] font-black px-2 py-0.5 rounded-sm italic uppercase clip-path-tag">
+              <span className="bg-primary text-bg text-[8px] md:text-[10px] font-black px-2 py-0.5 rounded-sm italic uppercase clip-path-tag shadow-md">
                 -{discount}%
+              </span>
+            )}
+            {isOutOfStock && (
+              <span className="bg-red-600 text-white text-[8px] md:text-[9px] font-black px-2 py-0.5 rounded-sm uppercase italic">
+                Offline
               </span>
             )}
           </div>
@@ -63,35 +120,24 @@ export default function ProductCard({ product }) {
           {/* Wishlist Button */}
           <button
             onClick={toggleWishlist}
-            className={`absolute top-2 right-2 p-2 rounded-lg backdrop-blur-xl border transition-all duration-300 z-30
+            className={`absolute top-2 right-2 p-2 rounded-lg border transition-all duration-300 z-30 active:scale-90
               ${
                 isWishlisted
-                  ? 'bg-red-500 border-red-500 text-white'
-                  : 'bg-bg/40 border-white/10 text-text hover:bg-primary hover:text-bg hover:border-primary'
+                  ? 'bg-red-500 border-red-500 text-white shadow-[0_0_10px_rgba(239,68,68,0.5)]'
+                  : 'bg-bg/40 border-white/10 text-text hover:bg-primary hover:text-bg'
               }`}
           >
             <Heart size={14} className={isWishlisted ? 'fill-current' : 'fill-none'} />
           </button>
-
-          {/* Quick View Button */}
-          <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
-            <Link
-              href={`/shop/${product?.slug}`}
-              onClick={handleScrollToTop}
-              className="p-3 bg-bg/90 text-primary rounded-xl translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-75 shadow-2xl"
-            >
-              <Eye size={18} />
-            </Link>
-          </div>
         </div>
 
-        {/* --- Product Details --- */}
+        {/* Content Section */}
         <div className="mt-4 space-y-2">
           <div className="flex justify-between items-center">
             <span className="text-[9px] font-black text-primary uppercase tracking-widest flex items-center gap-1">
-              <ShieldCheck size={10} /> {product?.brand?.name || 'GENERIC'}
+              <ShieldCheck size={10} /> {product?.brand?.name || 'GENERIC CORE'}
             </span>
-            <div className="flex items-center gap-1 bg-primary/10 px-2 py-0.5 rounded text-primary">
+            <div className="flex items-center gap-1 bg-primary/10 px-2 py-0.5 rounded text-primary border border-primary/20">
               <Star size={8} className="fill-current" />
               <span className="text-[10px] font-bold">{product?.ratings?.average || 0}</span>
             </div>
@@ -103,37 +149,44 @@ export default function ProductCard({ product }) {
             </h3>
           </Link>
 
-          {/* Price & Cart Section */}
+          {/* Pricing and Action */}
           <div className="pt-3 border-t border-border/20 flex items-center justify-between">
             <div className="flex flex-col">
               <span className="text-text text-lg md:text-2xl font-black italic tracking-tighter leading-none">
-                ${salePrice}
+                ৳{salePrice.toLocaleString()}
               </span>
               {discount > 0 && (
-                <span className="text-pText text-[10px] line-through font-bold opacity-30">
-                  ${basePrice}
+                <span className="text-pText/40 text-[10px] line-through font-bold">
+                  ৳{basePrice.toLocaleString()}
                 </span>
               )}
             </div>
 
             <button
-              disabled={isOutOfStock}
-              className={`p-3 rounded-xl transition-all active:scale-90
+              disabled={isOutOfStock || isAdding}
+              onClick={handleAddToCart}
+              className={`p-3 rounded-xl transition-all active:scale-75 flex items-center justify-center
                 ${
                   isOutOfStock
-                    ? 'bg-bg/50 text-pText/30 cursor-not-allowed border border-border/20'
-                    : 'bg-primary text-bg shadow-[0_5px_15px_-5px_rgba(41,252,86,0.4)] hover:shadow-primary/40'
+                    ? 'bg-bg/50 text-pText/20 cursor-not-allowed border border-border/10'
+                    : isInCart
+                    ? 'bg-primary/20 text-primary border border-primary/40'
+                    : 'bg-primary text-bg shadow-md md:shadow-[0_5px_15px_-5px_rgba(41,252,86,0.4)]'
                 }`}
             >
-              <ShoppingCart size={18} strokeWidth={2.5} />
+              {isAdding ? (
+                <Loader2 size={18} className="animate-spin" />
+              ) : (
+                <ShoppingCart
+                  size={18}
+                  strokeWidth={2.5}
+                  className={isInCart ? 'animate-pulse' : ''}
+                />
+              )}
             </button>
           </div>
         </div>
       </div>
-
-      {/* Decorative Glitch Corners */}
-      <div className="absolute -top-1 -left-1 w-3 h-3 border-t border-l border-primary/40 opacity-0 group-hover:opacity-100 transition-all" />
-      <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b border-r border-primary/40 opacity-0 group-hover:opacity-100 transition-all" />
 
       <style jsx>{`
         .clip-path-cyber {
