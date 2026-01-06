@@ -7,19 +7,21 @@ const initialState = {
   loading: false,
   error: null,
   success: false,
-  orderId: null, // নতুন অর্ডার তৈরির পর আইডি ট্র্যাকিংয়ের জন্য
+  orderId: null,
 };
-
-// ---------------------------------------------------------
-// --- ASYNC THUNKS (User Operations) ---
-// ---------------------------------------------------------
 
 // ১. চেকআউট শেষ করে অর্ডার তৈরি করা
 export const createOrder = createAsyncThunk('order/create', async (orderData, thunkAPI) => {
   try {
+    console.log('📡 API Call: POST /orders/create with data:', orderData);
     const response = await API.post('/orders/create', orderData);
-    return response.data; // { success: true, orderId: "...", totalAmount: ... }
+
+    // ব্যাকএন্ড যদি { success: true, order: { _id: '...' } } পাঠায়
+    // তবে নিশ্চিত করুন আপনি সরাসরি সেই অবজেক্টটি রিটার্ন করছেন
+    console.log('✅ API Response Data:', response.data);
+    return response.data;
   } catch (error) {
+    console.error('❌ API Error:', error.response?.data);
     return thunkAPI.rejectWithValue(error.response?.data?.message || 'Order placement failed');
   }
 });
@@ -28,7 +30,7 @@ export const createOrder = createAsyncThunk('order/create', async (orderData, th
 export const getMyOrders = createAsyncThunk('order/myOrders', async (_, thunkAPI) => {
   try {
     const response = await API.get('/orders/my-orders');
-    return response.data; // { success: true, orders: [...] }
+    return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response?.data?.message || 'Failed to fetch orders');
   }
@@ -38,7 +40,7 @@ export const getMyOrders = createAsyncThunk('order/myOrders', async (_, thunkAPI
 export const getOrderDetails = createAsyncThunk('order/details', async (id, thunkAPI) => {
   try {
     const response = await API.get(`/orders/${id}`);
-    return response.data; // { success: true, order: {...} }
+    return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response?.data?.message || 'Error fetching details');
   }
@@ -53,10 +55,6 @@ export const cancelOrder = createAsyncThunk('order/cancel', async (id, thunkAPI)
     return thunkAPI.rejectWithValue(error.response?.data?.message || 'Cancellation failed');
   }
 });
-
-// ---------------------------------------------------------
-// --- ASYNC THUNKS (Admin Operations) ---
-// ---------------------------------------------------------
 
 // ৫. অ্যাডমিন সব অর্ডার দেখবে
 export const getAllOrdersAdmin = createAsyncThunk('order/adminAll', async (_, thunkAPI) => {
@@ -81,10 +79,6 @@ export const updateOrderStatus = createAsyncThunk(
   }
 );
 
-// ---------------------------------------------------------
-// --- SLICE DEFINITION ---
-// ---------------------------------------------------------
-
 const orderSlice = createSlice({
   name: 'order',
   initialState,
@@ -93,6 +87,7 @@ const orderSlice = createSlice({
       state.success = false;
       state.error = null;
       state.orderId = null;
+      state.loading = false;
     },
     clearOrderDetails: (state) => {
       state.orderDetails = null;
@@ -104,15 +99,24 @@ const orderSlice = createSlice({
       .addCase(createOrder.pending, (state) => {
         state.loading = true;
         state.error = null;
+        state.success = false;
       })
       .addCase(createOrder.fulfilled, (state, action) => {
         state.loading = false;
         state.success = true;
-        state.orderId = action.payload.orderId;
+
+        // ব্যাকএন্ডের ভিন্ন ভিন্ন রেসপন্স ফরম্যাট হ্যান্ডেল করা:
+        // ১. সরাসরি আইডি থাকলে: action.payload._id
+        // ২. আপনার বর্তমান কোড অনুযায়ী: action.payload.orderId
+        // ৩. যদি অবজেক্টের ভেতর থাকে: action.payload.order?._id
+        state.orderId = action.payload._id || action.payload.orderId || action.payload.order?._id;
+
+        console.log('💾 Redux Store Updated with Order ID:', state.orderId);
       })
       .addCase(createOrder.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+        state.success = false;
       })
 
       // Get My Orders
@@ -121,17 +125,16 @@ const orderSlice = createSlice({
       })
       .addCase(getMyOrders.fulfilled, (state, action) => {
         state.loading = false;
-        state.orders = action.payload.orders;
+        state.orders = action.payload.orders || action.payload;
       })
 
       // Get Order Details
       .addCase(getOrderDetails.fulfilled, (state, action) => {
-        state.orderDetails = action.payload.order;
+        state.orderDetails = action.payload.order || action.payload;
       })
 
       // Cancel Order (User)
       .addCase(cancelOrder.fulfilled, (state, action) => {
-        // লিস্টে থাকা অর্ডারের স্ট্যাটাস আপডেট করা
         const index = state.orders.findIndex((o) => o._id === action.payload.id);
         if (index !== -1) {
           state.orders[index].orderStatus = 'Cancelled';

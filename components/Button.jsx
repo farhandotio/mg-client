@@ -30,7 +30,7 @@ export default function Button({
     relative inline-flex items-center gap-3 overflow-hidden group font-black justify-center 
     text-text whitespace-nowrap rounded-xl transition-all duration-500 w-full cursor-pointer 
     shadow-lg disabled:opacity-70 
-    bg-card/50 backdrop-blur-md border border-white/5 
+    bg-card/50 backdrop-blur-md border max-md:bg-primary max-md:text-black border-border 
     hover:border-primary/50 hover:shadow-primary/20
     ${sizeClasses} ${className}
   `;
