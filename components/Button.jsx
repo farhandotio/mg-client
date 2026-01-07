@@ -10,6 +10,7 @@ export default function Button({
   size = 'md',
   className = '',
   type = 'button',
+  fillColor = 'bg-primary',
   loading = false,
   ...props
 }) {
@@ -30,16 +31,16 @@ export default function Button({
     relative inline-flex items-center gap-3 overflow-hidden group font-black justify-center 
     text-text whitespace-nowrap rounded-xl transition-all duration-500 w-full cursor-pointer 
     shadow-lg disabled:opacity-70 
-    bg-card/50 backdrop-blur-md border max-md:bg-primary max-md:text-black border-border 
-    hover:border-primary/50 hover:shadow-primary/20
+    bg-card backdrop-blur-md border ${fillColor} max-md:text-black border-border 
+    hover:border-transparent hover:scale-102 hover:-translate-y-1
     ${sizeClasses} ${className}
   `;
 
   const fillLayer = `
     absolute bottom-0 left-0 w-full h-0 
-    bg-primary transition-all duration-500 ease-out 
+    transition-all duration-500 ease-out 
     group-hover:h-full -z-10
-  `;
+   ${fillColor}`;
 
   const content = (
     <>
@@ -76,7 +77,7 @@ export default function Button({
         </>
       )}
       {/* ফিল লেয়ার */}
-      <span className={fillLayer}></span>
+      <span className={`${fillLayer}`}></span>
     </>
   );
 

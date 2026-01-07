@@ -12,10 +12,10 @@
 
 .dark {
   --color-primary: #57e676;
-  --color-bg: #292929;
+  --color-bg: #242424;
   --color-text: #f2f6fa;
   --color-pText: #a0a0a0;
-  --color-card: #1a1a1a;
+  --color-card: #292929;
   --color-border: #2a2a2a;
 }
 

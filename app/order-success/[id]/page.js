@@ -13,6 +13,7 @@ import {
   ShoppingBag,
 } from 'lucide-react';
 import Link from 'next/link';
+import Button from '@/components/Button';
 
 export default function OrderSuccessPage() {
   const { id } = useParams();
@@ -23,7 +24,6 @@ export default function OrderSuccessPage() {
     if (id) {
       dispatch(getOrderDetails(id));
     }
-    // পেজ থেকে চলে যাওয়ার সময় স্টেট ক্লিয়ার করা
     return () => {
       dispatch(clearOrderDetails());
     };
@@ -31,7 +31,7 @@ export default function OrderSuccessPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center text-green-500 font-bold tracking-widest">
+      <div className="min-h-screen bg-bg flex items-center justify-center text-primary font-bold tracking-widest">
         DECRYPTING ORDER DATA...
       </div>
     );
@@ -39,7 +39,7 @@ export default function OrderSuccessPage() {
 
   if (!orderDetails) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center text-white">
+      <div className="min-h-screen bg-bg flex items-center justify-center text-text">
         Order not found or still syncing.
       </div>
     );
@@ -51,17 +51,17 @@ export default function OrderSuccessPage() {
   const payment = orderDetails.payment || {};
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white py-20 px-4">
+    <div className="min-h-screen bg-bg text-text py-20 px-4">
       <div className="max-w-4xl mx-auto">
         {/* Success Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-green-500/10 border border-green-500 mb-6 shadow-[0_0_30px_rgba(41,252,86,0.2)]">
-            <CheckCircle2 size={40} className="text-green-500" />
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 border border-primary mb-6 shadow-[0_0_30px_rgba(41,252,86,0.2)]">
+            <CheckCircle2 size={40} className="text-primary" />
           </div>
           <h1 className="text-4xl md:text-5xl font-black uppercase italic mb-2">
-            Order <span className="text-green-500">Confirmed</span>
+            Order <span className="text-primary">Confirmed</span>
           </h1>
-          <p className="text-white/40 text-xs font-bold tracking-widest uppercase">
+          <p className="text-text/40 text-xs font-bold tracking-widest uppercase">
             Transaction successful via {payment.method || 'N/A'}
           </p>
         </div>
@@ -69,8 +69,8 @@ export default function OrderSuccessPage() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
           {/* Order Details */}
           <div className="md:col-span-7 space-y-6">
-            <div className="bg-[#111] border border-white/5 rounded-3xl p-8 relative overflow-hidden">
-              <h3 className="text-green-500 text-[10px] font-black uppercase tracking-widest mb-6">
+            <div className="bg-card border border-border rounded-3xl p-8 relative overflow-hidden">
+              <h3 className="text-primary text-[10px] font-black uppercase tracking-widest mb-6">
                 Order Details
               </h3>
               <div className="space-y-4">
@@ -84,54 +84,50 @@ export default function OrderSuccessPage() {
                 <InfoRow icon={ShoppingBag} label="Method" value={payment.method} />
               </div>
 
-              <div className="mt-8 pt-8 border-t border-white/5">
-                <p className="text-[10px] font-black uppercase text-white/20 mb-3">Shipping To</p>
-                <p className="text-sm font-bold text-white/80 leading-relaxed">
+              <div className="mt-8 pt-8 border-t border-border">
+                <p className="text-[10px] font-black uppercase text-pText mb-3">Shipping To</p>
+                <p className="text-sm font-bold text-pText leading-relaxed">
                   {shipping.fullname}
                   <br />
                   {shipping.address}, {shipping.city}
                   <br />
-                  <span className="text-green-500">{shipping.phoneNumber}</span>
+                  <span className="text-primary">{shipping.phoneNumber}</span>
                 </p>
               </div>
             </div>
 
-            <Link href="/shop" className="block">
-              <button className="w-full py-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition text-xs font-black uppercase tracking-widest flex items-center justify-center gap-2">
-                Continue Shopping <ArrowRight size={14} />
-              </button>
-            </Link>
+            <Button size='xl' url={'/shop'} className="" icon={ArrowRight} text={'Continue Shopping'} />
           </div>
 
           {/* Pricing Summary */}
           <div className="md:col-span-5">
-            <div className="bg-[#111] border border-white/5 rounded-3xl p-8 h-full">
-              <h3 className="text-green-500 text-[10px] font-black uppercase tracking-widest mb-6">
+            <div className="bg-card border border-border rounded-3xl p-8 h-full">
+              <h3 className="text-primary text-[10px] font-black uppercase tracking-widest mb-6">
                 Price Summary
               </h3>
               <div className="space-y-4 mb-8">
                 {orderDetails.orderItems?.map((item, idx) => (
                   <div key={idx} className="flex justify-between items-center text-[11px]">
-                    <span className="text-white/60 truncate max-w-[150px]">{item.title}</span>
-                    <span className="text-green-500">x{item.quantity}</span>
+                    <span className="text-pText truncate max-w-32.5">{item.title}</span>
+                    <span className="text-primary">x{item.quantity}</span>
                   </div>
                 ))}
               </div>
 
-              <div className="space-y-3 pt-6 border-t border-white/5 text-[10px] font-bold uppercase">
-                <div className="flex justify-between text-white/30">
+              <div className="space-y-3 pt-6 border-t border-border text-[10px] font-bold uppercase">
+                <div className="flex justify-between text-pText">
                   <span>Subtotal</span>
-                  <span className="text-white">৳{(pricing.itemsPrice || 0).toLocaleString()}</span>
+                  <span className="text-text">৳{(pricing.itemsPrice || 0).toLocaleString()}</span>
                 </div>
-                <div className="flex justify-between text-white/30">
+                <div className="flex justify-between text-pText">
                   <span>Shipping</span>
-                  <span className="text-white">
+                  <span className="text-text">
                     ৳{(pricing.shippingPrice || 0).toLocaleString()}
                   </span>
                 </div>
-                <div className="flex justify-between items-center pt-6 border-t border-white/5 mt-4">
-                  <span className="text-white">Grand Total</span>
-                  <span className="text-2xl font-black text-green-500">
+                <div className="flex justify-between items-center pt-6 border-t border-border mt-4">
+                  <span className="text-text">Grand Total</span>
+                  <span className="text-2xl font-black text-primary">
                     ৳{(pricing.totalPrice || 0).toLocaleString()}
                   </span>
                 </div>
@@ -147,15 +143,13 @@ export default function OrderSuccessPage() {
 function InfoRow({ icon: Icon, label, value, isStatus }) {
   return (
     <div className="flex items-center justify-between">
-      <div className="flex items-center gap-2 text-white/30">
+      <div className="flex items-center gap-2 text-pText">
         <Icon size={14} />
         <span className="text-[10px] font-black uppercase tracking-widest">{label}</span>
       </div>
       <span
         className={`text-[11px] font-bold ${
-          isStatus
-            ? 'bg-green-500/10 text-green-500 px-2 py-0.5 rounded uppercase'
-            : 'text-white/80'
+          isStatus ? 'bg-primary/10 text-primary px-2 py-0.5 rounded uppercase' : 'text-pText'
         }`}
       >
         {value}

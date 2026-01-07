@@ -56,7 +56,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-card/50 backdrop-blur-xl border-t border-border/50 relative overflow-hidden">
+    <footer className="bg-card backdrop-blur-xl border-t border-border/50 relative overflow-hidden">
       {/* Background Decorative Glow */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
 

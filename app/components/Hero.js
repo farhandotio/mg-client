@@ -31,7 +31,7 @@ export default function Hero() {
           className="relative z-20 space-y-8"
         >
           {/* Top Badge */}
-          <div className="inline-flex items-center gap-3 bg-card/50 backdrop-blur-md border border-border/50 px-4 py-2 rounded-2xl shadow-sm">
+          <div className="inline-flex items-center gap-3 bg-card backdrop-blur-md border border-border/50 px-4 py-2 rounded-2xl shadow-sm">
             <Trophy size={16} className="text-primary" />
             <span className="text-text text-[11px] font-black uppercase tracking-widest">
               N°1 Tech Store in 2026
@@ -67,13 +67,7 @@ export default function Hero() {
 
           {/* Functional Buttons */}
           <div className="md:w-fit">
-            <Button
-              url="/shop"
-              size="lg"
-              icon={ArrowRight}
-              text="Explore Shop"
-              className="w-fit"
-            />
+            <Button url="/shop" size="lg" icon={ArrowRight} text="Explore Shop" className="w-fit" />
           </div>
 
           {/* Trust Indicators */}
