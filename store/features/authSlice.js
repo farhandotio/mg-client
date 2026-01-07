@@ -12,7 +12,7 @@ const initialState = {
 };
 
 // ---------------------------------------------------------
-// --- ASYNC THUNKS (Authentication & Password) ---
+// --- ASYNC THUNKS (Authentication) ---
 // ---------------------------------------------------------
 
 export const registerUser = createAsyncThunk('auth/register', async (userData, thunkAPI) => {
@@ -42,19 +42,6 @@ export const logoutUser = createAsyncThunk('auth/logout', async (_, thunkAPI) =>
   }
 });
 
-export const forgotPassword = createAsyncThunk('auth/forgotPassword', async (email, thunkAPI) => {
-  try {
-    const response = await API.post('/auth/forgot-password', { email });
-    return response.data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.response?.data?.message);
-  }
-});
-
-// ---------------------------------------------------------
-// --- ASYNC THUNKS (User Profile & Addresses) ---
-// ---------------------------------------------------------
-
 export const getMe = createAsyncThunk('auth/getMe', async (_, thunkAPI) => {
   try {
     const response = await API.get('/auth/user/profile');
@@ -64,52 +51,34 @@ export const getMe = createAsyncThunk('auth/getMe', async (_, thunkAPI) => {
   }
 });
 
-export const updateMe = createAsyncThunk('auth/updateMe', async (updateData, thunkAPI) => {
-  try {
-    const response = await API.patch('/auth/user/update-me', updateData);
-    return response.data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.response?.data?.message);
-  }
-});
+// ---------------------------------------------------------
+// --- ASYNC THUNKS (Address Operations) ---
+// ---------------------------------------------------------
 
 export const getAddresses = createAsyncThunk('auth/getAddresses', async (_, thunkAPI) => {
   try {
     const response = await API.get('/auth/user/addresses');
-    return response.data;
+    return response.data; // Expected { addresses: [...] }
   } catch (error) {
-    return thunkAPI.rejectWithValue('Failed to fetch addresses');
+    return thunkAPI.rejectWithValue(error.response?.data?.message || 'Failed to fetch addresses');
   }
 });
 
 export const addAddress = createAsyncThunk('auth/addAddress', async (addressData, thunkAPI) => {
   try {
     const response = await API.post('/auth/user/addresses', addressData);
-    return response.data;
+    return response.data; // Expected { addresses: [...] }
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.response?.data?.message);
+    return thunkAPI.rejectWithValue(error.response?.data?.message || 'Failed to add address');
   }
 });
 
-// ---------------------------------------------------------
-// --- ASYNC THUNKS (Admin Only) ---
-// ---------------------------------------------------------
-
-export const getAllUsers = createAsyncThunk('auth/getAllUsers', async (_, thunkAPI) => {
+export const deleteAddress = createAsyncThunk('auth/deleteAddress', async (addressId, thunkAPI) => {
   try {
-    const response = await API.get('/auth/users');
-    return response.data;
+    const response = await API.delete(`/auth/user/addresses/${addressId}`);
+    return response.data; // Expected { addresses: [...] }
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.response?.data?.message);
-  }
-});
-
-export const deleteUserByAdmin = createAsyncThunk('auth/deleteUser', async (id, thunkAPI) => {
-  try {
-    await API.delete(`/auth/users/${id}`);
-    return id;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.response?.data?.message);
+    return thunkAPI.rejectWithValue(error.response?.data?.message || 'Failed to delete address');
   }
 });
 
@@ -130,7 +99,7 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // Authentication
+      // Login
       .addCase(loginUser.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -145,19 +114,21 @@ const authSlice = createSlice({
         state.error = action.payload;
       })
 
+      // Register
       .addCase(registerUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.isAuthenticated = true;
       })
 
+      // Logout
       .addCase(logoutUser.fulfilled, (state) => {
         state.user = null;
-        state.users = [];
         state.addresses = [];
         state.isAuthenticated = false;
+        state.loading = false;
       })
 
-      // Profile & Me
+      // Get Me (Profile Check)
       .addCase(getMe.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.isAuthenticated = true;
@@ -166,29 +137,42 @@ const authSlice = createSlice({
         state.user = null;
         state.isAuthenticated = false;
       })
-      .addCase(updateMe.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.successMessage = 'Profile updated successfully!';
-      })
 
-      // Addresses
-      .addCase(getAddresses.fulfilled, (state, action) => {
-        state.addresses = action.payload.addresses;
-      })
-      .addCase(addAddress.fulfilled, (state, action) => {
-        state.addresses = action.payload.addresses; // assuming backend returns updated list
-      })
+      // --- ADDRESS HANDLERS ---
 
-      // Admin Operations
-      .addCase(getAllUsers.pending, (state) => {
+      // Get Addresses
+      .addCase(getAddresses.pending, (state) => {
         state.loading = true;
       })
-      .addCase(getAllUsers.fulfilled, (state, action) => {
+      .addCase(getAddresses.fulfilled, (state, action) => {
         state.loading = false;
-        state.users = action.payload.users;
+        state.addresses = action.payload.addresses || [];
       })
-      .addCase(deleteUserByAdmin.fulfilled, (state, action) => {
-        state.users = state.users.filter((u) => u._id !== action.payload);
+      .addCase(getAddresses.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      // Add Address
+      .addCase(addAddress.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(addAddress.fulfilled, (state, action) => {
+        state.loading = false;
+        // ব্যাকএন্ড থেকে আসা নতুন অ্যাড্রেস লিস্ট দিয়ে স্টেট আপডেট
+        state.addresses = action.payload.addresses || [];
+        state.successMessage = 'Address added successfully!';
+      })
+      .addCase(addAddress.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      // Delete Address
+      .addCase(deleteAddress.fulfilled, (state, action) => {
+        state.addresses = action.payload.addresses || [];
+        state.successMessage = 'Address deleted!';
       });
   },
 });

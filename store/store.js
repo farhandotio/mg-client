@@ -5,7 +5,7 @@ import cartReducer from './features/cartSlice';
 import categoryReducer from './features/categorySlice';
 import brandReducer from './features/brandSlice';
 import orderReducer from './features/orderSlice';
-import bkashReducer from './features/bkashSlice';
+import paymentReducer from './features/paymentSlice';
 
 export const store = configureStore({
   reducer: {
@@ -15,7 +15,7 @@ export const store = configureStore({
     categories: categoryReducer,
     brands: brandReducer,
     order: orderReducer,
-    bkash: bkashReducer,
+    payment: paymentReducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
 });
