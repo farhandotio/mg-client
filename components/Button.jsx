@@ -31,7 +31,7 @@ export default function Button({
     relative inline-flex items-center gap-3 overflow-hidden group font-black justify-center 
     text-text whitespace-nowrap rounded-xl transition-all duration-500 w-full cursor-pointer 
     shadow-lg disabled:opacity-70 
-    bg-card backdrop-blur-md border ${fillColor} max-md:text-black border-border 
+    bg-card backdrop-blur-md border max-md:bg-primary max-md:text-black border-border 
     hover:border-transparent hover:scale-102 hover:-translate-y-1
     ${sizeClasses} ${className}
   `;
