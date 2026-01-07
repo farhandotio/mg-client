@@ -106,8 +106,8 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="bg-bg min-h-screen text-text pb-20 pt-10 px-4 md:px-6">
-      <div className="max-w-7xl mx-auto">
+    <div className="bg-bg min-h-screen text-text pb-20 pt-10">
+      <div className="max-w-7xl mx-auto  px-4 md:px-6">
         <h1 className="text-3xl font-extrabold mb-10 flex items-center gap-3 tracking-tight">
           <ShieldCheck className="text-primary w-8 h-8" /> CHECKOUT
         </h1>

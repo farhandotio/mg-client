@@ -5,7 +5,7 @@ import { ShoppingBag, Loader2, ArrowLeft, Trash2, Plus, Minus, Hash } from 'luci
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import {
   removeFromCartAPI,
-  addToCartAPI,
+  updateCartQuantityAPI, // নতুন থাঙ্ক ইমপোর্ট করা হলো
   removeFromCartLocal,
   updateQuantityLocal,
   fetchCart,
@@ -25,7 +25,6 @@ const InternalCartItem = React.memo(({ item, onUpdate, onRemove, isProcessing })
         isProcessing ? 'opacity-50 pointer-events-none' : 'opacity-100'
       }`}
     >
-      {/* বাম পাশের ইন্ডিকেটর লাইন */}
       <div className="absolute -left-2 top-10 bottom-10 w-1 bg-primary/20 group-hover:bg-primary transition-all duration-500 rounded-full shadow-[0_0_10px_rgba(41,252,86,0.5)]" />
 
       <div className="relative flex flex-col md:flex-row gap-4 md:gap-8 bg-card/10 backdrop-blur-xl border border-border/40 rounded-tr-[3rem] rounded-bl-[3rem] rounded-tl-xl rounded-br-xl p-4 md:p-6 transition-all duration-500 hover:border-primary/40 shadow-2xl">
@@ -66,17 +65,15 @@ const InternalCartItem = React.memo(({ item, onUpdate, onRemove, isProcessing })
             </button>
           </div>
 
-          {/* কন্ট্রোলস এবং প্রাইস */}
           <div className="flex flex-col sm:flex-row justify-between items-center sm:items-end gap-6 mt-6">
             <div className="flex items-center gap-1 bg-bg/50 border border-white/5 rounded-full p-1 shadow-inner group-hover:border-primary/20 transition-colors">
               <button
                 onClick={() => onUpdate(item.productId, -1)}
-                className="w-10 h-10 flex items-center justify-center text-pText hover:text-primary transition-colors"
+                className="w-10 h-10 flex items-center justify-center text-pText hover:text-primary transition-colors disabled:opacity-30"
                 disabled={isProcessing}
               >
                 <Minus size={14} />
               </button>
-
               <div className="px-5 flex flex-col items-center select-none min-w-17.5">
                 {isProcessing ? (
                   <Loader2 size={12} className="animate-spin text-primary" />
@@ -91,7 +88,6 @@ const InternalCartItem = React.memo(({ item, onUpdate, onRemove, isProcessing })
                   </>
                 )}
               </div>
-
               <button
                 onClick={() => onUpdate(item.productId, 1)}
                 className="w-10 h-10 flex items-center justify-center text-pText hover:text-primary transition-colors"
@@ -132,46 +128,19 @@ export default function CartPage() {
     if (user) dispatch(fetchCart());
   }, [dispatch, user]);
 
-  const updateQuantity = useCallback(
-    async (productId, delta) => {
-      if (!productId || processingId) return;
-
-      const currentItem = cartItems.find((item) => item.productId === productId);
-      if (!currentItem) return;
-
-      setProcessingId(productId);
-      try {
-        if (user) {
-          // ব্যাকএন্ডে কোয়ান্টিটি ১ থেকে কমে ০ হলে রিমুভ করার লজিক দেওয়া আছে
-          await dispatch(addToCartAPI({ productId, quantity: delta })).unwrap();
-        } else {
-          // লোকাল মোডে ১ এর নিচে গেলে রিমুভ ফাংশন কল হবে
-          if (currentItem.quantity + delta < 1) {
-            dispatch(removeFromCartLocal(productId));
-          } else {
-            dispatch(updateQuantityLocal({ productId, delta }));
-          }
-        }
-      } catch (err) {
-        toast.error('Sync Failed');
-      } finally {
-        setProcessingId(null);
-      }
-    },
-    [cartItems, user, dispatch, processingId]
-  );
-
   const removeItem = useCallback(
     async (productId) => {
-      if (!productId) return;
-      setProcessingId(productId);
+      const cleanId = String(productId);
+      if (!cleanId) return;
+
+      setProcessingId(cleanId);
       const loadingToast = toast.loading('Decommissioning unit...');
 
       try {
         if (user) {
-          await dispatch(removeFromCartAPI(productId)).unwrap();
+          await dispatch(removeFromCartAPI(cleanId)).unwrap();
         } else {
-          dispatch(removeFromCartLocal(productId));
+          dispatch(removeFromCartLocal(cleanId));
         }
         toast.success('Unit removed', { id: loadingToast });
       } catch (err) {
@@ -181,6 +150,45 @@ export default function CartPage() {
       }
     },
     [user, dispatch]
+  );
+
+  const updateQuantity = useCallback(
+    async (productId, delta) => {
+      const cleanId = String(productId);
+      if (!cleanId || processingId) return;
+
+      const currentItem = cartItems.find((item) => String(item.productId) === cleanId);
+      if (!currentItem) return;
+
+      // মাইনাস বাটনের জন্য ১ এর নিচে গেলে রিমুভ হবে
+      if (delta === -1 && Number(currentItem.quantity) <= 1) {
+        return removeItem(cleanId);
+      }
+
+      setProcessingId(cleanId);
+      try {
+        if (user) {
+          // ব্যাকএন্ডের নতুন লজিক অনুযায়ী 'increase' বা 'decrease' পাঠানো হচ্ছে
+          const actionType = delta > 0 ? 'increase' : 'decrease';
+          const sessionId = localStorage.getItem('sessionId');
+
+          await dispatch(
+            updateCartQuantityAPI({
+              productId: cleanId,
+              action: actionType,
+              sessionId,
+            })
+          ).unwrap();
+        } else {
+          dispatch(updateQuantityLocal({ productId: cleanId, delta }));
+        }
+      } catch (err) {
+        toast.error(err?.message || 'Sync Failed');
+      } finally {
+        setProcessingId(null);
+      }
+    },
+    [cartItems, user, dispatch, processingId, removeItem]
   );
 
   const subtotal = cartItems.reduce((acc, item) => {
@@ -216,7 +224,6 @@ export default function CartPage() {
           </Link>
         </header>
 
-        {/* গ্রিড লেআউট ফিক্স: দুই পাশের সামঞ্জস্যের জন্য items-start ব্যবহার করা হয়েছে */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
           <div className="lg:col-span-2 w-full">
             {loading && cartItems.length === 0 ? (
@@ -254,12 +261,9 @@ export default function CartPage() {
             )}
           </div>
 
-          {/* সমারি কার্ড ফিক্স */}
-          {/* {cartItems.length > 0 && ( */}
-            <div className="lg:col-span-1 w-full sticky top-24">
-              <OrderSummary subtotal={subtotal} />
-            </div>
-          {/* )} */}
+          <div className="lg:col-span-1 w-full sticky top-24">
+            <OrderSummary subtotal={subtotal} />
+          </div>
         </div>
       </div>
 
