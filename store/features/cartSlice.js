@@ -1,5 +1,6 @@
 import API from '@/api/axios';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-hot-toast';
 
 // সেশন আইডি জেনারেট
 const getSessionId = () => {
@@ -13,7 +14,7 @@ const getSessionId = () => {
 };
 
 /**
- * ডাটা ম্যাপ করার হেল্পার (Fixed logic for IDs and Prices)
+ * ডাটা ম্যাপ করার হেল্পার
  */
 const mapCartItems = (serverItems) => {
   if (!Array.isArray(serverItems)) return [];
@@ -33,7 +34,7 @@ const mapCartItems = (serverItems) => {
 
     const getPrice = (obj) => {
       if (typeof obj === 'object' && obj !== null) {
-        return obj.discounted || obj.regular || obj.price || 0;
+        return obj.discounted || obj.regular || obj.base || obj.price || 0;
       }
       return Number(obj) || 0;
     };
@@ -55,7 +56,6 @@ const mapCartItems = (serverItems) => {
 
 // --- Async Thunks ---
 
-// ১. কার্ট ডাটা ফেচ করা
 export const fetchCart = createAsyncThunk('cart/fetchCart', async (_, { rejectWithValue }) => {
   try {
     const sessionId = getSessionId();
@@ -67,7 +67,6 @@ export const fetchCart = createAsyncThunk('cart/fetchCart', async (_, { rejectWi
   }
 });
 
-// ২. সরাসরি প্লাস/মাইনাস একশন পাঠানো (নতুন কন্ট্রোলার অনুযায়ী)
 export const updateCartQuantityAPI = createAsyncThunk(
   'cart/updateQuantity',
   async ({ productId, action, sessionId }, { rejectWithValue }) => {
@@ -81,7 +80,6 @@ export const updateCartQuantityAPI = createAsyncThunk(
   }
 );
 
-// ৩. অ্যাড টু কার্ট (পরিমান সহ যোগ করা)
 export const addToCartAPI = createAsyncThunk(
   'cart/add',
   async ({ productId, quantity }, { rejectWithValue }) => {
@@ -89,15 +87,16 @@ export const addToCartAPI = createAsyncThunk(
       const sessionId = getSessionId();
       const idToSend = typeof productId === 'object' ? productId._id : productId;
       const response = await API.post(`/cart/add`, { productId: idToSend, quantity, sessionId });
+      toast.success('Unit added to neural core');
       const items = response.data.cart?.items || response.data.items || [];
       return mapCartItems(items);
     } catch (error) {
+      toast.error('Sync failed');
       return rejectWithValue(error.response?.data);
     }
   }
 );
 
-// ৪. রিমুভ ফ্রম কার্ট
 export const removeFromCartAPI = createAsyncThunk(
   'cart/remove',
   async (productId, { rejectWithValue }) => {
@@ -112,18 +111,6 @@ export const removeFromCartAPI = createAsyncThunk(
   }
 );
 
-// ৫. মার্জ কার্ট
-export const mergeCartAPI = createAsyncThunk('cart/merge', async (_, { rejectWithValue }) => {
-  try {
-    const sessionId = getSessionId();
-    const response = await API.post(`/cart/merge`, { sessionId });
-    const items = response.data.cart?.items || response.data.items || [];
-    return mapCartItems(items);
-  } catch (error) {
-    return rejectWithValue(error.response?.data);
-  }
-});
-
 // --- Slice Definition ---
 
 const initialState = {
@@ -136,6 +123,25 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
+    // এই ফাংশনটি এখন যুক্ত করা হলো যা আগে ছিল না
+    addToCartLocal: (state, action) => {
+      const product = action.payload;
+      const existingItem = state.cartItems.find(
+        (item) => String(item.productId) === String(product._id)
+      );
+
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        const mapped = mapCartItems([product])[0];
+        state.cartItems.push(mapped);
+      }
+
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
+      }
+      toast.success('Unit saved to local cache');
+    },
     hydrateCart: (state) => {
       if (typeof window !== 'undefined') {
         const saved = localStorage.getItem('cartItems');
@@ -158,6 +164,7 @@ const cartSlice = createSlice({
         (item) => String(item.productId) !== String(action.payload)
       );
       localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
+      toast.error('Unit purged');
     },
     clearCart: (state) => {
       state.cartItems = [];
@@ -193,4 +200,5 @@ const cartSlice = createSlice({
 
 export const { addToCartLocal, updateQuantityLocal, removeFromCartLocal, clearCart, hydrateCart } =
   cartSlice.actions;
+
 export default cartSlice.reducer;

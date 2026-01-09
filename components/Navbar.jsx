@@ -35,7 +35,6 @@ export default function Navbar() {
   const [hidden, setHidden] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Dropdown বাইরে ক্লিক করলে বন্ধ করার জন্য Ref
   const categoryRef = useRef(null);
   const profileRef = useRef(null);
 
@@ -95,6 +94,11 @@ export default function Navbar() {
     { name: 'Watches', slug: 'watches', icon: <Watch size={18} /> },
   ];
 
+
+  if (pathname.startsWith('/admin')) {
+    return null;
+  }
+
   return (
     <>
       <motion.header
@@ -108,7 +112,10 @@ export default function Navbar() {
             <button onClick={() => setIsOpen(true)} className="lg:hidden text-text p-1">
               <Menu size={26} />
             </button>
-            <Link href="/" className="text-text font-black whitespace-nowrap text-2xl tracking-tighter">
+            <Link
+              href="/"
+              className="text-text font-black whitespace-nowrap text-2xl tracking-tighter"
+            >
               MY<span className="text-primary italic"> GADGET</span>
             </Link>
           </div>
@@ -224,7 +231,7 @@ export default function Navbar() {
                   <ChevronDown
                     size={12}
                     className={`text-pText transition-transform duration-300 ${
-                      isProfileOpen ? 'rotate-180' : ''
+                      isProfileOpen ? 'rotate-0' : 'rotate-90'
                     }`}
                   />
                 </button>
@@ -245,18 +252,23 @@ export default function Navbar() {
                           <LayoutDashboard size={16} /> Dashboard
                         </Link>
                       )}
-                      <Link
-                        href="/profile"
-                        className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 rounded-xl font-bold text-[10px] uppercase"
-                      >
-                        <User size={16} /> Profile
-                      </Link>
-                      <Link
-                        href="/orders"
-                        className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 rounded-xl font-bold text-[10px] uppercase"
-                      >
-                        <Package size={16} /> Orders
-                      </Link>
+
+                      {user?.role === 'user' && (
+                        <>
+                          <Link
+                            href="/profile"
+                            className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 rounded-xl font-bold text-[10px] uppercase"
+                          >
+                            <User size={16} /> Profile
+                          </Link>
+                          <Link
+                            href="/orders"
+                            className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 rounded-xl font-bold text-[10px] uppercase"
+                          >
+                            <Package size={16} /> Orders
+                          </Link>
+                        </>
+                      )}
                       <div className="my-1 border-t border-border/50" />
                       <button
                         onClick={() => dispatch(logoutUser())}

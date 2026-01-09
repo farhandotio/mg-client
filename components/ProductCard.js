@@ -12,17 +12,14 @@ export default function ProductCard({ product }) {
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
 
-  // Redux থেকে ইউজার এবং কার্ট স্টেট চেক
   const { user } = useSelector((state) => state.auth || {});
   const { cartItems } = useSelector((state) => state.cart);
 
-  // ক্যালকুলেশন
   const basePrice = product?.price?.base || 0;
   const salePrice = product?.price?.discounted || basePrice;
   const discount = product?.offer?.percentage || 0;
   const isOutOfStock = product?.stock <= 0;
 
-  // কার্টে অলরেডি আছে কি না চেক (UI ফিডব্যাক এর জন্য)
   const isInCart = cartItems.some((item) => item.productId === product._id);
 
   const handleScrollToTop = () => {
@@ -38,44 +35,41 @@ export default function ProductCard({ product }) {
   };
 
   // --- Cart Handle Function (Core Update) ---
-  const handleAddToCart = async (e) => {
-    e.preventDefault();
-    if (isOutOfStock) return;
+const handleAddToCart = async (e) => {
+  e.preventDefault();
+  if (isOutOfStock) return;
 
-    // কার্ট ডেটা অবজেক্ট (লোকাল স্টোরেজের জন্য)
-    const cartData = {
-      productId: product._id,
-      title: product.title,
-      price: salePrice,
-      image: product.images?.[0]?.url || '',
-      slug: product.slug,
-      quantity: 1,
-      stock: product.stock || 50,
-    };
-
-    setIsAdding(true);
-    try {
-      if (user) {
-        // ১. যদি ইউজার লগইন থাকে (Server Action)
-        await dispatch(
-          addToCartAPI({
-            productId: product._id,
-            quantity: 1,
-          })
-        ).unwrap();
-      } else {
-        // ২. যদি গেস্ট ইউজার হয় (Local Action)
-        dispatch(addToCartLocal(cartData));
-      }
-      toast.success('SYNCED TO NEURAL CART');
-    } catch (err) {
-      console.error(err);
-      toast.error(err?.message || 'Transmission Interrupted');
-    } finally {
-      setIsAdding(false);
-    }
+  const cartData = {
+    productId: product._id,
+    title: product.title,
+    price: salePrice,
+    image: product.images?.[0]?.url || '',
+    slug: product.slug,
+    quantity: 1,
+    stock: product.stock || 50,
   };
 
+  setIsAdding(true);
+  try {
+    if (user) {
+      await dispatch(
+        addToCartAPI({
+          productId: product._id,
+          quantity: 1,
+        })
+      ).unwrap();
+    } else {
+      dispatch(addToCartLocal(cartData));
+    }
+  } catch (err) {
+    console.error(err);
+    if (!err?.message) {
+      toast.error('Transmission Interrupted');
+    }
+  } finally {
+    setIsAdding(false);
+  }
+};
   return (
     <motion.div
       initial={{ opacity: 1, y: 10 }}
