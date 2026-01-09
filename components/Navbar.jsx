@@ -138,7 +138,7 @@ export default function Navbar() {
                   isCategoryOpen ? 'text-primary' : 'text-text'
                 }`}
               >
-                Categories{' '}
+                Categories
                 <ChevronDown
                   size={14}
                   className={`transition-transform duration-300 ${
@@ -285,7 +285,6 @@ export default function Navbar() {
         </nav>
       </motion.header>
 
-      {/* অন্যান্য মোডালগুলো */}
       <SearchOverlay
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}

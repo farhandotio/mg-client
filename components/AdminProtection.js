@@ -1,43 +1,56 @@
 'use client';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Loader2 } from 'lucide-react';
+import { Loader2, ShieldCheck } from 'lucide-react';
+import { getMe } from '@/store/features/authSlice';
 
 export default function AdminProtection({ children }) {
-  const { user, loading } = useSelector((state) => state.auth);
+  const { user, isAuthenticated, loading } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   const router = useRouter();
-
-  // ১. মাউন্ট হওয়া পর্যন্ত অপেক্ষা করার জন্য একটি স্টেট
-  const [isChecking, setIsChecking] = useState(true);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   useEffect(() => {
-    // ২. একটি ছোট ডিলে বা লোডিং শেষ হওয়ার জন্য অপেক্ষা
-    const timer = setTimeout(() => {
-      if (!loading) {
-        if (!user || user.role !== 'admin') {
-          router.push('/login');
-        } else {
-          setIsChecking(false);
-        }
+    const checkSession = async () => {
+      if (!isAuthenticated) {
+        await dispatch(getMe());
       }
-    }, 1500); // ১.৫ সেকেন্ড ডিলে যাতে রিডাক্স ডাটা পাওয়ার সময় পায়
+      setIsInitialLoad(false);
+    };
 
-    return () => clearTimeout(timer);
-  }, [user, loading, router]);
+    checkSession();
+  }, [dispatch, isAuthenticated]);
 
-  // ৩. যতক্ষণ চেকিং চলবে অথবা রিডাক্স লোড হবে, ততক্ষণ লোডার দেখাবে
-  if (loading || isChecking) {
+  useEffect(() => {
+    if (!isInitialLoad && !loading) {
+      if (!isAuthenticated || user?.role !== 'admin') {
+        router.replace('/login');
+      }
+    }
+  }, [user, isAuthenticated, loading, router, isInitialLoad]);
+
+  if (isInitialLoad || (loading && !user)) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-bg gap-4">
-        <Loader2 className="animate-spin text-primary" size={40} />
-        <p className="text-[10px] font-black uppercase tracking-[0.3em] text-pText animate-pulse">
-          Authenticating Admin Session...
-        </p>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-black gap-4">
+        <div className="relative">
+          <Loader2 className="animate-spin text-primary" size={40} />
+          <ShieldCheck
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-primary/40"
+            size={18}
+          />
+        </div>
+        <div className="text-center">
+          <p className="text-[10px] font-black uppercase tracking-[0.3em] text-white">
+            Verifying <span className="text-primary">Admin</span> Session
+          </p>
+          <p className="text-[8px] text-pText opacity-40 uppercase mt-1">
+            Please wait, do not refresh
+          </p>
+        </div>
       </div>
     );
   }
 
-  // সব চেক সফল হলে চিলড্রেন দেখাবে
-  return user?.role === 'admin' ? children : null;
+  return user?.role === 'admin' ? <>{children}</> : null;
 }

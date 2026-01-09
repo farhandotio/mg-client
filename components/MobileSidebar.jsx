@@ -40,7 +40,7 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
               <Link href="/shop" className="text-3xl font-black">
                 Shop All
               </Link>
-              <Link href="/deals" className="text-3xl font-black text-primary">
+              <Link href="/shop?productType=HotDeals" className="text-3xl font-black text-primary">
                 Hot Deals
               </Link>
 

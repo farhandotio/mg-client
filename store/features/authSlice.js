@@ -3,7 +3,7 @@ import API from '../../api/axios';
 
 const initialState = {
   user: null,
-  users: [],
+  users: [], // অ্যাডমিনের জন্য
   addresses: [],
   isAuthenticated: false,
   loading: false,
@@ -12,7 +12,7 @@ const initialState = {
 };
 
 // ---------------------------------------------------------
-// --- ASYNC THUNKS (Authentication) ---
+// --- ASYNC THUNKS (Authentication & Profile) ---
 // ---------------------------------------------------------
 
 export const registerUser = createAsyncThunk('auth/register', async (userData, thunkAPI) => {
@@ -51,6 +51,16 @@ export const getMe = createAsyncThunk('auth/getMe', async (_, thunkAPI) => {
   }
 });
 
+// নতুন: প্রোফাইল আপডেট
+export const updateMe = createAsyncThunk('auth/updateMe', async (userData, thunkAPI) => {
+  try {
+    const response = await API.patch('/auth/user/update-me', userData);
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response?.data?.message || 'Update failed');
+  }
+});
+
 // ---------------------------------------------------------
 // --- ASYNC THUNKS (Address Operations) ---
 // ---------------------------------------------------------
@@ -58,7 +68,7 @@ export const getMe = createAsyncThunk('auth/getMe', async (_, thunkAPI) => {
 export const getAddresses = createAsyncThunk('auth/getAddresses', async (_, thunkAPI) => {
   try {
     const response = await API.get('/auth/user/addresses');
-    return response.data; // Expected { addresses: [...] }
+    return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response?.data?.message || 'Failed to fetch addresses');
   }
@@ -67,18 +77,68 @@ export const getAddresses = createAsyncThunk('auth/getAddresses', async (_, thun
 export const addAddress = createAsyncThunk('auth/addAddress', async (addressData, thunkAPI) => {
   try {
     const response = await API.post('/auth/user/addresses', addressData);
-    return response.data; // Expected { addresses: [...] }
+    return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response?.data?.message || 'Failed to add address');
   }
 });
 
+// নতুন: অ্যাড্রেস আপডেট
+export const updateAddress = createAsyncThunk(
+  'auth/updateAddress',
+  async ({ addressId, addressData }, thunkAPI) => {
+    try {
+      const response = await API.patch(`/auth/user/addresses/${addressId}`, addressData);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response?.data?.message || 'Update failed');
+    }
+  }
+);
+
+// নতুন: ডিফল্ট অ্যাড্রেস সেট করা
+export const setDefaultAddress = createAsyncThunk(
+  'auth/setDefaultAddress',
+  async (addressId, thunkAPI) => {
+    try {
+      const response = await API.patch(`/auth/user/addresses/${addressId}/set-default`);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response?.data?.message || 'Action failed');
+    }
+  }
+);
+
 export const deleteAddress = createAsyncThunk('auth/deleteAddress', async (addressId, thunkAPI) => {
   try {
     const response = await API.delete(`/auth/user/addresses/${addressId}`);
-    return response.data; // Expected { addresses: [...] }
+    return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response?.data?.message || 'Failed to delete address');
+  }
+});
+
+// ---------------------------------------------------------
+// --- ASYNC THUNKS (Admin Operations) ---
+// ---------------------------------------------------------
+
+// নতুন: সব ইউজার ফেচ করা
+export const getAllUsersAdmin = createAsyncThunk('auth/getAllUsers', async (_, thunkAPI) => {
+  try {
+    const response = await API.get('/auth/users');
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response?.data?.message || 'Failed to fetch users');
+  }
+});
+
+// নতুন: ইউজার ডিলিট করা
+export const deleteUserAdmin = createAsyncThunk('auth/deleteUser', async (userId, thunkAPI) => {
+  try {
+    await API.delete(`/auth/users/${userId}`);
+    return userId; // ডিলিট হওয়া আইডির রেফারেন্স রিটার্ন করা
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response?.data?.message || 'Delete failed');
   }
 });
 
@@ -96,10 +156,15 @@ const authSlice = createSlice({
     clearMessage: (state) => {
       state.successMessage = null;
     },
+    resetState: (state) => {
+      state.loading = false;
+      state.error = null;
+      state.successMessage = null;
+    },
   },
   extraReducers: (builder) => {
     builder
-      // Login
+      // Authentication
       .addCase(loginUser.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -114,21 +179,19 @@ const authSlice = createSlice({
         state.error = action.payload;
       })
 
-      // Register
       .addCase(registerUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.isAuthenticated = true;
       })
 
-      // Logout
       .addCase(logoutUser.fulfilled, (state) => {
         state.user = null;
+        state.users = [];
         state.addresses = [];
         state.isAuthenticated = false;
         state.loading = false;
       })
 
-      // Get Me (Profile Check)
       .addCase(getMe.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.isAuthenticated = true;
@@ -138,9 +201,12 @@ const authSlice = createSlice({
         state.isAuthenticated = false;
       })
 
-      // --- ADDRESS HANDLERS ---
+      .addCase(updateMe.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.successMessage = 'Profile updated!';
+      })
 
-      // Get Addresses
+      // --- ADDRESS HANDLERS ---
       .addCase(getAddresses.pending, (state) => {
         state.loading = true;
       })
@@ -153,29 +219,43 @@ const authSlice = createSlice({
         state.error = action.payload;
       })
 
-      // Add Address
-      .addCase(addAddress.pending, (state) => {
+      .addCase(addAddress.fulfilled, (state, action) => {
+        state.addresses = action.payload.addresses || [];
+        state.successMessage = 'Address added!';
+      })
+
+      .addCase(updateAddress.fulfilled, (state, action) => {
+        state.addresses = action.payload.addresses || [];
+      })
+
+      .addCase(setDefaultAddress.fulfilled, (state, action) => {
+        state.addresses = action.payload.addresses || [];
+      })
+
+      .addCase(deleteAddress.fulfilled, (state, action) => {
+        state.addresses = action.payload.addresses || [];
+      })
+
+      // --- ADMIN HANDLERS ---
+      .addCase(getAllUsersAdmin.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(addAddress.fulfilled, (state, action) => {
+      .addCase(getAllUsersAdmin.fulfilled, (state, action) => {
         state.loading = false;
-        // ব্যাকএন্ড থেকে আসা নতুন অ্যাড্রেস লিস্ট দিয়ে স্টেট আপডেট
-        state.addresses = action.payload.addresses || [];
-        state.successMessage = 'Address added successfully!';
+        state.users = action.payload.users || [];
       })
-      .addCase(addAddress.rejected, (state, action) => {
+      .addCase(getAllUsersAdmin.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
 
-      // Delete Address
-      .addCase(deleteAddress.fulfilled, (state, action) => {
-        state.addresses = action.payload.addresses || [];
-        state.successMessage = 'Address deleted!';
+      .addCase(deleteUserAdmin.fulfilled, (state, action) => {
+        state.users = state.users.filter((user) => user._id !== action.payload);
+        state.successMessage = 'User deleted successfully!';
       });
   },
 });
 
-export const { clearError, clearMessage } = authSlice.actions;
+export const { clearError, clearMessage, resetState } = authSlice.actions;
 export default authSlice.reducer;
