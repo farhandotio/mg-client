@@ -20,18 +20,18 @@ export default function Button({
       : size === 'sm'
       ? 'h-8 px-4 text-sm'
       : size === 'lg'
-      ? 'h-12 px-8 text-base'
+      ? 'h-13 px-8 text-base'
       : size === 'xl'
-      ? 'h-14 px-10 text-lg'
+      ? 'h-16 px-10 text-lg'
       : size === '2xl'
       ? 'h-20 px-14 text-2xl tracking-tighter'
-      : 'h-10 px-6 text-sm';
+      : 'h-11 px-6 text-sm';
 
   const baseClasses = `
     relative inline-flex items-center gap-3 overflow-hidden group font-black justify-center 
     text-text whitespace-nowrap rounded-xl transition-all duration-500 w-full cursor-pointer 
-    shadow-lg disabled:opacity-70 
-    bg-card backdrop-blur-md border max-md:bg-primary max-md:text-black border-border 
+    disabled:opacity-70 
+    bg-card border max-md:bg-primary max-md:text-white border-border 
     hover:border-transparent hover:scale-102 hover:-translate-y-1
     ${sizeClasses} ${className}
   `;

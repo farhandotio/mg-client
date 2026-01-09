@@ -50,7 +50,6 @@ export default function Navbar() {
   useEffect(() => {
     setMounted(true);
 
-    // বাইরে ক্লিক করলে ড্রপডাউন বন্ধ করার লজিক
     const handleClickOutside = (event) => {
       if (categoryRef.current && !categoryRef.current.contains(event.target)) {
         setIsCategoryOpen(false);
@@ -109,7 +108,7 @@ export default function Navbar() {
             <button onClick={() => setIsOpen(true)} className="lg:hidden text-text p-1">
               <Menu size={26} />
             </button>
-            <Link href="/" className="text-text font-black text-2xl tracking-tighter">
+            <Link href="/" className="text-text font-black whitespace-nowrap text-2xl tracking-tighter">
               MY<span className="text-primary italic"> GADGET</span>
             </Link>
           </div>
@@ -175,7 +174,7 @@ export default function Navbar() {
               Shop
             </Link>
             <Link
-              href="/deals"
+              href="/shop?productType=HotDeals"
               className="flex items-center gap-1.5 text-primary italic hover:opacity-80 transition-opacity"
             >
               <Zap size={15} fill="currentColor" /> Hot Deals
@@ -203,13 +202,12 @@ export default function Navbar() {
             </Link>
 
             {!mounted ? (
-              <div className="w-24 h-10 bg-white/5 rounded-full animate-pulse" />
+              <div className="w-30 max-md:hidden h-11 border border-border bg-white/5 rounded-xl animate-pulse" />
             ) : !isAuthenticated ? (
               <div className="hidden md:block w-32">
-                <Button text="Login" url="/auth" icon={LogIn} size="md" className='rounded-xl' />
+                <Button text="Login" url="/auth" icon={LogIn} size="md" className="rounded-xl" />
               </div>
             ) : (
-              /* Profile Dropdown (Click Based) */
               <div className="relative hidden lg:block" ref={profileRef}>
                 <button
                   onClick={() => setIsProfileOpen(!isProfileOpen)}

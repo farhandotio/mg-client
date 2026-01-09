@@ -62,30 +62,6 @@ export default function RootLayout({ children }) {
                 },
               }}
             />
-
-            {/* Crisp Chat – Client-only safe injection */}
-            {/* <Script
-              id="crisp-chat"
-              strategy="afterInteractive"
-              dangerouslySetInnerHTML={{
-                __html: `
-      window.$crisp = [];
-      window.CRISP_WEBSITE_ID = "33f66088-4450-4ed2-b515-97244996f25e";
-
-      // গ্রিন কালার সেট করার কমান্ড
-      window.$crisp.push(["set", "theme:color", ["#29fc56"]]);
-
-      (function () {
-        var d = document;
-        var s = d.createElement("script");
-        s.src = "https://client.crisp.chat/l.js";
-        s.async = 1;
-        d.head.appendChild(s);
-      })();
-    `,
-              }}
-            /> */}
-
             <Footer />
           </AuthInit>
         </ReduxProvider>

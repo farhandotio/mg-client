@@ -1,45 +1,43 @@
 import API from '@/api/axios';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-// --- ASYNC THUNKS (Mapping with Backend Routes) ---
+// --- ASYNC THUNKS (Total 8) ---
 
-// ১. সব প্রোডাক্ট দেখা (Query: ?page=1&limit=10&category=...)
+// ১. সব প্রোডাক্ট দেখা (Query: ?page=1&limit=12&category=...)
 export const fetchAllProducts = createAsyncThunk(
   'products/fetchAll',
-  async (query = '', { rejectWithValue }) => {
+  async (queryString = '', { rejectWithValue }) => {
     try {
-      const response = await API.get(`/products?${query}`);
+      const response = await API.get(`/products?${queryString}`);
       return response.data; // Expects: { success, products, pagination }
     } catch (err) {
-      return rejectWithValue(err.response?.data?.message || 'Failed to fetch products');
+      return rejectWithValue(err.response?.data?.message || 'Failed to load products');
     }
   }
 );
 
-// ২. একটি নির্দিষ্ট প্রোডাক্ট দেখা (Slug দিয়ে)
+// ২. স্লাগ দিয়ে প্রোডাক্ট দেখা
 export const fetchProductBySlug = createAsyncThunk(
   'products/fetchBySlug',
   async (slug, { rejectWithValue }) => {
     try {
-      // কনসোলে চেক করুন slug টি ঠিকমতো আসছে কি না
-      console.log('Fetching for slug:', slug);
       const response = await API.get(`/products/details/${slug}`);
-      return response.data;
+      return response.data; // { success, product }
     } catch (err) {
-      return rejectWithValue(err.response?.data?.message);
+      return rejectWithValue(err.response?.data?.message || 'Product not found');
     }
   }
 );
 
-// ৩. রিলেটেড প্রোডাক্ট দেখা (CategoryId দিয়ে)
+// ৩. রিলেটেড প্রোডাক্ট (CategoryId দিয়ে)
 export const fetchRelatedProducts = createAsyncThunk(
   'products/fetchRelated',
   async (categoryId, { rejectWithValue }) => {
     try {
       const response = await API.get(`/products/related/${categoryId}`);
-      return response.data; // Expects: { success, products }
+      return response.data;
     } catch (err) {
-      return rejectWithValue(err.response?.data?.message || 'Failed to fetch related items');
+      return rejectWithValue(err.response?.data?.message || 'Related load failed');
     }
   }
 );
@@ -49,15 +47,15 @@ export const searchProducts = createAsyncThunk(
   'products/search',
   async (searchTerm, { rejectWithValue }) => {
     try {
-      const response = await API.get(`/products/search?query=${searchTerm}`);
-      return response.data; // Expects: { success, products }
+      const response = await API.get(`/products/search?search=${searchTerm}`);
+      return response.data;
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || 'Search failed');
     }
   }
 );
 
-// ৫. প্রোডাক্ট তৈরি করা (Admin Only)
+// ৫. প্রোডাক্ট তৈরি করা (Admin)
 export const createProduct = createAsyncThunk(
   'products/create',
   async (formData, { rejectWithValue }) => {
@@ -65,9 +63,9 @@ export const createProduct = createAsyncThunk(
       const response = await API.post('/products', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-      return response.data; // Expects: { success, product }
+      return response.data;
     } catch (err) {
-      return rejectWithValue(err.response?.data?.message || 'Failed to create product');
+      return rejectWithValue(err.response?.data?.message || 'Creation failed');
     }
   }
 );
@@ -80,7 +78,7 @@ export const updateProduct = createAsyncThunk(
       const response = await API.patch(`/products/${id}`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-      return response.data; // Expects: { success, product }
+      return response.data;
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || 'Update failed');
     }
@@ -93,7 +91,7 @@ export const updateProductStatus = createAsyncThunk(
   async ({ id, status }, { rejectWithValue }) => {
     try {
       const response = await API.patch(`/products/status/${id}`, { status });
-      return { id, status: response.data.status }; // local state update এর জন্য id পাঠানো হচ্ছে
+      return { id, status: response.data.status || status };
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || 'Status update failed');
     }
@@ -120,10 +118,15 @@ const initialState = {
   singleProduct: null,
   relatedProducts: [],
   loading: false,
-  btnLoading: false, // Create/Update/Delete এর সময় বাটন লোডিংয়ের জন্য
+  btnLoading: false,
   success: false,
   error: null,
-  pagination: { total: 0, pages: 0, currentPage: 1 },
+  pagination: {
+    totalProducts: 0,
+    totalPages: 0,
+    currentPage: 1,
+    limit: 12,
+  },
 };
 
 const productSlice = createSlice({
@@ -145,7 +148,7 @@ const productSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // Fetch All Products
+      // Fetch All
       .addCase(fetchAllProducts.pending, (state) => {
         state.loading = true;
       })
@@ -159,49 +162,37 @@ const productSlice = createSlice({
         state.error = action.payload;
       })
 
-      // Fetch Single Product (Slug)
+      // Single Product
       .addCase(fetchProductBySlug.pending, (state) => {
         state.loading = true;
         state.singleProduct = null;
-        state.error = null;
       })
       .addCase(fetchProductBySlug.fulfilled, (state, action) => {
         state.loading = false;
         state.singleProduct = action.payload.product || action.payload;
       })
-      .addCase(fetchProductBySlug.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
 
-      // Related Products
+      // Related
       .addCase(fetchRelatedProducts.fulfilled, (state, action) => {
         state.relatedProducts = action.payload.products || [];
       })
 
-      // Search Products
+      // Search
       .addCase(searchProducts.fulfilled, (state, action) => {
         state.products = action.payload.products || [];
       })
 
-      // Create Product
+      // Create
       .addCase(createProduct.pending, (state) => {
         state.btnLoading = true;
       })
       .addCase(createProduct.fulfilled, (state, action) => {
         state.btnLoading = false;
         state.success = true;
-        state.products.unshift(action.payload.product);
-      })
-      .addCase(createProduct.rejected, (state, action) => {
-        state.btnLoading = false;
-        state.error = action.payload;
+        if (action.payload.product) state.products.unshift(action.payload.product);
       })
 
-      // Update Product
-      .addCase(updateProduct.pending, (state) => {
-        state.btnLoading = true;
-      })
+      // Update
       .addCase(updateProduct.fulfilled, (state, action) => {
         state.btnLoading = false;
         const updated = action.payload.product || action.payload;
@@ -217,7 +208,7 @@ const productSlice = createSlice({
         if (product) product.status = action.payload.status;
       })
 
-      // Delete Product
+      // Delete
       .addCase(deleteProduct.fulfilled, (state, action) => {
         state.products = state.products.filter((p) => p._id !== action.payload);
       });
