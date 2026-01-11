@@ -42,7 +42,7 @@ export default function Feature() {
                 Neural Hardware
               </span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-black text-text tracking-tighter uppercase italic leading-none">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-text tracking-tighter uppercase italic leading-none">
               Featured <span className="text-primary">Gear</span>
             </h2>
           </div>

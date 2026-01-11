@@ -35,41 +35,41 @@ export default function ProductCard({ product }) {
   };
 
   // --- Cart Handle Function (Core Update) ---
-const handleAddToCart = async (e) => {
-  e.preventDefault();
-  if (isOutOfStock) return;
+  const handleAddToCart = async (e) => {
+    e.preventDefault();
+    if (isOutOfStock) return;
 
-  const cartData = {
-    productId: product._id,
-    title: product.title,
-    price: salePrice,
-    image: product.images?.[0]?.url || '',
-    slug: product.slug,
-    quantity: 1,
-    stock: product.stock || 50,
+    const cartData = {
+      productId: product._id,
+      title: product.title,
+      price: salePrice,
+      image: product.images?.[0]?.url || '',
+      slug: product.slug,
+      quantity: 1,
+      stock: product.stock || 50,
+    };
+
+    setIsAdding(true);
+    try {
+      if (user) {
+        await dispatch(
+          addToCartAPI({
+            productId: product._id,
+            quantity: 1,
+          })
+        ).unwrap();
+      } else {
+        dispatch(addToCartLocal(cartData));
+      }
+    } catch (err) {
+      console.error(err);
+      if (!err?.message) {
+        toast.error('Transmission Interrupted');
+      }
+    } finally {
+      setIsAdding(false);
+    }
   };
-
-  setIsAdding(true);
-  try {
-    if (user) {
-      await dispatch(
-        addToCartAPI({
-          productId: product._id,
-          quantity: 1,
-        })
-      ).unwrap();
-    } else {
-      dispatch(addToCartLocal(cartData));
-    }
-  } catch (err) {
-    console.error(err);
-    if (!err?.message) {
-      toast.error('Transmission Interrupted');
-    }
-  } finally {
-    setIsAdding(false);
-  }
-};
   return (
     <motion.div
       initial={{ opacity: 1, y: 10 }}
@@ -79,11 +79,11 @@ const handleAddToCart = async (e) => {
       className="group relative w-full will-change-transform transition-all duration-500 max-w-60 mx-auto"
     >
       {/* Background Cyber Frame */}
-      <div className="absolute inset-0 bg-card/60 md:bg-card/40 md:backdrop-blur-sm border border-border/40 clip-path-cyber rounded-2xl transition-all duration-500 group-hover:border-primary/50 group-hover:bg-card/80 md:group-hover:-translate-y-1 shadow-lg" />
+      <div className="absolute inset-0 bg-card/60 md:bg-card/40 md:backdrop-blur-sm border border-border/40 clip-path-cyber rounded-2xl transition-all duration-500 group-hover:border-primary/50 group-hover:bg-card/80 md:group-hover:-translate-y-1" />
 
-      <div className="relative z-10 p-2 md:p-4">
+      <div className="relative z-10 p-2 md:p-4 overflow-hidden">
         {/* Image Container */}
-        <div className="relative aspect-square overflow-hidden clip-path-cyber-inner bg-bg/50">
+        <div className="relative aspect-square rounded-tr-xl overflow-hidden clip-path-cyber-inner bg-bg/50">
           <Link
             href={`/shop/${product?.slug}`}
             onClick={handleScrollToTop}

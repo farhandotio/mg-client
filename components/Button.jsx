@@ -18,7 +18,7 @@ export default function Button({
     size === 'xs'
       ? 'h-7 px-3 text-xs'
       : size === 'sm'
-      ? 'h-8 px-4 text-sm'
+      ? 'h-8 px-4 text-xs'
       : size === 'lg'
       ? 'h-13 px-8 text-base'
       : size === 'xl'

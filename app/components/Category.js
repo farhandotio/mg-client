@@ -2,9 +2,10 @@
 import React, { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchCategories } from '@/store/features/categorySlice';
-import { ChevronRight, LayoutGrid, Zap, Fingerprint } from 'lucide-react';
+import { Zap, Activity, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import Skeleton from '@/components/Skeleton';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 export default function Category() {
   const dispatch = useDispatch();
@@ -17,103 +18,165 @@ export default function Category() {
     }
   }, [dispatch, categories]);
 
-  // স্মুথ টপ স্ক্রল ফাংশন
   const handleScrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Slider Navigation Logic
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      const { scrollLeft, clientWidth } = scrollRef.current;
+      const scrollTo =
+        direction === 'left' ? scrollLeft - clientWidth / 2 : scrollLeft + clientWidth / 2;
+      scrollRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
+    }
   };
 
   return (
-    <section className="pt-26 pb-12 bg-bg border-b border-border/10 relative overflow-hidden">
-      {/* Background Decor - Subtle Grid */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(var(--primary-rgb),0.02),transparent_40%)] pointer-events-none" />
+    <section className="py-20 bg-bg relative overflow-hidden">
+      {/* Background Decor */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        {/* --- Header Area: Left Aligned --- */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
-          <div className="space-y-2">
-            <div className="flex items-center gap-2 text-primary">
-              <Fingerprint size={16} className="animate-pulse" />
+        {/* --- Header Area --- */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6">
+          <div className="space-y-3">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              className="flex items-center gap-2 text-primary"
+            >
+              <Activity size={16} className="animate-pulse" />
               <span className="text-[10px] font-black uppercase tracking-[0.4em]">
-                Initialize: Quick_Scan
+                System_Node: Active_Sectors
               </span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-black text-text tracking-tighter uppercase italic leading-none">
-              Node <span className="text-primary">Sectors</span>
+            </motion.div>
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-text tracking-tighter uppercase italic leading-none">
+              Module{' '}
+              <span
+                className="text-primary"
+              >
+                Registry
+              </span>
             </h2>
           </div>
 
-          <Link
-            href="/shop"
-            onClick={handleScrollToTop}
-            className="group flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.3em] text-pText hover:text-primary transition-all bg-card px-4 py-2 rounded-full border border-border/50"
-          >
-            Access All Units
-            <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
-          </Link>
+          {/* Right Top Actions: Navigation Buttons */}
+          <div className="flex items-center">
+            <div className="hidden md:flex gap-2">
+              <button
+                onClick={() => scroll('left')}
+                className="p-2.5 bg-card border border-border/50 rounded-lg hover:border-primary/50 transition-all active:scale-90"
+              >
+                <ChevronLeft size={20} />
+              </button>
+              <button
+                onClick={() => scroll('right')}
+                className="p-2.5 bg-card border border-border/50 rounded-lg hover:border-primary/50 transition-all active:scale-90"
+              >
+                <ChevronRight size={20} />
+              </button>
+            </div>
+            <div className="h-10 w-0.5 bg-bg/10 mx-2 hidden md:block" />
+            <Link
+              href="/shop"
+              onClick={handleScrollToTop}
+              className="group flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-pText hover:text-primary"
+            >
+              All Units{' '}
+              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
         </div>
 
-        {/* --- Unique Geometric Categories --- */}
+        {/* --- Wide Card Slider --- */}
         <div
           ref={scrollRef}
-          className="flex gap-6 md:gap-10 overflow-x-auto no-scrollbar py-6 scroll-smooth"
+          className="flex gap-6 overflow-x-auto no-scrollbar py-8 scroll-smooth snap-x snap-mandatory"
         >
           {loading ? (
-            <Skeleton type="category" count={8} className="w-24 h-24 md:w-32 md:h-32" />
+            [...Array(5)].map((_, i) => (
+              <div key={i} className="shrink-0 h-40 w-75 md:w-95">
+                <Skeleton type="category" className="w-full h-52 rounded-3xl" />
+              </div>
+            ))
           ) : categories && categories.length > 0 ? (
-            categories.map((item) => (
-              <Link
+            categories.map((item, idx) => (
+              <motion.div
                 key={item._id}
-                href={`/shop?category=${item.slug}`}
-                onClick={handleScrollToTop}
-                className="group flex flex-col items-center shrink-0 transition-all duration-500 hover:-translate-y-2"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className="shrink-0 w-75 md:w-95 snap-start"
               >
-                {/* Slanted Hexagonal Container */}
-                <div className="relative w-24 h-24 md:w-32 md:h-32 flex items-center justify-center">
-                  {/* Outer Cyber Shape */}
-                  <div className="absolute inset-0 bg-card border border-border/40 clip-path-hex transition-all duration-500 group-hover:border-primary/60 group-hover:bg-primary/5 group-hover:rotate-12" />
+                <Link
+                  href={`/shop?category=${item.slug}`}
+                  onClick={handleScrollToTop}
+                  className="group relative block h-48 md:h-52"
+                >
+                  {/* Main Card Body */}
+                  <div className="relative h-full w-full bg-card/20 border border-bg/5 rounded-3xl overflow-hidden transition-all duration-500 group-hover:border-primary/40 group-hover:bg-card/40 flex items-center p-6 gap-6">
+                    {/* Visual Node: Landscape Aspect */}
+                    <div className="relative w-32 md:w-40 h-full rounded-2xl overflow-hidden bg-bg/50 border border-bg/5 shrink-0">
+                      <img
+                        src={item.image?.url || '/api/placeholder/400/300'}
+                        alt={item.name}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-linear-to-tr from-bg/60 to-transparent" />
 
-                  {/* Inner Image Area */}
-                  <div className="relative w-[85%] h-[85%] clip-path-hex overflow-hidden bg-bg/50 border border-border/20 transition-transform duration-500 group-hover:-rotate-12">
-                    <img
-                      src={item.image?.url || '/api/placeholder/200/200'}
-                      alt={item.name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-125 grayscale-[0.5] group-hover:grayscale-0"
-                    />
-                    {/* Dark Overlay with Icon */}
-                    <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <Zap size={20} className="text-bg fill-primary animate-bounce" />
+                      {/* Index Tag */}
+                      <div className="absolute bottom-2 left-2 px-2 py-0.5 bg-primary/20 backdrop-blur-md rounded-md border border-primary/30">
+                        <span className="text-[8px] font-black text-primary uppercase">
+                          Sec_{idx + 1}
+                        </span>
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Aesthetic Corner Tag */}
-                  <div className="absolute -top-1 -right-1 w-5 h-5 bg-primary rounded-full flex items-center justify-center scale-0 group-hover:scale-100 transition-transform duration-500 shadow-[0_0_15px_rgba(var(--primary-rgb),0.5)]">
-                    <Zap size={10} fill="currentColor" className="text-bg" />
-                  </div>
-                </div>
+                    {/* Text Content */}
+                    <div className="flex-1 space-y-3">
+                      <div className="space-y-1">
+                        <p className="text-[8px] font-black text-pText/50 uppercase tracking-[0.2em]">
+                          Categorical_Node
+                        </p>
+                        <h3 className="text-xl md:text-2xl font-black uppercase tracking-tighter text-text group-hover:text-primary transition-colors italic leading-none">
+                          {item.name}
+                        </h3>
+                      </div>
 
-                {/* Text Layout */}
-                <div className="mt-6 text-center">
-                  <h3 className="text-[10px] md:text-[11px] font-black uppercase tracking-widest text-pText group-hover:text-text transition-colors">
-                    {item.name}
-                  </h3>
-                  <div className="h-0.5 w-0 group-hover:w-full bg-primary mx-auto mt-1 transition-all duration-500" />
-                </div>
-              </Link>
+                      <div className="flex items-center gap-2">
+                        <div className="h-px w-8 bg-primary/30 group-hover:w-12 group-hover:bg-primary transition-all duration-500" />
+                        <span className="text-[9px] font-black uppercase tracking-widest text-pText group-hover:text-text">
+                          Launch
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Background Decoration */}
+                    <Zap
+                      size={80}
+                      className="absolute -right-4 -bottom-4 text-bg/20 group-hover:text-primary/50 transition-colors -rotate-12"
+                    />
+                  </div>
+                </Link>
+              </motion.div>
             ))
           ) : (
-            <div className="w-full py-10 opacity-20 italic font-black uppercase tracking-widest">
-              Scanning for active sectors...
+            <div className="w-full py-10 opacity-20 italic font-black uppercase tracking-widest text-center">
+              Scanning for active nodes...
             </div>
           )}
         </div>
       </div>
 
       <style jsx>{`
-        .clip-path-hex {
-          clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
         }
       `}</style>
     </section>
