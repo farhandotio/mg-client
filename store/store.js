@@ -17,5 +17,5 @@ export const store = configureStore({
     order: orderReducer,
     payment: paymentReducer,
   },
-  devTools: process.env.NODE_ENV !== 'production',
+  devTools: typeof window !== 'undefined' && process.env.NODE_ENV !== 'production',
 });

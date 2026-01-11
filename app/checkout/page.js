@@ -73,6 +73,8 @@ export default function CheckoutPage() {
       pricing: { itemsPrice: subtotal, shippingPrice: shipping, totalPrice: total },
     };
 
+    console.log(orderData)
+
     try {
       const orderRes = await dispatch(createOrder(orderData)).unwrap();
       if (paymentMethod === 'ONLINE') {

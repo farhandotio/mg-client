@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import {
   LayoutDashboard,
   ShoppingBag,
@@ -11,11 +11,22 @@ import {
   ExternalLink,
   LogOut,
 } from 'lucide-react';
+import { logoutUser } from '@/store/features/authSlice';
+import { useDispatch } from 'react-redux';
 
 export default function AdminSidebar({ closeSidebar }) {
   const pathname = usePathname();
+  const dispatch = useDispatch();
+  const router = useRouter();
 
-  // মেনু আইটেমগুলোকে অর্গানাইজ করা হয়েছে
+  const handleLogout = () => {
+    dispatch(logoutUser()).then((result) => {
+      if (logoutUser.fulfilled.match(result)) {
+        router.push('/');
+      }
+    });
+  };
+
   const menuItems = [
     { name: 'Dashboard', icon: LayoutDashboard, path: '/admin/dashboard' },
     { name: 'Products', icon: ShoppingBag, path: '/admin/products' },
@@ -58,9 +69,7 @@ export default function AdminSidebar({ closeSidebar }) {
               href={item.path}
               onClick={closeSidebar}
               className={`flex items-center gap-4 px-4 py-3.5 rounded-lg font-bold text-[10px] uppercase tracking-widest transition-all duration-300 ${
-                isActive
-                  ? 'bg-primary text-text'
-                  : 'text-pText hover:bg-white/5 hover:text-white'
+                isActive ? 'bg-primary text-text' : 'text-pText hover:bg-white/5 hover:text-white'
               }`}
             >
               <item.icon size={18} className={isActive ? 'text-white' : 'text-primary/70'} />
@@ -72,7 +81,10 @@ export default function AdminSidebar({ closeSidebar }) {
 
       {/* --- নিচের অংশ (Logout) --- */}
       <div className="p-4 border-t border-border">
-        <button className="flex items-center gap-4 w-full px-4 py-4 text-red-500 font-black text-[10px] uppercase tracking-widest hover:bg-red-500/5 rounded-2xl transition-all group">
+        <button
+          onClick={handleLogout}
+          className="flex items-center gap-4 w-full px-4 py-4 text-red-500 font-black text-[10px] uppercase tracking-widest hover:bg-red-500/5 rounded-2xl transition-all group"
+        >
           <LogOut size={18} className="group-hover:-translate-x-1 transition-transform" />
           Terminate Session
         </button>

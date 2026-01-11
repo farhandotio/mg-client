@@ -91,7 +91,7 @@ export default function Footer() {
           <div className="lg:col-span-4 space-y-8">
             <Link href="/" className="flex items-center gap-3 group">
               <span className="text-text font-black text-2xl tracking-tighter">
-                MY <span className="text-primary italic">GADGET</span>
+                Gadget <span className="text-primary italic">BDS</span>
               </span>
             </Link>
             <p className="text-pText text-sm leading-relaxed max-w-sm font-medium">
@@ -181,7 +181,7 @@ export default function Footer() {
           <div className="flex items-center gap-2 text-pText text-[10px] font-black uppercase tracking-widest">
             <span>© 2026</span>
             <span className="w-1 h-1 rounded-full bg-primary" />
-            <span>My Gadget Global</span>
+            <span>Gadget BDS Global</span>
           </div>
 
           <div className="flex gap-8">

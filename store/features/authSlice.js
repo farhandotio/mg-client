@@ -3,7 +3,7 @@ import API from '../../api/axios';
 
 const initialState = {
   user: null,
-  users: [], // অ্যাডমিনের জন্য
+  users: [],
   addresses: [],
   isAuthenticated: false,
   loading: false,
@@ -184,12 +184,21 @@ const authSlice = createSlice({
         state.isAuthenticated = true;
       })
 
+      .addCase(logoutUser.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(logoutUser.fulfilled, (state) => {
         state.user = null;
-        state.users = [];
-        state.addresses = [];
         state.isAuthenticated = false;
+        state.addresses = [];
+        state.users = [];
         state.loading = false;
+      })
+      .addCase(logoutUser.rejected, (state, action) => {
+        state.loading = false;
+        state.user = null;
+        state.isAuthenticated = false;
+        state.error = action.payload;
       })
 
       .addCase(getMe.fulfilled, (state, action) => {

@@ -25,6 +25,7 @@ import {
 import Button from '@/components/Button';
 import SearchOverlay from './SearchOverlay';
 import MobileSidebar from './MobileSidebar';
+import Logo from './Logo';
 
 export default function Navbar() {
   const [mounted, setMounted] = useState(false);
@@ -94,7 +95,6 @@ export default function Navbar() {
     { name: 'Watches', slug: 'watches', icon: <Watch size={18} /> },
   ];
 
-
   if (pathname.startsWith('/admin')) {
     return null;
   }
@@ -109,18 +109,10 @@ export default function Navbar() {
       >
         <nav className="max-w-7xl mx-auto px-4 md:px-8 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <button onClick={() => setIsOpen(true)} className="lg:hidden text-text p-1">
-              <Menu size={26} />
-            </button>
-            <Link
-              href="/"
-              className="text-text font-black whitespace-nowrap text-2xl tracking-tighter"
-            >
-              MY<span className="text-primary italic"> GADGET</span>
-            </Link>
+            <Logo width={140} height={40} />
           </div>
 
-          <div className="hidden lg:flex items-center gap-10 text-[11px] font-black uppercase tracking-[0.2em]">
+          <div className="hidden lg:flex items-center gap-10 text-sm font-black uppercase tracking-[0.2em]">
             <Link
               href="/"
               className={
@@ -142,7 +134,7 @@ export default function Navbar() {
                 <ChevronDown
                   size={14}
                   className={`transition-transform duration-300 ${
-                    isCategoryOpen ? 'rotate-180' : ''
+                    isCategoryOpen ? 'rotate-0' : '-rotate-90'
                   }`}
                 />
               </button>
@@ -191,14 +183,14 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="p-2.5 bg-white/5 rounded-xl text-text hover:text-primary transition-all"
+              className="p-2.5 rounded-xl text-text hover:text-primary transition-all"
             >
               <Search size={22} />
             </button>
 
             <Link
               href="/cart"
-              className="relative p-2.5 bg-white/5 rounded-xl text-text hover:text-primary transition-all"
+              className="relative p-2.5 rounded-xl text-text hover:text-primary transition-all"
             >
               <ShoppingCart size={22} />
               {mounted && cartItems.length > 0 && (
@@ -207,6 +199,13 @@ export default function Navbar() {
                 </span>
               )}
             </Link>
+
+            <button onClick={() => setIsOpen(true)} className="lg:hidden text-text p-1">
+              <Menu
+                className="p-2.5 bg-primary/5 rounded-xl text-primary md:text-text hover:text-primary transition-all"
+                size={42}
+              />
+            </button>
 
             {!mounted ? (
               <div className="w-30 max-md:hidden h-11 border border-border bg-white/5 rounded-xl animate-pulse" />

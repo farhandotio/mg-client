@@ -43,7 +43,7 @@ export default function Hero() {
             <h1 className="text-6xl md:text-7xl font-black text-text leading-[0.95] tracking-tighter">
               Discover the <br />
               <span className="relative">
-                <span className="relative z-10 text-transparent bg-clip-text bg-linear-to-r from-primary via-[#00D1FF] to-primary">
+                <span className="relative z-10 text-transparent bg-clip-text bg-linear-to-r from-primary via-secondary to-primary">
                   Future
                 </span>
                 <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 300 20" fill="none">

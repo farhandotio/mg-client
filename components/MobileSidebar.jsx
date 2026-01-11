@@ -2,6 +2,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, User } from 'lucide-react';
 import Link from 'next/link';
+import Logo from './Logo';
 
 export default function MobileSidebar({ isOpen, onClose, isAuthenticated, categories }) {
   return (
@@ -16,18 +17,18 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
             className="fixed inset-0 z-110 bg-bg/80 backdrop-blur-md lg:hidden"
           />
           <motion.aside
-            initial={{ x: '-100%' }}
+            initial={{ x: '100%' }}
             animate={{ x: 0 }}
             transition={{
               duration: 0.3,
               ease: 'easeInOut',
               type: 'tween',
             }}
-            exit={{ x: '-100%' }}
-            className="fixed top-0 left-0 w-[85%] max-w-xs h-full bg-card border-r border-border z-120 p-6 lg:hidden flex flex-col"
+            exit={{ x: '100%' }}
+            className="fixed top-0 right-0 w-[85%] max-w-xs h-full bg-card border-l border-border z-120 p-6 lg:hidden flex flex-col"
           >
             <div className="flex items-center justify-between mb-8">
-              <span className="font-black text-2xl text-primary italic tracking-tighter">MENU</span>
+              <Logo width={140} height={40} />
               <button onClick={onClose} className="p-2 bg-primary/10 rounded-xl text-primary">
                 <X size={22} />
               </button>
