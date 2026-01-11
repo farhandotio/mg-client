@@ -4,16 +4,17 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { loginUser, registerUser } from '@/store/features/authSlice';
-import { Mail, Lock, User, CheckCircle2, Sparkles } from 'lucide-react';
+import { Mail, Lock, User, CheckCircle2, Sparkles, Info } from 'lucide-react';
 import AuthField from './AuthField';
 import AuthOverlay from './AuthOverlay';
 import Button from '@/components/Button';
+import toast from 'react-hot-toast';
 
-// মূল লজিকটি এই কম্পোনেন্টে আলাদা করা হয়েছে
 function AuthForm() {
   const [mode, setMode] = useState('login');
   const [locked, setLocked] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [verificationNotice, setVerificationNotice] = useState(false);
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -21,6 +22,7 @@ function AuthForm() {
   const { loading, error, isAuthenticated } = useSelector((state) => state.auth);
 
   const callbackUrl = searchParams.get('callbackUrl') || '/';
+  const isVerified = searchParams.get('verified') === 'true';
   const isLogin = mode === 'login';
 
   useEffect(() => {
@@ -39,6 +41,7 @@ function AuthForm() {
   const toggleMode = useCallback(() => {
     if (locked || loading) return;
     setLocked(true);
+    setVerificationNotice(false); 
     setTimeout(() => {
       setMode((prev) => (prev === 'login' ? 'register' : 'login'));
       reset();
@@ -51,11 +54,27 @@ function AuthForm() {
     const result = await dispatch(action);
 
     if (result.meta.requestStatus === 'fulfilled') {
-      setSuccess(true);
-      setTimeout(() => {
-        router.push(callbackUrl);
-        router.refresh();
-      }, 2000);
+      if (isLogin) {
+        setSuccess(true);
+        toast.success('SIGN IN SUCCESSFUL! REDIRECTING...');
+        setTimeout(() => {
+          router.push(callbackUrl);
+          router.refresh();
+        }, 2000);
+      } else {
+        setSuccess(true);
+        setVerificationNotice(true);
+        toast.success('REGISTRATION SUCCESS! CHECK YOUR EMAIL.');
+
+        setTimeout(() => {
+          setSuccess(false);
+          setMode('login');
+          reset();
+        }, 6000);
+      }
+    } else {
+      const errorMessage = result.payload?.message || result.payload || 'AUTHENTICATION FAILED';
+      toast.error(errorMessage.toUpperCase());
     }
   };
 
@@ -72,9 +91,24 @@ function AuthForm() {
               <Sparkles size={24} fill="currentColor" />
               <span className="font-black tracking-tighter text-xl">MyGadget</span>
             </div>
+
             <h2 className="text-4xl font-black text-text tracking-tighter mb-2 italic">
               {isLogin ? 'Welcome Back' : 'Get Started'}
             </h2>
+
+            {isLogin && isVerified && !error && (
+              <div className="flex items-center gap-2 text-green-500 text-[11px] font-bold uppercase bg-green-500/10 p-3 rounded-lg mb-4">
+                <CheckCircle2 size={14} /> Email Verified! Please Login.
+              </div>
+            )}
+
+            {verificationNotice && (
+              <div className="flex items-start gap-2 text-blue-500 text-[11px] font-bold uppercase bg-blue-500/10 p-3 rounded-lg mb-4 leading-relaxed italic">
+                <Info size={16} className="shrink-0" />
+                Please check your email to verify your account before logging in.
+              </div>
+            )}
+
             {error && (
               <p className="text-red-500 text-[10px] font-bold uppercase tracking-widest bg-red-500/10 p-2 rounded-lg mb-4 animate-shake">
                 {error}
@@ -109,7 +143,15 @@ function AuthForm() {
             <div className="pt-4">
               <Button
                 type="submit"
-                text={success ? 'Success!' : isLogin ? 'Sign In' : 'Create Account'}
+                text={
+                  success
+                    ? isLogin
+                      ? 'Logging in...'
+                      : 'Check Email!'
+                    : isLogin
+                    ? 'Sign In'
+                    : 'Create Account'
+                }
                 loading={loading}
                 size="xl"
                 icon={success ? CheckCircle2 : isLogin ? Lock : User}
@@ -134,7 +176,6 @@ function AuthForm() {
   );
 }
 
-// এটিই আপনার মেইন এক্সপোর্ট, যা Suspense ব্যবহার করে বিল্ড এরর ফিক্স করবে
 export default function AuthPage() {
   return (
     <div className="min-h-screen bg-bg flex items-center justify-center p-4 overflow-hidden relative">

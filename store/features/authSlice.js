@@ -8,6 +8,7 @@ const initialState = {
   isAuthenticated: false,
   loading: false,
   error: null,
+  isVerified: false,
   successMessage: null,
 };
 
@@ -29,7 +30,12 @@ export const loginUser = createAsyncThunk('auth/login', async (credentials, thun
     const response = await API.post('/auth/login', credentials);
     return response.data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.response?.data?.message || 'Login failed');
+    const errorData = error.response?.data;
+
+    return thunkAPI.rejectWithValue({
+      message: errorData?.message || 'Login failed',
+      isVerified: errorData?.isVerified, 
+    });
   }
 });
 
@@ -176,12 +182,18 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload.message;
+        state.isVerified = action.payload.isVerified ?? true;
       })
 
+      .addCase(registerUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
       .addCase(registerUser.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.isAuthenticated = true;
+        state.loading = false;
+        state.isAuthenticated = false;
+        state.successMessage = action.payload.message;
       })
 
       .addCase(logoutUser.pending, (state) => {
@@ -234,7 +246,8 @@ const authSlice = createSlice({
       })
 
       .addCase(updateAddress.fulfilled, (state, action) => {
-        state.addresses = action.payload.addresses || [];
+        state.loading = false;
+        state.addresses = action.payload.addresses;
       })
 
       .addCase(setDefaultAddress.fulfilled, (state, action) => {
@@ -242,7 +255,8 @@ const authSlice = createSlice({
       })
 
       .addCase(deleteAddress.fulfilled, (state, action) => {
-        state.addresses = action.payload.addresses || [];
+        state.loading = false;
+        state.addresses = action.payload.addresses;
       })
 
       // --- ADMIN HANDLERS ---

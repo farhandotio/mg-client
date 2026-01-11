@@ -35,7 +35,7 @@ export const getMyOrders = createAsyncThunk('order/myOrders', async (_, thunkAPI
 export const getOrderDetails = createAsyncThunk('order/details', async (id, thunkAPI) => {
   try {
     const response = await API.get(`/orders/${id}`);
-    return response.data; // আশা করা হচ্ছে { success: true, order: {} }
+    return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(
       error.response?.data?.message || 'Error fetching order details'
@@ -103,7 +103,6 @@ const orderSlice = createSlice({
       .addCase(createOrder.fulfilled, (state, action) => {
         state.loading = false;
         state.success = true;
-        // ব্যাকএন্ডে আমরা 'orderId' কি-তে আইডি পাঠাচ্ছি
         state.orderId = action.payload.orderId;
       })
       .addCase(createOrder.rejected, (state, action) => {

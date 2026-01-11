@@ -5,9 +5,10 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { fetchAllProducts } from '@/store/features/productSlice';
 import { fetchCategories } from '@/store/features/categorySlice';
 import ProductCard from '@/components/ProductCard';
-import { Filter, Search, Loader2, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Filter, Search, ChevronLeft, ChevronRight } from 'lucide-react';
 import debounce from 'lodash.debounce';
 import ShopSidebar from './ShopSidebar';
+import Skeleton from '@/components/Skeleton';
 
 export default function ShopPageContent() {
   const dispatch = useDispatch();
@@ -71,7 +72,6 @@ export default function ShopPageContent() {
     fetchFilteredProducts();
   }, [fetchFilteredProducts]);
 
-  // ৬. হ্যান্ডলারস
   const debouncedSearch = useMemo(
     () => debounce((value) => updateURL({ search: value, page: 1 }), 500),
     [updateURL]
@@ -93,7 +93,7 @@ export default function ShopPageContent() {
     categories,
     searchTerm,
     onSearchChange,
-    selectedCategory: selectedCategoryId, 
+    selectedCategory: selectedCategoryId,
     setSelectedCategory: (val) => updateURL({ category: val, page: 1 }),
     priceRange,
     setPriceRange: (val) => updateURL({ maxPrice: val, page: 1 }),
@@ -152,11 +152,9 @@ export default function ShopPageContent() {
           {/* Main Grid Content */}
           <main className="grow">
             {loading ? (
-              <div className="flex flex-col items-center justify-center py-40 gap-6">
-                <Loader2 className="animate-spin text-primary" size={50} />
-                <p className="text-pText font-black uppercase tracking-widest text-[10px]">
-                  Syncing...
-                </p>
+              /* --- SKELETON LOADING STATE --- */
+              <div className="grid grid-cols-2 xl:grid-cols-4 gap-6">
+                <Skeleton type="product" count={8} />
               </div>
             ) : products?.length > 0 ? (
               <>

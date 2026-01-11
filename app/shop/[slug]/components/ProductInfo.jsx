@@ -21,9 +21,8 @@ export default function ProductInfo({ product }) {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
   const [isWishlisted, setIsWishlisted] = useState(false);
-  const [isLocalLoading, setIsLocalLoading] = useState(false); // বাটন লেভেলে লোডিং দেখানোর জন্য
+  const [isLocalLoading, setIsLocalLoading] = useState(false);
 
-  // Redux state থেকে ইউজার এবং গ্লোবাল লোডিং চেক
   const { user } = useSelector((state) => state.auth || {});
   const { loading: cartLoading } = useSelector((state) => state.cart);
 
@@ -38,7 +37,6 @@ export default function ProductInfo({ product }) {
     setIsLocalLoading(true);
     try {
       if (user) {
-        // ফিক্স: API এর জন্য শুধু আইডি এবং কোয়ান্টিটি প্রয়োজন
         await dispatch(
           addToCartAPI({
             productId: product._id,
@@ -46,7 +44,6 @@ export default function ProductInfo({ product }) {
           })
         ).unwrap();
       } else {
-        // লোকাল কার্টের জন্য পুরো ডাটা প্রয়োজন
         const cartItem = {
           productId: product._id,
           title: product.title,
@@ -58,11 +55,6 @@ export default function ProductInfo({ product }) {
         };
         dispatch(addToCartLocal(cartItem));
       }
-
-      toast.success(`${product.title} deployed to cart!`, {
-        style: { background: '#111', color: '#29fc56', border: '1px solid #29fc56' },
-        iconTheme: { primary: '#29fc56', secondary: '#111' },
-      });
     } catch (err) {
       toast.error(err?.message || 'Failed to sync with neural network');
     } finally {
@@ -72,7 +64,6 @@ export default function ProductInfo({ product }) {
 
   return (
     <div className="flex flex-col gap-6 md:gap-8 lg:pl-4">
-      {/* Header Section */}
       <div className="space-y-4">
         <div className="flex flex-wrap items-center gap-3">
           <span className="px-3 py-1 bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-widest rounded-lg">
@@ -111,7 +102,6 @@ export default function ProductInfo({ product }) {
         </div>
       </div>
 
-      {/* Pricing Card */}
       <div className="flex items-center gap-6 p-6 bg-card/40 border border-border/50 rounded-3xl backdrop-blur-sm w-fit">
         <div className="flex flex-col">
           <span className="text-5xl font-black text-text italic tracking-tighter leading-none">
@@ -134,7 +124,6 @@ export default function ProductInfo({ product }) {
         )}
       </div>
 
-      {/* Brief Description */}
       <p className="text-pText/70 leading-relaxed font-medium italic border-l-4 border-primary/20 pl-6 max-w-xl">
         {product.shortDescription ||
           'Engineered for elite performance and unmatched reliability in every mission.'}
@@ -143,7 +132,6 @@ export default function ProductInfo({ product }) {
       {/* Actions */}
       <div className="space-y-4">
         <div className="flex flex-wrap gap-4">
-          {/* Quantity Selector */}
           <div className="flex justify-between px-5 items-center bg-card border border-border rounded-2xl p-1 h-14 w-40">
             <button
               disabled={quantity <= 1 || isOutOfStock || isLocalLoading}
@@ -175,13 +163,12 @@ export default function ProductInfo({ product }) {
             />
           </button>
 
-          {/* Add to Cart Button */}
           <div className="flex-1 min-w-50">
             <Button
               text={isOutOfStock ? 'Out of Stock' : 'Deploy to Cart'}
               icon={isLocalLoading ? Loader2 : ShoppingCart}
               onClick={handleAddToCart}
-              loading={isLocalLoading || cartLoading} // Redux loading এবং local loading দুটোর সমন্বয়
+              loading={isLocalLoading || cartLoading} 
               disabled={isOutOfStock || isLocalLoading}
               className={`h-14 rounded-full w-full ${isLocalLoading ? 'animate-pulse' : ''}`}
             />
@@ -195,7 +182,6 @@ export default function ProductInfo({ product }) {
         )}
       </div>
 
-      {/* Trust Badges */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8 border-t border-border/20">
         <InfoBadge icon={<Truck size={20} />} title="Fast Lane" desc="2-4 Day Delivery" />
         <InfoBadge icon={<ShieldCheck size={20} />} title="Encrypted" desc="Secure Payment" />

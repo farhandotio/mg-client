@@ -4,7 +4,6 @@ import { ReduxProvider } from '@/store/Provider';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AuthInit from '@/components/AuthInit';
-import { Toaster } from 'react-hot-toast';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -26,41 +25,12 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body
         suppressHydrationWarning
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col dark`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col light`}
       >
         <ReduxProvider>
           <AuthInit>
             <Navbar />
-
             <main className="grow">{children}</main>
-
-            <Toaster
-              position="bottom-right"
-              reverseOrder={true}
-              toastOptions={{
-                duration: 4000,
-                className: 'neural-toast-animation',
-                style: {
-                  background: 'rgba(17, 17, 17, 0.9)',
-                  backdropFilter: 'blur(8px)',
-                  color: 'var(--color-primary, #29fc56)',
-                  border: '1px solid var(--color-primary, #29fc56)',
-                  fontSize: '12px',
-                  textTransform: 'uppercase',
-                  fontWeight: '900',
-                  letterSpacing: '0.1em',
-                  padding: '16px 24px',
-                  borderRadius: '12px',
-                  boxShadow: '0 10px 30px rgba(41, 252, 86, 0.15)',
-                },
-                success: {
-                  iconTheme: {
-                    primary: 'var(--color-primary, #29fc56)',
-                    secondary: '#111',
-                  },
-                },
-              }}
-            />
             <Footer />
           </AuthInit>
         </ReduxProvider>

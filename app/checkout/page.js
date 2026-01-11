@@ -52,6 +52,44 @@ export default function CheckoutPage() {
     }
   };
 
+  // const handlePlaceOrder = async () => {
+  //   if (!selectedAddress) return toast.error('Please select a shipping address');
+  //   if (cartItems.length === 0) return toast.error('Cart is empty');
+
+  //   const orderData = {
+  //     orderItems: cartItems.map((item) => ({
+  //       product: item.productId,
+  //       quantity: item.quantity,
+  //       price: item.price,
+  //     })),
+  //     shippingAddress: {
+  //       fullname: user?.fullname,
+  //       phoneNumber: selectedAddress.phone,
+  //       address: selectedAddress.street,
+  //       city: selectedAddress.city,
+  //       area: selectedAddress.state || selectedAddress.city,
+  //     },
+  //     payment: { method: paymentMethod },
+  //     pricing: { itemsPrice: subtotal, shippingPrice: shipping, totalPrice: total },
+  //   };
+
+  //   console.log(orderData)
+
+  //   try {
+  //     const orderRes = await dispatch(createOrder(orderData)).unwrap();
+  //     if (paymentMethod === 'ONLINE') {
+  //       const payRes = await dispatch(initSSLPayment({ orderId: orderRes.orderId })).unwrap();
+  //       if (payRes.gatewayUrl) window.location.replace(payRes.gatewayUrl);
+  //     } else {
+  //       toast.success('Order Placed Successfully!');
+  //       dispatch(clearCart());
+  //       router.push(`/order-success/${orderRes.orderId}`);
+  //     }
+  //   } catch (err) {
+  //     toast.error(err?.message || 'Order failed');
+  //   }
+  // };
+
   const handlePlaceOrder = async () => {
     if (!selectedAddress) return toast.error('Please select a shipping address');
     if (cartItems.length === 0) return toast.error('Cart is empty');
@@ -59,34 +97,44 @@ export default function CheckoutPage() {
     const orderData = {
       orderItems: cartItems.map((item) => ({
         product: item.productId,
+        title: item.title, 
         quantity: item.quantity,
         price: item.price,
+        image: item.image, 
       })),
       shippingAddress: {
-        fullname: user?.fullname,
-        phoneNumber: selectedAddress.phone,
-        address: selectedAddress.street,
+        phone: selectedAddress.phone,
+        street: selectedAddress.street,
         city: selectedAddress.city,
-        area: selectedAddress.state || selectedAddress.city,
+        state: selectedAddress.state,
+        zip: selectedAddress.zip,
+        country: selectedAddress.country || 'Bangladesh',
       },
-      payment: { method: paymentMethod },
-      pricing: { itemsPrice: subtotal, shippingPrice: shipping, totalPrice: total },
+      payment: {
+        method: paymentMethod,
+      },
+      pricing: {
+        itemsPrice: subtotal,
+        shippingPrice: shipping,
+        totalPrice: total,
+      },
     };
-
-    console.log(orderData)
 
     try {
       const orderRes = await dispatch(createOrder(orderData)).unwrap();
+
       if (paymentMethod === 'ONLINE') {
         const payRes = await dispatch(initSSLPayment({ orderId: orderRes.orderId })).unwrap();
-        if (payRes.gatewayUrl) window.location.replace(payRes.gatewayUrl);
+        if (payRes.gatewayUrl) {
+          window.location.replace(payRes.gatewayUrl);
+        }
       } else {
         toast.success('Order Placed Successfully!');
         dispatch(clearCart());
         router.push(`/order-success/${orderRes.orderId}`);
       }
     } catch (err) {
-      toast.error(err?.message || 'Order failed');
+      toast.error(err?.message || 'Order execution failed');
     }
   };
 
@@ -144,6 +192,7 @@ export default function CheckoutPage() {
                         Phone Number
                       </label>
                       <input
+                        value={newAddress.phone}
                         className="w-full bg-card border border-border rounded-xl p-3 focus:border-primary outline-none transition"
                         placeholder="e.g. 01700000000"
                         onChange={(e) => setNewAddress({ ...newAddress, phone: e.target.value })}

@@ -41,19 +41,19 @@ export default function Flash() {
 
   return (
     <section className="py-20 px-4 md:px-6 bg-bg relative overflow-hidden border-t border-border/10">
-      <div className="absolute top-0 right-0 w-80 h-80 bg-orange-500/5 blur-[120px] rounded-full -z-10" />
+      <div className="absolute top-0 right-0 w-80 h-80 bg-secondary/5 blur-[120px] rounded-full -z-10" />
 
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6">
           <div className="space-y-3">
             <div className="flex flex-wrap items-center gap-3">
-              <div className="flex items-center gap-2 text-orange-500">
-                <Zap size={14} className="animate-pulse fill-orange-500" />
+              <div className="flex items-center gap-2 text-secondary">
+                <Zap size={14} className="animate-pulse fill-secondary" />
                 <span className="text-[9px] font-black uppercase tracking-[0.3em]">
                   Limited Protocol
                 </span>
               </div>
-              <div className="flex items-center gap-2 font-mono text-[10px] font-bold text-orange-500 bg-orange-500/10 px-3 py-1 rounded-lg border border-orange-500/20">
+              <div className="flex items-center gap-2 font-mono text-[10px] font-bold text-secondary bg-secondary/10 px-3 py-1 rounded-lg border border-secondary/20">
                 <Timer size={12} />
                 <span>
                   {timeLeft.hours}:{timeLeft.mins}:{timeLeft.secs}
@@ -61,7 +61,7 @@ export default function Flash() {
               </div>
             </div>
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-text tracking-tighter uppercase italic leading-none">
-              Flash <span className="text-orange-500">Deals</span>
+              Flash <span className="text-secondary">Deals</span>
             </h2>
           </div>
 
@@ -69,20 +69,20 @@ export default function Flash() {
             <div className="hidden md:flex gap-2">
               <button
                 onClick={() => scroll('left')}
-                className="p-2.5 bg-card border border-border/50 rounded-lg hover:border-orange-500/50 transition-all active:scale-90"
+                className="p-2.5 bg-card border border-border/50 rounded-lg hover:border-secondary/50 transition-all active:scale-90"
               >
                 <ChevronLeft size={18} />
               </button>
               <button
                 onClick={() => scroll('right')}
-                className="p-2.5 bg-card border border-border/50 rounded-lg hover:border-orange-500/50 transition-all active:scale-90"
+                className="p-2.5 bg-card border border-border/50 rounded-lg hover:border-secondary/50 transition-all active:scale-90"
               >
                 <ChevronRight size={18} />
               </button>
             </div>
             <Link
               href="/shop?productType=FlashSale"
-              className="group flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-pText hover:text-orange-500"
+              className="group flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-pText hover:text-secondary"
             >
               All Deals{' '}
               <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
