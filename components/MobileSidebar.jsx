@@ -4,7 +4,7 @@ import { X, User } from 'lucide-react';
 import Link from 'next/link';
 import Logo from './Logo';
 
-export default function MobileSidebar({ isOpen, onClose, isAuthenticated, categories }) {
+export default function MobileSidebar({ isOpen, onClose, isAuthenticated, categories, user }) {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -64,10 +64,11 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
             </div>
 
             <Link
-              href={isAuthenticated ? '/profile' : '/auth'}
+              href={!isAuthenticated ? '/auth' : user?.role === 'admin' ? '/admin/dashboard' : '/profile'}
               className="mt-6 flex items-center gap-3 p-4 bg-primary text-bg rounded-2xl font-black justify-center shadow-lg uppercase text-xs tracking-widest"
             >
-              <User size={20} /> {isAuthenticated ? 'My Account' : 'Login Now'}
+              <User size={20} />
+              {!isAuthenticated ? 'Login Now' : user?.role === 'admin' ? 'Dashboard' : 'My Account'}
             </Link>
           </motion.aside>
         </>
