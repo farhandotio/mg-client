@@ -8,49 +8,49 @@ import {
   Youtube,
   Phone,
   Mail,
-  MapPin,
   Truck,
   ShieldCheck,
   RotateCcw,
-  ArrowRight,
   Send,
+  Zap,
 } from 'lucide-react';
-import Button from '@/components/Button'; // আপনার কাস্টম বাটন
+import Logo from './Logo';
 
 export default function Footer() {
   const footerData = {
     quickLinks: [
-      { name: 'Shop All', href: '/shop' },
-      { name: 'Smartphones', href: '/category/smartphones' },
-      { name: 'Laptops', href: '/category/laptops' },
-      { name: 'Headphones', href: '/category/headphones' },
-      { name: 'Gaming', href: '/category/gaming' },
+      { name: 'Shop All Units', href: '/shop' },
+      { name: 'Smartphones', href: '/shop?category=smartphones' },
+      { name: 'Laptops', href: '/shop?category=laptops' },
+      { name: 'Accessories', href: '/shop?category=accessories' },
+      { name: 'Hot Deals', href: '/shop?productType=HotDeals' },
     ],
+    // নতুন পলিসি লিঙ্কগুলো এখানে যুক্ত করা হয়েছে
     support: [
-      { name: 'Contact Us', href: '/contact' },
-      { name: 'Shipping Info', href: '/shipping' },
-      { name: 'Returns', href: '/returns' },
-      { name: 'Order Tracking', href: '/track-order' },
-      { name: 'Privacy Policy', href: '/privacy' },
+      { name: 'Command Center', href: '/contact' },
+      { name: 'Warranty Protocols', href: '/policies/warranty' },
+      { name: 'Return & Refund', href: '/policies/refund' },
+      { name: 'Shipping Info', href: '/policies/shipping' },
+      { name: 'Privacy Shield', href: '/policies/privacy' },
     ],
     features: [
       {
         icon: <Truck size={28} />,
-        title: 'Free Shipping',
-        desc: 'Orders over $100',
-        color: 'text-blue-500',
+        title: 'Rapid Dispatch',
+        desc: 'Zone-wide Delivery',
+        color: 'text-primary',
       },
       {
         icon: <ShieldCheck size={28} />,
-        title: 'Secure Payment',
-        desc: '100% encryption',
-        color: 'text-green-500',
+        title: 'Secure Vault',
+        desc: '256-bit Encryption',
+        color: 'text-primary',
       },
       {
         icon: <RotateCcw size={28} />,
-        title: 'Easy Returns',
-        desc: '30-day window',
-        color: 'text-orange-500',
+        title: 'Hardware Reset',
+        desc: '7-Day Return Policy',
+        color: 'text-primary',
       },
     ],
   };
@@ -60,22 +60,24 @@ export default function Footer() {
       {/* Background Decorative Glow */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 pt-16 pb-8">
+      <div className="max-w-7xl mx-auto px-6 pt-16 pb-8 relative z-10">
         {/* --- Top Features Section --- */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-12">
           {footerData.features.map((item, index) => (
             <div
               key={index}
-              className="group flex items-center gap-5 p-6 bg-bg/40 border border-border/50 rounded-2xl hover:border-primary/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5"
+              className="group flex items-center gap-5 p-6 bg-bg/20 border border-white/5 rounded-3xl hover:border-primary/30 transition-all duration-500 hover:bg-bg/40"
             >
               <div
-                className={`${item.color} bg-white/5 p-4 rounded-2xl group-hover:scale-110 transition-transform duration-500`}
+                className={`${item.color} bg-primary/10 p-4 rounded-2xl group-hover:scale-110 group-hover:bg-primary group-hover:text-bg transition-all duration-500`}
               >
                 {item.icon}
               </div>
               <div>
-                <h4 className="text-text font-black text-lg tracking-tight">{item.title}</h4>
-                <p className="text-pText text-xs font-medium uppercase tracking-widest opacity-70">
+                <h4 className="text-text font-black text-lg tracking-tighter uppercase italic">
+                  {item.title}
+                </h4>
+                <p className="text-pText text-[10px] font-bold uppercase tracking-[0.2em] opacity-60">
                   {item.desc}
                 </p>
               </div>
@@ -87,22 +89,18 @@ export default function Footer() {
 
         {/* --- Main Content Grid --- */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-16">
-          {/* Brand Identity (Col-4) */}
+          {/* Brand Identity */}
           <div className="lg:col-span-4 space-y-8">
-            <Link href="/" className="flex items-center gap-3 group">
-              <span className="text-text font-black text-2xl tracking-tighter">
-                Gadget <span className="text-primary italic">BDS</span>
-              </span>
-            </Link>
-            <p className="text-pText text-sm leading-relaxed max-w-sm font-medium">
-              We provide the latest and most advanced tech gadgets with a commitment to quality and
-              innovation. Join our tech community today.
+            <Logo width={140} height={40} />
+            <p className="text-pText text-base leading-relaxed max-w-sm font-medium">
+              Engineering the next generation of gadget retail. We provide high-performance hardware
+              with a focus on reliability and future-proof technology.
             </p>
             <div className="flex gap-3">
               {[Facebook, Twitter, Instagram, Youtube].map((Icon, i) => (
                 <button
                   key={i}
-                  className="w-10 h-10 rounded-xl bg-white/5 border border-border/50 flex items-center justify-center text-pText hover:bg-primary hover:text-bg transition-all duration-300"
+                  className="w-10 h-10 rounded-xl bg-white/5 border border-border/50 flex items-center justify-center text-pText hover:bg-primary hover:text-bg transition-all duration-300 active:scale-90"
                 >
                   <Icon size={18} />
                 </button>
@@ -110,19 +108,19 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Links (Col-2 each) */}
+          {/* Navigation Links */}
           <div className="lg:col-span-2">
-            <h4 className="text-text font-black uppercase text-[10px] tracking-[0.3em] mb-8">
-              Navigation
+            <h4 className="text-primary font-black uppercase text-[10px] tracking-[0.4em] mb-8">
+              Sectors
             </h4>
             <ul className="space-y-4">
               {footerData.quickLinks.map((link, index) => (
                 <li key={index}>
                   <Link
                     href={link.href}
-                    className="text-pText text-sm font-bold hover:text-primary transition-all flex items-center gap-2 group"
+                    className="text-pText text-sm tracking-tighter hover:text-primary transition-all flex items-center gap-2 group"
                   >
-                    <div className="w-1.5 h-1.5 rounded-full bg-primary scale-0 group-hover:scale-100 transition-transform" />
+                    <div className="w-0 h-0.5 bg-primary group-hover:w-3 transition-all" />
                     {link.name}
                   </Link>
                 </li>
@@ -130,18 +128,19 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Service & Policy Links */}
           <div className="lg:col-span-2">
-            <h4 className="text-text font-black uppercase text-[10px] tracking-[0.3em] mb-8">
-              Service
+            <h4 className="text-primary font-black uppercase text-[10px] tracking-[0.4em] mb-8">
+              Protocols
             </h4>
             <ul className="space-y-4">
               {footerData.support.map((link, index) => (
                 <li key={index}>
                   <Link
                     href={link.href}
-                    className="text-pText text-sm font-bold hover:text-primary transition-all flex items-center gap-2 group"
+                    className="text-pText text-sm tracking-tighter hover:text-primary transition-all flex items-center gap-2 group"
                   >
-                    <div className="w-1.5 h-1.5 rounded-full bg-primary scale-0 group-hover:scale-100 transition-transform" />
+                    <div className="w-0 h-0.5 bg-primary group-hover:w-3 transition-all" />
                     {link.name}
                   </Link>
                 </li>
@@ -149,51 +148,47 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Newsletter (Col-4) */}
+          {/* Newsletter & Contact */}
           <div className="lg:col-span-4 space-y-8">
-            <h4 className="text-text font-black uppercase text-[10px] tracking-[0.3em]">
-              Join Newsletter
+            <h4 className="text-primary font-black uppercase text-[10px] tracking-[0.4em]">
+              Signal_Subscription
             </h4>
             <div className="relative group">
               <input
                 type="email"
-                placeholder="Enter your email"
-                className="w-full bg-bg/50 border-2 border-border/50 rounded-2xl px-6 py-4 text-sm outline-none focus:border-primary/50 transition-all font-bold pr-14"
+                placeholder="Enter Neural ID (Email)"
+                className="w-full bg-bg/50 border-2 border-border/30 rounded-2xl px-6 py-4 text-sm outline-none focus:border-primary/50 transition-all font-bold pr-14 italic"
               />
-              <button className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-bg hover:scale-105 transition-transform shadow-lg shadow-primary/30">
+              <button className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-bg hover:scale-105 transition-transform shadow-lg shadow-primary/20">
                 <Send size={18} />
               </button>
             </div>
 
-            <div className="space-y-4 bg-bg/40 p-6 rounded-3xl border border-border/50">
-              <div className="flex items-center gap-4 text-pText text-sm font-bold">
-                <Phone size={18} className="text-primary" /> <span>+1 (555) 123-4567</span>
+            <div className="space-y-4 bg-bg/20 p-6 rounded-3xl border border-white/5">
+              <div className="flex items-center gap-4 text-pText text-[11px] font-black uppercase tracking-widest">
+                <Phone size={16} className="text-primary" /> <span>+880 1XXX-XXXXXX</span>
               </div>
-              <div className="flex items-center gap-4 text-pText text-sm font-bold">
-                <Mail size={18} className="text-primary" /> <span>hello@mygadget.tech</span>
+              <div className="flex items-center gap-4 text-pText text-[11px] font-black uppercase tracking-widest">
+                <Mail size={16} className="text-primary" /> <span>HQ@GADGETBD.TECH</span>
               </div>
             </div>
           </div>
         </div>
 
         {/* --- Bottom Footer Bar --- */}
-        <div className="pt-8 border-t border-border/50 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-2 text-pText text-[10px] font-black uppercase tracking-widest">
-            <span>© 2026</span>
-            <span className="w-1 h-1 rounded-full bg-primary" />
-            <span>Gadget BDS Global</span>
+        <div className="pt-8 border-t border-border/30 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex items-center gap-3 text-pText/40 text-[9px] font-black uppercase tracking-[0.3em]">
+            <span>System_Run: 2026</span>
+            <div className="w-1 h-1 rounded-full bg-primary animate-pulse" />
+            <span>Gadget BDs Global Node</span>
           </div>
 
-          <div className="flex gap-8">
-            {['Terms', 'Privacy', 'Cookies'].map((text) => (
-              <Link
-                key={text}
-                href={`/${text.toLowerCase()}`}
-                className="text-pText text-[10px] font-black uppercase tracking-[0.2em] hover:text-primary transition-colors"
-              >
-                {text}
-              </Link>
-            ))}
+          <div className="flex items-center gap-8 grayscale opacity-50 hover:opacity-100 transition-all duration-700">
+            <Zap size={16} className="text-primary" />
+            <div className="h-3 w-px bg-white/10" />
+            <span className="text-[9px] font-black uppercase tracking-widest italic">
+              Encryption: Active
+            </span>
           </div>
         </div>
       </div>

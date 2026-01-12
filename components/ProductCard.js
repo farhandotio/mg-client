@@ -28,12 +28,6 @@ export default function ProductCard({ product }) {
     }
   };
 
-  const toggleWishlist = (e) => {
-    e.preventDefault();
-    setIsWishlisted(!isWishlisted);
-    toast.success(isWishlisted ? 'Removed from wishlist' : 'Added to wishlist');
-  };
-
   // --- Cart Handle Function (Core Update) ---
   const handleAddToCart = async (e) => {
     e.preventDefault();
@@ -110,19 +104,6 @@ export default function ProductCard({ product }) {
               </span>
             )}
           </div>
-
-          {/* Wishlist Button */}
-          <button
-            onClick={toggleWishlist}
-            className={`absolute top-2 right-2 p-2 rounded-full border transition-all duration-300 z-30 active:scale-90
-              ${
-                isWishlisted
-                  ? 'bg-red-500 border-red-500 text-white shadow-[0_0_10px_rgba(239,68,68,0.5)]'
-                  : 'bg-bg/40 border-white/10 text-text hover:bg-red-400 hover:text-bg'
-              }`}
-          >
-            <Heart size={14} className={isWishlisted ? 'fill-current' : 'fill-none'} />
-          </button>
         </div>
 
         {/* Content Section */}
@@ -138,7 +119,7 @@ export default function ProductCard({ product }) {
           </div>
 
           <Link href={`/shop/${product?.slug}`} onClick={handleScrollToTop}>
-            <h3 className="text-text font-black text-sm md:text-base leading-tight line-clamp-1 uppercase italic tracking-tighter group-hover:text-primary transition-colors">
+            <h3 className="text-text font-semibold text-sm md:text-base leading-tight line-clamp-1 uppercase tracking-tight group-hover:text-primary transition-colors">
               {product?.title}
             </h3>
           </Link>

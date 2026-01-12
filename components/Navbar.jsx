@@ -4,22 +4,22 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import { logoutUser } from '@/store/features/authSlice';
-import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
+import { fetchCategories } from '@/store/features/categorySlice';
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import {
   ShoppingCart,
   User,
   ChevronDown,
   Menu,
-  Smartphone,
-  Laptop,
-  Watch,
-  Headphones,
   Zap,
   LayoutDashboard,
   LogOut,
   Package,
   Search,
   LogIn,
+  Box,
+  Sun,
+  Moon,
 } from 'lucide-react';
 
 import Button from '@/components/Button';
@@ -36,6 +36,9 @@ export default function Navbar() {
   const [hidden, setHidden] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
+  // Theme State
+  const [theme, setTheme] = useState('dark');
+
   const categoryRef = useRef(null);
   const profileRef = useRef(null);
 
@@ -46,22 +49,38 @@ export default function Navbar() {
   const { user, isAuthenticated } = useSelector((state) => state.auth, shallowEqual);
   const cartItems = useSelector((state) => state.cart?.cartItems || [], shallowEqual);
   const allProducts = useSelector((state) => state.products?.products || [], shallowEqual);
+  const { categories: dynamicCategories } = useSelector((state) => state.categories);
 
+  // Theme Initializer & Persistence
   useEffect(() => {
     setMounted(true);
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    setTheme(savedTheme);
+    document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+    document.documentElement.classList.toggle('light', savedTheme === 'light');
+
+    if (!dynamicCategories || dynamicCategories.length === 0) {
+      dispatch(fetchCategories());
+    }
 
     const handleClickOutside = (event) => {
-      if (categoryRef.current && !categoryRef.current.contains(event.target)) {
+      if (categoryRef.current && !categoryRef.current.contains(event.target))
         setIsCategoryOpen(false);
-      }
-      if (profileRef.current && !profileRef.current.contains(event.target)) {
-        setIsProfileOpen(false);
-      }
+      if (profileRef.current && !profileRef.current.contains(event.target)) setIsProfileOpen(false);
     };
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+  }, [dispatch, dynamicCategories]);
+
+  // Toggle Theme Function
+  const toggleTheme = () => {
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    document.documentElement.classList.remove('dark', 'light');
+    document.documentElement.classList.add(newTheme);
+  };
 
   const filteredProducts = useMemo(() => {
     if (!searchQuery || !allProducts.length) return [];
@@ -88,16 +107,7 @@ export default function Navbar() {
     setIsCategoryOpen(false);
   }, [pathname]);
 
-  const categories = [
-    { name: 'Smartphones', slug: 'smartphones', icon: <Smartphone size={18} /> },
-    { name: 'Laptops', slug: 'laptops', icon: <Laptop size={18} /> },
-    { name: 'Accessories', slug: 'accessories', icon: <Headphones size={18} /> },
-    { name: 'Watches', slug: 'watches', icon: <Watch size={18} /> },
-  ];
-
-  if (pathname.startsWith('/admin')) {
-    return null;
-  }
+  if (pathname.startsWith('/admin')) return null;
 
   return (
     <>
@@ -122,7 +132,6 @@ export default function Navbar() {
               Home
             </Link>
 
-            {/* Category Dropdown (Click Based) */}
             <div className="relative" ref={categoryRef}>
               <button
                 onClick={() => setIsCategoryOpen(!isCategoryOpen)}
@@ -130,7 +139,7 @@ export default function Navbar() {
                   isCategoryOpen ? 'text-primary' : 'text-text'
                 }`}
               >
-                Categories
+                Categories{' '}
                 <ChevronDown
                   size={14}
                   className={`transition-transform duration-300 ${
@@ -145,18 +154,31 @@ export default function Navbar() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
-                    className="absolute top-[90%] left-0 w-64 bg-card border border-border rounded-3xl shadow-2xl p-2 z-50"
+                    className="absolute top-[90%] left-0 min-w-60 bg-card border border-border rounded-3xl shadow-2xl p-2 z-50 overflow-hidden"
                   >
-                    {categories.map((cat) => (
-                      <Link
-                        key={cat.slug}
-                        href={`/shop?category=${cat.slug}`}
-                        onClick={() => setIsCategoryOpen(false)}
-                        className="flex items-center gap-4 px-4 py-4 hover:bg-white/5 hover:text-primary rounded-xl transition-all font-bold"
-                      >
-                        <span className="text-primary">{cat.icon}</span> {cat.name}
-                      </Link>
-                    ))}
+                    <div className="max-h-100 overflow-y-auto no-scrollbar">
+                      {dynamicCategories?.map((cat) => (
+                        <Link
+                          key={cat._id}
+                          href={`/shop?category=${cat.slug}`}
+                          onClick={() => setIsCategoryOpen(false)}
+                          className="flex items-center gap-4 px-4 py-4 hover:bg-white/5 hover:text-primary rounded-xl transition-all font-bold group"
+                        >
+                          <div className="w-8 h-8 rounded-lg bg-primary/5 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                            {cat.image?.url ? (
+                              <img
+                                src={cat.image.url}
+                                alt=""
+                                className="w-5 h-5 object-cover rounded-sm"
+                              />
+                            ) : (
+                              <Box size={18} />
+                            )}
+                          </div>
+                          <span className="text-[11px]">{cat.name}</span>
+                        </Link>
+                      ))}
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -180,19 +202,33 @@ export default function Navbar() {
             </Link>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center">
+            {/* --- Manual Theme Toggle --- */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-xl text-text hover:text-primary transition-all"
+              title="Toggle System Theme"
+            >
+              {mounted &&
+                (theme === 'dark' ? (
+                  <Sun size={20} className="text-secondary" />
+                ) : (
+                  <Moon size={20} className="text-primary" />
+                ))}
+            </button>
+
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="p-2.5 rounded-xl text-text hover:text-primary transition-all"
+              className="p-2.5 rounded-xl md:text-text hover:text-primary transition-all"
             >
-              <Search size={22} />
+              <Search size={20} />
             </button>
 
             <Link
               href="/cart"
-              className="relative p-2.5 rounded-xl text-text hover:text-primary transition-all"
+              className="relative p-2.5 md:mr-3 rounded-xl md:text-text hover:text-primary transition-all"
             >
-              <ShoppingCart size={22} />
+              <ShoppingCart size={20} />
               {mounted && cartItems.length > 0 && (
                 <span className="absolute -top-1 -right-1 bg-primary text-bg text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-card">
                   {cartItems.length}
@@ -200,7 +236,7 @@ export default function Navbar() {
               )}
             </Link>
 
-            <button onClick={() => setIsOpen(true)} className="lg:hidden text-text p-1">
+            <button onClick={() => setIsOpen(true)} className="lg:hidden text-text p-1 ml-1">
               <Menu
                 className="p-2.5 bg-primary/5 rounded-xl text-primary md:text-text hover:text-primary transition-all"
                 size={42}
@@ -251,7 +287,6 @@ export default function Navbar() {
                           <LayoutDashboard size={16} /> Dashboard
                         </Link>
                       )}
-
                       {user?.role === 'user' && (
                         <>
                           <Link
@@ -295,7 +330,7 @@ export default function Navbar() {
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         isAuthenticated={isAuthenticated}
-        categories={categories}
+        categories={dynamicCategories}
         user={user}
         logout={() => dispatch(logoutUser())}
       />

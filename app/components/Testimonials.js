@@ -11,7 +11,7 @@ export default function Testimonials() {
       role: 'Tech Enthusiast',
       initials: 'SC',
       comment:
-        'Gadget BDS has the best selection of premium electronics. Fast shipping and amazing customer service!',
+        'Gadget BDs has the best selection of premium electronics. Fast shipping and amazing customer service!',
       rating: 5,
     },
   ];

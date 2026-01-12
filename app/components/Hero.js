@@ -126,11 +126,11 @@ export default function Hero() {
                       Featured Hardware
                     </p>
                     <h3 className="text-text font-black text-xl italic tracking-tighter">
-                      IPHONE 15 PRO
+                      Digital Watch Displaying
                     </h3>
                   </div>
                   <Link
-                    href="/shop/iphone-15-pro"
+                    href="/shop/category=watch"
                     className="bg-primary text-bg p-3 rounded-2xl hover:scale-105 transition-transform"
                   >
                     <ArrowRight size={20} strokeWidth={3} />
