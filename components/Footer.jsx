@@ -15,8 +15,11 @@ import {
   Zap,
 } from 'lucide-react';
 import Logo from './Logo';
+import { usePathname } from 'next/navigation';
 
 export default function Footer() {
+  const pathname = usePathname();
+
   const footerData = {
     quickLinks: [
       { name: 'Shop All Units', href: '/shop' },
@@ -54,6 +57,8 @@ export default function Footer() {
       },
     ],
   };
+
+  if (pathname.startsWith('/admin')) return null;
 
   return (
     <footer className="bg-card backdrop-blur-xl border-t border-border/50 relative overflow-hidden">

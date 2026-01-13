@@ -97,7 +97,7 @@ export default function BrandsPage() {
           <Button
             url={'/admin/brands/create'}
             className=""
-            text={'Register New Brand'}
+            text={'Create Brand'}
             icon={Plus}
           ></Button>
         </div>

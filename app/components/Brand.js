@@ -63,8 +63,8 @@ export default function Brand() {
                   {/* Brand Image - Cover Mode */}
                   <div className="absolute inset-2 overflow-hidden rounded-lg clip-path-cyber-inner">
                     <Image
-                      src={brand.image?.url}
-                      alt={brand.name}
+                      src={brand?.image?.url}
+                      alt={brand?.name}
                       fill
                       className="object-cover grayscale opacity-30 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 ease-in-out"
                     />

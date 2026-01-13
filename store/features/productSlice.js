@@ -73,9 +73,7 @@ export const updateProduct = createAsyncThunk(
   'products/update',
   async ({ id, formData }, { rejectWithValue }) => {
     try {
-      const response = await API.patch(`/products/${id}`, formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
+      const response = await API.patch(`/products/${id}`, formData);
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || 'Update failed');

@@ -5,6 +5,7 @@ import { fetchCategories, deleteCategory } from '@/store/features/categorySlice'
 import DataTable from '../components/DataTable';
 import { toast } from 'react-hot-toast';
 import { Plus, Layers } from 'lucide-react';
+import Button from '@/components/Button';
 
 export default function CategoriesPage() {
   const dispatch = useDispatch();
@@ -80,13 +81,14 @@ export default function CategoriesPage() {
           </p>
         </div>
 
-        <button
-          className="group bg-white text-black hover:bg-primary hover:text-white px-8 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all duration-300 flex items-center gap-3 shadow-xl hover:shadow-primary/20"
-          onClick={() => toast('Add Category Modal Coming Soon!')}
-        >
-          <Plus size={16} strokeWidth={3} />
-          Create New Class
-        </button>
+        <div className="max-md:w-full">
+          <Button
+            url={'/admin/categories/create'}
+            className=""
+            text={'Create Category'}
+            icon={Plus}
+          ></Button>
+        </div>
       </div>
 
       {/* Table Section */}

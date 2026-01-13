@@ -14,8 +14,7 @@ export const fetchBrands = createAsyncThunk('brands/fetchAll', async (_, thunkAP
 // ২. নতুন ব্র্যান্ড তৈরি (POST - Admin Only)
 export const createBrand = createAsyncThunk('brands/create', async (formData, thunkAPI) => {
   try {
-    const config = { headers: { 'Content-Type': 'multipart/form-data' } };
-    const response = await API.post('/brands', formData, config);
+    const response = await API.post('/brands', formData);
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response.data);
@@ -25,8 +24,7 @@ export const createBrand = createAsyncThunk('brands/create', async (formData, th
 // ৩. ব্র্যান্ড আপডেট করা (PATCH - Admin Only)
 export const updateBrand = createAsyncThunk('brands/update', async ({ id, formData }, thunkAPI) => {
   try {
-    const config = { headers: { 'Content-Type': 'multipart/form-data' } };
-    const response = await API.patch(`${'/brands'}/${id}`, formData, config);
+    const response = await API.patch(`${'/brands'}/${id}`, formData);
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response.data);

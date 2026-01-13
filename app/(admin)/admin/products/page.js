@@ -5,6 +5,7 @@ import { fetchAllProducts, deleteProduct } from '@/store/features/productSlice';
 import DataTable from '../components/DataTable';
 import { toast } from 'react-hot-toast';
 import Button from '@/components/Button';
+import { Plus } from 'lucide-react';
 
 export default function AdminProducts() {
   const dispatch = useDispatch();
@@ -109,7 +110,7 @@ export default function AdminProducts() {
         </div>
 
         <div className="w-fit">
-          <Button url={"/admin/products/create"} text={'Deploy New Unit'} className="" />
+          <Button icon={Plus} url={"/admin/products/create"} text={'Create Product'} className="" />
         </div>
       </div>
 
