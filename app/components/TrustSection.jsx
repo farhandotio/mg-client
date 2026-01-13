@@ -50,7 +50,7 @@ const itemVariants = {
 
 export default function TrustSection() {
   return (
-    <section className="py-24 bg-bg relative overflow-hidden">
+    <section className="py-10 bg-bg relative overflow-hidden">
       {/* --- High-Tech Decor Elements --- */}
       <div className="absolute top-0 left-1/4 w-0.5 h-full bg-linear-to-b from-primary/20 via-transparent to-transparent hidden md:block" />
       <div className="absolute top-1/2 left-0 w-full h-0.5 bg-linear-to-r from-primary/10 via-transparent to-transparent hidden md:block" />

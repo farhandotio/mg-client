@@ -19,7 +19,7 @@ export default function Feature() {
 
   const scroll = (direction) => {
     if (scrollRef.current) {
-      const scrollAmount = scrollRef.current.clientWidth / 2; // হাফ স্ক্রিন স্ক্রল করবে স্মুথনেসের জন্য
+      const scrollAmount = scrollRef.current.clientWidth / 2;
       scrollRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth',
@@ -28,7 +28,7 @@ export default function Feature() {
   };
 
   return (
-    <section className="py-20 px-4 md:px-6 bg-bg relative overflow-hidden border-t border-border/10">
+    <section className="py-10 px-4 md:px-6 bg-bg relative overflow-hidden border-t border-border/10">
       {/* Background Glow */}
       <div className="absolute top-0 right-0 w-80 h-80 bg-primary/5 blur-[120px] rounded-full -z-10" />
 
@@ -89,10 +89,6 @@ export default function Feature() {
               ))
             ) : products.length > 0 ? (
               products.map((product) => (
-                /* Mobile: 65% (আগে ৭৫% ছিল, এখন আরও একটু ছোট করা হয়েছে)
-                   Tablet: 30% 
-                   Desktop/LG: 19% (এখন একসাথে ৫টি কার্ড দেখা যাবে)
-                */
                 <div
                   key={product._id}
                   className="min-w-[65%] sm:min-w-[35%] md:min-w-[28%] lg:min-w-[19%] snap-start"

@@ -21,7 +21,7 @@ const Skeleton = ({ type = 'product', count = 1, className = '' }) => {
 
       {type === 'product' && (
         <div className="p-3 space-y-4">
-          <div className="aspect-square bg-bg/50 rounded-xl md:rounded-2xl" />
+          <div className="aspect-square bg-bg/50 rounded-xl" />
           <div className="space-y-2 px-2 pb-2">
             <div className="h-2 w-1/3 bg-pText/10 rounded-full" />
             <div className="h-4 w-full bg-pText/10 rounded-full" />

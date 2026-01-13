@@ -58,7 +58,7 @@ export default function ShopPageContent() {
   const fetchFilteredProducts = useCallback(() => {
     const query = new URLSearchParams();
     query.append('page', page);
-    query.append('limit', 8);
+    query.append('limit', 12);
     query.append('sort', sortBy);
     query.append('price.base[lte]', priceRange);
 
@@ -141,10 +141,10 @@ export default function ShopPageContent() {
           </div>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-10">
+        <div className="flex flex-col lg:flex-row gap-5">
           {/* Desktop Sidebar */}
-          <aside className="hidden lg:block w-72 shrink-0">
-            <div className="bg-card/30 backdrop-blur-xl border border-border p-8 rounded-[2.5rem] sticky top-28">
+          <aside className="hidden lg:block w-65 shrink-0">
+            <div className="bg-card/30 backdrop-blur-xl border border-border p-8 rounded-2xl sticky top-28">
               <ShopSidebar {...filterProps} />
             </div>
           </aside>
@@ -153,12 +153,12 @@ export default function ShopPageContent() {
           <main className="grow">
             {loading ? (
               /* --- SKELETON LOADING STATE --- */
-              <div className="grid grid-cols-2 xl:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 xl:grid-cols-4 gap-4 md:gap-5">
                 <Skeleton type="product" count={8} />
               </div>
             ) : products?.length > 0 ? (
               <>
-                <div className="grid grid-cols-2 xl:grid-cols-4 gap-6">
+                <div className="grid grid-cols-2 xl:grid-cols-4 gap-4 md:gap-5">
                   {products.map((product) => (
                     <ProductCard key={product._id} product={product} />
                   ))}
@@ -188,7 +188,7 @@ export default function ShopPageContent() {
                 )}
               </>
             ) : (
-              <div className="text-center py-40 bg-card/10 rounded-[4rem] border-2 border-dashed border-border flex flex-col items-center">
+              <div className="text-center py-40 rounded-3xl flex flex-col items-center">
                 <Search size={32} className="text-pText/40 mb-6" />
                 <h3 className="text-2xl font-black uppercase italic">No Units Detected</h3>
                 <button

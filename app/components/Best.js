@@ -27,7 +27,7 @@ export default function Best() {
   };
 
   return (
-    <section className="py-20 px-4 md:px-6 bg-bg relative overflow-hidden border-t border-border/10">
+    <section className="py-10 px-4 md:px-6 bg-bg relative overflow-hidden border-t border-border/10">
       <div className="absolute top-0 right-0 w-80 h-80 bg-primary/5 blur-[120px] rounded-full -z-10" />
 
       <div className="max-w-7xl mx-auto">

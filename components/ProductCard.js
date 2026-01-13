@@ -70,14 +70,14 @@ export default function ProductCard({ product }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.4, ease: 'easeOut' }}
-      className="group relative w-full will-change-transform transition-all duration-500 max-w-60 mx-auto"
+      className="group relative will-change-transform transition-all duration-500 max-w-60 mx-auto"
     >
       {/* Background Cyber Frame */}
-      <div className="absolute inset-0 bg-card/60 md:bg-card/40 md:backdrop-blur-sm border border-border/40 clip-path-cyber rounded-2xl transition-all duration-500 group-hover:border-primary/50 group-hover:bg-card/80 md:group-hover:-translate-y-1" />
+      <div className="absolute inset-0 md:bg-card/40 md:backdrop-blur-sm bg-card/20 border border-bg/5 rounded-xl overflow-hidden transition-all duration-500 group-hover:border-primary/40 group-hover:bg-card/40" />
 
       <div className="relative z-10 p-2 md:p-4 overflow-hidden">
         {/* Image Container */}
-        <div className="relative aspect-square rounded-tr-xl overflow-hidden clip-path-cyber-inner bg-bg/50">
+        <div className="relative aspect-7/5 rounded-xl overflow-hidden bg-bg/50">
           <Link
             href={`/shop/${product?.slug}`}
             onClick={handleScrollToTop}
@@ -94,7 +94,7 @@ export default function ProductCard({ product }) {
           {/* Tags */}
           <div className="absolute top-2 left-2 flex flex-col gap-2">
             {discount > 0 && (
-              <span className="bg-primary text-bg text-[8px] md:text-[10px] font-black px-2 py-0.5 rounded-sm italic uppercase clip-path-tag shadow-md">
+              <span className="bg-primary text-bg text-[8px] md:text-[10px] font-black px-2 py-0.5 italic uppercase rounded-tl-lg rounded-br-lg shadow-md">
                 -{discount}%
               </span>
             )}
@@ -119,7 +119,7 @@ export default function ProductCard({ product }) {
           </div>
 
           <Link href={`/shop/${product?.slug}`} onClick={handleScrollToTop}>
-            <h3 className="text-text font-semibold text-sm md:text-base leading-tight line-clamp-1 uppercase tracking-tight group-hover:text-primary transition-colors">
+            <h3 className="text-text font-semibold text-sm md:text-lg leading-tight line-clamp-1 uppercase tracking-tight group-hover:text-primary transition-colors">
               {product?.title}
             </h3>
           </Link>
@@ -146,7 +146,7 @@ export default function ProductCard({ product }) {
                     ? 'bg-bg/50 text-pText/20 cursor-not-allowed border border-border/10'
                     : isInCart
                     ? 'bg-primary/20 text-primary border border-primary/40'
-                    : 'bg-primary text-bg shadow-md md:shadow-[0_5px_15px_-5px_rgba(41,252,86,0.4)]'
+                    : 'bg-primary text-bg shadow-md'
                 }`}
             >
               {isAdding ? (

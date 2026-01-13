@@ -104,7 +104,7 @@ export default function Hero() {
           {/* Main Visual Card */}
           <div className="relative z-10 w-full max-w-md aspect-square bg-card border border-border/50 rounded-[3rem] p-3 shadow-2xl overflow-hidden group">
             {/* Inner "Screen" */}
-            <div className="relative h-full w-full bg-[#0c0c0c] rounded-[2.5rem] overflow-hidden flex flex-col items-center justify-center border border-white/5">
+            <div className="relative h-full w-full bg-bg rounded-[2.5rem] overflow-hidden flex flex-col items-center justify-center border border-white/5">
               {/* Status Badge */}
               <div className="absolute top-8 right-8 z-20 bg-primary/10 backdrop-blur-md border border-primary/20 px-3 py-1 rounded-full flex items-center gap-2">
                 <div className="w-1.5 h-1.5 bg-primary rounded-full animate-ping"></div>

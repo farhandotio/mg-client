@@ -33,7 +33,7 @@ export default function Category() {
   };
 
   return (
-    <section className="py-20 bg-bg relative overflow-hidden">
+    <section className="pb-10 pt-20 bg-bg relative overflow-hidden">
       {/* Background Decor */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
 
@@ -92,20 +92,20 @@ export default function Category() {
         {/* --- Wide Card Slider --- */}
         <div
           ref={scrollRef}
-          className="flex gap-6 overflow-x-auto no-scrollbar py-8 scroll-smooth snap-x snap-mandatory"
+          className="flex gap-5 overflow-x-auto no-scrollbar py-8 scroll-smooth snap-x snap-mandatory"
         >
           {loading ? (
             [...Array(5)].map((_, i) => (
               <div key={i} className="shrink-0 h-40 w-75 md:w-95">
-                <Skeleton type="category" className="w-full h-52 rounded-3xl" />
+                <Skeleton type="category" className="w-full h-52 rounded-2xl" />
               </div>
             ))
           ) : categories && categories.length > 0 ? (
             categories.map((item, idx) => (
               <motion.div
                 key={item._id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0.8 }}
+                whileInView={{ opacity: 1}}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 className="shrink-0 w-75 md:w-95 snap-start"
@@ -113,12 +113,12 @@ export default function Category() {
                 <Link
                   href={`/shop?category=${item.slug}`}
                   onClick={handleScrollToTop}
-                  className="group relative block h-48 md:h-52"
+                  className="group relative block h-40 md:h-40"
                 >
                   {/* Main Card Body */}
-                  <div className="relative h-full w-full bg-card/20 border border-bg/5 rounded-3xl overflow-hidden transition-all duration-500 group-hover:border-primary/40 group-hover:bg-card/40 flex items-center p-6 gap-6">
+                  <div className="relative h-full w-full bg-card/50 border border-border/5 rounded-xl overflow-hidden transition-all duration-500 group-hover:border-primary/40 group-hover:bg-card/40 flex items-center p-4 gap-6">
                     {/* Visual Node: Landscape Aspect */}
-                    <div className="relative w-32 md:w-40 h-full rounded-2xl overflow-hidden bg-bg/50 border border-bg/5 shrink-0">
+                    <div className="relative w-32 md:w-40 h-full rounded-xl overflow-hidden bg-bg/50 border border-bg/5 shrink-0">
                       <img
                         src={item.image?.url || '/api/placeholder/400/300'}
                         alt={item.name}
@@ -137,7 +137,7 @@ export default function Category() {
                     {/* Text Content */}
                     <div className="flex-1 space-y-3">
                       <div className="space-y-1">
-                        <p className="text-[8px] font-black text-pText/50 uppercase tracking-[0.2em]">
+                        <p className="text-[8px] font-black text-pText/90 uppercase tracking-[0.2em]">
                           Categorical_Node
                         </p>
                         <h3 className="text-xl md:text-2xl font-black uppercase tracking-tighter text-text group-hover:text-primary transition-colors italic leading-none">

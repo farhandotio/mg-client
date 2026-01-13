@@ -17,7 +17,7 @@ export default function Brand() {
   }, [dispatch, brandsData.length]);
 
   return (
-    <section className="py-24 bg-bg relative overflow-hidden border-t border-border/10">
+    <section className="py-10 bg-bg relative overflow-hidden border-t border-border/10">
       {/* Background Decor */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(circle_at_70%_20%,rgba(var(--primary-rgb),0.05),transparent_50%)]" />
 
