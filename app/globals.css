@@ -8,9 +8,19 @@
   --color-text: #202020;
   --color-primary: #ff6f5c;
   --color-secondary: #ffc65c;
-  --color-card: #fff5f5;
-  --color-border: #ffe8e8;
+  --color-card: #ffe8e8;
+  --color-border: #ffdddd;
 }
+
+/* .light {
+  --color-bg: #ffffff;
+  --color-pText: #464343;
+  --color-text: #202020;
+  --color-primary: #ff6f5c;
+  --color-secondary: #ffc65c;
+  --color-card: #ffe8e8;
+  --color-border: #ffdddd;
+} */
 
 .dark {
   --color-bg: #242424;
@@ -32,7 +42,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
 }
 @layer utilities {
   .no-scrollbar::-webkit-scrollbar {

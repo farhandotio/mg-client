@@ -73,9 +73,9 @@ export default function ProductCard({ product }) {
       className="group relative will-change-transform transition-all duration-500 max-w-60 mx-auto"
     >
       {/* Background Cyber Frame */}
-      <div className="absolute inset-0 md:bg-card/40 md:backdrop-blur-sm bg-card/20 border border-bg/5 rounded-xl overflow-hidden transition-all duration-500 group-hover:border-primary/40 group-hover:bg-card/40" />
+      <div className="absolute inset-0 bg-card/70 md:backdrop-blur-2xl border border-bg/5 rounded-xl overflow-hidden transition-all duration-500 group-hover:border-primary/40 group-hover:bg-card" />
 
-      <div className="relative z-10 p-2 md:p-4 overflow-hidden">
+      <div className="relative z-10 p-4 overflow-hidden">
         {/* Image Container */}
         <div className="relative aspect-7/5 rounded-xl overflow-hidden bg-bg/50">
           <Link
@@ -140,13 +140,13 @@ export default function ProductCard({ product }) {
             <button
               disabled={isOutOfStock || isAdding}
               onClick={handleAddToCart}
-              className={`p-3 rounded-xl transition-all active:scale-75 flex items-center justify-center
+              className={`p-2 rounded-lg transition-all active:scale-75 flex items-center justify-center
                 ${
                   isOutOfStock
                     ? 'bg-bg/50 text-pText/20 cursor-not-allowed border border-border/10'
                     : isInCart
                     ? 'bg-primary/20 text-primary border border-primary/40'
-                    : 'bg-primary text-bg shadow-md'
+                    : 'bg-primary text-bg'
                 }`}
             >
               {isAdding ? (

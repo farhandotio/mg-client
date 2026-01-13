@@ -110,41 +110,25 @@ export default function ShopPageContent() {
             <h1 className="text-5xl lg:text-7xl font-black text-text italic tracking-tighter uppercase leading-none">
               Vault <span className="text-primary">Catalog</span>
             </h1>
-            <p className="text-pText text-[10px] font-black mt-3 uppercase tracking-widest opacity-80">
-              {loading ? 'Scanning...' : `Found ${pagination?.totalProducts || 0} Units`}
-            </p>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center justify-between gap-3">
             <button
               onClick={() => setIsMobileFilterOpen(true)}
-              className="lg:hidden flex items-center gap-2 bg-card border border-border px-6 py-4 rounded-2xl text-[10px] font-black uppercase active:scale-95 transition-all"
+              className="lg:hidden flex items-center gap-2 bg-card border border-border px-5 py-3 rounded-lg text-xs font-black uppercase active:scale-95 transition-all"
             >
               <Filter size={14} className="text-primary" /> Filters
             </button>
-
-            <div className="relative group">
-              <select
-                value={sortBy}
-                onChange={(e) => updateURL({ sort: e.target.value, page: 1 })}
-                className="appearance-none bg-card border border-border px-8 py-4 pr-12 rounded-2xl text-[10px] font-black uppercase outline-none cursor-pointer hover:border-primary/50 transition-all"
-              >
-                <option value="-createdAt">Latest Hardware</option>
-                <option value="price.base">Price: Bottom Up</option>
-                <option value="-price.base">Price: Top Down</option>
-                <option value="-sold">Most Popular</option>
-              </select>
-              <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-primary">
-                <Filter size={12} />
-              </div>
-            </div>
+            <p className="text-pText text-xs px-2 font-black uppercase tracking-widest opacity-80">
+              {loading ? 'Scanning...' : `Found ${pagination?.totalProducts || 0} Units`}
+            </p>
           </div>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-5">
           {/* Desktop Sidebar */}
           <aside className="hidden lg:block w-65 shrink-0">
-            <div className="bg-card/30 backdrop-blur-xl border border-border p-8 rounded-2xl sticky top-28">
+            <div className="bg-card/50 backdrop-blur-xl p-6 rounded-2xl sticky top-28 ">
               <ShopSidebar {...filterProps} />
             </div>
           </aside>

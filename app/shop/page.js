@@ -15,7 +15,7 @@ export default function ShopPage() {
 function ShopLoadingFallback() {
   return (
     <div className="space-y-8">
-      <div className="h-10 w-48 bg-card/40 rounded-xl animate-pulse" />
+      <div className="h-10 w-48 bg-card/80 rounded-xl animate-pulse" />
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
         <Skeleton type="product" count={8} />
