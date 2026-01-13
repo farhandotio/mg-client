@@ -5,6 +5,7 @@ import { fetchBrands, deleteBrand } from '@/store/features/brandSlice';
 import DataTable from '../components/DataTable';
 import { toast } from 'react-hot-toast';
 import { Plus, Award } from 'lucide-react';
+import Button from '@/components/Button';
 
 export default function BrandsPage() {
   const dispatch = useDispatch();
@@ -92,13 +93,14 @@ export default function BrandsPage() {
           </p>
         </div>
 
-        <button
-          className="bg-primary hover:bg-primary/80 text-white px-8 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all duration-300 flex items-center gap-3 shadow-xl shadow-primary/20 hover:scale-105 active:scale-95"
-          onClick={() => toast.success('Brand Intake Module coming soon!')}
-        >
-          <Plus size={16} strokeWidth={3} />
-          Register New Brand
-        </button>
+        <div className="max-md:w-full">
+          <Button
+            url={'/admin/brands/create'}
+            className=""
+            text={'Register New Brand'}
+            icon={Plus}
+          ></Button>
+        </div>
       </div>
 
       {/* Generic Table Component */}

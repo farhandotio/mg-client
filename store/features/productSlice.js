@@ -9,7 +9,7 @@ export const fetchAllProducts = createAsyncThunk(
   async (queryString = '', { rejectWithValue }) => {
     try {
       const response = await API.get(`/products?${queryString}`);
-      return response.data; // Expects: { success, products, pagination }
+      return response.data; 
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || 'Failed to load products');
     }
@@ -60,9 +60,7 @@ export const createProduct = createAsyncThunk(
   'products/create',
   async (formData, { rejectWithValue }) => {
     try {
-      const response = await API.post('/products', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
+      const response = await API.post('/products', formData);
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || 'Creation failed');

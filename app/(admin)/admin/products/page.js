@@ -109,7 +109,7 @@ export default function AdminProducts() {
         </div>
 
         <div className="w-fit">
-          <Button text={'Deploy New Unit'} className="" />
+          <Button url={"/admin/products/create"} text={'Deploy New Unit'} className="" />
         </div>
       </div>
 

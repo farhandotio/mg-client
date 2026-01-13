@@ -4,7 +4,7 @@ import Skeleton from '@/components/Skeleton';
 
 export default function ShopPage() {
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="max-w-7xl mx-auto px-4 md:px-8 py-8">
       <Suspense fallback={<ShopLoadingFallback />}>
         <ShopPageContent />
       </Suspense>

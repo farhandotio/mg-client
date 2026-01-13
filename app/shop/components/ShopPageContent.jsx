@@ -102,7 +102,7 @@ export default function ShopPageContent() {
   };
 
   return (
-    <div className="bg-bg min-h-screen pt-5 pb-20 px-4 lg:px-12 animate-in fade-in duration-700">
+    <div className="bg-bg min-h-screen pt-5 pb-20 animate-in fade-in duration-700">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
