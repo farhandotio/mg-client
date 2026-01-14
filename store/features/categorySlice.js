@@ -69,6 +69,7 @@ const categorySlice = createSlice({
   initialState: {
     categories: [],
     loading: false,
+    isFetched: false,
     error: null,
   },
   reducers: {
@@ -85,16 +86,18 @@ const categorySlice = createSlice({
       .addCase(fetchCategories.fulfilled, (state, action) => {
         state.loading = false;
         state.categories = action.payload;
+        state.isFetched = true;
         state.error = null;
       })
       .addCase(fetchCategories.rejected, (state, action) => {
         state.loading = false;
+        state.isFetched = true;
         state.error = action.payload;
       })
 
       // Create Category
       .addCase(createCategory.fulfilled, (state, action) => {
-        state.categories.unshift(action.payload); // নতুনটি সবার আগে দেখাবে
+        state.categories.unshift(action.payload); 
       })
 
       // Update Category

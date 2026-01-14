@@ -10,19 +10,26 @@ import { motion } from 'framer-motion';
 export default function Category() {
   const dispatch = useDispatch();
   const scrollRef = useRef(null);
-  const { categories, loading } = useSelector((state) => state.categories);
 
-  useEffect(() => {
-    if (!categories || categories.length === 0) {
-      dispatch(fetchCategories());
-    }
-  }, [dispatch, categories]);
+  const { categories, loading, isFetched } = useSelector((state) => state.categories);
+
+const isInitialMount = useRef(true);
+
+useEffect(() => {
+  if (loading || isFetched || (categories && categories.length > 0)) {
+    return;
+  }
+
+  if (isInitialMount.current) {
+    dispatch(fetchCategories());
+    isInitialMount.current = false;
+  }
+}, [dispatch, loading, isFetched, categories]);
 
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Slider Navigation Logic
   const scroll = (direction) => {
     if (scrollRef.current) {
       const { scrollLeft, clientWidth } = scrollRef.current;
@@ -34,11 +41,9 @@ export default function Category() {
 
   return (
     <section className="pb-10 pt-20 bg-bg relative overflow-hidden">
-      {/* Background Decor */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        {/* --- Header Area --- */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6">
           <div className="space-y-3">
             <motion.div
@@ -52,16 +57,10 @@ export default function Category() {
               </span>
             </motion.div>
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-text tracking-tighter uppercase italic leading-none">
-              Module{' '}
-              <span
-                className="text-primary"
-              >
-                Registry
-              </span>
+              Module <span className="text-primary">Registry</span>
             </h2>
           </div>
 
-          {/* Right Top Actions: Navigation Buttons */}
           <div className="flex items-center">
             <div className="hidden md:flex gap-2">
               <button
@@ -89,7 +88,6 @@ export default function Category() {
           </div>
         </div>
 
-        {/* --- Wide Card Slider --- */}
         <div
           ref={scrollRef}
           className="flex gap-5 overflow-x-auto no-scrollbar py-8 scroll-smooth snap-x snap-mandatory"
@@ -105,7 +103,7 @@ export default function Category() {
               <motion.div
                 key={item._id}
                 initial={{ opacity: 0.8 }}
-                whileInView={{ opacity: 1}}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 className="shrink-0 w-75 md:w-95 snap-start"
@@ -115,9 +113,7 @@ export default function Category() {
                   onClick={handleScrollToTop}
                   className="group relative block h-40 md:h-40"
                 >
-                  {/* Main Card Body */}
                   <div className="relative h-full w-full bg-card/50 border border-border/5 rounded-xl overflow-hidden transition-all duration-500 group-hover:border-primary/40 group-hover:bg-card/40 flex items-center p-4 gap-6">
-                    {/* Visual Node: Landscape Aspect */}
                     <div className="relative w-32 md:w-40 h-full rounded-xl overflow-hidden bg-bg/50 border border-bg/5 shrink-0">
                       <img
                         src={item.image?.url || '/api/placeholder/400/300'}
@@ -125,8 +121,6 @@ export default function Category() {
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
                       <div className="absolute inset-0 bg-linear-to-tr from-bg/60 to-transparent" />
-
-                      {/* Index Tag */}
                       <div className="absolute bottom-2 left-2 px-2 py-0.5 bg-primary/20 backdrop-blur-md rounded-md border border-primary/30">
                         <span className="text-[8px] font-black text-primary uppercase">
                           Sec_{idx + 1}
@@ -134,7 +128,6 @@ export default function Category() {
                       </div>
                     </div>
 
-                    {/* Text Content */}
                     <div className="flex-1 space-y-3">
                       <div className="space-y-1">
                         <p className="text-[8px] font-black text-pText/90 uppercase tracking-[0.2em]">
@@ -144,7 +137,6 @@ export default function Category() {
                           {item.name}
                         </h3>
                       </div>
-
                       <div className="flex items-center gap-2">
                         <div className="h-px w-8 bg-primary/30 group-hover:w-12 group-hover:bg-primary transition-all duration-500" />
                         <span className="text-[9px] font-black uppercase tracking-widest text-pText group-hover:text-text">
@@ -152,8 +144,6 @@ export default function Category() {
                         </span>
                       </div>
                     </div>
-
-                    {/* Background Decoration */}
                     <Zap
                       size={80}
                       className="absolute -right-4 -bottom-4 text-bg/20 group-hover:text-primary/50 transition-colors -rotate-12"

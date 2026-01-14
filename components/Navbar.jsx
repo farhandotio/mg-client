@@ -59,7 +59,9 @@ export default function Navbar() {
     document.documentElement.classList.toggle('dark', savedTheme === 'dark');
     document.documentElement.classList.toggle('light', savedTheme === 'light');
 
-    if (!dynamicCategories || dynamicCategories.length === 0) {
+    const hasCategories = dynamicCategories && dynamicCategories.length > 0;
+
+    if (!hasCategories) {
       dispatch(fetchCategories());
     }
 
@@ -71,7 +73,7 @@ export default function Navbar() {
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [dispatch, dynamicCategories]);
+  }, [dispatch]); 
 
   // Toggle Theme Function
   const toggleTheme = () => {
