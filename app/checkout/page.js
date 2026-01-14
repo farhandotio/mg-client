@@ -346,7 +346,7 @@ export default function CheckoutPage() {
                 Summary
               </h3>
 
-              <div className="space-y-4 mb-10 max-h-75 overflow-y-auto pr-2 custom-scrollbar">
+              <div className="space-y-4 mb-10 max-h-75 overflow-y-auto pr-2 no-scrollbar">
                 {cartItems.map((item, i) => (
                   <div
                     key={i}
@@ -394,7 +394,7 @@ export default function CheckoutPage() {
                 size="lg"
                 onClick={handlePlaceOrder}
                 disabled={orderLoading || authLoading}
-                className="w-full mt-10 py-5 rounded-2xl shadow-lg shadow-primary/20"
+                className="w-full mt-10 py-5 rounded-2xl"
                 text={orderLoading ? 'Processing...' : 'Execute Order'}
               />
 
