@@ -222,6 +222,10 @@ const authSlice = createSlice({
         state.isAuthenticated = false;
       })
 
+      .addCase(updateMe.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
       .addCase(updateMe.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.successMessage = 'Profile updated!';
@@ -240,11 +244,19 @@ const authSlice = createSlice({
         state.error = action.payload;
       })
 
+      .addCase(addAddress.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
       .addCase(addAddress.fulfilled, (state, action) => {
         state.addresses = action.payload.addresses || [];
         state.successMessage = 'Address added!';
       })
 
+      .addCase(updateAddress.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
       .addCase(updateAddress.fulfilled, (state, action) => {
         state.loading = false;
         state.addresses = action.payload.addresses;
