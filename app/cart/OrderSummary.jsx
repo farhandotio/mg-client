@@ -54,13 +54,13 @@ export default function OrderSummary({ subtotal = 0 }) {
       </div>
 
       <div className="pt-8 border-t-2 border-border/20 mb-10 relative z-10">
-        <div className="absolute -top-0.5 left-0 w-12 h-0.5 bg-primary shadow-[0_0_10px_#29fc56]" />
+        <div className="absolute -top-0.5 left-0 w-12 h-0.5 bg-primary" />
         <div className="flex justify-between items-end">
           <div className="flex flex-col">
             <span className="text-xs font-black text-pText/40 uppercase">Grand Total</span>
           </div>
           <div className="text-right">
-            <span className="text-4xl md:text-5xl font-black text-primary tracking-tighter italic block drop-shadow-[0_0_8px_rgba(41,252,86,0.3)]">
+            <span className="text-4xl md:text-5xl font-black text-primary tracking-tighter italic block">
               ৳{total.toLocaleString()}
             </span>
           </div>

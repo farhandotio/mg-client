@@ -420,7 +420,7 @@ export default function ProfilePage() {
 
       {/* --- MODAL SYSTEM --- */}
       {(isEditModalOpen || isAddressModalOpen) && (
-        <div className="absolute inset-0 z-100 flex items-center justify-center p-4 h-full">
+        <div className="absolute inset-0 z-50 flex items-center justify-center p-4">
           <div
             className="absolute inset-0 bg-bg/80 backdrop-blur-xl transition-opacity animate-in fade-in"
             onClick={() => {
