@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import Link from 'next/link';
 import { Search, Filter, X } from 'lucide-react';
 
 export default function ShopSidebar({
@@ -7,7 +8,6 @@ export default function ShopSidebar({
   searchTerm,
   onSearchChange,
   selectedCategory,
-  setSelectedCategory,
   priceRange,
   setPriceRange,
   resetFilters,
@@ -47,18 +47,19 @@ export default function ShopSidebar({
         </div>
       </div>
 
-      {/* --- Categories Filter (Single Section) --- */}
+      {/* --- Categories Filter --- */}
       <div className="mb-8">
         <p className="text-text font-bold mb-4 uppercase text-[10px] tracking-[0.2em]">
           Categories
         </p>
         <div className="space-y-1">
-          {/* All Hardware Button */}
-          <button
-            onClick={() => setSelectedCategory('')}
+          {/* All Hardware */}
+          <Link
+            href="/shop"
             className={`flex items-center gap-3 w-full p-2.5 rounded-xl transition-all ${
               !selectedCategory ? 'bg-primary/10 text-primary' : 'text-pText hover:bg-card'
             }`}
+            onClick={() => setIsMobileFilterOpen(false)}
           >
             <div
               className={`w-1.5 h-1.5 rounded-full ${
@@ -66,29 +67,28 @@ export default function ShopSidebar({
               }`}
             />
             <span className="text-xs font-bold uppercase tracking-wider">All Hardware</span>
-          </button>
+          </Link>
 
-          {/* Dynamic Categories from DB */}
-          {categories &&
-            categories.length > 0 &&
-            categories.map((cat) => (
-              <button
-                key={cat._id}
-                onClick={() => setSelectedCategory(cat._id)}
-                className={`flex items-center gap-3 w-full p-2.5 rounded-xl transition-all ${
-                  selectedCategory === cat._id
-                    ? 'bg-primary/10 text-primary'
-                    : 'text-pText hover:bg-card'
+          {/* Dynamic Categories */}
+          {categories?.map((cat) => (
+            <Link
+              key={cat._id}
+              href={`/shop/category/${cat.slug}`}
+              className={`flex items-center gap-3 w-full p-2.5 rounded-xl transition-all ${
+                selectedCategory === cat.slug
+                  ? 'bg-primary/10 text-primary'
+                  : 'text-pText hover:bg-card'
+              }`}
+              onClick={() => setIsMobileFilterOpen(false)}
+            >
+              <div
+                className={`w-1.5 h-1.5 rounded-full ${
+                  selectedCategory === cat.slug ? 'bg-primary' : 'bg-border'
                 }`}
-              >
-                <div
-                  className={`w-1.5 h-1.5 rounded-full ${
-                    selectedCategory === cat._id ? 'bg-primary' : 'bg-border'
-                  }`}
-                />
-                <span className="text-xs font-bold uppercase tracking-wider">{cat.name}</span>
-              </button>
-            ))}
+              />
+              <span className="text-xs font-bold uppercase tracking-wider">{cat.name}</span>
+            </Link>
+          ))}
         </div>
       </div>
 
@@ -109,7 +109,7 @@ export default function ShopSidebar({
         />
       </div>
 
-      {/* --- Reset Button --- */}
+      {/* --- Reset Filters --- */}
       <button
         onClick={resetFilters}
         className="w-full py-4 bg-card border border-border rounded-2xl text-[10px] font-black uppercase tracking-widest hover:border-primary/50 transition-all active:scale-95 shadow-sm"
