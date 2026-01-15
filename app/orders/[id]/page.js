@@ -200,13 +200,13 @@ export default function OrderDetailsPage() {
               </div>
 
               {/* Financial Node */}
-              <div className="bg-primary text-bg rounded-[3rem] p-8 md:p-10 space-y-8 shadow-xl shadow-primary/10 print:bg-card print:text-text">
+              <div className="bg-primary text-text rounded-[3rem] p-8 md:p-10 space-y-8 shadow-xl shadow-primary/10 print:bg-card print:text-text">
                 <div className="space-y-4 text-[10px] font-black uppercase tracking-widest opacity-80">
-                  <div className="flex justify-between border-b border-bg/10 pb-2">
+                  <div className="flex justify-between border-b border-text/10 pb-2">
                     <span>Baseline Sum</span>
                     <span>৳{order.pricing?.itemsPrice?.toLocaleString()}</span>
                   </div>
-                  <div className="flex justify-between border-b border-bg/10 pb-2">
+                  <div className="flex justify-between border-b border-text/10 pb-2">
                     <span>Logistics</span>
                     <span>৳{order.pricing?.shippingPrice?.toLocaleString()}</span>
                   </div>
@@ -221,7 +221,7 @@ export default function OrderDetailsPage() {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-4 py-4 px-6 bg-bg/10 rounded-2xl border border-bg/20">
+                <div className="flex items-center gap-4 py-4 px-6 bg-text/10 rounded-2xl border border-text/20">
                   <ShieldCheck size={20} />
                   <div className="flex flex-col">
                     <span className="text-[8px] font-black uppercase opacity-60">

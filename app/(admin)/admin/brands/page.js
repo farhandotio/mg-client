@@ -1,69 +1,101 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchBrands, deleteBrand } from '@/store/features/brandSlice';
+import { fetchBrands, deleteBrand, updateBrand } from '@/store/features/brandSlice';
 import DataTable from '../components/DataTable';
 import { toast } from 'react-hot-toast';
-import { Plus, Award } from 'lucide-react';
+import { Plus, Award, Globe, X, Save, Loader2, Link as LinkIcon } from 'lucide-react';
 import Button from '@/components/Button';
 
 export default function BrandsPage() {
   const dispatch = useDispatch();
 
-  // ১. Redux Store থেকে ব্র্যান্ড ডাটা নেওয়া
-  const { brands, isLoading } = useSelector((state) => state.brands);
+  const { brands = [], loading } = useSelector((state) => state.brands);
 
-  // ২. পেজ লোড হলে ডাটা নিয়ে আসা
+  // Local States for Modal & Update
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [selectedBrand, setSelectedBrand] = useState(null);
+  const [editName, setEditName] = useState('');
+  const [editImage, setEditImage] = useState(''); // ইমেজ ইউআরএল এর জন্য স্টেট
+  const [isUpdating, setIsUpdating] = useState(false);
+
   useEffect(() => {
     dispatch(fetchBrands());
   }, [dispatch]);
 
-  // ৩. ডিলিট হ্যান্ডলার
+  const handleEditClick = (item) => {
+    setSelectedBrand(item);
+    setEditName(item.name || '');
+    setEditImage(item.image?.url || item.logo || ''); // বিদ্যমান ইমেজ ইউআরএল সেট করা
+    setIsEditModalOpen(true);
+  };
+
+  const handleUpdateSubmit = async (e) => {
+    e.preventDefault();
+    if (!editName.trim()) return toast.error('Brand name is required');
+
+    setIsUpdating(true);
+    try {
+      // স্লাইস অনুযায়ী { id, formData } পাঠানো হচ্ছে
+      await dispatch(
+        updateBrand({
+          id: selectedBrand._id,
+          formData: {
+            name: editName,
+            image: { url: editImage }, // আপনার অবজেক্ট স্ট্রাকচার অনুযায়ী
+          },
+        })
+      ).unwrap();
+
+      setIsEditModalOpen(false);
+    } catch (err) {
+      // Error handling is inside slice
+    } finally {
+      setIsUpdating(false);
+    }
+  };
+
   const handleDelete = async (id) => {
     if (confirm('Are you sure? Removing this brand might affect associated products.')) {
       try {
         await dispatch(deleteBrand(id)).unwrap();
-        toast.success('Brand identity purged.');
-      } catch (err) {
-        toast.error('Failed to delete brand');
-      }
+      } catch (err) {}
     }
   };
 
-  // ৪. টেবিল কলাম কনফিগারেশন
   const columns = [
     {
       label: 'Brand Identity',
       key: 'name',
       render: (item) => (
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-2xl bg-white/5 border border-border flex items-center justify-center overflow-hidden p-2">
-            {item.image || item.logo ? (
+          <div className="w-10 h-10 rounded-xl bg-white/5 border border-border flex items-center justify-center overflow-hidden p-1.5 transition-transform group-hover:scale-110">
+            {item.image?.url || item.logo ? (
               <img
-                src={item.image.url || item.logo}
+                src={item.image?.url || item.logo}
                 alt={item.name}
                 className="w-full h-full object-contain"
               />
             ) : (
-              <Award size={20} className="text-primary/50" />
+              <Award size={18} className="text-primary/50" />
             )}
           </div>
-          <div>
-            <p className="font-black text-white text-xs uppercase tracking-tighter">{item.name}</p>
-            <p className="text-[8px] text-pText tracking-[0.2em] uppercase font-bold">
-              Verified Partner
+          <div className="flex flex-col">
+            <p className="font-black text-white text-[11px] uppercase tracking-tighter leading-none">
+              {item.name}
+            </p>
+            <p className="text-[7px] text-pText tracking-[0.2em] uppercase font-black mt-1 opacity-50">
+              Verified_Partner
             </p>
           </div>
         </div>
       ),
     },
     {
-      label: 'Slug',
+      label: 'Slug_Node',
       key: 'slug',
       render: (item) => (
-        <span className="text-[10px] font-bold text-pText/80 font-mono italic">
-          {item.slug || item.name?.toLowerCase().replace(/ /g, '-')}
-        </span>
+        <span className="text-[10px] font-bold text-pText/70 font-mono italic">/{item.slug}</span>
       ),
     },
     {
@@ -71,9 +103,9 @@ export default function BrandsPage() {
       key: 'isActive',
       render: (item) => (
         <div className="flex items-center gap-2">
-          <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-          <span className="text-[10px] font-black text-white uppercase tracking-widest">
-            Active
+          <div className="w-1 h-1 rounded-full bg-primary animate-pulse" />
+          <span className="text-[9px] font-black text-white uppercase tracking-[0.2em]">
+            Online
           </span>
         </div>
       ),
@@ -81,44 +113,118 @@ export default function BrandsPage() {
   ];
 
   return (
-    <div className="animate-in fade-in slide-in-from-bottom-2 duration-700">
-      {/* Page Header */}
+    <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
-        <div>
-          <h1 className="text-4xl lg:text-5xl font-black uppercase italic tracking-tighter">
+        <div className="space-y-1">
+          <div className="flex items-center gap-2 text-primary">
+            <Globe size={14} className="animate-spin-slow" />
+            <span className="text-[9px] font-black uppercase tracking-[0.4em]">
+              Neural_Supply_Chain
+            </span>
+          </div>
+          <h1 className="text-4xl lg:text-5xl font-black uppercase italic tracking-tighter leading-none text-text">
             Global <span className="text-primary">Brands</span>
           </h1>
-          <p className="text-[10px] font-black uppercase tracking-[0.3em] text-pText mt-2 opacity-60">
-            Managing the Neural Supply Chain
-          </p>
         </div>
-
         <div className="max-md:w-full">
-          <Button
-            url={'/admin/brands/create'}
-            className=""
-            text={'Create Brand'}
-            icon={Plus}
-          ></Button>
+          <Button url={'/admin/brands/create'} text={'Initialize Brand'} icon={Plus} />
         </div>
       </div>
 
-      {/* Generic Table Component */}
-      <DataTable
-        columns={columns}
-        data={brands}
-        loading={isLoading}
-        onEdit={(item) => console.log('Edit Brand:', item)}
-        onDelete={handleDelete}
-      />
+      <div className="relative bg-card/20 backdrop-blur-md border border-border/40 rounded-3xl overflow-hidden shadow-2xl">
+        <DataTable
+          columns={columns}
+          data={brands}
+          loading={loading}
+          onEdit={handleEditClick}
+          onDelete={handleDelete}
+          onView={(item) => window.open(`/brands/${item.slug}`, '_blank')}
+        />
+      </div>
 
-      {/* Footer Info */}
-      <div className="mt-8 flex items-center gap-4 text-pText">
-        <div className="h-0.5 flex-1 bg-border/50"></div>
-        <p className="text-[9px] font-black uppercase tracking-[0.4em]">
-          Total Registered Entities: {brands?.length || 0}
+      {/* --- Inline Update Modal with Image URL --- */}
+      {isEditModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-300">
+          <div className="bg-card border border-border w-full max-w-md rounded-3xl p-8 shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 blur-3xl rounded-full -mr-16 -mt-16"></div>
+
+            <div className="flex justify-between items-center mb-8 relative">
+              <div>
+                <h2 className="text-2xl font-black italic uppercase tracking-tighter text-text">
+                  Modify <span className="text-primary">Entity</span>
+                </h2>
+                <p className="text-[8px] font-black uppercase tracking-widest text-pText opacity-50 mt-1">
+                  ID: {selectedBrand?._id}
+                </p>
+              </div>
+              <button
+                onClick={() => setIsEditModalOpen(false)}
+                className="p-2 hover:bg-white/5 rounded-full transition-colors"
+              >
+                <X size={20} className="text-pText" />
+              </button>
+            </div>
+
+            <form onSubmit={handleUpdateSubmit} className="space-y-6 relative">
+              {/* Name Input */}
+              <div className="space-y-2">
+                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-primary">
+                  Brand_Name
+                </label>
+                <input
+                  type="text"
+                  value={editName}
+                  onChange={(e) => setEditName(e.target.value)}
+                  className="w-full bg-white/5 border border-border rounded-xl px-4 py-3 text-xs font-bold text-text focus:outline-none focus:border-primary/50 transition-all shadow-inner"
+                  placeholder="Brand identity..."
+                />
+              </div>
+
+              {/* Image URL Input */}
+              <div className="space-y-2">
+                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-primary flex items-center gap-2">
+                  Image_URL <LinkIcon size={10} />
+                </label>
+                <input
+                  type="text"
+                  value={editImage}
+                  onChange={(e) => setEditImage(e.target.value)}
+                  className="w-full bg-white/5 border border-border rounded-xl px-4 py-3 text-xs font-bold text-text focus:outline-none focus:border-primary/50 transition-all shadow-inner"
+                  placeholder="https://image-link.com/logo.png"
+                />
+              </div>
+
+              {/* Preview */}
+              {editImage && (
+                <div className="w-16 h-16 rounded-lg border border-border bg-white/5 p-2 overflow-hidden">
+                  <img
+                    src={editImage}
+                    alt="Preview"
+                    className="w-full h-full object-contain"
+                    onError={(e) => (e.target.style.display = 'none')}
+                  />
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={isUpdating}
+                className="w-full bg-primary hover:bg-primary/90 text-black font-black uppercase italic py-4 rounded-xl transition-all active:scale-95 flex items-center justify-center gap-2 text-xs tracking-widest disabled:opacity-50"
+              >
+                {isUpdating ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />}
+                {isUpdating ? 'Synchronizing...' : 'Commit Changes'}
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
+      <div className="mt-10 flex items-center gap-4 text-pText/40">
+        <div className="h-0.5 flex-1 bg-linear-to-r from-transparent via-border/50 to-transparent"></div>
+        <p className="text-[8px] font-black uppercase tracking-[0.5em] whitespace-nowrap">
+          Total_Entities_Captured: {brands?.length || 0}
         </p>
-        <div className="h-0.5 flex-1 bg-border/50"></div>
+        <div className="h-0.5 flex-1 bg-linear-to-r from-transparent via-border/50 to-transparent"></div>
       </div>
     </div>
   );
