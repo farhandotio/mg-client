@@ -74,7 +74,7 @@ export default function ProductInfo({ product }) {
           </span>
         </div>
 
-        <h1 className="text-4xl md:text-6xl font-black uppercase italic tracking-tighter leading-[0.9] text-text">
+        <h1 className="text-4xl md:text-5xl font-black  italic tracking-tighter leading-[1.1] text-text">
           {product.title}
         </h1>
 

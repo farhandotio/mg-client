@@ -1,91 +1,119 @@
 import API from '@/api/axios';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-hot-toast';
 
-// ১. সকল ব্র্যান্ড নিয়ে আসার জন্য (GET)
-export const fetchBrands = createAsyncThunk('brands/fetchAll', async (_, thunkAPI) => {
-  try {
-    const response = await API.get('/brands');
-    return response.data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.response.data);
-  }
-});
+// ================= ASYNC THUNKS =================
 
-// ২. নতুন ব্র্যান্ড তৈরি (POST - Admin Only)
-export const createBrand = createAsyncThunk('brands/create', async (formData, thunkAPI) => {
-  try {
-    const response = await API.post('/brands', formData);
-    return response.data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.response.data);
+// ১. সব ব্র্যান্ড ফেচ (Public)
+export const fetchBrands = createAsyncThunk(
+  'brands/fetchBrands',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await API.get('/brands');
+      return response.data.brands || response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.message || 'Failed to fetch brands');
+    }
   }
-});
+);
 
-// ৩. ব্র্যান্ড আপডেট করা (PATCH - Admin Only)
-export const updateBrand = createAsyncThunk('brands/update', async ({ id, formData }, thunkAPI) => {
-  try {
-    const response = await API.patch(`${'/brands'}/${id}`, formData);
-    return response.data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.response.data);
+// ২. নতুন ব্র্যান্ড তৈরি (Admin)
+export const createBrand = createAsyncThunk(
+  'brands/createBrand',
+  async (formData, { rejectWithValue }) => {
+    try {
+      const response = await API.post('/brands', formData);
+      toast.success('Brand created successfully!');
+      return response.data.brand || response.data;
+    } catch (error) {
+      toast.error(error.response?.data?.message || 'Create failed');
+      return rejectWithValue(error.response?.data?.message);
+    }
   }
-});
+);
 
-// ৪. ব্র্যান্ড ডিলিট করা (DELETE - Admin Only)
-export const deleteBrand = createAsyncThunk('brands/delete', async (id, thunkAPI) => {
-  try {
-    await API.delete(`${'/brands'}/${id}`);
-    return id;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.response.data);
+// ৩. ব্র্যান্ড আপডেট (Admin)
+export const updateBrand = createAsyncThunk(
+  'brands/updateBrand',
+  async ({ id, formData }, { rejectWithValue }) => {
+    try {
+      const response = await API.patch(`/brands/${id}`, formData);
+      toast.success('Brand updated successfully!');
+      return response.data.brand || response.data;
+    } catch (error) {
+      toast.error(error.response?.data?.message || 'Update failed');
+      return rejectWithValue(error.response?.data?.message);
+    }
   }
-});
+);
+
+// ৪. ব্র্যান্ড ডিলিট (Admin)
+export const deleteBrand = createAsyncThunk(
+  'brands/deleteBrand',
+  async (id, { rejectWithValue }) => {
+    try {
+      await API.delete(`/brands/${id}`);
+      toast.success('Brand deleted successfully!');
+      return id;
+    } catch (error) {
+      toast.error(error.response?.data?.message || 'Delete failed');
+      return rejectWithValue(error.response?.data?.message);
+    }
+  }
+);
+
+// ================= SLICE =================
 
 const brandSlice = createSlice({
   name: 'brands',
   initialState: {
     brands: [],
-    isLoading: false,
-    isError: false,
-    message: '',
+    loading: false,
+    isFetched: false,
+    error: null,
   },
   reducers: {
-    resetState: (state) => {
-      state.isLoading = false;
-      state.isError = false;
-      state.message = '';
+    clearBrandError: (state) => {
+      state.error = null;
     },
   },
   extraReducers: (builder) => {
     builder
-      // Fetch Brands
+      // ===== FETCH =====
       .addCase(fetchBrands.pending, (state) => {
-        state.isLoading = true;
+        state.loading = true;
       })
       .addCase(fetchBrands.fulfilled, (state, action) => {
-        state.isLoading = false;
+        state.loading = false;
         state.brands = action.payload;
+        state.isFetched = true;
+        state.error = null;
       })
       .addCase(fetchBrands.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
+        state.loading = false;
+        state.isFetched = true;
+        state.error = action.payload;
       })
-      // Create Brand
+
+      // ===== CREATE =====
       .addCase(createBrand.fulfilled, (state, action) => {
-        state.brands.push(action.payload);
+        state.brands.unshift(action.payload);
       })
-      // Update Brand
+
+      // ===== UPDATE =====
       .addCase(updateBrand.fulfilled, (state, action) => {
         const index = state.brands.findIndex((b) => b._id === action.payload._id);
-        if (index !== -1) state.brands[index] = action.payload;
+        if (index !== -1) {
+          state.brands[index] = action.payload;
+        }
       })
-      // Delete Brand
+
+      // ===== DELETE =====
       .addCase(deleteBrand.fulfilled, (state, action) => {
         state.brands = state.brands.filter((b) => b._id !== action.payload);
       });
   },
 });
 
-export const { resetState } = brandSlice.actions;
+export const { clearBrandError } = brandSlice.actions;
 export default brandSlice.reducer;

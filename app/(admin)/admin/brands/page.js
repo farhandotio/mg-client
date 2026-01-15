@@ -11,7 +11,7 @@ export default function BrandsPage() {
   const dispatch = useDispatch();
 
   // ১. Redux Store থেকে ব্র্যান্ড ডাটা নেওয়া
-  const { brands, isLoading } = useSelector((state) => state.brands.brands);
+  const { brands, isLoading } = useSelector((state) => state.brands);
 
   // ২. পেজ লোড হলে ডাটা নিয়ে আসা
   useEffect(() => {

@@ -43,17 +43,23 @@ export default function CreateBrandPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.name) return toast.error('Brand designation missing');
-    if (!formData.image.url) return toast.error('Visual identity required');
+
+    if (!formData.name) {
+      return toast.error('Brand designation missing');
+    }
+
+    if (!formData.image?.url) {
+      return toast.error('Visual identity required');
+    }
 
     try {
-      const response = await dispatch(createBrand(formData)).unwrap();
-      if (response.success) {
-        toast.success('Brand Node Established!');
-        router.push('/admin/brands');
-      }
+      await dispatch(createBrand(formData)).unwrap();
+
+      router.push('/admin/brands');
     } catch (err) {
-      toast.error(err?.message || 'Neural Link Failure: Creation Failed');
+      toast.error(
+        typeof err === 'string' ? err : err?.message || 'Neural Link Failure: Creation Failed'
+      );
     }
   };
 
@@ -122,7 +128,7 @@ export default function CreateBrandPage() {
                 </div>
               </div>
 
-              <div className="grow min-h-[300px] lg:min-h-0 relative rounded-[2.5rem] border-2 border-dashed border-border flex flex-col items-center justify-center bg-bg/40 backdrop-blur-sm overflow-hidden shadow-inner group-hover:border-primary/50 transition-colors">
+              <div className="grow min-h-75 lg:min-h-0 relative rounded-[2.5rem] border-2 border-dashed border-border flex flex-col items-center justify-center bg-bg/40 backdrop-blur-sm overflow-hidden shadow-inner group-hover:border-primary/50 transition-colors">
                 {formData.image.url ? (
                   <div className="relative w-full h-full p-8 flex items-center justify-center">
                     <img
@@ -130,7 +136,7 @@ export default function CreateBrandPage() {
                       alt="Brand Preview"
                       className="max-w-full max-h-full object-contain animate-in zoom-in-95 duration-500 hover:scale-105 transition-transform"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="absolute inset-0 bg-linear-to-t from-card/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                     <button
                       type="button"
                       onClick={() => setFormData({ ...formData, image: { url: '', fileId: '' } })}
@@ -187,7 +193,7 @@ export default function CreateBrandPage() {
                   type="text"
                   required
                   placeholder="e.g. Cyberdyne Systems"
-                  className="w-full border border-border rounded-[1.5rem] p-6 bg-bg/60 focus:border-primary outline-none transition-all font-black text-lg text-text placeholder:text-pText/10 shadow-inner"
+                  className="w-full border border-border rounded-3xl p-6 bg-bg/60 focus:border-primary outline-none transition-all font-black text-lg text-text placeholder:text-pText/10 shadow-inner"
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 />
               </div>
@@ -213,7 +219,7 @@ export default function CreateBrandPage() {
                         {status === 'active' ? 'Active Node' : 'Suspended'}
                       </span>
                       {formData.status === status && (
-                        <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] animate-[shimmer_2s_infinite]" />
+                        <div className="absolute inset-0 bg-linear-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] animate-[shimmer_2s_infinite]" />
                       )}
                     </button>
                   ))}

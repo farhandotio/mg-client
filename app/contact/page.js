@@ -28,7 +28,7 @@ export default function ContactPage() {
           <ContactCard
             icon={<Mail />}
             title="Support Email"
-            detail="support@mygadgetbd.com"
+            detail="support@gadgetbds.com"
             sub="Fast response within 2h"
           />
           <ContactCard

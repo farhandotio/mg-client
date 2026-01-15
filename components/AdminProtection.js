@@ -25,7 +25,7 @@ export default function AdminProtection({ children }) {
   useEffect(() => {
     if (!isInitialLoad && !loading) {
       if (!isAuthenticated || user?.role !== 'admin') {
-        router.replace('/login');
+        router.replace('/');
       }
     }
   }, [user, isAuthenticated, loading, router, isInitialLoad]);

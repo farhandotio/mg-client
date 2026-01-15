@@ -21,12 +21,14 @@ import {
   Cpu,
 } from 'lucide-react';
 import Button from '@/components/Button';
+import { useRouter } from 'next/navigation';
 
 export default function CreateProductPage() {
+  const router = useRouter();
   const dispatch = useDispatch();
   const { btnLoading, success, error } = useSelector((state) => state.products);
   const { categories } = useSelector((state) => state.categories);
-  const { brands } = useSelector((state) => state.brands.brands);
+  const { brands } = useSelector((state) => state.brands);
 
   const [formData, setFormData] = useState({
     title: '',
@@ -83,6 +85,7 @@ export default function CreateProductPage() {
       },
     };
     dispatch(createProduct(finalData));
+    router.push('/admin/products');
   };
 
   useEffect(() => {
@@ -94,7 +97,7 @@ export default function CreateProductPage() {
   }, [success, error, dispatch]);
 
   return (
-    <div className="p-4 md:p-8 lg:p-12 max-w-[1400px] mx-auto bg-bg min-h-screen text-text selection:bg-primary/20">
+    <div className="p-4 md:p-8 lg:p-12 max-w-7xl mx-auto bg-bg min-h-screen text-text selection:bg-primary/20">
       {/* Header Section */}
       <header className="mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-b border-border/50 pb-10 relative overflow-hidden">
         <div className="relative z-10">
@@ -150,7 +153,7 @@ export default function CreateProductPage() {
                   Deep_Analysis_Protocol (Full Description)*
                 </label>
                 <textarea
-                  className="w-full border border-border rounded-[2rem] p-6 h-56 bg-bg/50 focus:border-primary outline-none transition-all font-medium text-sm text-text shadow-inner resize-none"
+                  className="w-full border border-border rounded-4xl p-6 h-56 bg-bg/50 focus:border-primary outline-none transition-all font-medium text-sm text-text shadow-inner resize-none"
                   required
                   placeholder="Enter complete product narrative..."
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
@@ -360,7 +363,7 @@ export default function CreateProductPage() {
                 </div>
               ))}
               {formData.images.length === 0 && (
-                <div className="col-span-3 h-40 border-2 border-dashed border-border/40 rounded-[2rem] flex flex-col items-center justify-center text-pText/10 bg-card/20 animate-pulse">
+                <div className="col-span-3 h-40 border-2 border-dashed border-border/40 rounded-4xl flex flex-col items-center justify-center text-pText/10 bg-card/20 animate-pulse">
                   <ImageIcon size={40} className="mb-2" />
                   <span className="text-[10px] font-black uppercase tracking-widest">
                     Link Visual Source
@@ -406,7 +409,7 @@ export default function CreateProductPage() {
                 type="submit"
                 size="xl"
                 disabled={btnLoading}
-                className={`w-full py-8 rounded-[2rem] shadow-primary/20 shadow-xl active:scale-95 transition-all font-black text-xs tracking-[0.4em] italic 
+                className={`w-full py-8 rounded-4xl shadow-primary/20 shadow-xl active:scale-95 transition-all font-black text-xs tracking-[0.4em] italic 
                     ${btnLoading ? 'grayscale opacity-50' : 'hover:scale-[1.02]'}`}
                 text={btnLoading ? <LoaderSpinner /> : 'Execute_Upload'}
               />

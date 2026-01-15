@@ -89,7 +89,7 @@ function AuthForm() {
           <div className="mb-10">
             <div className="flex items-center gap-2 mb-4 text-primary">
               <Sparkles size={24} fill="currentColor" />
-              <span className="font-black tracking-tighter text-xl">MyGadget</span>
+              <span className="font-black tracking-tighter text-xl">Gadget BDs</span>
             </div>
 
             <h2 className="text-4xl font-black text-text tracking-tighter mb-2 italic">

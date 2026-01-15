@@ -45,18 +45,23 @@ export default function CreateCategoryPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!formData.name) return toast.error('Identification label missing');
-    if (!formData.image.url) return toast.error('Visual data required');
+    if (!formData.image?.url) return toast.error('Visual data required');
 
     try {
       const resultAction = await dispatch(createCategory(formData));
+
       if (createCategory.fulfilled.match(resultAction)) {
         router.push('/admin/categories');
       }
     } catch (err) {
-      toast.error('System Failure: Overload Detected');
+      toast.error(
+        typeof err === 'string' ? err : err?.message || 'System Failure: Overload Detected'
+      );
     }
   };
+
 
   return (
     <div className="p-4 md:p-8 lg:p-12 max-w-7xl mx-auto bg-bg min-h-screen text-text selection:bg-primary/30">
