@@ -147,11 +147,13 @@ const productSlice = createSlice({
       // Fetch All
       .addCase(fetchAllProducts.pending, (state) => {
         state.loading = true;
+        state.products = [];
       })
       .addCase(fetchAllProducts.fulfilled, (state, action) => {
         state.loading = false;
         state.products = action.payload.products || [];
         state.pagination = action.payload.pagination || state.pagination;
+        state.error = null;
       })
       .addCase(fetchAllProducts.rejected, (state, action) => {
         state.loading = false;
