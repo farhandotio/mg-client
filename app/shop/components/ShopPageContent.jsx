@@ -48,7 +48,7 @@ export default function ShopPageContent({ categorySlug }) {
       });
 
       if (selectedCategory)
-        router.push(`/shop/category/${selectedCategory}?${params.toString()}`, { scroll: false });
+        router.push(`/shop?category=${selectedCategory}?${params.toString()}`, { scroll: false });
       else router.push(`/shop?${params.toString()}`, { scroll: false });
     },
     [searchParams, router, selectedCategory]
@@ -85,7 +85,7 @@ export default function ShopPageContent({ categorySlug }) {
   };
 
   const resetFilters = () => {
-    router.push(selectedCategory ? `/shop/category/${selectedCategory}` : '/shop');
+    router.push(selectedCategory ? `/shop?category=${selectedCategory}` : '/shop');
     setIsMobileFilterOpen(false);
   };
 

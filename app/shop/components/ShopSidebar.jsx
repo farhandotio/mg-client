@@ -73,7 +73,7 @@ export default function ShopSidebar({
           {categories?.map((cat) => (
             <Link
               key={cat._id}
-              href={`/shop/category/${cat.slug}`}
+              href={`/shop?category=${cat.slug}`}
               className={`flex items-center gap-3 w-full p-2.5 rounded-xl transition-all ${
                 selectedCategory === cat.slug
                   ? 'bg-primary/10 text-primary'
