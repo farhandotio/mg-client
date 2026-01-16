@@ -3,23 +3,23 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-bg: #ffffff;
-  --color-pText: #464343;
+ --color-bg: #ffffff;
+  --color-pText: #534f4f;
   --color-text: #202020;
   --color-primary: #ff6f5c;
   --color-secondary: #ffc65c;
-  --color-card: #ffe8e8;
-  --color-border: #ffdddd;
+  --color-card: #fff4f4;
+  --color-border: #d8c5c5;
 }
 
 /* .light {
   --color-bg: #ffffff;
-  --color-pText: #464343;
+  --color-pText: #534f4f;
   --color-text: #202020;
   --color-primary: #ff6f5c;
   --color-secondary: #ffc65c;
-  --color-card: #ffe8e8;
-  --color-border: #ffdddd;
+  --color-card: #fff4f4;
+  --color-border: #d8c5c5;
 } */
 
 .dark {

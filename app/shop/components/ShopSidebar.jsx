@@ -72,7 +72,7 @@ export default function ShopSidebar({
         <label className="text-[9px] font-black uppercase tracking-[0.3em] text-primary/70 flex items-center gap-2">
           Sector_Nodes
         </label>
-        <div className="space-y-2 max-h-[40vh] overflow-y-auto pr-2 no-scrollbar">
+        <div className="space-y-2 max-h-[40vh] overflow-y-auto no-scrollbar">
           <Link
             href="/shop"
             className={`group flex items-center justify-between w-full p-4 rounded-2xl border transition-all duration-300 ${
