@@ -92,6 +92,10 @@ const orderSlice = createSlice({
   extraReducers: (builder) => {
     builder
       // ১. প্রথমে সব addCase লিখতে হবে
+      .addCase(createOrder.pending, (state, action) => {
+        state.loading = true;
+        state.error = null;
+      })
       .addCase(createOrder.fulfilled, (state, action) => {
         state.loading = false;
         state.success = true;
@@ -133,6 +137,13 @@ const orderSlice = createSlice({
         (action) => action.type.endsWith('/pending'),
         (state) => {
           state.loading = true;
+          state.error = null;
+        }
+      )
+      .addMatcher(
+        (action) => action.type.endsWith('/fulfilled'),
+        (state) => {
+          state.loading = false;
           state.error = null;
         }
       )

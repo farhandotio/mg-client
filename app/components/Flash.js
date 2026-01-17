@@ -10,7 +10,7 @@ import Link from 'next/link';
 export default function Flash() {
   const dispatch = useDispatch();
   const scrollRef = useRef(null);
-  const { products, loading } = useSelector((state) => state.products);
+  const { flashSaleProducts, loading } = useSelector((state) => state.products);
   const [timeLeft, setTimeLeft] = useState({ hours: '00', mins: '00', secs: '00' });
 
   useEffect(() => {
@@ -104,8 +104,8 @@ export default function Flash() {
                   <Skeleton type="product" />
                 </div>
               ))
-            ) : products.length > 0 ? (
-              products.map((product) => (
+            ) : flashSaleProducts.length > 0 ? (
+              flashSaleProducts.map((product) => (
                 <div
                   key={product._id}
                   className="min-w-[65%] sm:min-w-[35%] md:min-w-[28%] lg:min-w-[19%] snap-start"

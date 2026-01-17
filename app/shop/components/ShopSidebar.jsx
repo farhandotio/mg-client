@@ -1,7 +1,8 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Search, Filter, X, ChevronRight, Activity } from 'lucide-react';
+import { useSearchParams } from 'next/navigation'; // এটি যোগ করা হয়েছে URL চেক করার জন্য
+import { Search, Filter, X, ChevronRight, Activity, Zap, Star, Flame, Package } from 'lucide-react';
 
 export default function ShopSidebar({
   categories,
@@ -14,10 +15,22 @@ export default function ShopSidebar({
   setIsMobileFilterOpen,
 }) {
   const [mounted, setMounted] = useState(false);
+  const searchParams = useSearchParams();
+  const selectedType = searchParams.get('productType') || ''; // বর্তমান টাইপ চেক করা
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Gear Types Data (আপনার ব্যাকএন্ড Enum অনুযায়ী)
+  const gearTypes = [
+    { name: 'Featured', slug: 'Featured', icon: <Star size={12} /> },
+    { name: 'Best Sellers', slug: 'BestSeller', icon: <Flame size={12} /> },
+    { name: 'Flash Deals', slug: 'FlashSale', icon: <Zap size={12} /> },
+    { name: 'New Arrivals', slug: 'NewArrival', icon: <Activity size={12} /> },
+    { name: 'Hot Deals', slug: 'HotDeals', icon: <Flame size={12} className="text-orange-500" /> },
+    { name: 'Regular Gear', slug: 'Regular', icon: <Package size={12} /> },
+  ];
 
   if (!mounted) return null;
 
@@ -47,7 +60,7 @@ export default function ShopSidebar({
         </button>
       </div>
 
-      {/* Search */}
+      {/* 1. Keyword Search */}
       <div className="space-y-4">
         <label className="text-[9px] font-black uppercase tracking-[0.3em] text-primary/70 flex items-center gap-2">
           Keyword_Search
@@ -67,12 +80,38 @@ export default function ShopSidebar({
         </div>
       </div>
 
-      {/* Categories */}
+      {/* 2. Gear Type Filter (NEW SECTION) */}
+      <div className="space-y-4">
+        <label className="text-[9px] font-black uppercase tracking-[0.3em] text-primary/70 flex items-center gap-2">
+          Hardware_Type
+        </label>
+        <div className="grid grid-cols-1 gap-2">
+          {gearTypes.map((type) => (
+            <Link
+              key={type.slug}
+              href={`/shop?productType=${type.slug}${selectedCategory ? `&category=${selectedCategory}` : ''}`}
+              className={`flex items-center gap-3 p-3 rounded-xl border text-[10px] font-bold uppercase tracking-widest transition-all duration-300 ${
+                selectedType === type.slug
+                  ? 'bg-primary/20 border-primary text-primary shadow-[0_0_15px_rgba(var(--color-primary),0.1)]'
+                  : 'bg-white/5 border-border/40 text-pText hover:border-primary/30'
+              }`}
+              onClick={() => setIsMobileFilterOpen(false)}
+            >
+              <span className={selectedType === type.slug ? 'text-primary' : 'text-pText/50'}>
+                {type.icon}
+              </span>
+              {type.name}
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* 3. Categories (Sector Nodes) */}
       <div className="space-y-4">
         <label className="text-[9px] font-black uppercase tracking-[0.3em] text-primary/70 flex items-center gap-2">
           Sector_Nodes
         </label>
-        <div className="space-y-2 max-h-[40vh] overflow-y-auto no-scrollbar">
+        <div className="space-y-2 max-h-[30vh] overflow-y-auto no-scrollbar">
           <Link
             href="/shop"
             className={`group flex items-center justify-between w-full p-4 rounded-2xl border transition-all duration-300 ${
@@ -94,7 +133,7 @@ export default function ShopSidebar({
           {categories?.map((cat) => (
             <Link
               key={cat._id}
-              href={`/shop?category=${cat.slug}`}
+              href={`/shop?category=${cat.slug}${selectedType ? `&productType=${selectedType}` : ''}`}
               className={`group flex items-center justify-between w-full p-4 rounded-2xl border transition-all duration-300 ${
                 selectedCategory === cat.slug
                   ? 'bg-primary border-primary text-black'
@@ -114,7 +153,7 @@ export default function ShopSidebar({
         </div>
       </div>
 
-      {/* Price */}
+      {/* 4. Price Limit */}
       <div className="space-y-6 pt-4">
         <div className="flex justify-between items-end">
           <label className="text-[9px] font-black uppercase tracking-[0.3em] text-primary/70">

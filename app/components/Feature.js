@@ -11,7 +11,7 @@ export default function Feature() {
   const dispatch = useDispatch();
   const scrollRef = useRef(null);
 
-  const { products, loading } = useSelector((state) => state.products);
+  const { featuredProducts, loading } = useSelector((state) => state.products);
 
   useEffect(() => {
     dispatch(fetchAllProducts('limit=10&productType=Featured&sort=-createdAt'));
@@ -87,8 +87,8 @@ export default function Feature() {
                   <Skeleton type="product" />
                 </div>
               ))
-            ) : products.length > 0 ? (
-              products.map((product) => (
+            ) : featuredProducts.length > 0 ? (
+              featuredProducts.map((product) => (
                 <div
                   key={product._id}
                   className="min-w-[65%] sm:min-w-[35%] md:min-w-[28%] lg:min-w-[19%] snap-start"

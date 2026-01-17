@@ -75,7 +75,7 @@ export default function ProductCard({ product }) {
       {/* Background Cyber Frame */}
       <div className="absolute inset-0 bg-card/70 md:backdrop-blur-2xl border border-bg/5 rounded-xl overflow-hidden transition-all duration-500 group-hover:border-primary/40 group-hover:bg-card" />
 
-      <div className="relative z-10 p-4 overflow-hidden">
+      <div className="relative z-10 p-3 overflow-hidden">
         {/* Image Container */}
         <div className="relative aspect-7/5 rounded-xl overflow-hidden bg-bg/50">
           <Link

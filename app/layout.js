@@ -21,12 +21,12 @@ export const metadata = {
     'Shop a wide range of original gadgets, electronics, and devices online at the best prices in Bangladesh. Discover top-quality products, exclusive deals, and fast delivery at Gadget BDs.',
 };
 
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
+        suppressHydrationWarning
       >
         <ReduxProvider>
           <AuthInit>

@@ -10,7 +10,7 @@ import Link from 'next/link';
 export default function Best() {
   const dispatch = useDispatch();
   const scrollRef = useRef(null);
-  const { products, loading } = useSelector((state) => state.products);
+  const { bestSellerProducts, loading } = useSelector((state) => state.products);
 
   useEffect(() => {
     dispatch(fetchAllProducts('limit=10&productType=BestSeller&sort=-sold'));
@@ -83,8 +83,8 @@ export default function Best() {
                   <Skeleton type="product" />
                 </div>
               ))
-            ) : products && products.length > 0 ? (
-              products.map((product) => (
+            ) : bestSellerProducts && bestSellerProducts.length > 0 ? (
+              bestSellerProducts.map((product) => (
                 <div
                   key={product._id}
                   className="min-w-[65%] sm:min-w-[35%] md:min-w-[28%] lg:min-w-[19%] snap-start"

@@ -9,7 +9,7 @@ export const fetchAllProducts = createAsyncThunk(
   async (queryString = '', { rejectWithValue }) => {
     try {
       const response = await API.get(`/products?${queryString}`);
-      return response.data; 
+      return response.data;
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || 'Failed to load products');
     }
@@ -111,6 +111,12 @@ export const deleteProduct = createAsyncThunk(
 
 const initialState = {
   products: [],
+  featuredProducts: [],
+  bestSellerProducts: [],
+  flashSaleProducts: [],
+  newArrivalProducts: [],
+  hotDealsProducts: [],
+  regularProducts: [],
   singleProduct: null,
   relatedProducts: [],
   loading: false,
@@ -151,8 +157,25 @@ const productSlice = createSlice({
       })
       .addCase(fetchAllProducts.fulfilled, (state, action) => {
         state.loading = false;
-        state.products = action.payload.products || [];
+        const queryString = action.meta.arg || '';
+        const data = action.payload.products || [];
+
+        state.products = data;
         state.pagination = action.payload.pagination || state.pagination;
+
+        if (queryString.includes('productType=Featured')) {
+          state.featuredProducts = data;
+        } else if (queryString.includes('productType=BestSeller')) {
+          state.bestSellerProducts = data;
+        } else if (queryString.includes('productType=FlashSale')) {
+          state.flashSaleProducts = data;
+        } else if (queryString.includes('productType=NewArrival')) {
+          state.newArrivalProducts = data;
+        } else if (queryString.includes('productType=HotDeals')) {
+          state.hotDealsProducts = data;
+        } else if (queryString.includes('productType=Regular')) {
+          state.regularProducts = data;
+        }
         state.error = null;
       })
       .addCase(fetchAllProducts.rejected, (state, action) => {
