@@ -64,7 +64,7 @@ export default function CreateBrandPage() {
   };
 
   return (
-    <div className="p-4 md:p-8 lg:p-12 max-w-7xl mx-auto bg-bg min-h-screen text-text selection:bg-primary/30">
+    <div className="bg-bg min-h-screen text-text selection:bg-primary/30">
       {/* Top Navigation & Status */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-16 border-b border-border/60 pb-10">
         <div className="space-y-4">
@@ -91,7 +91,7 @@ export default function CreateBrandPage() {
           </div>
         </div>
 
-        <div className="flex gap-4 items-center bg-card/50 p-4 rounded-3xl border border-border/50 backdrop-blur-sm shadow-inner">
+        <div className="flex gap-4 items-center bg-card/50 p-4 rounded-2xl border border-border/50 backdrop-blur-sm shadow-inner">
           <div className="text-right border-r border-border/50 pr-4">
             <p className="text-[8px] font-black text-pText uppercase tracking-widest opacity-40">
               Security_Level
@@ -107,7 +107,7 @@ export default function CreateBrandPage() {
       <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-12 gap-10">
         {/* Left Side: Visual Asset Preview */}
         <div className="lg:col-span-5 xl:col-span-5 group">
-          <section className="bg-card/40 p-8 rounded-[3rem] border border-border/80 shadow-sm space-y-6 h-full flex flex-col relative overflow-hidden transition-all group-hover:border-primary/30 group-hover:shadow-lg">
+          <section className="bg-card/40 p-5 md:p-8 rounded-2xl border border-border/80 shadow-sm space-y-6 h-full flex flex-col relative overflow-hidden transition-all group-hover:border-primary/30 group-hover:shadow-lg">
             {/* Background Tech Accent */}
             <div className="absolute -bottom-10 -left-10 text-primary opacity-[0.03] group-hover:opacity-[0.05] transition-opacity">
               <ImageIcon size={250} />
@@ -171,7 +171,7 @@ export default function CreateBrandPage() {
 
         {/* Right Side: Core Parameters */}
         <div className="lg:col-span-7 xl:col-span-7 space-y-8">
-          <section className="bg-card/40 p-8 lg:p-12 rounded-[3rem] border border-border/80 shadow-sm relative overflow-hidden h-full flex flex-col justify-center transition-all hover:border-primary/30">
+          <section className="bg-card/40 p-5 md:p-8 rounded-2xl border border-border/80 shadow-sm relative overflow-hidden h-full flex flex-col justify-center transition-all hover:border-primary/30">
             {/* Background Dashboard Accent */}
             <div className="absolute top-0 right-0 p-10 text-primary opacity-[0.02] -rotate-12">
               <LayoutDashboard size={300} />
@@ -193,7 +193,7 @@ export default function CreateBrandPage() {
                   type="text"
                   required
                   placeholder="e.g. Cyberdyne Systems"
-                  className="w-full border border-border rounded-3xl p-6 bg-bg/60 focus:border-primary outline-none transition-all font-black text-lg text-text placeholder:text-pText/10 shadow-inner"
+                  className="w-full border border-border rounded-2xl p-6 bg-bg/60 focus:border-primary outline-none transition-all font-black text-lg text-text placeholder:text-pText/10 shadow-inner"
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 />
               </div>
@@ -231,7 +231,7 @@ export default function CreateBrandPage() {
                   type="submit"
                   size="xl"
                   disabled={isLoading}
-                  className={`w-full py-8 rounded-[1.8rem] shadow-2xl active:scale-[0.97] transition-all font-black text-sm tracking-[0.4em] italic
+                  className={`w-full py-8 rounded-2xl shadow-2xl active:scale-[0.97] transition-all font-black text-sm tracking-[0.4em] italic
                     ${isLoading ? 'opacity-50 grayscale' : 'hover:shadow-primary/30'}
                   `}
                   text={isLoading ? <Loader2 className="animate-spin mx-auto" /> : 'Execute_Entry'}
