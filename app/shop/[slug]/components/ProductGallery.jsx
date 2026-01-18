@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Maximize2, X, Box } from 'lucide-react';
+import Image from 'next/image';
 
 export default function ProductGallery({ images = [], title, discount }) {
   const [activeImg, setActiveImg] = useState(0);
@@ -167,7 +168,15 @@ export default function ProductGallery({ images = [], title, discount }) {
                 : 'border-white/5 opacity-50 hover:opacity-100'
             }`}
           >
-            <img src={img?.url} className="w-full h-full object-cover" alt="thumbnail" />
+            <Image
+              src={img?.url}
+              alt={'Product Image'}
+              width={400} 
+              height={400} 
+              loading="lazy"
+              className="w-full h-auto object-cover rounded-lg"
+              sizes="(max-width: 768px) 100vw, 400px"
+            />
             {activeImg === index && (
               <div className="absolute inset-0 bg-primary/10 animate-pulse" />
             )}

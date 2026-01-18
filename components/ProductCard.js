@@ -138,6 +138,7 @@ export default function ProductCard({ product }) {
             </div>
 
             <button
+              aria-label="Add to cart"
               disabled={isOutOfStock || isAdding}
               onClick={handleAddToCart}
               className={`p-2 rounded-lg transition-all active:scale-75 flex items-center justify-center
@@ -145,8 +146,8 @@ export default function ProductCard({ product }) {
                   isOutOfStock
                     ? 'bg-bg/50 text-pText/20 cursor-not-allowed border border-border/10'
                     : isInCart
-                    ? 'bg-primary/20 text-primary border border-primary/40'
-                    : 'bg-primary text-bg'
+                      ? 'bg-primary/20 text-primary border border-primary/40'
+                      : 'bg-primary text-bg'
                 }`}
             >
               {isAdding ? (

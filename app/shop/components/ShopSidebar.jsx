@@ -16,13 +16,12 @@ export default function ShopSidebar({
 }) {
   const [mounted, setMounted] = useState(false);
   const searchParams = useSearchParams();
-  const selectedType = searchParams.get('productType') || ''; // বর্তমান টাইপ চেক করা
+  const selectedType = searchParams.get('productType') || '';
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Gear Types Data (আপনার ব্যাকএন্ড Enum অনুযায়ী)
   const gearTypes = [
     { name: 'Featured', slug: 'Featured', icon: <Star size={12} /> },
     { name: 'Best Sellers', slug: 'BestSeller', icon: <Flame size={12} /> },
@@ -53,6 +52,7 @@ export default function ShopSidebar({
           </div>
         </div>
         <button
+          aria-label="closs filter"
           onClick={() => setIsMobileFilterOpen(false)}
           className="lg:hidden p-2 hover:bg-white/5 rounded-full border border-transparent hover:border-white/10"
         >
@@ -185,6 +185,7 @@ export default function ShopSidebar({
       {/* Reset */}
       <div className="pt-6">
         <button
+          aria-label="reset filter"
           onClick={resetFilters}
           className="w-full py-5 bg-white/5 border border-border/40 rounded-2xl text-[9px] font-black uppercase tracking-[0.5em] text-pText hover:text-red-500 hover:border-red-500/50 transition-all active:scale-[0.98]"
         >

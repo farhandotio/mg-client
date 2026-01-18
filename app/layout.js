@@ -8,22 +8,30 @@ import AuthInit from '@/components/AuthInit';
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin'],
+  display: 'swap',
 });
 
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
+  display: 'swap',
 });
 
 export const metadata = {
   title: 'Gadget BDs – Buy Original Gadgets & Electronics Online in Bangladesh',
   description:
     'Shop a wide range of original gadgets, electronics, and devices online at the best prices in Bangladesh. Discover top-quality products, exclusive deals, and fast delivery at Gadget BDs.',
+  viewport: 'width=device-width, initial-scale=1',
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://ik.imagekit.io" />
+        <link rel="preconnect" href="https://mg-server.vercel.app" />
+        <link rel="preconnect" href="https://imgs.search.brave.com" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
         suppressHydrationWarning

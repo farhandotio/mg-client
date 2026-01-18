@@ -73,7 +73,7 @@ export default function Navbar() {
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [dispatch]); 
+  }, [dispatch]);
 
   // Toggle Theme Function
   const toggleTheme = () => {
@@ -136,6 +136,7 @@ export default function Navbar() {
 
             <div className="relative" ref={categoryRef}>
               <button
+                aria-label="category search"
                 onClick={() => setIsCategoryOpen(!isCategoryOpen)}
                 className={`flex items-center gap-1.5 py-4 transition-colors ${
                   isCategoryOpen ? 'text-primary' : 'text-text'
@@ -220,6 +221,7 @@ export default function Navbar() {
             </button>
 
             <button
+              aria-label="Search"
               onClick={() => setIsSearchOpen(true)}
               className="p-2.5 rounded-xl md:text-text hover:text-primary transition-all"
             >
@@ -227,6 +229,7 @@ export default function Navbar() {
             </button>
 
             <Link
+              aria-label="Cart"
               href="/cart"
               className="relative p-2.5 md:mr-3 rounded-xl md:text-text hover:text-primary transition-all"
             >
@@ -238,7 +241,11 @@ export default function Navbar() {
               )}
             </Link>
 
-            <button onClick={() => setIsOpen(true)} className="lg:hidden text-text p-1 ml-1">
+            <button
+              aria-label="Open Menu"
+              onClick={() => setIsOpen(true)}
+              className="lg:hidden text-text p-1 ml-1"
+            >
               <Menu
                 className="p-2.5 bg-primary/5 rounded-xl text-primary md:text-text hover:text-primary transition-all"
                 size={42}
@@ -249,11 +256,19 @@ export default function Navbar() {
               <div className="w-30 max-md:hidden h-11 border border-border bg-white/5 rounded-xl animate-pulse" />
             ) : !isAuthenticated ? (
               <div className="hidden md:block w-32">
-                <Button text="Login" url="/auth" icon={LogIn} size="md" className="rounded-xl" />
+                <Button
+                  aria-label="login"
+                  text="Login"
+                  url="/auth"
+                  icon={LogIn}
+                  size="md"
+                  className="rounded-xl"
+                />
               </div>
             ) : (
               <div className="relative hidden lg:block" ref={profileRef}>
                 <button
+                  aria-label="user button"
                   onClick={() => setIsProfileOpen(!isProfileOpen)}
                   className={`flex items-center gap-2 p-1 bg-card border rounded-xl pr-4 transition-all ${
                     isProfileOpen ? 'border-primary' : 'border-primary/50'
@@ -307,6 +322,7 @@ export default function Navbar() {
                       )}
                       <div className="my-1 border-t border-border/50" />
                       <button
+                        aria-label="logout"
                         onClick={() => dispatch(logoutUser())}
                         className="flex w-full items-center gap-3 px-4 py-3 text-red-500 hover:bg-red-500/10 rounded-xl font-bold text-[10px] uppercase transition-colors"
                       >

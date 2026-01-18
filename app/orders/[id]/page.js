@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { useReactToPrint } from 'react-to-print';
 import Button from '@/components/Button';
+import Image from 'next/image';
 
 export default function OrderDetailsPage() {
   const { id } = useParams();
@@ -54,15 +55,14 @@ export default function OrderDetailsPage() {
             <ArrowLeft size={16} /> Access Vault
           </button>
 
-          <div className='md:w-fit'>
+          <div className="md:w-fit">
             <Button
-              size='sm'
+              size="sm"
               icon={Printer}
               onClick={() => handlePrintAction()}
               className=""
               text={'Print Protocol'}
-            >
-            </Button>
+            ></Button>
           </div>
         </div>
 
@@ -156,15 +156,22 @@ export default function OrderDetailsPage() {
                     className="flex items-center justify-between p-6 bg-bg/40 rounded-3xl border border-border/20 group hover:border-primary/50 transition-all"
                   >
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-xl overflow-hidden bg-card">
-                        <img src={item.image} className="w-full h-full object-cover" alt="" />
+                      <div className="group relative w-12 h-12 rounded-xl overflow-hidden bg-card">
+                        <Image
+                          src={item?.image}
+                          alt={item?.name || 'Image'}
+                          fill
+                          loading="lazy"
+                          sizes="48px"
+                          className="object-cover transition-all duration-700 ease-in-out grayscale opacity-30 group-hover:scale-110 group-hover:grayscale-0 group-hover:opacity-100"
+                        />
                       </div>
                       <div>
                         <h4 className="text-sm font-black uppercase text-text print:text-text">
                           {item.name}
                         </h4>
                         <p className="text-[10px] text-pText uppercase font-bold">
-                          Qty: {item.quantity}
+                          Qty: {item?.quantity}
                         </p>
                       </div>
                     </div>

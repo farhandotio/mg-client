@@ -24,7 +24,7 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
             animate={{ x: 0 }}
             transition={{
               duration: 0.4,
-              ease: [0.22, 1, 0.36, 1], // Smooth professional transition
+              ease: [0.22, 1, 0.36, 1],
             }}
             exit={{ x: '100%' }}
             className="fixed top-0 right-0 w-[85%] max-w-[320px] h-full bg-card border-l border-border/50 z-120 p-6 lg:hidden flex flex-col shadow-2xl"
@@ -33,6 +33,7 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
             <div className="flex items-center justify-between mb-10">
               <Logo width={120} height={35} />
               <button
+                aria-label="closs button"
                 onClick={onClose}
                 className="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-xl text-primary active:scale-90 transition-transform"
               >
@@ -116,8 +117,8 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
                   !isAuthenticated
                     ? '/auth'
                     : user?.role === 'admin'
-                    ? '/admin/dashboard'
-                    : '/profile'
+                      ? '/admin/dashboard'
+                      : '/profile'
                 }
                 onClick={onClose}
                 className="flex items-center gap-3 p-5 bg-primary text-bg rounded-3xl font-black justify-center shadow-[0_10px_30px_rgba(var(--primary-rgb),0.3)] uppercase text-[10px] tracking-[0.2em] active:scale-95 transition-all"
@@ -126,8 +127,8 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
                 {!isAuthenticated
                   ? 'Initialize Login'
                   : user?.role === 'admin'
-                  ? 'System Dashboard'
-                  : 'User Account'}
+                    ? 'System Dashboard'
+                    : 'User Account'}
               </Link>
             </div>
           </motion.aside>

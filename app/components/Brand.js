@@ -63,10 +63,11 @@ export default function Brand() {
                   {/* Brand Image - Cover Mode */}
                   <div className="absolute inset-2 overflow-hidden rounded-lg clip-path-cyber-inner">
                     <Image
-                      src={brand?.image?.url}
-                      alt={brand?.name}
+                      src={brand?.image?.url || '/placeholder.png'} // Fallback image dewa safe
+                      alt={brand?.name || 'Brand Image'}
                       fill
-                      className="object-cover grayscale opacity-30 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 ease-in-out"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-contain grayscale opacity-30 transition-all duration-700 ease-in-out group-hover:scale-110 group-hover:grayscale-0 group-hover:opacity-100"
                     />
 
                     {/* Overlay Label */}

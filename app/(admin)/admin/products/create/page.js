@@ -22,6 +22,7 @@ import {
 } from 'lucide-react';
 import Button from '@/components/Button';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 export default function CreateProductPage() {
   const router = useRouter();
@@ -207,7 +208,9 @@ export default function CreateProductPage() {
                 className="group flex items-center gap-2 px-4 py-2 rounded-xl bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all border border-primary/20"
               >
                 <Plus size={16} />
-                <span className="text-[10px] hidden md:block font-black uppercase tracking-widest">Add_Spec</span>
+                <span className="text-[10px] hidden md:block font-black uppercase tracking-widest">
+                  Add_Spec
+                </span>
               </button>
             </div>
             <div className="space-y-4">
@@ -401,7 +404,13 @@ function SelectionCard({ item, isSelected, onClick }) {
         className={`w-12 h-10 shrink-0 rounded-lg overflow-hidden flex items-center justify-center border transition-all ${isSelected ? 'bg-white/20 border-white/30' : 'bg-card border-border shadow-inner'}`}
       >
         {item.image?.url ? (
-          <img src={item?.image?.url} className="w-full h-full object-cover" alt={item.name} />
+          <Image
+            src={item?.image?.url}
+            fill
+            loading="lazy"
+            className="w-full h-full object-cover"
+            alt={item?.name}
+          />
         ) : (
           <Box size={18} className={isSelected ? 'text-white' : 'text-pText/20'} />
         )}

@@ -11,7 +11,6 @@ export default function SearchOverlay({ isOpen, onClose }) {
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState('');
 
-  // ১. রেডক্স থেকে ডাটা আনা
   const { products, loading } = useSelector(
     (state) => ({
       products: state.products.products || [],
@@ -20,15 +19,12 @@ export default function SearchOverlay({ isOpen, onClose }) {
     shallowEqual
   );
 
-  // ২. ডাইনামিক সাজেশন লজিক (প্রোডাক্ট থেকে ক্যাটাগরি বা ব্র্যান্ড আলাদা করা)
   const suggestions = useMemo(() => {
     if (!products.length) return ['iPhone', 'Gaming', 'Laptops', 'Audio'];
-    // ইউনিক ক্যাটাগরি নামগুলো সাজেশন হিসেবে নেওয়া
     const cats = products.map((p) => p.category?.name).filter(Boolean);
     return [...new Set(cats)].slice(0, 4);
   }, [products]);
 
-  // ৩. ডাটা ফেচিং
   useEffect(() => {
     if (isOpen && !searchTerm) {
       dispatch(fetchAllProducts('limit=6&sort=-createdAt'));
@@ -77,6 +73,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
                 </span>
               </div>
               <button
+                aria-label="cross button"
                 onClick={onClose}
                 className="p-3 hover:bg-white/5 rounded-full transition-colors"
               >
@@ -110,6 +107,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
                   {suggestions.map((item, idx) => (
                     <button
                       key={idx}
+                      aria-label="item for search"
                       onClick={() => handleSuggestionClick(item)}
                       className="group flex items-center gap-2 px-5 py-2.5 bg-card/30 border border-border/50 rounded-full hover:border-primary/50 transition-all active:scale-95"
                     >

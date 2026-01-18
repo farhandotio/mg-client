@@ -9,6 +9,8 @@ export default function Logo({ width = 140, height = 40, showText = false, class
         alt="Gadget BDs Logo"
         width={width}
         height={height}
+        fetchPriority="high"
+        quality={90}
         priority
       />
 

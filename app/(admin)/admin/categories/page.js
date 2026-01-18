@@ -6,6 +6,7 @@ import DataTable from '../components/DataTable';
 import { toast } from 'react-hot-toast';
 import { Plus, Layers, X, Save, Loader2, Link as LinkIcon, Globe } from 'lucide-react';
 import Button from '@/components/Button';
+import Image from 'next/image';
 
 export default function CategoriesPage() {
   const dispatch = useDispatch();
@@ -73,7 +74,14 @@ export default function CategoriesPage() {
         <div className="flex items-center gap-4">
           <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center overflow-hidden transition-transform group-hover:scale-110">
             {item?.image?.url ? (
-              <img src={item.image.url} alt={item.name} className="w-full h-full object-cover" />
+              <Image
+                src={item.image.url}
+                alt={item.name || 'Image'}
+                fill
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-cover transition-all duration-700 ease-in-out grayscale opacity-30 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110"
+              />
             ) : (
               <Layers size={16} className="text-primary" />
             )}
