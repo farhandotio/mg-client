@@ -110,7 +110,13 @@ export default function AdminProducts() {
         </div>
 
         <div className="w-fit">
-          <Button icon={Plus} url={"/admin/products/create"} text={'Create Product'} className="" />
+          <Button
+            arialabel="Create product"
+            icon={Plus}
+            url={'/admin/products/create'}
+            text={'Create Product'}
+            className=""
+          />
         </div>
       </div>
 

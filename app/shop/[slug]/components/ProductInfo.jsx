@@ -134,6 +134,7 @@ export default function ProductInfo({ product }) {
         <div className="flex flex-wrap gap-4">
           <div className="flex justify-between px-5 items-center bg-card border border-border rounded-2xl p-1 h-14 w-40">
             <button
+              aria-label="minus quantity"
               disabled={quantity <= 1 || isOutOfStock || isLocalLoading}
               onClick={() => setQuantity((q) => q - 1)}
               className="hover:text-primary transition-all disabled:opacity-20"
@@ -142,6 +143,7 @@ export default function ProductInfo({ product }) {
             </button>
             <span className="text-center font-black text-xl italic min-w-[2ch]">{quantity}</span>
             <button
+              aria-label="add quantity"
               disabled={quantity >= (product.stock || 50) || isOutOfStock || isLocalLoading}
               onClick={() => setQuantity((q) => q + 1)}
               className="hover:text-primary transition-all disabled:opacity-20"
@@ -152,6 +154,7 @@ export default function ProductInfo({ product }) {
 
           {/* Wishlist Button */}
           <button
+            aria-label="wish lish add"
             onClick={() => setIsWishlisted(!isWishlisted)}
             className="h-14 w-14 flex items-center justify-center bg-card border border-border rounded-full hover:border-red-500/50 transition-all group"
           >
@@ -165,10 +168,11 @@ export default function ProductInfo({ product }) {
 
           <div className="flex-1 min-w-50">
             <Button
+              aria-label="add to cart"
               text={isOutOfStock ? 'Out of Stock' : 'Deploy to Cart'}
               icon={isLocalLoading ? Loader2 : ShoppingCart}
               onClick={handleAddToCart}
-              loading={isLocalLoading || cartLoading} 
+              loading={isLocalLoading || cartLoading}
               disabled={isOutOfStock || isLocalLoading}
               className={`h-14 rounded-full w-full ${isLocalLoading ? 'animate-pulse' : ''}`}
             />
@@ -176,7 +180,10 @@ export default function ProductInfo({ product }) {
         </div>
 
         {!isOutOfStock && (
-          <button className="w-full h-12 rounded-2xl border-2 border-primary/20 hover:border-primary text-primary text-[10px] font-black uppercase tracking-[0.3em] italic transition-all flex items-center justify-center gap-3 group">
+          <button
+            aria-label="buy now"
+            className="w-full h-12 rounded-2xl border-2 border-primary/20 hover:border-primary text-primary text-[10px] font-black uppercase tracking-[0.3em] italic transition-all flex items-center justify-center gap-3 group"
+          >
             <Zap size={14} className="group-hover:fill-primary" /> Instant Transmission (Buy Now)
           </button>
         )}

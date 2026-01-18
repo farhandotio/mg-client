@@ -138,6 +138,7 @@ export default function CreateCategoryPage() {
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-card/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                     <button
+                      aria-label="check image"
                       type="button"
                       onClick={() => setFormData({ ...formData, image: { url: '', fileId: '' } })}
                       className="absolute bottom-6 right-6 bg-primary text-white p-3 rounded-2xl shadow-xl hover:bg-text transition-all active:scale-90 z-20"
@@ -205,6 +206,7 @@ export default function CreateCategoryPage() {
                 <div className="grid grid-cols-2 gap-4">
                   {['active', 'inactive'].map((status) => (
                     <button
+                      aria-label="status select"
                       key={status}
                       type="button"
                       onClick={() => setFormData({ ...formData, status })}
@@ -228,6 +230,7 @@ export default function CreateCategoryPage() {
 
               <div className="pt-6">
                 <Button
+                  aria-label="submit"
                   type="submit"
                   size="xl"
                   disabled={loading}

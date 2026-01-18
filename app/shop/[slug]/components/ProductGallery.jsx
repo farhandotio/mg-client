@@ -78,6 +78,7 @@ export default function ProductGallery({ images = [], title, discount }) {
 
         {/* Fullscreen Trigger */}
         <button
+          aria-label="zoom"
           onClick={() => setIsFullScreen(true)}
           className="absolute top-5 right-5 z-20 p-3 bg-black/40 backdrop-blur-md border border-white/10 rounded-xl text-white md:opacity-0 md:group-hover/gallery:opacity-100 transition-all active:scale-90"
         >
@@ -87,6 +88,7 @@ export default function ProductGallery({ images = [], title, discount }) {
         {/* Desktop Nav Buttons */}
         <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 hidden md:flex justify-between z-30 opacity-0 group-hover/gallery:opacity-100 transition-all duration-300 pointer-events-none">
           <button
+            aria-label="previous side"
             onClick={(e) => {
               e.stopPropagation();
               prevImg();
@@ -96,6 +98,7 @@ export default function ProductGallery({ images = [], title, discount }) {
             <ChevronLeft size={20} />
           </button>
           <button
+            aria-label="next side"
             onClick={(e) => {
               e.stopPropagation();
               nextImg();
@@ -146,6 +149,7 @@ export default function ProductGallery({ images = [], title, discount }) {
         <div className="absolute bottom-6 inset-x-0 z-30 flex justify-center gap-1.5">
           {images.map((_, index) => (
             <button
+              aria-label="active image"
               key={index}
               onClick={() => setActiveImg(index)}
               className={`h-1 rounded-full transition-all duration-300 ${
@@ -160,6 +164,7 @@ export default function ProductGallery({ images = [], title, discount }) {
       <div className="flex gap-3 overflow-x-auto no-scrollbar py-2">
         {images.map((img, index) => (
           <button
+            aria-label="active image set"
             key={index}
             onClick={() => setActiveImg(index)}
             className={`relative min-w-17.5 h-17.5 md:min-w-21.5 md:h-21.5 rounded-xl overflow-hidden border-2 transition-all ${
@@ -171,8 +176,8 @@ export default function ProductGallery({ images = [], title, discount }) {
             <Image
               src={img?.url}
               alt={'Product Image'}
-              width={400} 
-              height={400} 
+              width={400}
+              height={400}
               loading="lazy"
               className="w-full h-auto object-cover rounded-lg"
               sizes="(max-width: 768px) 100vw, 400px"
@@ -190,6 +195,7 @@ export default function ProductGallery({ images = [], title, discount }) {
         createPortal(
           <div className="fixed inset-0 z-9999 bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center p-4">
             <button
+              aria-label="close full screen"
               onClick={() => setIsFullScreen(false)}
               className="absolute top-6 right-6 p-3 bg-white/5 hover:bg-red-500 text-white rounded-full transition-all border border-white/10"
             >
@@ -205,12 +211,14 @@ export default function ProductGallery({ images = [], title, discount }) {
 
               <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-4">
                 <button
+                  aria-label="prev image"
                   onClick={prevImg}
                   className="p-4 text-white/40 hover:text-primary transition-all"
                 >
                   <ChevronLeft size={40} />
                 </button>
                 <button
+                  aria-label="next image"
                   onClick={nextImg}
                   className="p-4 text-white/40 hover:text-primary transition-all"
                 >

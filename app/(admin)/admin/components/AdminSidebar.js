@@ -175,8 +175,9 @@ export default function AdminSidebar({ closeSidebar }) {
       {/* --- Footer (Logout) --- */}
       <div className="p-4 bg-card/20 backdrop-blur-lg border-t border-border/40">
         <button
+          aria-label="logout"
           onClick={handleLogout}
-          className="flex items-center gap-4 w-full px-4 py-5 text-red-500 font-black text-[10px] uppercase tracking-[0.3em] hover:bg-red-500/10 rounded-[2rem] transition-all group relative overflow-hidden border border-transparent hover:border-red-500/20"
+          className="flex items-center gap-4 w-full px-4 py-5 text-red-500 font-black text-[10px] uppercase tracking-[0.3em] hover:bg-red-500/10 rounded-4xl transition-all group relative overflow-hidden border border-transparent hover:border-red-500/20"
         >
           <div className="absolute inset-0 bg-red-500/5 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300" />
           <LogOut

@@ -132,7 +132,12 @@ export default function CategoriesPage() {
         </div>
 
         <div className="max-md:w-full">
-          <Button url={'/admin/categories/create'} text={'Create Category'} icon={Plus} />
+          <Button
+            aria-label="create category"
+            url={'/admin/categories/create'}
+            text={'Create Category'}
+            icon={Plus}
+          />
         </div>
       </div>
 
@@ -164,6 +169,7 @@ export default function CategoriesPage() {
                 </p>
               </div>
               <button
+                aria-label="closs"
                 onClick={() => setIsEditModalOpen(false)}
                 className="p-2 hover:bg-white/5 rounded-full transition-colors"
               >
@@ -210,6 +216,7 @@ export default function CategoriesPage() {
               )}
 
               <button
+                aria-label="submit"
                 type="submit"
                 disabled={isUpdating}
                 className="w-full bg-primary hover:bg-primary/90 text-black font-black uppercase italic py-4 rounded-xl transition-all active:scale-95 flex items-center justify-center gap-2 text-xs tracking-widest disabled:opacity-50"

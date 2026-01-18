@@ -23,7 +23,11 @@ export default function AdminLayout({ children }) {
             />
             <div className="absolute left-0 top-0 h-full w-70 bg-card border-r border-border animate-in slide-in-from-left duration-500 shadow-2xl">
               <div className="absolute right-4 top-5">
-                <button onClick={() => setIsSidebarOpen(false)} className="text-pText p-2">
+                <button
+                  aria-label="closs sidebar"
+                  onClick={() => setIsSidebarOpen(false)}
+                  className="text-pText p-2"
+                >
                   <X size={24} />
                 </button>
               </div>

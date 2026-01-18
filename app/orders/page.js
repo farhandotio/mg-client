@@ -66,6 +66,7 @@ export default function OrdersPage() {
           <div className="flex flex-wrap gap-2 p-1 bg-card/30 border border-border/50 rounded-2xl">
             {['ALL', 'PENDING', 'CONFIRMED', 'DELIVERED', 'CANCELLED'].map((status) => (
               <button
+                aria-label="status filter"
                 key={status}
                 onClick={() => setFilter(status)}
                 className={`px-4 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest transition-all ${

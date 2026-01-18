@@ -21,6 +21,7 @@ export default function ProductTabs({ product }) {
       <div className="flex items-center gap-8 md:gap-12 mb-10 overflow-x-auto no-scrollbar border-b border-border/10">
         {tabs.map((tab) => (
           <button
+            aria-label="bounce tab"
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className="relative flex items-center gap-2.5 pb-4 shrink-0 transition-all group"

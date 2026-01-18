@@ -133,6 +133,7 @@ export default function CheckoutPage() {
             No items found in your current session.
           </p>
           <Button
+            arialabel="go to shop"
             onClick={() => router.push('/shop')}
             text="Return to Terminal"
             className="w-full py-4 rounded-2xl"
@@ -168,6 +169,7 @@ export default function CheckoutPage() {
                 </h2>
                 {!showAddressForm && (
                   <button
+                    aria-label="add ne node"
                     onClick={() => setShowAddressForm(true)}
                     className="group flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-primary hover:text-bg transition-all"
                   >
@@ -222,12 +224,14 @@ export default function CheckoutPage() {
                     </div>
                     <div className="flex items-center gap-4 mt-8">
                       <Button
+                        arialabel="submit"
                         type="submit"
                         text="Establish Node"
                         className="px-10 py-4 rounded-2xl"
                       />
                       {addresses?.length > 0 && (
                         <button
+                          aria-label="cancel"
                           type="button"
                           onClick={() => setShowAddressForm(false)}
                           className="text-xs font-black uppercase tracking-widest text-pText hover:text-red-500 transition-colors"
@@ -391,6 +395,7 @@ export default function CheckoutPage() {
               </div>
 
               <Button
+                arialabel="place order"
                 size="lg"
                 onClick={handlePlaceOrder}
                 disabled={orderLoading || authLoading}

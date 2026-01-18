@@ -12,6 +12,7 @@ export default function Button({
   type = 'button',
   fillColor = 'bg-primary',
   loading = false,
+  arialabel,
   ...props
 }) {
   const sizeClasses =
@@ -96,7 +97,13 @@ export default function Button({
     );
 
   return (
-    <button type={type} className={baseClasses} disabled={loading} {...props}>
+    <button
+      aria-label={arialabel}
+      type={type}
+      className={baseClasses}
+      disabled={loading}
+      {...props}
+    >
       {content}
     </button>
   );

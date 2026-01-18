@@ -38,6 +38,7 @@ export default function GenericForm({
           {title} <span className="text-primary">.SYS</span>
         </h2>
         <Button
+          aria-label="submit"
           text={isLoading ? 'Syncing...' : 'Save Changes'}
           type="submit"
           icon={Save}

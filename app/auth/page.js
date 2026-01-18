@@ -142,6 +142,7 @@ function AuthForm() {
 
             <div className="pt-4">
               <Button
+                arialabel="submit"
                 type="submit"
                 text={
                   success
@@ -149,8 +150,8 @@ function AuthForm() {
                       ? 'Logging in...'
                       : 'Check Email!'
                     : isLogin
-                    ? 'Sign In'
-                    : 'Create Account'
+                      ? 'Sign In'
+                      : 'Create Account'
                 }
                 loading={loading}
                 size="xl"
@@ -161,6 +162,7 @@ function AuthForm() {
 
           <div className="mt-8 text-center md:hidden">
             <button
+              aria-label="toggle auth"
               onClick={toggleMode}
               className="text-xs font-black uppercase tracking-widest text-pText"
             >

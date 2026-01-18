@@ -67,7 +67,14 @@ export default function Hero() {
 
           {/* Functional Buttons */}
           <div className="md:w-fit">
-            <Button url="/shop" size="lg" icon={ArrowRight} text="Explore Shop" className="w-fit" />
+            <Button
+              aria-label="go to shop"
+              url="/shop"
+              size="lg"
+              icon={ArrowRight}
+              text="Explore Shop"
+              className="w-fit"
+            />
           </div>
 
           {/* Trust Indicators */}

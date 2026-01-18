@@ -69,12 +69,13 @@ export default function OrderSummary({ subtotal = 0 }) {
 
       <div className="space-y-5 relative z-10">
         <Button
+          arialabel="back to shop"
           text={safeSubtotal > 0 ? 'Initialize Checkout' : 'Cart Empty'}
           icon={ArrowRight}
           disabled={safeSubtotal === 0}
           className="w-full py-4 text-sm md:text-base flex items-center justify-center"
           onClick={handleCheckout}
-          size='lg'
+          size="lg"
         />
         <Link
           href="/shop"

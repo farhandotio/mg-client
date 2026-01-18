@@ -45,6 +45,7 @@ export default function DataTable({ columns, data, loading, onEdit, onDelete, on
                     <div className="flex justify-end gap-2">
                       {onView && (
                         <button
+                          aria-label="view"
                           onClick={() => onView(item)}
                           className="p-2 hover:bg-blue-500/10 text-blue-400 rounded-lg transition-all"
                         >
@@ -52,12 +53,14 @@ export default function DataTable({ columns, data, loading, onEdit, onDelete, on
                         </button>
                       )}
                       <button
+                        aria-label="edit"
                         onClick={() => onEdit(item)}
                         className="p-2 hover:bg-primary/10 text-primary rounded-lg transition-all"
                       >
                         <Edit size={16} />
                       </button>
                       <button
+                        aria-label="delete"
                         onClick={() => onDelete(item._id)}
                         className="p-2 hover:bg-red-500/10 text-red-400 rounded-lg transition-all"
                       >

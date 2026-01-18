@@ -138,6 +138,7 @@ export default function OrderSuccessPage() {
 
             <div className="flex max-md:min-h-30 flex-col sm:flex-row gap-4">
               <Button
+              arialabel="go to shop"
                 size="xl"
                 url="/shop"
                 className="flex-1 rounded-2xl"
@@ -145,6 +146,7 @@ export default function OrderSuccessPage() {
                 text="Back to Shop"
               />
               <Button
+              arialabel="go to order"
                 size="xl"
                 href={`/user/orders/${orderDetails._id}`}
                 className="flex-1 rounded-2xl"

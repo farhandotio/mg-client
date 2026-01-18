@@ -208,6 +208,7 @@ export default function Navbar() {
           <div className="flex items-center">
             {/* --- Manual Theme Toggle --- */}
             <button
+              aria-label="toggle theme"
               onClick={toggleTheme}
               className="p-2 rounded-xl text-text hover:text-primary transition-all"
               title="Toggle System Theme"

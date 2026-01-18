@@ -115,6 +115,7 @@ export default function ShopPageContent({ categorySlug }) {
 
             <div className="flex items-center justify-between gap-3">
               <button
+                aria-label="filter open"
                 onClick={() => setIsMobileFilterOpen(true)}
                 className="lg:hidden flex items-center gap-2 bg-card border border-border px-4 py-2 rounded-lg text-[10px] font-black uppercase"
               >
@@ -157,6 +158,7 @@ export default function ShopPageContent({ categorySlug }) {
                 {pagination?.totalPages > 1 && (
                   <nav className="flex justify-center items-center gap-4 pb-10">
                     <button
+                      aria-label="pagination"
                       disabled={page === 1}
                       onClick={() => handlePagination(page - 1)}
                       className="p-4 bg-card border border-border rounded-xl disabled:opacity-20 hover:border-primary transition-all"
@@ -167,6 +169,7 @@ export default function ShopPageContent({ categorySlug }) {
                       {page} / {pagination.totalPages}
                     </span>
                     <button
+                      aria-label="next page"
                       disabled={page === pagination.totalPages}
                       onClick={() => handlePagination(page + 1)}
                       className="p-4 bg-card border border-border rounded-xl disabled:opacity-20 hover:border-primary transition-all"

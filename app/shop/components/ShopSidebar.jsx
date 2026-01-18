@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation'; // এটি যোগ করা হয়েছে URL চেক করার জন্য
+import { useSearchParams } from 'next/navigation';
 import { Search, Filter, X, ChevronRight, Activity, Zap, Star, Flame, Package } from 'lucide-react';
 
 export default function ShopSidebar({

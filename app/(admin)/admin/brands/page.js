@@ -127,7 +127,12 @@ export default function BrandsPage() {
           </h1>
         </div>
         <div className="max-md:w-full">
-          <Button url={'/admin/brands/create'} text={'Initialize Brand'} icon={Plus} />
+          <Button
+            aria-label="go to create brands"
+            url={'/admin/brands/create'}
+            text={'Initialize Brand'}
+            icon={Plus}
+          />
         </div>
       </div>
 
@@ -158,6 +163,7 @@ export default function BrandsPage() {
                 </p>
               </div>
               <button
+                aria-label="closs modal"
                 onClick={() => setIsEditModalOpen(false)}
                 className="p-2 hover:bg-white/5 rounded-full transition-colors"
               >
@@ -207,6 +213,7 @@ export default function BrandsPage() {
               )}
 
               <button
+                aria-label="submit"
                 type="submit"
                 disabled={isUpdating}
                 className="w-full bg-primary hover:bg-primary/90 text-black font-black uppercase italic py-4 rounded-xl transition-all active:scale-95 flex items-center justify-center gap-2 text-xs tracking-widest disabled:opacity-50"

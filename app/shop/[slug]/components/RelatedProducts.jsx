@@ -40,12 +40,14 @@ export default function RelatedProducts({ products, currentId }) {
         {/* Slider Controls */}
         <div className="flex gap-2">
           <button
+            aria-label="scroll left"
             onClick={() => scroll('left')}
             className="p-2.5 bg-card border border-border/50 rounded-lg hover:border-primary/50 transition-all active:scale-90"
           >
             <ChevronLeft size={18} />
           </button>
           <button
+            aria-label="scroll right"
             onClick={() => scroll('right')}
             className="p-2.5 bg-card border border-border/50 rounded-lg hover:border-primary/50 transition-all active:scale-90"
           >

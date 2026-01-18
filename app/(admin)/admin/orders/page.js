@@ -153,6 +153,7 @@ export default function AdminOrdersPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-300">
           <div className="bg-card border border-border w-full max-w-md rounded-3xl p-8 shadow-2xl overflow-hidden relative">
             <button
+              aria-label="close"
               onClick={() => setIsModalOpen(false)}
               className="absolute top-6 right-6 text-pText hover:text-white"
             >
@@ -185,6 +186,7 @@ export default function AdminOrdersPage() {
               </div>
 
               <button
+                aria-label="execute update"
                 onClick={submitStatusUpdate}
                 className="w-full bg-primary hover:bg-primary/80 text-black font-black uppercase italic py-4 rounded-xl transition-all active:scale-95 text-xs tracking-widest shadow-[0_0_20px_rgba(var(--primary-rgb),0.3)]"
               >

@@ -83,10 +83,10 @@ export default function Testimonials() {
 
             {/* Navigation Arrows */}
             <div className="flex gap-4">
-              <button className="w-12 h-12 rounded-2xl border border-border bg-card flex items-center justify-center text-text hover:border-primary transition-all active:scale-90 shadow-xl">
+              <button aria-label="left navigation" className="w-12 h-12 rounded-2xl border border-border bg-card flex items-center justify-center text-text hover:border-primary transition-all active:scale-90 shadow-xl">
                 <ChevronLeft size={20} />
               </button>
-              <button className="w-12 h-12 rounded-2xl border border-border bg-card flex items-center justify-center text-text hover:border-primary transition-all active:scale-90 shadow-xl">
+              <button aria-label="right navigation" className="w-12 h-12 rounded-2xl border border-border bg-card flex items-center justify-center text-text hover:border-primary transition-all active:scale-90 shadow-xl">
                 <ChevronRight size={20} />
               </button>
             </div>

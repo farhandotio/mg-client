@@ -81,6 +81,7 @@ export default function NotFound() {
             className="flex flex-wrap items-center justify-center gap-4 pt-6"
           >
             <button
+              aria-label="page back"
               onClick={() => window.history.back()}
               className="group flex items-center gap-4 backdrop-blur-xl px-10 py-5 rounded-3xl transition-all duration-500"
             >
@@ -92,7 +93,7 @@ export default function NotFound() {
               </span>
             </button>
             <div>
-              <Button size="lg" url={'/'} icon={Home} text={'Base Command'} />
+              <Button aria-label="go to home" size="lg" url={'/'} icon={Home} text={'Base Command'} />
             </div>
           </motion.div>
         </div>

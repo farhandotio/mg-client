@@ -73,7 +73,10 @@ export default function WarrantyPolicy() {
                 Initiate your service ticket via our 24/7 command center.
               </p>
             </div>
-            <button className="bg-bg text-text px-10 py-4 rounded-2xl font-black uppercase tracking-widest hover:scale-105 transition-transform">
+            <button
+              aria-label="open ticket"
+              className="bg-bg text-text px-10 py-4 rounded-2xl font-black uppercase tracking-widest hover:scale-105 transition-transform"
+            >
               Open Ticket
             </button>
           </div>

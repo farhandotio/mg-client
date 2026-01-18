@@ -198,6 +198,7 @@ export default function CreateProductPage() {
             <div className="flex justify-between items-center mb-8">
               <SectionHeader icon={<Settings2 size={20} />} title="Specifications" />
               <button
+                aria-label="add key value"
                 type="button"
                 onClick={() =>
                   setFormData({
@@ -240,6 +241,7 @@ export default function CreateProductPage() {
                     }}
                   />
                   <button
+                    aria-label="remove key"
                     type="button"
                     onClick={() =>
                       setFormData({
@@ -331,6 +333,7 @@ export default function CreateProductPage() {
                   />
                   <div className="absolute inset-0 bg-primary/90 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center backdrop-blur-[2px]">
                     <button
+                      aria-label="closs image"
                       type="button"
                       onClick={() =>
                         setFormData({
@@ -378,6 +381,7 @@ export default function CreateProductPage() {
             </div>
             <div className="pt-6">
               <Button
+                arialabel="submit"
                 type="submit"
                 size="xl"
                 disabled={btnLoading}

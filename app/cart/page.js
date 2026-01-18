@@ -59,6 +59,7 @@ const InternalCartItem = React.memo(({ item, onUpdate, onRemove, isProcessing })
             </div>
 
             <button
+              aria-label="remove-item"
               onClick={() => onRemove(item.productId)}
               className="shrink-0 w-7 h-7 md:w-10 md:h-10 flex items-center justify-center rounded-full border border-border/20 text-pText/40 hover:text-red-500 hover:border-red-500 transition-all bg-white/5"
             >
@@ -70,6 +71,7 @@ const InternalCartItem = React.memo(({ item, onUpdate, onRemove, isProcessing })
             {/* Quantity Controller - Compact on mobile */}
             <div className="flex items-center bg-bg/40 border border-white/5 rounded-lg md:rounded-full p-0.5">
               <button
+                aria-label="update-item"
                 onClick={() => onUpdate(item.productId, -1)}
                 className="w-7 h-7 md:w-9 md:h-9 flex items-center justify-center text-pText hover:text-primary transition-colors"
                 disabled={isProcessing}
@@ -88,6 +90,7 @@ const InternalCartItem = React.memo(({ item, onUpdate, onRemove, isProcessing })
               </div>
 
               <button
+                aria-label="update-item"
                 onClick={() => onUpdate(item.productId, 1)}
                 className="w-7 h-7 md:w-9 md:h-9 flex items-center justify-center text-pText hover:text-primary transition-colors"
                 disabled={currentQty >= stockLimit || isProcessing}

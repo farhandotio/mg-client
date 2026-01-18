@@ -49,6 +49,7 @@ export default function OrderDetailsPage() {
         {/* --- Top Bar: Fully Rounded --- */}
         <div className="flex justify-between items-center">
           <button
+          aria-label="access vault"
             onClick={() => router.back()}
             className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-pText hover:text-primary transition-all"
           >
@@ -57,6 +58,7 @@ export default function OrderDetailsPage() {
 
           <div className="md:w-fit">
             <Button
+            arialabel="print protocol"
               size="sm"
               icon={Printer}
               onClick={() => handlePrintAction()}

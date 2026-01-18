@@ -7,6 +7,7 @@ export default function AdminHeader({ onMenuClick }) {
       <div className="flex items-center gap-4">
         {/* মোবাইল মেনু টগল বাটন */}
         <button
+          aria-label="menu toggle"
           onClick={onMenuClick}
           className="lg:hidden p-2 bg-bg border border-border rounded-xl text-primary"
         >
@@ -19,7 +20,10 @@ export default function AdminHeader({ onMenuClick }) {
       </div>
 
       <div className="flex items-center gap-4 md:gap-6">
-        <button className="text-pText hover:text-primary transition-colors hidden xs:block">
+        <button
+          aria-label="bell"
+          className="text-pText hover:text-primary transition-colors hidden xs:block"
+        >
           <Bell size={18} />
         </button>
 

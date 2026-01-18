@@ -212,12 +212,14 @@ export default function ProfilePage() {
 
               <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3 w-full">
                 <button
+                  aria-label="edit open"
                   onClick={openEditModal}
                   className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3 bg-white/5 border border-white/10 text-text font-black uppercase text-[10px] tracking-widest rounded-xl hover:bg-primary hover:text-white hover:border-primary hover:shadow-[0_0_20px_rgba(255,111,92,0.4)] transition-all duration-300"
                 >
                   <Edit3 size={14} /> Edit Profile
                 </button>
                 <button
+                  aria-label="logout"
                   onClick={handleLogout}
                   disabled={isLoggingOut}
                   className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3 bg-red-500/5 text-red-500 border border-red-500/20 font-black uppercase text-[10px] tracking-widest rounded-xl hover:bg-red-500 hover:text-white transition-all duration-300 disabled:opacity-50"
@@ -252,6 +254,7 @@ export default function ProfilePage() {
                 </p>
               </div>
               <button
+                aria-label="plus"
                 onClick={() => {
                   resetAddressForm();
                   setIsAddressModalOpen(true);
@@ -298,6 +301,7 @@ export default function ProfilePage() {
 
                       <div className="flex flex-col gap-2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity">
                         <button
+                          aria-label="edit address"
                           onClick={() => {
                             setAddressData({ ...addr });
                             setSelectedAddrId(addr._id);
@@ -309,6 +313,7 @@ export default function ProfilePage() {
                           <Edit3 size={16} />
                         </button>
                         <button
+                          aria-label="delete address"
                           onClick={() => handleDeleteAddress(addr._id)}
                           className="p-2 bg-bg text-pText hover:text-red-500 rounded-lg hover:bg-red-500/10 transition-colors"
                         >
@@ -434,6 +439,7 @@ export default function ProfilePage() {
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-primary shadow-[0_0_20px_rgba(255,111,92,0.8)]" />
 
             <button
+              aria-label="cross model"
               className="absolute top-2 right-2 md:top-6 md:right-6 text-pText hover:text-red-500 transition bg-white/5 p-2 rounded-full hover:bg-white/10"
               onClick={() => {
                 setIsEditModalOpen(false);
@@ -505,6 +511,7 @@ export default function ProfilePage() {
                 </div>
 
                 <Button
+                  arialabel="submit"
                   type="submit"
                   text={loading ? 'Uploading Data...' : 'Execute Update'}
                   className="w-full py-4 rounded-2xl mt-4"
@@ -586,6 +593,7 @@ export default function ProfilePage() {
                 </div>
 
                 <Button
+                  arialabel="submit"
                   type="submit"
                   text={
                     loading ? 'Processing...' : isEditingAddress ? 'Update Node' : 'Establish Node'

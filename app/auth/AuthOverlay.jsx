@@ -28,6 +28,7 @@ export default function AuthOverlay({ isLogin, locked, toggleMode }) {
         </p>
 
         <button
+          aria-label="toggle auth"
           onClick={toggleMode}
           className="group relative px-10 py-4 overflow-hidden border-2 border-bg rounded-2xl font-black uppercase tracking-widest text-xs transition-all hover:text-primary"
         >
