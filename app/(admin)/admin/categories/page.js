@@ -74,13 +74,10 @@ export default function CategoriesPage() {
         <div className="flex items-center gap-4">
           <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center overflow-hidden transition-transform group-hover:scale-110">
             {item?.image?.url ? (
-              <Image
-                src={item.image.url}
-                alt={item.name || 'Image'}
-                fill
-                loading="lazy"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-cover transition-all duration-700 ease-in-out grayscale opacity-30 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110"
+              <img
+                src={item.image?.url || item.logo}
+                alt={item.name}
+                className="w-full h-full object-contain"
               />
             ) : (
               <Layers size={16} className="text-primary" />
