@@ -1,22 +1,23 @@
-import React from 'react';
+import dynamic from 'next/dynamic';
 import Hero from './components/Hero';
-import Category from './components/Category';
-import Feature from './components/Feature';
-import Flash from './components/Flash';
-import Best from './components/Best';
-import Brand from './components/Brand';
-import TrustSection from './components/TrustSection';
+
+const Category = dynamic(() => import('./components/Category'), { ssr: true });
+const Feature = dynamic(() => import('./components/Feature'), { ssr: true });
+const Flash = dynamic(() => import('./components/Flash'), { ssr: true });
+const Best = dynamic(() => import('./components/Best'), { ssr: true });
+const Brand = dynamic(() => import('./components/Brand'), { ssr: true });
+const TrustSection = dynamic(() => import('./components/TrustSection'), { ssr: true });
 
 export default function page() {
   return (
-    <div className="max-w-7xl mx-auto">
-      <Hero />
+    <main className="max-w-7xl mx-auto">
+      <Hero /> 
       <Category />
       <Feature />
       <Flash />
       <Best />
       <TrustSection />
       <Brand />
-    </div>
+    </main>
   );
 }
