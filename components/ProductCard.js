@@ -65,8 +65,6 @@ export default function ProductCard({ product }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0}}
-      whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: '-20px' }}
       transition={{ duration: 0.4, ease: 'easeOut' }}
       className="group relative will-change-transform transition-all duration-500 max-w-60 mx-auto"
