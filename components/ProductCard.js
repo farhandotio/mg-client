@@ -1,26 +1,32 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
+import Image from 'next/image'; // Optimized Image Component
 import { motion } from 'framer-motion';
-import { Heart, Star, ShoppingCart, ShieldCheck, Loader2 } from 'lucide-react';
+import { Star, ShoppingCart, ShieldCheck, Loader2 } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCartAPI, addToCartLocal } from '@/store/features/cartSlice';
 import { toast } from 'react-hot-toast';
 
 export default function ProductCard({ product }) {
   const dispatch = useDispatch();
-  const [isWishlisted, setIsWishlisted] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
 
   const { user } = useSelector((state) => state.auth || {});
   const { cartItems } = useSelector((state) => state.cart);
 
-  const basePrice = product?.price?.base || 0;
-  const salePrice = product?.price?.discounted || basePrice;
-  const discount = product?.offer?.percentage || 0;
-  const isOutOfStock = product?.stock <= 0;
-
-  const isInCart = cartItems.some((item) => item.productId === product._id);
+  // useMemo bebohar kora hoyeche jeno bar bar calculation na hoy
+  const { basePrice, salePrice, discount, isOutOfStock, isInCart } = useMemo(() => {
+    const base = product?.price?.base || 0;
+    const discounted = product?.price?.discounted || base;
+    return {
+      basePrice: base,
+      salePrice: discounted,
+      discount: product?.offer?.percentage || 0,
+      isOutOfStock: product?.stock <= 0,
+      isInCart: cartItems.some((item) => item.productId === product._id),
+    };
+  }, [product, cartItems]);
 
   const handleScrollToTop = () => {
     if (typeof window !== 'undefined') {
@@ -28,7 +34,6 @@ export default function ProductCard({ product }) {
     }
   };
 
-  // --- Cart Handle Function (Core Update) ---
   const handleAddToCart = async (e) => {
     e.preventDefault();
     if (isOutOfStock) return;
@@ -46,29 +51,23 @@ export default function ProductCard({ product }) {
     setIsAdding(true);
     try {
       if (user) {
-        await dispatch(
-          addToCartAPI({
-            productId: product._id,
-            quantity: 1,
-          })
-        ).unwrap();
+        await dispatch(addToCartAPI({ productId: product._id, quantity: 1 })).unwrap();
       } else {
         dispatch(addToCartLocal(cartData));
       }
     } catch (err) {
       console.error(err);
-      if (!err?.message) {
-        toast.error('Transmission Interrupted');
-      }
+      if (!err?.message) toast.error('Transmission Interrupted');
     } finally {
       setIsAdding(false);
     }
   };
+
   return (
     <motion.div
-      initial={{ opacity: 1, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
+      initial={{ opacity: 0}}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: '-20px' }}
       transition={{ duration: 0.4, ease: 'easeOut' }}
       className="group relative will-change-transform transition-all duration-500 max-w-60 mx-auto"
     >
@@ -76,23 +75,25 @@ export default function ProductCard({ product }) {
       <div className="absolute inset-0 bg-card/70 md:backdrop-blur-2xl border border-bg/5 rounded-xl overflow-hidden transition-all duration-500 group-hover:border-primary/40 group-hover:bg-card" />
 
       <div className="relative z-10 p-3 overflow-hidden">
-        {/* Image Container */}
+        {/* Optimized Image Container */}
         <div className="relative aspect-7/5 rounded-xl overflow-hidden bg-bg/50">
           <Link
             href={`/shop/${product?.slug}`}
             onClick={handleScrollToTop}
-            className="w-full h-full block"
+            className="w-full h-full block relative"
           >
-            <img
+            <Image
               src={product?.images?.[0]?.url || '/placeholder.png'}
-              alt={product?.title}
+              alt={product?.title || 'Product Image'}
+              fill
+              sizes="(max-width: 768px) 50vw, 240px"
+              className="object-cover transition-transform duration-700 md:group-hover:scale-110 grayscale-[0.2] md:group-hover:grayscale-0 will-change-transform"
               loading="lazy"
-              className="w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-110 grayscale-[0.2] md:group-hover:grayscale-0"
             />
           </Link>
 
           {/* Tags */}
-          <div className="absolute top-2 left-2 flex flex-col gap-2">
+          <div className="absolute top-2 left-2 flex flex-col gap-2 z-20">
             {discount > 0 && (
               <span className="bg-primary text-bg text-[8px] md:text-[10px] font-black px-2 py-0.5 italic uppercase rounded-tl-lg rounded-br-lg shadow-md">
                 -{discount}%
@@ -124,7 +125,6 @@ export default function ProductCard({ product }) {
             </h3>
           </Link>
 
-          {/* Pricing and Action */}
           <div className="pt-3 border-t border-border/20 flex items-center justify-between">
             <div className="flex flex-col">
               <span className="text-text text-lg md:text-2xl font-black italic tracking-tighter leading-none">
@@ -138,7 +138,7 @@ export default function ProductCard({ product }) {
             </div>
 
             <button
-              aria-label="Add to cart"
+              aria-label={isInCart ? 'In Cart' : 'Add to cart'}
               disabled={isOutOfStock || isAdding}
               onClick={handleAddToCart}
               className={`p-2 rounded-lg transition-all active:scale-75 flex items-center justify-center
@@ -147,7 +147,7 @@ export default function ProductCard({ product }) {
                     ? 'bg-bg/50 text-pText/20 cursor-not-allowed border border-border/10'
                     : isInCart
                       ? 'bg-primary/20 text-primary border border-primary/40'
-                      : 'bg-primary text-bg'
+                      : 'bg-primary text-bg hover:shadow-[0_0_15px_rgba(var(--color-primary),0.4)]'
                 }`}
             >
               {isAdding ? (
@@ -163,18 +163,6 @@ export default function ProductCard({ product }) {
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        .clip-path-cyber {
-          clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
-        }
-        .clip-path-cyber-inner {
-          clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
-        }
-        .clip-path-tag {
-          clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);
-        }
-      `}</style>
     </motion.div>
   );
 }
