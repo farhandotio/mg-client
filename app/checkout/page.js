@@ -35,7 +35,6 @@ export default function CheckoutPage() {
   const [paymentMethod, setPaymentMethod] = useState('COD');
   const [showAddressForm, setShowAddressForm] = useState(false);
 
-  // Back-end Schema consistent state
   const [newAddress, setNewAddress] = useState({
     phone: '',
     street: '',
@@ -50,7 +49,6 @@ export default function CheckoutPage() {
     dispatch(getAddresses());
   }, [dispatch]);
 
-  // Set default address if available
   useEffect(() => {
     if (addresses?.length > 0 && !selectedAddress) {
       const def = addresses.find((a) => a.isDefault) || addresses[0];
@@ -289,12 +287,12 @@ export default function CheckoutPage() {
             {/* 2. Payment Section */}
             <section className="bg-card/30 backdrop-blur-3xl rounded-[2.5rem] border border-white/5 p-8 shadow-xl">
               <h2 className="text-lg font-black uppercase italic mb-8 flex items-center gap-3">
-                <CreditCard className="text-primary" size={20} /> 02. Payment Protocol
+                <CreditCard className="text-primary" size={20} /> 01. Payment Protocol
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[
                   { id: 'COD', title: 'Cash on Delivery', desc: 'Settle upon transmission' },
-                  { id: 'ONLINE', title: 'Digital Payment', desc: 'Secure SSL Encryption' },
+                  // { id: 'ONLINE', title: 'Digital Payment', desc: 'Secure SSL Encryption' },
                 ].map((method) => (
                   <label
                     key={method.id}

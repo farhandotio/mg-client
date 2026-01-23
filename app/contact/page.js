@@ -5,7 +5,7 @@ import { Phone, Mail, MapPin, Clock, MessageSquare } from 'lucide-react';
 
 export default function ContactPage() {
   return (
-    <main className="pt-32 pb-20 bg-bg min-h-screen">
+    <main className="pt-16 pb-20 bg-bg min-h-screen">
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-16 space-y-4">
           <h1 className="text-6xl md:text-8xl font-black text-text italic uppercase tracking-tighter">

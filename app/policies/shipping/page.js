@@ -5,10 +5,10 @@ import { Truck, Map, PackageCheck, Zap, Globe } from 'lucide-react';
 
 export default function ShippingInfo() {
   return (
-    <main className="pt-32 pb-20 bg-bg min-h-screen">
+    <main className="pt-16 pb-20 bg-bg min-h-screen">
       <div className="max-w-4xl mx-auto px-6">
         {/* Hero Section */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-20 border-b border-white/5 pb-12">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-20 border-b border-bg/5 pb-12">
           <div className="space-y-4">
             <h1 className="text-6xl md:text-8xl font-black text-text italic uppercase tracking-tighter leading-none">
               Rapid <br />
@@ -67,7 +67,7 @@ export default function ShippingInfo() {
           </div>
 
           {/* Damage Protection Note */}
-          <div className="p-10 bg-card/20 border border-white/5 rounded-[3rem] text-center space-y-4">
+          <div className="p-10 bg-card/20 border border-bg/5 rounded-[3rem] text-center space-y-4">
             <h4 className="text-xl font-black text-text uppercase italic tracking-widest">
               Transit Security
             </h4>
@@ -84,7 +84,7 @@ export default function ShippingInfo() {
 
 function ZoneCard({ location, time, price, detail }) {
   return (
-    <div className="p-10 bg-card/20 border border-white/5 rounded-[2.5rem] hover:bg-card/40 transition-all duration-500">
+    <div className="p-10 bg-card/20 border border-bg/5 rounded-[2.5rem] hover:bg-card/40 transition-all duration-500">
       <div className="flex justify-between items-start mb-6">
         <h4 className="text-3xl font-black text-text italic uppercase tracking-tighter">
           {location}
@@ -96,7 +96,7 @@ function ZoneCard({ location, time, price, detail }) {
           <span className="text-[10px] font-black uppercase bg-primary/10 text-primary px-3 py-1 rounded-full">
             {time}
           </span>
-          <span className="text-[10px] font-black uppercase bg-white/5 text-pText px-3 py-1 rounded-full">
+          <span className="text-[10px] font-black uppercase bg-bg/5 text-pText px-3 py-1 rounded-full">
             {price}
           </span>
         </div>
@@ -108,7 +108,7 @@ function ZoneCard({ location, time, price, detail }) {
 
 function ProtocolItem({ icon, text }) {
   return (
-    <div className="flex items-center gap-4 p-5 bg-white/[0.02] rounded-2xl border border-white/5">
+    <div className="flex items-center gap-4 p-5 bg-bg/20 rounded-2xl border border-bg/5">
       <div className="text-primary">{icon}</div>
       <p className="text-sm font-bold text-pText uppercase tracking-tight italic">{text}</p>
     </div>

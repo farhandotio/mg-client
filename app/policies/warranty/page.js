@@ -5,7 +5,7 @@ import { Award, Zap, Cpu, Settings } from 'lucide-react';
 
 export default function WarrantyPolicy() {
   return (
-    <main className="pt-32 pb-20 bg-bg min-h-screen">
+    <main className="pt-16 pb-20 bg-bg min-h-screen">
       <div className="max-w-4xl mx-auto px-6">
         {/* Header */}
         <div className="mb-16 space-y-4">

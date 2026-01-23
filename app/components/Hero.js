@@ -74,16 +74,16 @@ export default function Hero() {
           </div>
 
           {/* Indicators */}
-          <div className="pt-8 flex flex-row gap-6 md:gap-8 items-center border-t border-border/20">
-            <div className="flex items-center gap-2">
+          <div className="pt-8 flex flex-row max-md:justify-between gap-6 md:gap-8 items-center border-t border-border/20">
+            <div className="flex items-center gap-1">
               <ShieldCheck size={18} className="text-primary" />
-              <span className="text-xs font-bold text-pText uppercase tracking-tight">
+              <span className="text-[13px] font-bold text-pText uppercase tracking-tight">
                 2-Year Warranty
               </span>
             </div>
             <div className="flex items-center gap-2">
               <Globe size={18} className="text-secondary" />
-              <span className="text-xs font-bold text-pText uppercase tracking-tight">
+              <span className="text-[13px] font-bold text-pText uppercase tracking-tight">
                 Global Shipping
               </span>
             </div>

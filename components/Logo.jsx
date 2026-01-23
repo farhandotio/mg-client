@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function Logo({ width = 180, height = 55, showText = false, className = '' }) {
+export default function Logo({ width = 170, height = 55, showText = false, className = '' }) {
   const optimizedSrc = `https://ik.imagekit.io/iura/gadgetbds.png?tr=w-${width * 2},h-${height * 2},cm-pad_resize,q-90`;
 
   return (
