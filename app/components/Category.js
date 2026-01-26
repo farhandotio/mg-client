@@ -111,8 +111,8 @@ export default function Category() {
             categories.map((item, idx) => (
               <motion.div
                 key={item._id}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0.9 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: '0px 0px -50px 0px' }}
                 transition={{ duration: 0.4, delay: idx * 0.05 }}
                 className="shrink-0 w-75 md:w-95 snap-start"
