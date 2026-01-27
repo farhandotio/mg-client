@@ -8,7 +8,6 @@ import Image from 'next/image';
 export default function Hero() {
   return (
     <section className="relative w-full min-h-[90vh] md:min-h-150 bg-bg flex items-center py-10 px-6 max-w-7xl mx-auto overflow-hidden">
-      {/* Background Glows - Fixed & Static for performance */}
       <div className="absolute top-[-10%] right-[-5%] w-125 h-125 bg-primary/10 blur-[100px] rounded-full -z-10 pointer-events-none" />
       <div className="absolute bottom-[-10%] left-[-5%] w-100 h-100 bg-secondary/10 blur-[100px] rounded-full -z-10 pointer-events-none" />
 
@@ -25,14 +24,6 @@ export default function Hero() {
       <div className="flex flex-col md:flex-row justify-between w-full gap-12 md:gap-16 items-center">
         {/* --- Left Column --- */}
         <div className="relative z-20 space-y-8 w-full md:w-1/2 opacity-100 transition-opacity duration-500">
-          {/* Top Badge */}
-          <div className="inline-flex items-center gap-3 bg-card border border-border/40 px-4 py-2 rounded-2xl shadow-sm">
-            <Trophy size={16} className="text-primary" />
-            <span className="text-text text-[11px] font-black uppercase tracking-widest">
-              N°1 Tech Store in 2026
-            </span>
-          </div>
-
           <header className="space-y-6">
             <h1 className="text-6xl md:text-7xl font-black text-text leading-[0.95] tracking-tighter">
               Discover the <br />
@@ -101,7 +92,7 @@ export default function Hero() {
               <div className="relative w-4/5 h-4/5 transition-transform duration-500 md:group-hover:scale-105 will-change-transform">
                 <Image
                   src="https://imgs.search.brave.com/G1lrzAcX4OiD6m7GZyK955F66uo3VaIkURzpxPS5n8E/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9maWxl/LmFpcXVpY2tkcmF3/LmNvbS9pbWdjb21w/cmVzc2VkL2ltZy9j/b21wcmVzc2VkXzEw/YmM2NGIwNDRmN2I2/MjhhZTljNzcyZDI3/MzU1YzBlLndlYnA"
-                  alt="Apple Watch Pro"
+                  alt="Watch Pro"
                   fill
                   priority
                   sizes="(max-width: 768px) 300px, 450px"
@@ -114,12 +105,13 @@ export default function Hero() {
                 <div className="bg-card/95 backdrop-blur-md border border-border/40 p-4 rounded-2xl flex justify-between items-center">
                   <div>
                     <p className="text-[9px] font-black text-primary uppercase">Featured</p>
-                    <h3 className="text-text font-bold text-lg italic tracking-tighter">
-                      Apple Watch Pro
+                    <h3 className="text-text font-bold text-lg  tracking-tighter">
+                      Latest Smart Watch Collection
                     </h3>
                   </div>
                   <Link
-                    href="/shop"
+                    href="/shop?categories=watch"
+                    aria-label="Shop Latest Smart Watch"
                     className="bg-primary text-bg p-2.5 rounded-xl transition-transform active:scale-90"
                   >
                     <ArrowRight size={18} strokeWidth={3} />
@@ -143,6 +135,7 @@ export default function Hero() {
             </div>
             <p className="text-[9px] font-black text-pText uppercase tracking-tighter">
               50k+ Geeks
+              {/* Background Glows - Fixed & Static for performance */}
             </p>
           </div>
         </div>
