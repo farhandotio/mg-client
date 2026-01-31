@@ -91,7 +91,7 @@ export default function Hero() {
               {/* Image with Priority (LCP Fix) */}
               <div className="relative w-4/5 h-4/5 transition-transform duration-500 md:group-hover:scale-105 will-change-transform">
                 <Image
-                  src="https://imgs.search.brave.com/G1lrzAcX4OiD6m7GZyK955F66uo3VaIkURzpxPS5n8E/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9maWxl/LmFpcXVpY2tkcmF3/LmNvbS9pbWdjb21w/cmVzc2VkL2ltZy9j/b21wcmVzc2VkXzEw/YmM2NGIwNDRmN2I2/MjhhZTljNzcyZDI3/MzU1YzBlLndlYnA"
+                  src="https://imgs.search.brave.com/tu2vBQIG3PFiq_7QOidoJ3FHSLbpiHRxdBesu-LYW0A/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJzLmNvbS9p/bWFnZXMvaGQvbW9k/ZXJuLXNtYXJ0d2F0/Y2gtYmxhY2stYmFu/ZC1uNnNsY280cW54/MWFlczhtLnBuZw"
                   alt="Watch Pro"
                   fill
                   priority
