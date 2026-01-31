@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Search, X, ArrowUpRight, Loader2, Database, Zap } from 'lucide-react';
 import Link from 'next/link';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-import { fetchAllProducts, resetProductState } from '@/store/features/productSlice';
+import { fetchAllProducts } from '@/store/features/productSlice';
 import debounce from 'lodash.debounce';
 
 export default function SearchOverlay({ isOpen, onClose }) {
@@ -19,14 +19,16 @@ export default function SearchOverlay({ isOpen, onClose }) {
     shallowEqual
   );
 
+  // ডিফল্ট সাজেশন বা ক্যাটাগরি সাজেশন
   const suggestions = useMemo(() => {
-    if (!products.length) return ['iPhone', 'Gaming', 'Laptops', 'Audio'];
+    if (!products.length) return ['আইফোন', 'গেমিং', 'ল্যাপটপ', 'অডিও'];
     const cats = products.map((p) => p.category?.name).filter(Boolean);
     return [...new Set(cats)].slice(0, 4);
   }, [products]);
 
   useEffect(() => {
     if (isOpen && !searchTerm) {
+      // ওপেন হওয়ার সাথে সাথে নতুন আসা প্রোডাক্টগুলো দেখাবে
       dispatch(fetchAllProducts('limit=6&sort=-createdAt'));
     }
   }, [isOpen, dispatch]);
@@ -64,32 +66,31 @@ export default function SearchOverlay({ isOpen, onClose }) {
           className="fixed inset-0 z-99999 bg-bg/95 backdrop-blur-3xl p-4 md:p-10"
         >
           <div className="max-w-4xl mx-auto h-full flex flex-col">
-            {/* --- Top Header --- */}
+            {/* --- Header Section --- */}
             <div className="flex justify-between items-center mb-6">
               <div className="flex items-center gap-2 text-primary">
                 <Database size={16} className={loading ? 'animate-pulse' : ''} />
-                <span className="text-[9px] font-black uppercase tracking-[0.4em]">
-                  Neural Inventory Sync
+                <span className="text-[10px] font-black uppercase tracking-[0.3em]">
+                  ইনভেন্টরি সিনক্রোনাইজেশন
                 </span>
               </div>
               <button
-                aria-label="cross button"
                 onClick={onClose}
-                className="p-3 hover:bg-white/5 rounded-full transition-colors"
+                className="p-3 hover:bg-white/5 rounded-full transition-colors text-text"
               >
                 <X size={24} />
               </button>
             </div>
 
-            {/* --- Search Input --- */}
+            {/* --- Search Input Area --- */}
             <div className="relative mb-8">
               <input
                 autoFocus
                 type="text"
                 value={searchTerm}
                 onChange={handleInputChange}
-                placeholder="Scan Database..."
-                className="w-full bg-transparent border-b-2 border-border focus:border-primary py-8 px-2 outline-none text-3xl md:text-5xl font-black italic tracking-tighter transition-all placeholder:text-white/5"
+                placeholder="পণ্য খুঁজুন..."
+                className="w-full bg-transparent border-b-2 border-border focus:border-primary py-8 px-2 outline-none text-3xl md:text-5xl font-black italic tracking-tighter transition-all placeholder:text-white/5 text-text"
               />
               <div className="absolute right-4 top-1/2 -translate-y-1/2">
                 {loading ? (
@@ -100,14 +101,13 @@ export default function SearchOverlay({ isOpen, onClose }) {
               </div>
             </div>
 
-            {/* --- Dynamic Suggestions (Chips) --- */}
+            {/* --- Quick Suggestions --- */}
             {!searchTerm && (
               <div className="mb-10">
                 <div className="flex flex-wrap gap-2 md:gap-3">
                   {suggestions.map((item, idx) => (
                     <button
                       key={idx}
-                      aria-label="item for search"
                       onClick={() => handleSuggestionClick(item)}
                       className="group flex items-center gap-2 px-5 py-2.5 bg-card/30 border border-border/50 rounded-full hover:border-primary/50 transition-all active:scale-95"
                     >
@@ -115,7 +115,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
                         size={12}
                         className="text-primary group-hover:fill-primary transition-all"
                       />
-                      <span className="text-[10px] font-black uppercase tracking-widest text-pText/60 group-hover:text-primary">
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-pText/70 group-hover:text-primary">
                         {item}
                       </span>
                     </button>
@@ -128,7 +128,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
             <div className="flex-1 overflow-y-auto no-scrollbar">
               <div className="flex items-center gap-4 mb-6">
                 <p className="text-pText/40 text-[10px] font-black uppercase tracking-[0.3em] whitespace-nowrap">
-                  {searchTerm ? `Results for "${searchTerm}"` : 'Recent Arrivals'}
+                  {searchTerm ? `"${searchTerm}" এর ফলাফল` : 'নতুন কালেকশন'}
                 </p>
                 <div className="h-0.5 w-full bg-border/20" />
               </div>
@@ -138,45 +138,53 @@ export default function SearchOverlay({ isOpen, onClose }) {
                   loading ? 'opacity-40 grayscale-[0.5]' : 'opacity-100'
                 }`}
               >
-                {products.map((product, idx) => (
-                  <Link key={product._id} href={`/shop/${product.slug}`} onClick={onClose}>
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: idx * 0.04 }}
-                      className="p-3 bg-card/20 border border-border/20 rounded-2xl hover:border-primary/40 transition-all flex gap-4 group"
-                    >
-                      <div className="w-20 h-20 bg-bg rounded-xl border border-border/10 flex items-center justify-center shrink-0 overflow-hidden">
-                        <img
-                          src={product.images?.[0]?.url || '/placeholder.png'}
-                          alt={product.title}
-                          className="w-full h-full object-cover rounded-lg group-hover:scale-110 transition-transform duration-500"
-                        />
+                {products.length > 0
+                  ? products.map((product, idx) => (
+                      <Link key={product._id} href={`/shop/${product.slug}`} onClick={onClose}>
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: idx * 0.04 }}
+                          className="p-3 bg-card/20 border border-border/20 rounded-2xl hover:border-primary/40 transition-all flex gap-4 group"
+                        >
+                          <div className="w-20 h-20 bg-bg rounded-xl border border-border/10 flex items-center justify-center shrink-0 overflow-hidden">
+                            <img
+                              src={product.images?.[0]?.url || '/placeholder.png'}
+                              alt={product.title}
+                              className="w-full h-full object-cover rounded-lg group-hover:scale-110 transition-transform duration-500"
+                            />
+                          </div>
+                          <div className="flex flex-col justify-center min-w-0 flex-1">
+                            <h4 className="text-sm md:text-base font-black italic uppercase truncate tracking-tighter group-hover:text-primary transition-colors text-text">
+                              {product.title}
+                            </h4>
+                            <div className="flex items-center gap-3 mt-1">
+                              <span className="text-lg font-black text-text">
+                                ৳{product.price?.discounted || product.price?.base}
+                              </span>
+                              {product.price?.discounted && (
+                                <span className="text-[10px] text-pText/40 line-through">
+                                  ৳{product.price.base}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                          <div className="flex items-center pr-2">
+                            <ArrowUpRight
+                              size={16}
+                              className="text-pText/20 group-hover:text-primary group-hover:translate-x-1 transition-all"
+                            />
+                          </div>
+                        </motion.div>
+                      </Link>
+                    ))
+                  : !loading && (
+                      <div className="col-span-full text-center py-20 opacity-30 italic">
+                        <p className="text-pText font-bold uppercase tracking-widest text-sm">
+                          কোনো পণ্য পাওয়া যায়নি
+                        </p>
                       </div>
-                      <div className="flex flex-col justify-center min-w-0 flex-1">
-                        <h4 className="text-sm md:text-base font-black italic uppercase truncate tracking-tighter group-hover:text-primary transition-colors">
-                          {product.title}
-                        </h4>
-                        <div className="flex items-center gap-3 mt-1">
-                          <span className="text-lg font-black text-text">
-                            ${product.price?.discounted || product.price?.base}
-                          </span>
-                          {product.price?.discounted && (
-                            <span className="text-[10px] text-pText/40 line-through">
-                              ${product.price.base}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                      <div className="flex items-center pr-2">
-                        <ArrowUpRight
-                          size={16}
-                          className="text-pText/20 group-hover:text-primary group-hover:translate-x-1 transition-all"
-                        />
-                      </div>
-                    </motion.div>
-                  </Link>
-                ))}
+                    )}
               </div>
             </div>
           </div>

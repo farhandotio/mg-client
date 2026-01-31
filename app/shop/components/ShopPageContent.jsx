@@ -9,6 +9,7 @@ import ShopSidebar from './ShopSidebar';
 import Skeleton from '@/components/Skeleton';
 import { Filter, Search, ChevronLeft, ChevronRight, Globe } from 'lucide-react';
 import debounce from 'lodash.debounce';
+import { motion } from 'framer-motion';
 
 export default function ShopPageContent({ categorySlug }) {
   const dispatch = useDispatch();
@@ -72,7 +73,6 @@ export default function ShopPageContent({ categorySlug }) {
 
   const handlePagination = (newPage) => {
     updateURL({ page: newPage });
-    // শুধুমাত্র প্রোডাক্টের কন্টেইনারটিকে টপে স্ক্রোল করবে
     const productFeed = document.getElementById('product-feed-container');
     if (productFeed) {
       productFeed.scrollTo({ top: 0, behavior: 'smooth' });
@@ -93,114 +93,160 @@ export default function ShopPageContent({ categorySlug }) {
   };
 
   return (
-    <section className="bg-bg h-[90vh] overflow-hidden flex flex-col">
+    <section className="bg-bg h-[95vh] overflow-hidden flex flex-col">
       <div className="max-w-7xl mx-auto w-full flex flex-col h-full">
-        {/* Fixed Header: স্ক্রোল হবে না */}
-        <header className="pb-3 shrink-0">
+        <header className="pb-4 shrink-0">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div className="space-y-1">
               <div className="flex items-center gap-2 text-primary">
                 <Globe size={14} className="animate-spin-slow" />
-                <span className="text-[9px] font-black uppercase tracking-[0.4em]">
-                  Global_Inventory
+                <span className="text-[10px] font-black uppercase tracking-[0.3em]">
+                  গ্লোবাল_ইনভেন্টরি_লিস্ট
                 </span>
               </div>
-              {/* <h1 className="text-4xl font-black text-text italic tracking-tighter uppercase leading-none">
-                Vault{' '}
-                <span className="text-primary">
-                  {productType || (urlCategory ? urlCategory.replace(/-/g, ' ') : 'Catalog')}
-                </span>
-              </h1> */}
             </div>
 
-            <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center justify-between md:justify-end gap-4">
               <button
-                aria-label="filter open"
                 onClick={() => setIsMobileFilterOpen(true)}
-                className="lg:hidden flex items-center gap-2 bg-card border border-border px-4 py-2 rounded-lg text-[10px] font-black uppercase"
+                className="lg:hidden flex items-center gap-2 bg-card border border-border/50 px-4 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-wider"
               >
-                <Filter size={12} className="text-primary" /> Filters
+                <Filter size={14} className="text-primary" /> ফিল্টার
               </button>
-              <p className="text-pText text-[10px] font-black uppercase tracking-widest opacity-80">
-                {loading ? 'Scanning...' : `Captured: ${pagination?.totalProducts || 0} Units`}
-              </p>
+
+              <div className="bg-primary/5 border border-primary/20 px-4 py-2 rounded-full">
+                <p className="text-primary text-[10px] font-black uppercase tracking-widest">
+                  {loading
+                    ? 'স্ক্যানিং...'
+                    : `পাওয়া গেছে: ${pagination?.totalProducts || 0} টি পণ্য`}
+                </p>
+              </div>
             </div>
           </div>
         </header>
 
-        {/* Main Content Area: এখানে মেইন ম্যাজিক */}
-        <div className="flex grow overflow-hidden gap-5 pt-1">
-          {/* 1. Sidebar Node: এটি ফিক্সড থাকবে */}
-          <aside className="hidden lg:block w-72 shrink-0 h-full overflow-y-auto no-scrollbar pb-10">
-            <nav className="bg-card/30 backdrop-blur-xl p-5 rounded-3xl border border-border/50 shadow-2xl shadow-primary/5">
+        {/* --- Main Content Area --- */}
+        <div className="flex grow overflow-hidden gap-5 pt-2">
+          <aside className="hidden lg:block w-65 shrink-0 h-full overflow-y-auto no-scrollbar pb-10">
+            <nav className="bg-card/40 backdrop-blur-2xl p-3 rounded-2xl border border-border/50 shadow-2xl shadow-primary/5">
               <ShopSidebar {...filterProps} />
             </nav>
           </aside>
 
-          {/* 2. Product Feed: শুধুমাত্র এটি স্ক্রোল হবে */}
           <main
             id="product-feed-container"
-            className="grow h-full overflow-y-auto no-scrollbar pb-20 pr-1"
+            className="grow h-full overflow-y-auto no-scrollbar pb-5"
           >
             {loading ? (
               <div className="grid grid-cols-2 xl:grid-cols-4 gap-4">
                 <Skeleton type="product" count={8} />
               </div>
             ) : products?.length > 0 ? (
-              <div className="space-y-16">
+              <div className="space-y-6">
                 <div className="grid grid-cols-2 xl:grid-cols-4 gap-4">
                   {products.map((product) => (
                     <ProductCard key={product._id} product={product} />
                   ))}
                 </div>
 
-                {/* Pagination */}
+                {/* প্যাগিনেশন */}
                 {pagination?.totalPages > 1 && (
-                  <nav className="flex justify-center items-center gap-4 pb-10">
-                    <button
-                      aria-label="pagination"
-                      disabled={page === 1}
-                      onClick={() => handlePagination(page - 1)}
-                      className="p-4 bg-card border border-border rounded-xl disabled:opacity-20 hover:border-primary transition-all"
-                    >
-                      <ChevronLeft size={18} />
-                    </button>
-                    <span className="text-[10px] font-black uppercase bg-card px-6 py-4 rounded-xl border border-border">
-                      {page} / {pagination.totalPages}
-                    </span>
-                    <button
-                      aria-label="next page"
-                      disabled={page === pagination.totalPages}
-                      onClick={() => handlePagination(page + 1)}
-                      className="p-4 bg-card border border-border rounded-xl disabled:opacity-20 hover:border-primary transition-all"
-                    >
-                      <ChevronRight size={18} />
-                    </button>
+                  <nav className="flex flex-col items-center gap-6 py-5 border-t border-border/10">
+                    {/* পৃষ্ঠার সংখ্যা এবং তথ্য */}
+                    <div className="flex flex-col items-center gap-1">
+                      <span className="text-[10px] font-black uppercase tracking-[0.4em] text-pText/40">
+                        সিস্টেম নেভিগেশন
+                      </span>
+                      <div className="flex items-center gap-4 bg-card/50 backdrop-blur-md px-10 py-4 rounded-2xl border border-border/50 shadow-xl shadow-primary/5">
+                        <span className="text-xs font-black tracking-widest text-text">
+                          পৃষ্ঠা <span className="text-primary ml-2">{page}</span>
+                        </span>
+                        <div className="h-4 w-0.5 bg-border/50" />
+                        <span className="text-xs font-black tracking-widest text-pText/40">
+                          মোট {pagination.totalPages}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* নেভিগেশন বাটনসমূহ */}
+                    <div className="flex items-center gap-4">
+                      <button
+                        aria-label="Previous Page"
+                        disabled={page === 1}
+                        onClick={() => handlePagination(page - 1)}
+                        className="group flex items-center gap-3 pl-4 pr-6 py-3 bg-card border border-border/50 rounded-2xl disabled:opacity-20 hover:border-primary/50 transition-all active:scale-95 disabled:pointer-events-none"
+                      >
+                        <ChevronLeft
+                          size={18}
+                          className="text-primary group-hover:-translate-x-1 transition-transform"
+                        />
+                        <span className="text-[10px] font-black uppercase tracking-widest">
+                          আগেরটি
+                        </span>
+                      </button>
+
+                      <button
+                        aria-label="Next Page"
+                        disabled={page === pagination.totalPages}
+                        onClick={() => handlePagination(page + 1)}
+                        className="group flex items-center gap-3 pl-6 pr-4 py-3 bg-card border border-border/50 rounded-2xl disabled:opacity-20 hover:border-primary/50 transition-all active:scale-95 disabled:pointer-events-none"
+                      >
+                        <span className="text-[10px] font-black uppercase tracking-widest">
+                          পরেরটি
+                        </span>
+                        <ChevronRight
+                          size={18}
+                          className="text-primary group-hover:translate-x-1 transition-transform"
+                        />
+                      </button>
+                    </div>
                   </nav>
                 )}
               </div>
             ) : (
-              <div className="text-center py-32 bg-card/10 border border-dashed border-border rounded-3xl">
-                <Search size={40} className="text-pText/20 mx-auto mb-6" />
-                <h3 className="text-xl font-black uppercase italic text-pText/40">
-                  No Units Detected
+              <div className="flex flex-col items-center justify-center py-40 bg-card/10 border-2 border-dashed border-border/30 rounded-[3rem]">
+                <div className="bg-primary/10 p-8 rounded-full mb-6">
+                  <Search size={48} className="text-primary opacity-40" />
+                </div>
+                <h3 className="text-xl font-black uppercase italic text-pText/40 tracking-tighter">
+                  কোনো পণ্য পাওয়া যায়নি
                 </h3>
+                <button
+                  onClick={() => router.push('/shop')}
+                  className="mt-6 text-[10px] font-black uppercase text-primary border-b border-primary/30 pb-1"
+                >
+                  সব পণ্য দেখুন
+                </button>
               </div>
             )}
           </main>
         </div>
       </div>
 
-      {/* Mobile Sidebar */}
+      {/* মোবাইল ফিল্টার সাইডবার */}
       {isMobileFilterOpen && (
-        <div className="fixed inset-0 z-100 lg:hidden">
-          <div
-            className="absolute inset-0 bg-bg/95 backdrop-blur-sm"
+        <div className="fixed inset-0 z-200 lg:hidden">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="absolute inset-0 bg-bg/95 backdrop-blur-md"
             onClick={() => setIsMobileFilterOpen(false)}
-          />
-          <nav className="absolute left-0 top-0 h-full w-[80%] bg-bg border-r border-border p-8 overflow-y-auto">
+          ></motion.div>
+          <motion.nav
+            initial={{ x: '-100%' }}
+            animate={{ x: 0 }}
+            className="absolute left-0 top-0 h-full w-[85%] max-w-[320px] bg-bg border-r border-border/50 p-8 overflow-y-auto"
+          >
+            <div className="flex justify-between items-center mb-10">
+              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-primary">
+                ফিল্টার অপশন
+              </span>
+              <button onClick={() => setIsMobileFilterOpen(false)} className="text-pText">
+                <Filter size={18} />
+              </button>
+            </div>
             <ShopSidebar {...filterProps} />
-          </nav>
+          </motion.nav>
         </div>
       )}
     </section>

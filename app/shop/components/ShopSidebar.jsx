@@ -2,7 +2,19 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { Search, Filter, X, ChevronRight, Activity, Zap, Star, Flame, Package } from 'lucide-react';
+import {
+  Search,
+  Filter,
+  X,
+  ChevronRight,
+  Activity,
+  Zap,
+  Star,
+  Flame,
+  Package,
+  RotateCcw,
+  LayoutGrid,
+} from 'lucide-react';
 
 export default function ShopSidebar({
   categories,
@@ -23,110 +35,74 @@ export default function ShopSidebar({
   }, []);
 
   const gearTypes = [
-    { name: 'Featured', slug: 'Featured', icon: <Star size={12} /> },
-    { name: 'Best Sellers', slug: 'BestSeller', icon: <Flame size={12} /> },
-    { name: 'Flash Deals', slug: 'FlashSale', icon: <Zap size={12} /> },
-    { name: 'New Arrivals', slug: 'NewArrival', icon: <Activity size={12} /> },
-    { name: 'Hot Deals', slug: 'HotDeals', icon: <Flame size={12} className="text-orange-500" /> },
-    { name: 'Regular Gear', slug: 'Regular', icon: <Package size={12} /> },
+    { name: 'ফিচারড পণ্য', slug: 'Featured', icon: <Star size={14} /> },
+    { name: 'বেস্ট সেলার', slug: 'BestSeller', icon: <Flame size={14} /> },
+    { name: 'ফ্ল্যাশ ডিল', slug: 'FlashSale', icon: <Zap size={14} /> },
+    { name: 'নতুন কালেকশন', slug: 'NewArrival', icon: <Activity size={14} /> },
   ];
 
   if (!mounted) return null;
 
   return (
-    <div className="space-y-10 animate-in fade-in slide-in-from-left-4 duration-500">
-      {/* Header */}
-      <div className="flex items-center justify-between border-b border-border/40 pb-6 relative">
-        <div className="flex items-center gap-3">
-          <div className="relative w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/30">
-            <Filter size={14} className="text-primary" />
-          </div>
-          <div>
-            <h3 className="text-text font-black uppercase tracking-widest text-[11px] italic leading-none">
-              System_Filters
+    <div className="space-y-8 animate-in fade-in slide-in-from-left-4 duration-500 max-w-full overflow-hidden">
+      {/* ১. হেডার ও রিসেট বাটন (সবার উপরে) */}
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Filter size={16} className="text-primary" />
+            <h3 className="text-text font-black uppercase tracking-tighter text-sm italic">
+              ফিল্টার
             </h3>
-            <div className="flex items-center gap-1 mt-1 opacity-40">
-              <Activity size={8} className="text-primary" />
-              <span className="text-[7px] font-bold uppercase tracking-tighter">Nodes_Active</span>
-            </div>
           </div>
+          <button
+            onClick={resetFilters}
+            className="flex items-center gap-1.5 text-[10px] font-black uppercase text-red-500 hover:text-red-400 transition-colors group"
+          >
+            <RotateCcw
+              size={12}
+              className="group-hover:-rotate-180 transition-transform duration-500"
+            />
+            রিসেট করুন
+          </button>
         </div>
-        <button
-          aria-label="closs filter"
-          onClick={() => setIsMobileFilterOpen(false)}
-          className="lg:hidden p-2 hover:bg-white/5 rounded-full border border-transparent hover:border-white/10"
-        >
-          <X size={20} className="text-pText" />
-        </button>
+        <div className="h-0.5 w-full bg-linear-to-r from-primary/50 via-border/20 to-transparent" />
       </div>
 
-      {/* 1. Keyword Search */}
-      <div className="space-y-4">
-        <label className="text-[9px] font-black uppercase tracking-[0.3em] text-primary/70 flex items-center gap-2">
-          Keyword_Search
-        </label>
-        <div className="relative group">
-          <input
-            type="text"
-            defaultValue={searchTerm}
-            onChange={onSearchChange}
-            placeholder="Scanning for units..."
-            className="w-full bg-white/5 border border-border/60 rounded-2xl py-4 px-5 text-xs text-text focus:outline-none focus:border-primary transition-all shadow-inner"
-          />
-          <Search
-            size={14}
-            className="absolute right-5 top-1/2 -translate-y-1/2 text-pText group-focus-within:text-primary"
-          />
-        </div>
+      {/* ২. কিওয়ার্ড সার্চ */}
+      <div className="relative group">
+        <input
+          type="text"
+          defaultValue={searchTerm}
+          onChange={onSearchChange}
+          placeholder="পণ্য খুঁজুন..."
+          className="w-full bg-white/5 border border-border/40 rounded-xl py-3 pl-11 pr-4 text-xs text-text focus:outline-none focus:border-primary/50 transition-all placeholder:text-pText/30"
+        />
+        <Search
+          size={14}
+          className="absolute left-4 top-1/2 -translate-y-1/2 text-pText/40 group-focus-within:text-primary transition-colors"
+        />
       </div>
 
-      {/* 2. Gear Type Filter (NEW SECTION) */}
+      {/* ৩. ক্যাটাগরি লিস্ট (নতুন মিনিমাল ডিজাইন) */}
       <div className="space-y-4">
-        <label className="text-[9px] font-black uppercase tracking-[0.3em] text-primary/70 flex items-center gap-2">
-          Hardware_Type
-        </label>
-        <div className="grid grid-cols-1 gap-2">
-          {gearTypes.map((type) => (
-            <Link
-              key={type.slug}
-              href={`/shop?productType=${type.slug}${selectedCategory ? `&category=${selectedCategory}` : ''}`}
-              className={`flex items-center gap-3 p-3 rounded-xl border text-[10px] font-bold uppercase tracking-widest transition-all duration-300 ${
-                selectedType === type.slug
-                  ? 'bg-primary/20 border-primary text-primary shadow-[0_0_15px_rgba(var(--color-primary),0.1)]'
-                  : 'bg-white/5 border-border/40 text-pText hover:border-primary/30'
-              }`}
-              onClick={() => setIsMobileFilterOpen(false)}
-            >
-              <span className={selectedType === type.slug ? 'text-primary' : 'text-pText/50'}>
-                {type.icon}
-              </span>
-              {type.name}
-            </Link>
-          ))}
+        <div className="flex items-center gap-2 px-1">
+          <LayoutGrid size={12} className="text-primary/60" />
+          <label className="text-[10px] font-black uppercase tracking-[0.2em] text-pText/60">
+            ক্যাটাগরি সমূহ
+          </label>
         </div>
-      </div>
 
-      {/* 3. Categories (Sector Nodes) */}
-      <div className="space-y-4">
-        <label className="text-[9px] font-black uppercase tracking-[0.3em] text-primary/70 flex items-center gap-2">
-          Sector_Nodes
-        </label>
-        <div className="space-y-2 max-h-[30vh] overflow-y-auto no-scrollbar">
+        <div className="flex flex-col gap-0.5">
           <Link
             href="/shop"
-            className={`group flex items-center justify-between w-full p-4 rounded-2xl border transition-all duration-300 ${
-              !selectedCategory
-                ? 'bg-primary border-primary text-black'
-                : 'bg-white/5 border-border/40 text-pText hover:border-primary/50'
+            className={`group flex items-center justify-between py-2 px-3 rounded-lg transition-all ${
+              !selectedCategory ? 'bg-primary/10 text-primary' : 'text-pText hover:bg-white/5'
             }`}
-            onClick={() => setIsMobileFilterOpen(false)}
+            onClick={() => setIsMobileFilterOpen?.(false)}
           >
-            <span className="text-[10px] font-black uppercase tracking-widest italic">
-              All_Hardware
-            </span>
-            <ChevronRight
-              size={12}
-              className={!selectedCategory ? 'text-black' : 'text-pText/30'}
+            <span className="text-[11px] font-bold uppercase tracking-wide">সব পণ্য</span>
+            <div
+              className={`w-1 h-1 rounded-full ${!selectedCategory ? 'bg-primary' : 'bg-transparent'}`}
             />
           </Link>
 
@@ -134,42 +110,73 @@ export default function ShopSidebar({
             <Link
               key={cat._id}
               href={`/shop?category=${cat.slug}${selectedType ? `&productType=${selectedType}` : ''}`}
-              className={`group flex items-center justify-between w-full p-4 rounded-2xl border transition-all duration-300 ${
+              className={`group flex items-center justify-between py-2 px-3 rounded-lg transition-all ${
                 selectedCategory === cat.slug
-                  ? 'bg-primary border-primary text-black'
-                  : 'bg-white/5 border-border/40 text-pText hover:border-primary/50'
+                  ? 'bg-primary/10 text-primary'
+                  : 'text-pText hover:bg-white/5'
               }`}
-              onClick={() => setIsMobileFilterOpen(false)}
+              onClick={() => setIsMobileFilterOpen?.(false)}
             >
-              <span className="text-[10px] font-black uppercase tracking-widest italic">
+              <span className="text-[11px] font-bold uppercase tracking-wide truncate pr-4 italic">
                 {cat.name}
               </span>
-              <ChevronRight
-                size={12}
-                className={selectedCategory === cat.slug ? 'text-black' : 'text-pText/30'}
-              />
+              {selectedCategory === cat.slug ? (
+                <ChevronRight size={12} className="text-primary animate-in slide-in-from-left-2" />
+              ) : (
+                <span className="text-[9px] opacity-20 font-mono group-hover:opacity-100 transition-opacity italic">
+                  #0{cat.slug.length}
+                </span>
+              )}
             </Link>
           ))}
         </div>
       </div>
 
-      {/* 4. Price Limit */}
-      <div className="space-y-6 pt-4">
-        <div className="flex justify-between items-end">
-          <label className="text-[9px] font-black uppercase tracking-[0.3em] text-primary/70">
-            Budget_Limit
-          </label>
-          <span className="text-primary font-black text-[12px] italic bg-primary/10 px-2 py-1 rounded border border-primary/20">
+      {/* ৪. গিয়ার টাইপ (স্লিম চিপস) */}
+      <div className="space-y-4">
+        <label className="text-[10px] font-black uppercase tracking-[0.2em] text-pText/60 px-1">
+          কালেকশন টাইপ
+        </label>
+        <div className="grid grid-cols-1 gap-2">
+          {gearTypes.map((type) => (
+            <Link
+              key={type.slug}
+              href={`/shop?productType=${type.slug}${selectedCategory ? `&category=${selectedCategory}` : ''}`}
+              className={`flex items-center justify-between p-3 rounded-xl border text-[10px] font-black uppercase tracking-tighter transition-all ${
+                selectedType === type.slug
+                  ? 'bg-primary text-bg border-primary'
+                  : 'bg-white/5 border-border/20 text-pText hover:border-primary/40'
+              }`}
+              onClick={() => setIsMobileFilterOpen?.(false)}
+            >
+              <div className="flex items-center gap-2">
+                <span className={selectedType === type.slug ? 'text-bg' : 'text-primary'}>
+                  {type.icon}
+                </span>
+                {type.name}
+              </div>
+              {selectedType === type.slug && <Zap size={10} fill="currentColor" />}
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* ৫. বাজেট স্লাইডার */}
+      <div className="space-y-5 pt-2">
+        <div className="flex justify-between items-end px-1">
+          <div className="flex flex-col">
+            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-pText/60">
+              বাজেট লিমিট
+            </label>
+            <span className="text-[8px] font-bold text-pText/40 uppercase mt-0.5">
+              সর্বোচ্চ সীমা নির্ধারণ করুন
+            </span>
+          </div>
+          <span className="text-primary font-black text-xs font-mono">
             ৳{priceRange.toLocaleString()}
           </span>
         </div>
-        <div className="relative px-1">
-          <div className="relative h-1 w-full bg-white/10 rounded-full overflow-hidden">
-            <div
-              className="absolute h-full bg-primary transition-all duration-500 shadow-[0_0_10px_rgba(var(--color-primary),0.5)]"
-              style={{ width: `${(priceRange / 200000) * 100}%` }}
-            />
-          </div>
+        <div className="px-1 relative h-6 flex items-center">
           <input
             type="range"
             min="500"
@@ -177,20 +184,28 @@ export default function ShopSidebar({
             step="500"
             value={priceRange}
             onChange={(e) => setPriceRange(e.target.value)}
-            className="absolute -top-1.5 left-0 w-full accent-primary h-4 bg-transparent appearance-none cursor-pointer z-20"
+            className="w-full h-1 bg-white/10 rounded-full appearance-none cursor-pointer accent-primary"
           />
+          {/* স্লাইডার প্রগ্রেস ইন্ডিকেটর (Visual) */}
+          <div
+            className="absolute left-0 h-1 bg-primary rounded-full pointer-events-none"
+            style={{ width: `${((priceRange - 500) / (200000 - 500)) * 100}%` }}
+          />
+        </div>
+        <div className="flex justify-between text-[8px] font-black text-pText/30 uppercase tracking-tighter px-1">
+          <span>৳৫০০</span>
+          <span>৳২,০০,০০০</span>
         </div>
       </div>
 
-      {/* Reset */}
-      <div className="pt-6">
-        <button
-          aria-label="reset filter"
-          onClick={resetFilters}
-          className="w-full py-5 bg-white/5 border border-border/40 rounded-2xl text-[9px] font-black uppercase tracking-[0.5em] text-pText hover:text-red-500 hover:border-red-500/50 transition-all active:scale-[0.98]"
-        >
-          Clear_System_State
-        </button>
+      {/* সিস্টেম স্ট্যাটাস */}
+      <div className="pt-4 border-t border-border/10">
+        <div className="flex items-center gap-2 opacity-30 group hover:opacity-100 transition-opacity">
+          <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+          <span className="text-[8px] font-bold uppercase tracking-[0.3em]">
+            সিস্টেম সিঙ্ক: অনলাইন
+          </span>
+        </div>
       </div>
     </div>
   );

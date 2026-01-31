@@ -1,38 +1,38 @@
 'use client';
 import React from 'react';
-import { ShieldCheck, Terminal, Cpu, HardDrive, Share2, Star, CheckCircle2 } from 'lucide-react';
+import { ShieldCheck, Cpu, Share2, Star, CheckCircle2, MessageSquareQuote } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const reviews = [
   {
     id: 1,
-    user: 'Tanvir Ahmed',
-    role: 'Dev',
-    comment: 'The latency is zero. Truly next-gen equipment.',
+    user: 'তানভীর আহমেদ',
+    role: 'সফটওয়্যার ইঞ্জিনিয়ার',
+    comment: 'প্রোডাক্টের কোয়ালিটি অসাধারন। ডেলিভারিও পেয়েছি একদম সঠিক সময়ে।',
     rating: 5,
     grid: 'md:col-span-2 md:row-span-1',
   },
   {
     id: 2,
-    user: 'Arif Rayhan',
-    role: 'Gamer',
-    comment: 'Fast shipping. Unboxing felt like 2077.',
+    user: 'আরিফ রায়হান',
+    role: 'গেমার',
+    comment: 'স্মার্টওয়াচটি অরিজিনাল ছিল। প্যাকেজিং দেখে মন ভরে গেছে।',
     rating: 5,
     grid: 'md:col-span-1 md:row-span-2',
   },
   {
     id: 3,
-    user: 'Nusrat Jahan',
-    role: 'Architect',
-    comment: 'Clean aesthetic, unmatched build quality.',
+    user: 'নুসরাত জাহান',
+    role: 'আর্কিটেক্ট',
+    comment: 'খুবই ক্লিন ডিজাইন এবং বিল্ড কোয়ালিটি প্রিমিয়াম।',
     rating: 4,
     grid: 'md:col-span-1 md:row-span-1',
   },
   {
     id: 4,
-    user: 'Sabbir Hossain',
-    role: 'Creator',
-    comment: 'Excellent support for workstation upgrades.',
+    user: 'সাব্বির হোসেন',
+    role: 'কন্টেন্ট ক্রিয়েটর',
+    comment: 'গ্যাজেট বিডিএস থেকে কেনা হেডফোনটি আমার প্রতিদিনের কাজে খুব সাহায্য করছে।',
     rating: 5,
     grid: 'md:col-span-2 md:row-span-1',
   },
@@ -50,29 +50,28 @@ const itemVariants = {
 
 export default function TrustSection() {
   return (
-    <section className="py-10 bg-bg relative overflow-hidden">
-      {/* --- High-Tech Decor Elements --- */}
-      <div className="absolute top-0 left-1/4 w-0.5 h-full bg-linear-to-b from-primary/20 via-transparent to-transparent hidden md:block" />
-      <div className="absolute top-1/2 left-0 w-full h-0.5 bg-linear-to-r from-primary/10 via-transparent to-transparent hidden md:block" />
+    <section className="py-16 bg-bg relative overflow-hidden border-t border-border/10">
+      {/* Background Decor */}
+      <div className="absolute top-0 left-1/4 w-0.5 h-full bg-linear-to-b from-primary/10 via-transparent to-transparent hidden md:block" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        {/* --- Unique Header: Terminal HUD Style --- */}
-        <div className="mb-16 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-          <div className="space-y-2">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+        {/* --- Header: Clean & Trusted --- */}
+        <div className="mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+          <div className="space-y-3">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 bg-primary rounded-full animate-ping" />
-              <span className="text-primary font-mono text-[10px] uppercase tracking-[0.4em]">
-                Live_Feed: Customer_Nodes
+              <span className="text-primary font-bold text-[10px] uppercase tracking-[0.3em]">
+                কাস্টমার রিভিউ এবং ফিডব্যাক
               </span>
             </div>
-            <h2 className="text-5xl md:text-7xl font-black text-text tracking-tighter uppercase italic leading-[0.8]">
-              Trust <span className="text-primary">Matrix</span>
+            <h2 className="text-2xl md:text-3xl font-black text-text tracking-tighter uppercase italic leading-none">
+              ইউজারদের <span className="text-primary">আস্থা</span>
             </h2>
           </div>
 
           <div className="hidden md:block text-right">
-            <p className="text-pText/40 font-mono text-[10px] uppercase tracking-widest leading-relaxed">
-              Global Integrity Score: 99.8% <br /> Verified Protocol Active
+            <p className="text-pText/60 font-bold text-[11px] uppercase tracking-widest leading-relaxed">
+              সন্তুষ্ট কাস্টমার: ৯৯.৮% <br /> ভেরিফাইড রিভিউ সিস্টেম একটিভ
             </p>
           </div>
         </div>
@@ -85,17 +84,17 @@ export default function TrustSection() {
           viewport={{ once: true }}
           className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-3 gap-4"
         >
-          {/* 1. Feature Hero Card (Now centered on Mobile, Sidebar on Desktop) */}
+          {/* 1. Feature Hero Card */}
           <motion.div
             variants={itemVariants}
-            className="md:col-span-2 md:row-span-2 bg-card border border-border/50 rounded-[2.5rem] p-8 md:p-12 flex flex-col justify-between relative overflow-hidden group border-b-primary/50"
+            className="md:col-span-2 md:row-span-2 bg-card border border-border/50 rounded-[2.5rem] p-8 md:p-12 flex flex-col justify-between relative overflow-hidden group"
           >
             <div className="relative z-10">
-              <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-8 group-hover:rotate-12 transition-transform">
+              <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
                 <ShieldCheck size={32} className="text-primary" />
               </div>
-              <h3 className="text-4xl md:text-5xl font-black text-text uppercase leading-[0.9] tracking-tighter">
-                Verified <br /> <span className="text-primary">Hardware</span> <br /> Access
+              <h3 className="text-3xl md:text-5xl font-black text-text uppercase leading-[1] tracking-tighter">
+                ১০০% জেনুইন <br /> <span className="text-primary">প্রোডাক্টের</span> <br /> নিশ্চয়তা
               </h3>
             </div>
 
@@ -105,20 +104,20 @@ export default function TrustSection() {
                   {[...Array(4)].map((_, i) => (
                     <div
                       key={i}
-                      className="w-10 h-10 rounded-full border-2 border-card bg-primary/20 backdrop-blur-xl flex items-center justify-center text-[10px] font-bold text-primary"
+                      className="w-10 h-10 rounded-full border-2 border-card bg-primary/20 backdrop-blur-xl flex items-center justify-center text-[10px] font-black text-primary"
                     >
-                      ID_0{i}
+                      
                     </div>
                   ))}
                 </div>
-                <span className="text-xs font-bold text-pText italic">+1.2k Users</span>
+                <span className="text-xs font-bold text-pText italic">+১২০০ কাস্টমার</span>
               </div>
-              <p className="text-pText text-sm max-w-xs leading-relaxed">
-                System-wide confirmation: All hardware units pass neural quality standards.
+              <p className="text-pText text-sm max-w-xs leading-relaxed font-medium">
+                আমাদের প্রতিটি পণ্য কঠোর মাননিয়ন্ত্রণের মাধ্যমে যাচাই করা হয়। আপনি পাচ্ছেন আসল
+                পণ্যের পূর্ণ গ্যারান্টি।
               </p>
             </div>
 
-            {/* Background Glow */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] -z-10" />
           </motion.div>
 
@@ -127,7 +126,7 @@ export default function TrustSection() {
             <motion.div
               key={rev.id}
               variants={itemVariants}
-              className={`${rev.grid} bg-card/20 backdrop-blur-md border border-border/40 p-6 rounded-2xl hover:bg-card/40 hover:border-primary/30 transition-all duration-500 group flex flex-col justify-between`}
+              className={`${rev.grid} bg-card/40 backdrop-blur-md border border-border/40 p-6 rounded-3xl hover:border-primary/30 transition-all duration-500 group flex flex-col justify-between`}
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
@@ -136,22 +135,20 @@ export default function TrustSection() {
                       <Star key={i} size={10} className="fill-primary text-primary" />
                     ))}
                   </div>
-                  <CheckCircle2
-                    size={14}
-                    className="text-primary/30 group-hover:text-primary transition-colors"
+                  <MessageSquareQuote
+                    size={16}
+                    className="text-primary/20 group-hover:text-primary transition-colors"
                   />
                 </div>
-                <p className="text-pText text-sm md:text-base font-medium leading-relaxed italic">
+                <p className="text-pText text-sm md:text-base font-bold leading-relaxed italic">
                   "{rev.comment}"
                 </p>
               </div>
 
               <div className="flex items-end justify-between mt-6">
                 <div>
-                  <h4 className="text-text font-black uppercase text-[10px] tracking-widest">
-                    {rev.user}
-                  </h4>
-                  <p className="text-primary/60 text-[9px] font-bold uppercase tracking-tighter">
+                  <h4 className="text-text font-black text-sm tracking-tight">{rev.user}</h4>
+                  <p className="text-primary/70 text-[10px] font-bold uppercase tracking-tighter">
                     {rev.role}
                   </p>
                 </div>
@@ -162,32 +159,19 @@ export default function TrustSection() {
             </motion.div>
           ))}
 
-          {/* 3. Stats Section (Responsive Align) */}
+          {/* 3. Stats Section */}
           <motion.div
             variants={itemVariants}
-            className="md:col-span-1 md:row-span-1 bg-linear-to-br from-card to-bg border border-border/50 rounded-2xl p-6 flex flex-col items-center justify-center text-center gap-2 group border-r-primary/30"
+            className="md:col-span-1 md:row-span-1 bg-card border border-border/50 rounded-3xl p-6 flex flex-col items-center justify-center text-center gap-2 group"
           >
-            <div className="p-3 bg-primary/5 rounded-full mb-2 group-hover:scale-110 transition-transform">
-              <Cpu size={20} className="text-primary" />
+            <div className="p-3 bg-primary/5 rounded-full mb-1 group-hover:rotate-[360deg] transition-transform duration-700">
+              <Cpu size={24} className="text-primary" />
             </div>
-            <span className="text-3xl font-black italic tracking-tighter text-text">99.9%</span>
-            <span className="text-[9px] text-pText/50 uppercase font-black tracking-widest">
-              Uptime Delivery
+            <span className="text-3xl font-black italic tracking-tighter text-text">৯৯.৯%</span>
+            <span className="text-[10px] text-pText/60 uppercase font-black tracking-widest">
+              সফল ডেলিভারি
             </span>
           </motion.div>
-
-          {/* <motion.div
-            variants={itemVariants}
-            className="md:col-span-1 md:row-span-1 bg-linear-to-br from-card to-bg border border-border/50 rounded-2xl p-6 flex flex-col items-center justify-center text-center gap-2 group border-l-primary/30"
-          >
-            <div className="p-3 bg-primary/5 rounded-full mb-2 group-hover:scale-110 transition-transform">
-              <HardDrive size={20} className="text-primary" />
-            </div>
-            <span className="text-3xl font-black italic tracking-tighter text-text">24/7</span>
-            <span className="text-[9px] text-pText/50 uppercase font-black tracking-widest">
-              Neural Support
-            </span>
-          </motion.div> */}
         </motion.div>
       </div>
     </section>

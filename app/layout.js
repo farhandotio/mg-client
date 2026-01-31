@@ -20,15 +20,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: 'Gadget BDs – Buy Original Gadgets & Electronics Online in Bangladesh',
+  title: 'গ্যাজেট বিডিএস – বাংলাদেশে অরিজিনাল গ্যাজেট ও ইলেকট্রনিক্স কিনুন অনলাইনে',
   description:
-    'Shop a wide range of original gadgets, electronics, and devices online at the best prices in Bangladesh.',
+    'বাংলাদেশে সেরা দামে অরিজিনাল গ্যাজেট, ইলেকট্রনিক্স এবং লেটেস্ট ডিভাইসের বিশাল কালেকশন থেকে অনলাইনে শপিং করুন। দ্রুত ডেলিভারি ও বিশ্বস্ত সেবা।',
 };
 
 export default function RootLayout({ children }) {
   return (
     <html
-      lang="en"
+      lang="bn" 
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
@@ -39,7 +39,6 @@ export default function RootLayout({ children }) {
 
         <link rel="dns-prefetch" href="https://mg-server.vercel.app" />
 
-        <link rel="preload" href="BACKEND_URL_OF_HERO_IMAGE" as="image" />
       </head>
       <body
         className="antialiased min-h-screen flex flex-col bg-bg text-text"
@@ -48,7 +47,7 @@ export default function RootLayout({ children }) {
         <ReduxProvider>
           <AuthInit>
             <Navbar />
-            <main className="grow w-full">{children}</main>
+            <main className="grow w-full relative">{children}</main>
             <Footer />
           </AuthInit>
         </ReduxProvider>

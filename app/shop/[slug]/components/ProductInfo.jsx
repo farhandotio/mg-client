@@ -43,6 +43,7 @@ export default function ProductInfo({ product }) {
             quantity: quantity,
           })
         ).unwrap();
+        toast.success('কার্টে যোগ করা হয়েছে!');
       } else {
         const cartItem = {
           productId: product._id,
@@ -54,27 +55,28 @@ export default function ProductInfo({ product }) {
           stock: product.stock,
         };
         dispatch(addToCartLocal(cartItem));
+        toast.success('কার্টে যোগ করা হয়েছে!');
       }
     } catch (err) {
-      toast.error(err?.message || 'Failed to sync with neural network');
+      toast.error(err?.message || 'সার্ভারে সমস্যা হচ্ছে, আবার চেষ্টা করুন');
     } finally {
       setIsLocalLoading(false);
     }
   };
 
   return (
-    <div className="flex flex-col gap-6 md:gap-8 lg:pl-4">
+    <div className="flex flex-col gap-6 md:gap-7 lg:pl-4">
       <div className="space-y-4">
         <div className="flex flex-wrap items-center gap-3">
           <span className="px-3 py-1 bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-widest rounded-lg">
             {product.brand?.name || product.brand}
           </span>
           <span className="px-3 py-1 bg-card border border-border text-pText text-[10px] font-black uppercase tracking-widest rounded-lg">
-            SKU: {product.sku || 'N/A'}
+            এসকিউ (SKU): {product.sku || 'N/A'}
           </span>
         </div>
 
-        <h1 className="text-4xl md:text-5xl font-black  italic tracking-tighter leading-[1.1] text-text">
+        <h1 className="text-3xl font-black italic tracking-tighter leading-[1.1] text-text">
           {product.title}
         </h1>
 
@@ -97,28 +99,28 @@ export default function ProductInfo({ product }) {
           </div>
           <div className="w-1.5 h-1.5 rounded-full bg-border" />
           <span className="text-xs font-bold text-pText opacity-50 uppercase tracking-widest">
-            {product.ratings?.count || 0} Verified Reviews
+            {product.ratings?.count || 0}টি রিভিউ
           </span>
         </div>
       </div>
 
-      <div className="flex items-center gap-6 p-6 bg-card/40 border border-border/50 rounded-3xl backdrop-blur-sm w-fit">
+      <div className="flex items-center gap-3 rounded-3xl backdrop-blur-sm w-fit">
         <div className="flex flex-col">
-          <span className="text-5xl font-black text-text italic tracking-tighter leading-none">
+          <span className="text-2xl font-black text-text italic tracking-tighter leading-none">
             ৳{salePrice.toLocaleString()}
           </span>
-          <span className="text-[9px] font-black uppercase tracking-[0.2em] mt-2 ml-1 text-primary">
-            Live Market Price
+          <span className="text-[11px] font-black uppercase tracking-[0.2em] mt-2 ml-1 text-primary">
+            বর্তমান বাজার মূল্য
           </span>
         </div>
 
         {discountPercent > 0 && (
           <div className="flex flex-col border-l border-border/50 pl-6">
-            <span className="text-xl text-pText/30 line-through font-bold decoration-primary/40">
+            <span className="text-lg text-pText/30 line-through font-bold decoration-primary/40">
               ৳{basePrice.toLocaleString()}
             </span>
-            <span className="text-[10px] font-black text-bg bg-primary px-3 py-1 rounded-full mt-2 animate-pulse">
-              -{discountPercent}% OFF
+            <span className="text-[10px] font-black text-bg bg-primary px-2 py-0.5 rounded-full mt-1 animate-pulse">
+              -{discountPercent}% ছাড়
             </span>
           </div>
         )}
@@ -126,15 +128,15 @@ export default function ProductInfo({ product }) {
 
       <p className="text-pText/70 leading-relaxed font-medium italic border-l-4 border-primary/20 pl-6 max-w-xl">
         {product.shortDescription ||
-          'Engineered for elite performance and unmatched reliability in every mission.'}
+          'সেরা পারফরম্যান্স এবং অতুলনীয় স্থায়িত্ব নিশ্চিত করতে এটি বিশেষভাবে তৈরি।'}
       </p>
 
       {/* Actions */}
       <div className="space-y-4">
         <div className="flex flex-wrap gap-4">
-          <div className="flex justify-between px-5 items-center bg-card border border-border rounded-2xl p-1 h-14 w-40">
+          <div className="flex justify-between px-5 items-center bg-card border border-border rounded-xl p-1 h-14 w-40">
             <button
-              aria-label="minus quantity"
+              aria-label="পরিমাণ কমান"
               disabled={quantity <= 1 || isOutOfStock || isLocalLoading}
               onClick={() => setQuantity((q) => q - 1)}
               className="hover:text-primary transition-all disabled:opacity-20"
@@ -143,7 +145,7 @@ export default function ProductInfo({ product }) {
             </button>
             <span className="text-center font-black text-xl italic min-w-[2ch]">{quantity}</span>
             <button
-              aria-label="add quantity"
+              aria-label="পরিমাণ বাড়ান"
               disabled={quantity >= (product.stock || 50) || isOutOfStock || isLocalLoading}
               onClick={() => setQuantity((q) => q + 1)}
               className="hover:text-primary transition-all disabled:opacity-20"
@@ -154,7 +156,7 @@ export default function ProductInfo({ product }) {
 
           {/* Wishlist Button */}
           <button
-            aria-label="wish lish add"
+            aria-label="উইশলিস্টে যোগ করুন"
             onClick={() => setIsWishlisted(!isWishlisted)}
             className="h-14 w-14 flex items-center justify-center bg-card border border-border rounded-full hover:border-red-500/50 transition-all group"
           >
@@ -168,8 +170,8 @@ export default function ProductInfo({ product }) {
 
           <div className="flex-1 min-w-50">
             <Button
-              aria-label="add to cart"
-              text={isOutOfStock ? 'Out of Stock' : 'Deploy to Cart'}
+              aria-label="কার্টে যোগ করুন"
+              text={isOutOfStock ? 'স্টক শেষ' : 'কার্টে যোগ করুন'}
               icon={isLocalLoading ? Loader2 : ShoppingCart}
               onClick={handleAddToCart}
               loading={isLocalLoading || cartLoading}
@@ -179,20 +181,20 @@ export default function ProductInfo({ product }) {
           </div>
         </div>
 
-        {!isOutOfStock && (
+        {/* {!isOutOfStock && (
           <button
-            aria-label="buy now"
+            aria-label="সরাসরি কিনুন"
             className="w-full h-12 rounded-2xl border-2 border-primary/20 hover:border-primary text-primary text-[10px] font-black uppercase tracking-[0.3em] italic transition-all flex items-center justify-center gap-3 group"
           >
-            <Zap size={14} className="group-hover:fill-primary" /> Instant Transmission (Buy Now)
+            <Zap size={14} className="group-hover:fill-primary" /> সরাসরি অর্ডার করুন (Buy Now)
           </button>
-        )}
+        )} */}
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8 border-t border-border/20">
-        <InfoBadge icon={<Truck size={20} />} title="Fast Lane" desc="2-4 Day Delivery" />
-        <InfoBadge icon={<ShieldCheck size={20} />} title="Encrypted" desc="Secure Payment" />
-        <InfoBadge icon={<RotateCcw size={20} />} title="Fallback" desc="30-Day Returns" />
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <InfoBadge icon={<Truck size={20} />} title="দ্রুত ডেলিভারি" desc="২-৪ দিনের মধ্যে" />
+        <InfoBadge icon={<ShieldCheck size={20} />} title="নিরাপদ পেমেন্ট" desc="১০০% সুরক্ষিত" />
+        <InfoBadge icon={<RotateCcw size={20} />} title="সহজ রিটার্ন" desc="৩০ দিনের মধ্যে" />
       </div>
     </div>
   );
@@ -200,7 +202,7 @@ export default function ProductInfo({ product }) {
 
 function InfoBadge({ icon, title, desc }) {
   return (
-    <div className="flex items-center gap-4 p-4 rounded-2xl bg-card/20 border border-border/20 hover:bg-card/40 transition-all group">
+    <div className="flex items-center gap-4 p-3 rounded-lg bg-card/20 border border-border/20 hover:bg-card/40 transition-all group">
       <div className="text-primary group-hover:scale-110 transition-transform">{icon}</div>
       <div>
         <div className="text-[10px] font-black uppercase tracking-widest text-text leading-none">

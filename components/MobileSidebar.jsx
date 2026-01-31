@@ -1,6 +1,6 @@
 'use client';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, User, Box, ArrowRight } from 'lucide-react';
+import { X, User, Box, ArrowRight, Zap } from 'lucide-react';
 import Link from 'next/link';
 import Logo from './Logo';
 
@@ -31,9 +31,8 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
           >
             {/* Header */}
             <div className="flex items-center justify-between mb-10">
-              <Logo width={120} height={35} />
+              <Logo width={120} height={55} />
               <button
-                aria-label="closs button"
                 onClick={onClose}
                 className="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-xl text-primary active:scale-90 transition-transform"
               >
@@ -42,33 +41,33 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
             </div>
 
             {/* Navigation Links */}
-            <div className="flex flex-col gap-5 flex-1 overflow-y-auto no-scrollbar pb-6">
+            <div className="flex flex-col gap-6 flex-1 overflow-y-auto no-scrollbar pb-2">
               <Link
                 href="/"
                 onClick={onClose}
-                className="text-4xl font-black italic tracking-tighter uppercase leading-none"
+                className="text-2xl font-black italic tracking-tighter uppercase leading-none text-text"
               >
-                Home
+                হোম
               </Link>
               <Link
                 href="/shop"
                 onClick={onClose}
-                className="text-4xl font-black italic tracking-tighter uppercase leading-none"
+                className="text-2xl font-black italic tracking-tighter uppercase leading-none text-text"
               >
-                Shop
+                শপ
               </Link>
               <Link
                 href="/shop?productType=HotDeals"
                 onClick={onClose}
-                className="text-4xl font-black italic tracking-tighter uppercase leading-none text-primary"
+                className="text-2xl font-black italic tracking-tighter uppercase leading-none text-primary flex items-center gap-2"
               >
-                Hot Deals
+                ডিলস <Zap size={30} fill="currentColor" />
               </Link>
 
               {/* Dynamic Categories Section */}
-              <div className="mt-6 space-y-4 pt-8 border-t border-border/50">
-                <p className="text-[10px] font-black uppercase text-pText tracking-[0.3em]">
-                  Module_Registry
+              <div className="space-y-4 pt-3 border-t border-border/50">
+                <p className="text-[10px] font-black uppercase text-pText/50 tracking-[0.3em]">
+                  ক্যাটাগরি সমূহ
                 </p>
                 <div className="grid gap-3">
                   {categories && categories.length > 0 ? (
@@ -77,40 +76,40 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
                         key={cat._id || cat.slug}
                         href={`/shop?category=${cat.slug}`}
                         onClick={onClose}
-                        className="group flex items-center justify-between p-4 bg-bg/50 border border-border/50 rounded-2xl transition-all active:bg-primary/5"
+                        className="group flex items-center justify-between p-4 bg-bg/40 border border-border/30 rounded-2xl transition-all active:bg-primary/5"
                       >
                         <div className="flex items-center gap-4">
-                          <div className="w-10 h-10 rounded-xl bg-card border border-border/50 flex items-center justify-center text-primary overflow-hidden">
+                          <div className="w-10 h-10 rounded-xl bg-card border border-border/50 flex items-center justify-center text-primary overflow-hidden shadow-inner">
                             {cat.image?.url ? (
                               <img
                                 src={cat.image.url}
-                                alt=""
+                                alt={cat.name}
                                 className="w-full h-full object-cover p-1.5"
                               />
                             ) : (
                               <Box size={18} />
                             )}
                           </div>
-                          <span className="font-bold text-sm uppercase tracking-tight">
+                          <span className="font-bold text-sm tracking-tight text-text">
                             {cat.name}
                           </span>
                         </div>
                         <ArrowRight
                           size={14}
-                          className="opacity-20 group-hover:opacity-100 group-hover:translate-x-1 transition-all"
+                          className="text-primary opacity-40 group-hover:opacity-100 transition-all"
                         />
                       </Link>
                     ))
                   ) : (
                     <div className="py-4 text-[10px] font-black uppercase opacity-20 italic">
-                      Scanning for sectors...
+                      লোড হচ্ছে...
                     </div>
                   )}
                 </div>
               </div>
             </div>
 
-            {/* User Action Button */}
+            {/* Bottom Action Button */}
             <div className="pt-6 border-t border-border/50">
               <Link
                 href={
@@ -121,14 +120,14 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
                       : '/profile'
                 }
                 onClick={onClose}
-                className="flex items-center gap-3 p-5 bg-primary text-bg rounded-3xl font-black justify-center shadow-[0_10px_30px_rgba(var(--primary-rgb),0.3)] uppercase text-[10px] tracking-[0.2em] active:scale-95 transition-all"
+                className="flex items-center gap-3 p-5 bg-primary text-bg rounded-2xl font-black justify-center shadow-[0_10px_30px_rgba(var(--primary-rgb),0.3)] uppercase text-[11px] tracking-widest active:scale-95 transition-all"
               >
                 <User size={18} />
                 {!isAuthenticated
-                  ? 'Initialize Login'
+                  ? 'লগইন করুন'
                   : user?.role === 'admin'
-                    ? 'System Dashboard'
-                    : 'User Account'}
+                    ? 'অ্যাডমিন ড্যাশবোর্ড'
+                    : 'প্রোফাইল দেখুন'}
               </Link>
             </div>
           </motion.aside>

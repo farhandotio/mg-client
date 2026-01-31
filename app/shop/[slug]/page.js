@@ -8,7 +8,7 @@ import {
   clearSingleProduct,
 } from '@/store/features/productSlice';
 
-// Sub-components
+// সাব-কম্পোনেন্টস
 import Breadcrumbs from './components/Breadcrumbs';
 import ProductGallery from './components/ProductGallery';
 import ProductInfo from './components/ProductInfo';
@@ -21,33 +21,32 @@ export default function ProductDetailsPage({ params }) {
   const slug = unwrappedParams.slug;
   const dispatch = useDispatch();
 
- const {
-   singleProduct: product,
-   relatedProducts,
-   loading,
-   error,
- } = useSelector((state) => state.products);
+  const {
+    singleProduct: product,
+    relatedProducts,
+    loading,
+    error,
+  } = useSelector((state) => state.products);
 
-  // ১. স্লাগ পরিবর্তন হলে ডাটা ফেচ করা
+  // ১. ডাটা ফেচিং লজিক
   useEffect(() => {
     dispatch(clearSingleProduct());
     if (slug) dispatch(fetchProductBySlug(slug));
   }, [slug, dispatch]);
 
-  // ২. রিলেটেড প্রোডাক্ট ফেচ করা (ক্যাটাগরি আইডি পাওয়ার পর)
+  // ২. রিলেটেড প্রোডাক্ট ফেচ করা
   useEffect(() => {
     if (product?._id && product?.category?._id) {
       dispatch(fetchRelatedProducts(product.category._id));
     }
   }, [product?._id, product?.category?._id, dispatch]);
 
-  // সিংক্রোনাইজিং চেক
   const isSyncing = loading || !product || product.slug !== slug;
 
   if (isSyncing && !error) return <LoadingScreen />;
   if (error || (!product && !loading)) return <ErrorScreen />;
 
-  // ৩. Structured Data JSON-LD
+  // SEO-র জন্য স্ট্রাকচার্ড ডাটা (কন্টেন্ট বাংলায় রাখা হয়েছে)
   const structuredData = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -57,7 +56,6 @@ export default function ProductDetailsPage({ params }) {
         image: product.images?.map((img) => img.url) || [],
         description:
           product.shortDescription || product.description?.replace(/<[^>]*>?/gm, '').slice(0, 160),
-        sku: product.sku || product._id,
         brand: { '@type': 'Brand', name: product.brand?.name || 'Gadget BDs' },
         offers: {
           '@type': 'Offer',
@@ -65,41 +63,25 @@ export default function ProductDetailsPage({ params }) {
           price: product.price?.discounted || product.price?.base || 0,
           availability:
             product.stock > 0 ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
-          url: `https://www.gadgetbds.com/shop/${product.slug}`,
         },
-      },
-      {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.gadgetbds.com/' },
-          {
-            '@type': 'ListItem',
-            position: 2,
-            name: product.category?.name,
-            item: `https://www.gadgetbds.com/shop?category=${product.category?.slug}`,
-          },
-          { '@type': 'ListItem', position: 3, name: product.title },
-        ],
       },
     ],
   };
 
   return (
-    <div className="bg-bg min-h-screen pt-6 pb-24 px-4 md:px-12 animate-in fade-in duration-700 overflow-x-hidden">
-      {/* JSON-LD for SEO */}
+    <div className="bg-bg min-h-screen pt-6 pb-24  animate-in fade-in duration-700 overflow-x-hidden">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto px-4 md:px-8">
         <Breadcrumbs category={product.category} title={product.title} />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
-          {/* Product Gallery Section */}
-          <div className="lg:col-span-6 md:sticky top-28 z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+          {/* গ্যালারি সেকশন */}
+          <div className="lg:col-span-6 md:sticky top-4 z-10">
             <div className="relative group">
-              {/* Decorative Neon Glow */}
               <div className="absolute -inset-1 bg-linear-to-r from-primary/20 to-transparent blur-2xl opacity-0 group-hover:opacity-100 transition duration-1000"></div>
 
               <ProductGallery
@@ -111,17 +93,17 @@ export default function ProductDetailsPage({ params }) {
             </div>
           </div>
 
-          {/* Product Info Section */}
+          {/* তথ্য সেকশন */}
           <div className="lg:col-span-6">
             <ProductInfo product={product} />
           </div>
         </div>
 
-        {/* Technical Specs & Reviews */}
-        <div className="mt-24 space-y-24">
+        {/* স্পেসিফিকেশন এবং রিলেটেড আইটেমস */}
+        <div className="mt-16 space-y-12">
           <ProductTabs product={product} />
 
-          <div className="border-t border-border/40 pt-16">
+          <div className="border-t border-border/40 pt-8">
             <RelatedProducts products={relatedProducts} currentId={product._id} />
           </div>
         </div>
@@ -130,7 +112,7 @@ export default function ProductDetailsPage({ params }) {
   );
 }
 
-// ------------------- UI Helpers -------------------
+// ------------------- বাংলায় UI হেল্পার্স -------------------
 
 const LoadingScreen = () => (
   <div className="fixed inset-0 z-9999 bg-bg flex flex-col items-center justify-center gap-8">
@@ -141,8 +123,8 @@ const LoadingScreen = () => (
       </div>
     </div>
     <div className="flex flex-col items-center gap-3">
-      <h2 className="text-primary font-black uppercase tracking-[0.8em] text-[10px] ml-[0.8em]">
-        Accessing_Vault
+      <h2 className="text-primary font-black uppercase tracking-[0.5em] text-[10px] ml-[0.5em]">
+        তথ্য লোড হচ্ছে...
       </h2>
       <div className="w-48 h-0.5 bg-white/5 overflow-hidden rounded-full">
         <div className="h-full bg-primary animate-progress-line" />
@@ -165,31 +147,31 @@ const LoadingScreen = () => (
 );
 
 const ErrorScreen = () => (
-  <div className="min-h-[90vh] flex flex-col items-center justify-center text-center px-6 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent">
+  <div className="min-h-[90vh] flex flex-col items-center justify-center text-center px-6">
     <div className="relative mb-12">
-      <h2 className="text-[15vw] font-black uppercase italic tracking-tighter text-white/30 leading-none select-none">
-        404_VOID
+      <h2 className="text-[12vw] font-black uppercase italic tracking-tighter text-white/10 leading-none select-none">
+        NOT_FOUND
       </h2>
       <div className="absolute inset-0 flex flex-col items-center justify-center space-y-2">
-        <span className="text-primary font-black uppercase tracking-[0.5em] text-xs">
-          Signal_Interrupted
+        <span className="text-primary font-black uppercase tracking-[0.3em] text-xs">
+          পণ্যটি খুঁজে পাওয়া যায়নি
         </span>
         <p className="text-pText/60 text-[10px] uppercase font-bold tracking-widest">
-          Hardware ID not found in current sector
+          আপনার অনুরোধকৃত আইটেমটি আমাদের ডাটাবেজে নেই
         </p>
       </div>
     </div>
 
     <Link href="/shop" className="flex items-center gap-6 group">
-      <div className="w-14 h-14 rounded-full border border-primary/30 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all duration-500 group-hover:shadow-[0_0_30px_rgba(var(--color-primary),0.4)]">
+      <div className="w-14 h-14 rounded-full border border-primary/30 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all duration-500">
         <ArrowLeft size={22} className="group-hover:text-bg transition-colors" />
       </div>
       <div className="text-left">
         <span className="block text-[9px] font-black uppercase tracking-[0.3em] text-pText/40 mb-1">
-          Return to Grid
+          পূর্বের পাতায় ফিরুন
         </span>
         <span className="block text-lg font-black uppercase italic tracking-tighter group-hover:text-primary transition-colors">
-          Initialize_Shop
+          শপ পেজে যান
         </span>
       </div>
     </Link>

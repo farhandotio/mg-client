@@ -22,7 +22,7 @@ export default function Logo({ width = 170, height = 55, showText = false, class
           priority 
           fetchPriority="high"
           decoding="async"
-          className="object-contain w-full h-full scale-110"
+          className="object-contain w-full h-full"
           quality={100} 
         />
       </div>

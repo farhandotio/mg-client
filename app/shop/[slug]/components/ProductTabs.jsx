@@ -7,21 +7,20 @@ export default function ProductTabs({ product }) {
   const [activeTab, setActiveTab] = useState('description');
 
   const tabs = [
-    { id: 'description', label: 'Overview', icon: <FileText size={16} /> },
-    { id: 'specs', label: 'Specs', icon: <Settings size={16} /> },
-    { id: 'reviews', label: 'Reviews', icon: <Star size={16} /> },
+    { id: 'description', label: 'সারসংক্ষেপ', icon: <FileText size={16} /> },
+    { id: 'specs', label: 'বৈশিষ্ট্য', icon: <Settings size={16} /> },
+    { id: 'reviews', label: 'মতামত', icon: <Star size={16} /> },
   ];
 
-  // ডাটা চেক করার জন্য একটি সেফটি ভেরিয়েবল
   const specs = product?.specifications || [];
 
   return (
-    <div className="mt-20 md:mt-32 border-t border-border/20 pt-12">
+    <div className="mt-10 border-t border-border/20 pt-5">
       {/* --- Navigation Layout --- */}
       <div className="flex items-center gap-8 md:gap-12 mb-10 overflow-x-auto no-scrollbar border-b border-border/10">
         {tabs.map((tab) => (
           <button
-            aria-label="bounce tab"
+            aria-label={tab.label}
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className="relative flex items-center gap-2.5 pb-4 shrink-0 transition-all group"
@@ -34,7 +33,7 @@ export default function ProductTabs({ product }) {
               {tab.icon}
             </span>
             <span
-              className={`font-black uppercase tracking-[0.25em] text-[10px] md:text-[11px] transition-colors duration-300 ${
+              className={`font-black uppercase text-xs md:text-sm transition-colors duration-300 ${
                 activeTab === tab.id ? 'text-text' : 'text-pText/40 group-hover:text-pText'
               }`}
             >
@@ -53,7 +52,7 @@ export default function ProductTabs({ product }) {
       </div>
 
       {/* --- Content Area --- */}
-      <div className="min-h-75">
+      <div className="min-h-45">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
@@ -65,7 +64,7 @@ export default function ProductTabs({ product }) {
             {activeTab === 'description' && (
               <div className="max-w-4xl">
                 <p className="text-pText/80 text-base md:text-lg leading-relaxed italic font-medium border-l-2 border-primary/20 pl-6">
-                  {product?.description || 'No description available for this unit.'}
+                  {product?.description || 'এই পণ্যটির জন্য কোন বর্ণনা পাওয়া যায়নি।'}
                 </p>
               </div>
             )}
@@ -78,7 +77,7 @@ export default function ProductTabs({ product }) {
                       key={item._id || i}
                       className="flex justify-between items-center py-5 border-b border-border/10 group/item transition-all hover:px-2"
                     >
-                      <span className="text-pText/40 font-black uppercase text-[9px] tracking-[0.2em] group-hover/item:text-primary transition-colors">
+                      <span className="text-pText/40 font-black uppercase text-[9px] group-hover/item:text-primary transition-colors">
                         {item.key}
                       </span>
                       <span className="font-bold text-sm tracking-tight text-text/90 italic">
@@ -89,8 +88,8 @@ export default function ProductTabs({ product }) {
                 ) : (
                   <div className="col-span-full py-10 flex flex-col items-center opacity-20">
                     <Database size={40} className="mb-4" />
-                    <p className="text-[10px] uppercase font-black tracking-widest">
-                      Technical Specs Encrypted or Missing
+                    <p className="text-[10px] uppercase font-black tracking-widest text-center">
+                      কারিগরি তথ্য পাওয়া যায়নি
                     </p>
                   </div>
                 )}
@@ -100,14 +99,24 @@ export default function ProductTabs({ product }) {
             {activeTab === 'reviews' && (
               <div className="flex flex-col items-center justify-center py-16 text-center border-2 border-dashed border-border/20 rounded-3xl">
                 <Star className="text-primary/20 mb-4" size={32} />
-                <p className="text-pText font-black uppercase text-[10px] tracking-[0.3em]">
-                  Zero Transmissions Detected
+                <p className="text-pText font-black uppercase text-[10px]">
+                  এখনও কোনো রিভিউ দেওয়া হয়নি
                 </p>
               </div>
             )}
           </motion.div>
         </AnimatePresence>
       </div>
+
+      <style jsx>{`
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </div>
   );
 }

@@ -23,34 +23,34 @@ export default function Footer() {
   const footerData = useMemo(
     () => ({
       quickLinks: [
-        { name: 'Shop All Units', href: '/shop' },
-        { name: 'Smartphones', href: '/shop?category=smartphones' },
-        { name: 'Laptops', href: '/shop?category=laptops' },
-        { name: 'Accessories', href: '/shop?category=accessories' },
-        { name: 'Hot Deals', href: '/shop?productType=HotDeals' },
+        { name: 'সব পণ্য দেখুন', href: '/shop' },
+        { name: 'স্মার্টফোন', href: '/shop?category=smartphones' },
+        { name: 'ল্যাপটপ', href: '/shop?category=laptops' },
+        { name: 'এক্সেসরিজ', href: '/shop?category=accessories' },
+        { name: 'হট ডিলস', href: '/shop?productType=HotDeals' },
       ],
       support: [
-        { name: 'Command Center', href: '/contact' },
-        { name: 'Warranty Protocols', href: '/policies/warranty' },
-        { name: 'Return & Refund', href: '/policies/refund' },
-        { name: 'Shipping Info', href: '/policies/shipping' },
-        { name: 'Privacy Shield', href: '/policies/privacy' },
+        { name: 'যোগাযোগ', href: '/contact' },
+        { name: 'ওয়ারেন্টি পলিসি', href: '/policies/warranty' },
+        { name: 'রিটার্ন ও রিফান্ড', href: '/policies/refund' },
+        { name: 'শিপিং তথ্য', href: '/policies/shipping' },
+        { name: 'প্রাইভেসি পলিসি', href: '/policies/privacy' },
       ],
       features: [
         {
           icon: <Truck size={28} />,
-          title: 'Rapid Dispatch',
-          desc: 'Zone-wide Delivery',
+          title: 'দ্রুত ডেলিভারি',
+          desc: 'সারা বাংলাদেশে হোম ডেলিভারি',
         },
         {
           icon: <ShieldCheck size={28} />,
-          title: 'Secure Vault',
-          desc: '256-bit Encryption',
+          title: 'নিরাপদ পেমেন্ট',
+          desc: '১০০% পেমেন্ট সুরক্ষা',
         },
         {
           icon: <RotateCcw size={28} />,
-          title: 'Hardware Reset',
-          desc: '7-Day Return Policy',
+          title: 'সহজ রিটার্ন',
+          desc: '৭ দিনের রিটার্ন পলিসি',
         },
       ],
       socials: [
@@ -63,28 +63,33 @@ export default function Footer() {
     []
   );
 
-  if (pathname.startsWith('/admin')) return null;
+  // --- কন্ডিশনাল রেন্ডারিং (Admin এবং Auth পেজে হাইড থাকবে) ---
+  const isAuthPage = pathname === '/auth';
+  const isAdminPage = pathname.startsWith('/admin');
+
+  if (isAdminPage || isAuthPage) return null;
 
   return (
-    <footer className="bg-card backdrop-blur-xl border-t border-border/50 relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none select-none" />
+    <footer className="bg-card/50 backdrop-blur-3xl border-t border-white/5 relative overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none select-none" />
 
-      <div className="max-w-7xl mx-auto px-6 pt-16 pb-8 relative z-10">
-        {/* --- Top Features Section --- */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-12">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 pt-12 md:pt-20 pb-10 relative z-10">
+        {/* ১. টপ ফিচারস - গ্লাস কার্ড ডিজাইন */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pb-16">
           {footerData.features.map((item, index) => (
             <div
               key={index}
-              className="group flex items-center gap-5 p-6 bg-bg/20 border border-white/5 rounded-3xl hover:border-primary/30 transition-colors duration-500 hover:bg-bg/40"
+              className="group flex items-center gap-6 p-6 bg-white/[0.02] border border-white/5 rounded-[2rem] hover:border-primary/20 transition-all duration-500 hover:bg-white/[0.05]"
             >
-              <div className="text-primary bg-primary/10 p-4 rounded-2xl group-hover:scale-110 group-hover:bg-primary group-hover:text-bg transition-transform duration-500">
+              <div className="text-primary bg-primary/10 p-4 rounded-2xl group-hover:scale-110 group-hover:bg-primary group-hover:text-bg transition-all duration-500 shadow-lg shadow-primary/5">
                 {item.icon}
               </div>
-              <div>
-                <h4 className="text-text font-black text-lg tracking-tighter uppercase italic">
+              <div className="space-y-1">
+                <h4 className="text-text font-black text-lg tracking-tight leading-none">
                   {item.title}
                 </h4>
-                <p className="text-pText text-[10px] font-bold uppercase tracking-[0.2em] opacity-60">
+                <p className="text-pText/50 text-[10px] font-black uppercase tracking-widest italic">
                   {item.desc}
                 </p>
               </div>
@@ -92,46 +97,43 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="h-px bg-linear-to-r from-transparent via-border to-transparent mb-16" />
+        <div className="h-px bg-linear-to-r from-transparent via-white/5 to-transparent mb-16" />
 
-        {/* --- Main Content Grid --- */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-16">
-          {/* Brand Identity */}
+        {/* ২. মেইন কন্টেন্ট গ্রিড */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-20">
+          {/* ব্র্যান্ড ইনফো */}
           <div className="lg:col-span-4 space-y-8">
-            <Logo width={140} height={40} />
-            <p className="text-pText text-base leading-relaxed max-w-sm font-medium">
-              Engineering the next generation of gadget retail. We provide high-performance hardware
-              with a focus on reliability and future-proof technology.
+            <Logo width={120} height={45} />
+            <p className="text-pText/70 text-sm leading-relaxed max-w-sm font-medium italic">
+              আমরা শুধু পণ্য বিক্রি করি না, আমরা আপনার জীবনকে আধুনিক প্রযুক্তির ছোঁয়ায় আরও সহজ এবং
+              স্মার্ট করে তুলি।
             </p>
-            <div className="flex gap-3">
+            <div className="flex gap-4">
               {footerData.socials.map(({ Icon, label }, i) => (
                 <button
                   key={i}
-                  aria-label={label} 
-                  className="w-10 h-10 rounded-xl bg-white/5 border border-border/50 flex items-center justify-center text-pText hover:bg-primary hover:text-bg transition-all duration-300 active:scale-90"
+                  aria-label={label}
+                  className="w-11 h-11 rounded-2xl bg-white/5 border border-white/5 flex items-center justify-center text-pText hover:bg-primary hover:text-bg hover:-translate-y-1 transition-all duration-300 shadow-xl"
                 >
-                  <Icon size={18} />
+                  <Icon size={20} />
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Navigation Links */}
+          {/* কুইক লিঙ্কস */}
           <div className="lg:col-span-2">
-            <h4 className="text-primary font-black uppercase text-[10px] tracking-[0.4em] mb-8">
-              Sectors
+            <h4 className="text-primary font-black uppercase text-[10px] tracking-[0.3em] mb-8">
+              লিঙ্কসমূহ
             </h4>
             <ul className="space-y-4">
               {footerData.quickLinks.map((link, index) => (
                 <li key={index}>
                   <Link
                     href={link.href}
-                    className="text-pText text-sm tracking-tighter hover:text-primary transition-colors flex items-center gap-2 group"
+                    className="text-pText/60 text-[13px] font-bold hover:text-primary transition-all flex items-center gap-2 group italic"
                   >
-                    <div
-                      className="w-0 h-0.5 bg-primary group-hover:w-3 transition-all"
-                      aria-hidden="true"
-                    />
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary/20 group-hover:bg-primary transition-colors" />
                     {link.name}
                   </Link>
                 </li>
@@ -139,22 +141,19 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Service & Policy Links */}
+          {/* সহযোগিতা */}
           <div className="lg:col-span-2">
-            <h4 className="text-primary font-black uppercase text-[10px] tracking-[0.4em] mb-8">
-              Protocols
+            <h4 className="text-primary font-black uppercase text-[10px] tracking-[0.3em] mb-8">
+              সহযোগিতা
             </h4>
             <ul className="space-y-4">
               {footerData.support.map((link, index) => (
                 <li key={index}>
                   <Link
                     href={link.href}
-                    className="text-pText text-sm tracking-tighter hover:text-primary transition-colors flex items-center gap-2 group"
+                    className="text-pText/60 text-[13px] font-bold hover:text-primary transition-all flex items-center gap-2 group italic"
                   >
-                    <div
-                      className="w-0 h-0.5 bg-primary group-hover:w-3 transition-all"
-                      aria-hidden="true"
-                    />
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary/20 group-hover:bg-primary transition-colors" />
                     {link.name}
                   </Link>
                 </li>
@@ -162,57 +161,62 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Newsletter & Contact */}
+          {/* নিউজলেটার */}
           <div className="lg:col-span-4 space-y-8">
-            <h4 className="text-primary font-black uppercase text-[10px] tracking-[0.4em]">
-              Signal_Subscription
-            </h4>
-            <form className="relative group" onSubmit={(e) => e.preventDefault()}>
-              <label htmlFor="newsletter-email" className="sr-only">
-                Email Address
-              </label>
-              <input
-                id="newsletter-email"
-                type="email"
-                placeholder="Enter Neural ID (Email)"
-                className="w-full bg-bg/50 border-2 border-border/30 rounded-2xl px-6 py-4 text-sm outline-none focus:border-primary/50 transition-all font-bold pr-14 italic"
-              />
-              <button
-                type="submit"
-                aria-label="Subscribe to newsletter" // Fix: Accessibility name added
-                className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-bg hover:scale-105 transition-transform shadow-lg shadow-primary/20"
-              >
-                <Send size={18} />
-              </button>
-            </form>
+            <div className="space-y-4">
+              <h4 className="text-primary font-black uppercase text-[10px] tracking-[0.3em]">
+                নিউজলেটার
+              </h4>
+              <form className="relative group" onSubmit={(e) => e.preventDefault()}>
+                <input
+                  type="email"
+                  placeholder="ইমেইল অ্যাড্রেস লিখুন"
+                  className="w-full bg-white/[0.03] border-2 border-white/5 rounded-2xl px-6 py-4 text-xs outline-none focus:border-primary/30 transition-all font-bold pr-14 italic"
+                />
+                <button
+                  type="submit"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-bg shadow-lg shadow-primary/20 active:scale-90 transition-transform"
+                >
+                  <Send size={18} strokeWidth={2.5} />
+                </button>
+              </form>
+            </div>
 
-            <address className="not-italic space-y-4 bg-bg/20 p-6 rounded-3xl border border-white/5">
-              <div className="flex items-center gap-4 text-pText text-[11px] font-black uppercase tracking-widest">
-                <Phone size={16} className="text-primary" aria-hidden="true" />
-                <a href="tel:+8801XXXXXXXXX">+880 1XXX-XXXXXX</a>
+            <address className="not-italic space-y-4 bg-white/[0.02] p-6 rounded-3xl border border-white/5">
+              <div className="flex items-center gap-4 text-pText text-[11px] font-black italic">
+                <Phone size={16} className="text-primary" />
+                <a href="tel:+8801XXXXXXXXX" className="hover:text-primary transition-colors">
+                  +৮৮০ ১XXX-XXXXXX
+                </a>
               </div>
-              <div className="flex items-center gap-4 text-pText text-[11px] font-black uppercase tracking-widest">
-                <Mail size={16} className="text-primary" aria-hidden="true" />
-                <a href="mailto:HQ@GADGETBD.TECH">HQ@GADGETBD.TECH</a>
+              <div className="flex items-center gap-4 text-pText text-[11px] font-black italic">
+                <Mail size={16} className="text-primary" />
+                <a
+                  href="mailto:HQ@GADGETBD.TECH"
+                  className="hover:text-primary transition-colors uppercase"
+                >
+                  HQ@GADGETBD.TECH
+                </a>
               </div>
             </address>
           </div>
         </div>
 
-        {/* --- Bottom Footer Bar --- */}
-        <div className="pt-8 border-t border-border/30 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-3 text-pText/40 text-[9px] font-black uppercase tracking-[0.3em]">
-            <span>System_Run: 2026</span>
-            <div className="w-1 h-1 rounded-full bg-primary animate-pulse" aria-hidden="true" />
-            <span>Gadget BDs Global Node</span>
+        {/* ৩. বটম বার */}
+        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex items-center gap-3 text-pText/30 text-[9px] font-black uppercase tracking-[0.3em]">
+            <span>কপিরাইট © ২০২৬</span>
+            <span className="text-primary">●</span>
+            <span>গ্যাজেট বিডিএস</span>
           </div>
 
-          <div className="flex items-center gap-8 grayscale opacity-50 hover:opacity-100 transition-all duration-700">
-            <Zap size={16} className="text-primary" aria-hidden="true" />
-            <div className="h-3 w-px bg-white/10" aria-hidden="true" />
-            <span className="text-[9px] font-black uppercase tracking-widest italic">
-              Encryption: Active
-            </span>
+          <div className="flex items-center gap-8 opacity-40 hover:opacity-100 transition-opacity">
+            <div className="flex items-center gap-2">
+              <Zap size={14} className="text-primary fill-current animate-pulse" />
+              <span className="text-[9px] font-black uppercase tracking-widest italic">
+                পাওয়ারড বাই নেক্সট কোড
+              </span>
+            </div>
           </div>
         </div>
       </div>

@@ -33,7 +33,7 @@ export default function Button({
     text-text whitespace-nowrap rounded-xl transition-all duration-500 w-full cursor-pointer 
     disabled:opacity-70 
     bg-card border max-md:bg-primary max-md:text-white border-border 
-    hover:border-transparent hover:scale-102 hover:-translate-y-1
+    hover:border-transparent hover:-translate-y-[1px]
     ${sizeClasses} ${className}
   `;
 

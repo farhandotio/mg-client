@@ -12,15 +12,15 @@
   --color-border: #d8c5c5;
 }
 
-/* .light {
-  --color-bg: #ffffff;
-  --color-pText: #534f4f;
-  --color-text: #202020;
+.light {
+  --color-bg: #f1f1f1;
+  --color-pText: #6d6b6b;
+  --color-text: #272727;
   --color-primary: #ff6f5c;
   --color-secondary: #ffc65c;
-  --color-card: #fff4f4;
-  --color-border: #d8c5c5;
-} */
+  --color-card: #ffffff;
+  --color-border: #d8d8d8;
+}
 
 .dark {
   --color-bg: #242424;

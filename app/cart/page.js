@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
-import { ShoppingBag, Loader2, ArrowLeft, Trash2, Plus, Minus, Hash } from 'lucide-react';
+import { ShoppingBag, Loader2, ArrowLeft, Trash2, Plus, Minus } from 'lucide-react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import {
   removeFromCartAPI,
@@ -13,7 +13,6 @@ import {
 import OrderSummary from './OrderSummary';
 import { toast } from 'react-hot-toast';
 
-// --- Internal CartItem Component ---
 const InternalCartItem = React.memo(({ item, onUpdate, onRemove, isProcessing }) => {
   const currentPrice = Number(item?.price || 0);
   const currentQty = Number(item?.quantity || 1);
@@ -21,92 +20,72 @@ const InternalCartItem = React.memo(({ item, onUpdate, onRemove, isProcessing })
 
   return (
     <div
-      className={`group relative mb-4 md:mb-6 transition-all duration-300 ${
-        isProcessing ? 'opacity-50 pointer-events-none' : 'opacity-100'
-      }`}
+      className={`relative transition-all ${isProcessing ? 'opacity-50 pointer-events-none' : ''}`}
     >
-      {/* Decorative Line - Desktop Only */}
-      <div className="hidden md:block absolute -left-2 top-8 bottom-8 w-1 bg-primary/20 group-hover:bg-primary transition-all duration-500 rounded-full shadow-[0_0_10px_rgba(41,252,86,0.3)]" />
-
-      <div className="relative flex items-center gap-3 md:gap-8 bg-card/10 backdrop-blur-xl border border-border/40 rounded-2xl md:rounded-tr-[3rem] md:rounded-bl-[3rem] p-3 md:p-6 transition-all duration-500 hover:border-primary/30 shadow-xl">
-        {/* Image Section - Optimized for small screens */}
-        <div className="relative w-20 h-20 md:w-40 md:h-36 shrink-0">
-          <div className="w-full h-full overflow-hidden rounded-xl md:clip-path-polygon border border-border/30 bg-bg/80">
-            <img
-              src={item?.image || '/placeholder.png'}
-              alt={item?.title}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              onError={(e) => {
-                e.target.src = '/placeholder.png';
-              }}
-            />
-          </div>
+      <div className="flex items-center gap-4 bg-card/20 backdrop-blur-md border border-border/40 rounded-2xl p-3 hover:border-primary/40 transition-colors shadow-sm">
+        {/* অপ্টিমাইজড ইমেজ বক্স - সাইজ কমানো হয়েছে */}
+        <div className="relative w-20 h-20 md:w-24 md:h-24 shrink-0 bg-bg/50 rounded-xl overflow-hidden border border-border/20">
+          <img
+            src={item?.image || '/placeholder.png'}
+            alt={item?.title}
+            loading="lazy"
+            className="w-full h-full object-contain rounded-xl transition-transform duration-500 hover:scale-110"
+          />
         </div>
 
-        {/* Content Section */}
-        <div className="flex-1 min-w-0 flex flex-col justify-between h-full">
-          <div className="flex justify-between items-start gap-2">
-            <div className="space-y-0.5 md:space-y-1 truncate">
-              <div className="flex items-center gap-1.5 text-primary">
-                <Hash size={8} className="animate-pulse hidden md:block" />
-                <span className="text-[7px] md:text-[10px] font-black uppercase tracking-[0.2em] opacity-60">
-                  {item?.brand || 'Neural'}
-                </span>
-              </div>
-              <h3 className="text-xs md:text-xl font-black text-text italic tracking-tighter leading-tight group-hover:text-primary transition-colors truncate md:whitespace-normal md:line-clamp-1">
+        {/* তথ্য ও বিবরণ - আরও কম্প্যাক্ট */}
+        <div className="flex-1 min-w-0">
+          <div className="flex justify-between items-start mb-2">
+            <div className="truncate pr-4">
+              <h3 className="text-sm md:text-base font-bold text-text truncate group-hover:text-primary transition-colors">
                 {item?.title}
               </h3>
+              <p className="text-[10px] text-pText/50 uppercase font-black tracking-tighter">
+                {item?.brand || 'Premium Gear'}
+              </p>
             </div>
-
             <button
-              aria-label="remove-item"
               onClick={() => onRemove(item.productId)}
-              className="shrink-0 w-7 h-7 md:w-10 md:h-10 flex items-center justify-center rounded-full border border-border/20 text-pText/40 hover:text-red-500 hover:border-red-500 transition-all bg-white/5"
+              className="p-2 text-pText/40 hover:text-red-500 hover:bg-red-500/5 rounded-full transition-all"
             >
-              <Trash2 size={12} className="md:size-4" />
+              <Trash2 size={16} />
             </button>
           </div>
 
-          <div className="flex justify-between items-center mt-3 md:mt-6">
-            {/* Quantity Controller - Compact on mobile */}
-            <div className="flex items-center bg-bg/40 border border-white/5 rounded-lg md:rounded-full p-0.5">
+          <div className="flex justify-between items-center">
+            {/* ছোট সাইজের কোয়ান্টিটি কন্ট্রোল */}
+            <div className="flex items-center bg-bg/40 border border-border/20 rounded-lg p-0.5">
               <button
-                aria-label="update-item"
                 onClick={() => onUpdate(item.productId, -1)}
-                className="w-7 h-7 md:w-9 md:h-9 flex items-center justify-center text-pText hover:text-primary transition-colors"
+                className="w-7 h-7 flex items-center justify-center text-pText hover:text-primary transition-colors disabled:opacity-30"
                 disabled={isProcessing}
               >
-                <Minus size={10} />
+                <Minus size={14} />
               </button>
-
-              <div className="px-2 md:px-4 flex flex-col items-center min-w-28.5 md:min-w-12.5">
+              <div className="w-8 text-center">
                 {isProcessing ? (
-                  <Loader2 size={10} className="animate-spin text-primary" />
+                  <Loader2 size={12} className="animate-spin text-primary mx-auto" />
                 ) : (
-                  <span className="text-xs md:text-lg font-black font-mono text-text">
-                    {item.quantity}
-                  </span>
+                  <span className="text-sm font-bold text-text">{item.quantity}</span>
                 )}
               </div>
-
               <button
-                aria-label="update-item"
                 onClick={() => onUpdate(item.productId, 1)}
-                className="w-7 h-7 md:w-9 md:h-9 flex items-center justify-center text-pText hover:text-primary transition-colors"
+                className="w-7 h-7 flex items-center justify-center text-pText hover:text-primary transition-colors disabled:opacity-30"
                 disabled={currentQty >= stockLimit || isProcessing}
               >
-                <Plus size={10} />
+                <Plus size={14} />
               </button>
             </div>
 
-            {/* Price Display */}
+            {/* আধুনিক মূল্য প্রদর্শন */}
             <div className="text-right">
-              <p className="text-sm md:text-3xl font-black text-text italic tracking-tighter leading-none">
+              <p className="text-base md:text-xl font-black text-primary tracking-tighter">
                 ৳{(currentPrice * currentQty).toLocaleString()}
               </p>
-              <span className="hidden md:block text-[9px] font-black text-primary/50 uppercase">
-                Unit: ৳{currentPrice.toLocaleString()}
-              </span>
+              <p className="text-[9px] text-pText/40 font-bold">
+                ৳{currentPrice.toLocaleString()}/প্রতিটি
+              </p>
             </div>
           </div>
         </div>
@@ -134,13 +113,12 @@ export default function CartPage() {
     async (productId) => {
       const cleanId = String(productId);
       setProcessingId(cleanId);
-      const loadingToast = toast.loading('Removing unit...');
       try {
         if (user) await dispatch(removeFromCartAPI(cleanId)).unwrap();
         else dispatch(removeFromCartLocal(cleanId));
-        toast.success('Unit removed', { id: loadingToast });
+        toast.success('কার্ট আপডেট করা হয়েছে');
       } catch (err) {
-        toast.error('Failed to remove', { id: loadingToast });
+        toast.error('সমস্যা হয়েছে');
       } finally {
         setProcessingId(null);
       }
@@ -170,7 +148,7 @@ export default function CartPage() {
           dispatch(updateQuantityLocal({ productId: cleanId, delta }));
         }
       } catch (err) {
-        toast.error(err?.message || 'Update failed');
+        toast.error('ব্যর্থ হয়েছে');
       } finally {
         setProcessingId(null);
       }
@@ -186,42 +164,35 @@ export default function CartPage() {
   if (!mounted) return null;
 
   return (
-    <section className="min-h-screen bg-bg pt-6 pb-20 md:py-16 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
-        {/* Header - Compact for Mobile */}
-        <header className="mb-8 md:mb-12 flex items-end justify-between border-b border-white/5 pb-4">
-          <div>
-            <h1 className="text-2xl md:text-6xl font-black text-text tracking-tighter uppercase italic">
-              Storage <span className="text-primary">Bay</span>
+    <section className="min-h-screen bg-bg pb-20">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 pt-6">
+        {/* ছোট ও পরিচ্ছন্ন হেডার */}
+        <header className="flex items-center justify-between mb-8 border-b border-border/20 pb-4">
+          <div className="flex items-center gap-4">
+            <Link
+              href="/shop"
+              className="p-2 bg-card/40 rounded-full hover:text-primary transition-colors"
+            >
+              <ArrowLeft size={20} />
+            </Link>
+            <h1 className="text-xl md:text-3xl font-black text-text tracking-tighter uppercase italic">
+              শপিং <span className="text-primary">ব্যাগ</span>
             </h1>
-            <div className="flex items-center gap-2 mt-1">
-              <span
-                className={`w-1.5 h-1.5 rounded-full ${
-                  user ? 'bg-primary animate-pulse' : 'bg-yellow-500'
-                }`}
-              />
-              <span className="text-[8px] md:text-[10px] font-bold uppercase tracking-widest text-pText/40">
-                {user ? 'Cloud Sync Active' : 'Offline Buffer'}
-              </span>
-            </div>
           </div>
-          <Link
-            href="/shop"
-            className="text-[9px] md:text-[10px] font-black uppercase text-primary flex items-center gap-1.5 md:gap-2"
-          >
-            <ArrowLeft size={12} /> <span className="hidden sm:inline">Back to Shop</span>
-          </Link>
+          <div className="text-right">
+            <span className="text-[10px] font-bold text-pText/40 uppercase tracking-widest block">
+              আইটেম সংখ্যা
+            </span>
+            <span className="text-sm font-black text-primary">{cartItems.length} টি</span>
+          </div>
         </header>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 items-start">
-          {/* Cart Items List */}
-          <div className="lg:col-span-2 space-y-2">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          {/* কার্ট আইটেম লিস্ট - ৩ ভাগের ২ ভাগ জায়গা নিবে */}
+          <div className="lg:col-span-8 space-y-4">
             {loading && cartItems.length === 0 ? (
-              <div className="flex flex-col items-center justify-center py-20 bg-card/5 rounded-3xl border border-border/10">
-                <Loader2 className="text-primary animate-spin mb-3" size={30} />
-                <span className="text-[8px] font-black tracking-widest opacity-40 uppercase">
-                  Syncing...
-                </span>
+              <div className="py-20 flex flex-col items-center">
+                <Loader2 className="animate-spin text-primary" size={32} />
               </div>
             ) : cartItems.length > 0 ? (
               cartItems.map((item) => (
@@ -234,33 +205,25 @@ export default function CartPage() {
                 />
               ))
             ) : (
-              <div className="py-20 text-center border border-dashed border-border/20 rounded-3xl bg-card/5">
-                <ShoppingBag size={48} className="mx-auto text-pText/10 mb-6" />
-                <p className="text-xs font-black uppercase tracking-widest text-pText/40 mb-6">
-                  Bay is Empty
-                </p>
+              <div className="py-20 text-center border-2 border-dashed border-border/20 rounded-3xl">
+                <ShoppingBag size={48} className="mx-auto text-pText/10 mb-4" />
+                <p className="text-sm font-bold text-pText/40 mb-6">আপনার ব্যাগটি খালি!</p>
                 <Link
                   href="/shop"
-                  className="inline-block bg-primary text-bg font-black uppercase text-[10px] px-8 py-4 rounded-xl"
+                  className="inline-block bg-primary text-bg font-black px-8 py-3 rounded-xl text-sm transition-transform hover:scale-105"
                 >
-                  Armory
+                  কেনাকাটা শুরু করুন
                 </Link>
               </div>
             )}
           </div>
 
-          {/* Sidebar Summary */}
-          <div className="lg:col-span-1 sticky bottom-0 md:static md:top-24 z-50 md:z-auto bg-bg md:bg-transparent pt-4 md:pt-0">
+          {/* অর্ডার সামারি - ডান পাশে ফিক্সড থাকবে */}
+          <div className="lg:col-span-4 lg:sticky lg:top-24">
             <OrderSummary subtotal={subtotal} />
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        .clip-path-polygon {
-          clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
-        }
-      `}</style>
     </section>
   );
 }
