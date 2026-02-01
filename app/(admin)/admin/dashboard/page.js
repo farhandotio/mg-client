@@ -120,7 +120,7 @@ export default function Dashboard() {
             key={stat.label}
             className="bg-card border border-border/50 p-6 rounded-3xl shadow-sm"
           >
-            <p className="text-[10px] font-black uppercase tracking-widest text-pText/70">
+            <p className="text-[12px] font-black uppercase tracking-widest text-pText/70">
               {stat.label}
             </p>
             <h2 className="text-4xl font-black mt-2 text-text">{stat.value}</h2>
@@ -171,14 +171,14 @@ export default function Dashboard() {
                     <p className="text-xs font-bold text-text uppercase">
                       ID: {order._id.slice(-8)}
                     </p>
-                    <p className="text-[10px] text-pText">
+                    <p className="text-[12px] text-pText">
                       {new Date(order.createdAt).toLocaleDateString()}
                     </p>
                   </div>
                   <div className="text-right">
                     <p className="text-xs font-black text-primary">৳{order.pricing?.totalPrice}</p>
                     <span
-                      className={`text-[8px] font-black px-2 py-0.5 rounded-full uppercase ${
+                      className={`text-[10px] font-black px-2 py-0.5 rounded-full uppercase ${
                         order.orderStatus === 'DELIVERED'
                           ? 'bg-green-500/10 text-green-500'
                           : 'bg-primary/10 text-primary'
@@ -213,7 +213,7 @@ export default function Dashboard() {
                   </span>
                 </div>
                 <span
-                  className={`text-[10px] font-black ${
+                  className={`text-[12px] font-black ${
                     product.stock < 5 ? 'text-red-500' : 'text-primary'
                   }`}
                 >

@@ -168,7 +168,7 @@ export default function Navbar() {
                                 <Box size={18} />
                               )}
                             </div>
-                            <span className="text-[10px] font-bold text-text group-hover:text-primary">
+                            <span className="text-[12px] font-bold text-text group-hover:text-primary">
                               {cat.name}
                             </span>
                           </Link>
@@ -181,12 +181,14 @@ export default function Navbar() {
 
               <Link
                 href="/shop"
+                aria-label="View Shopping Page"
                 className={`transition-colors hover:text-primary ${pathname === '/shop' ? 'text-primary' : 'text-text'}`}
               >
                 শপ
               </Link>
 
               <Link
+                aria-label="View Hot Deals Page"
                 href="/shop?productType=HotDeals"
                 className="flex items-center gap-1.5 text-secondary font-black italic hover:scale-105 transition-transform"
               >
@@ -198,18 +200,20 @@ export default function Navbar() {
           {/* --- ডানদিকের অ্যাকশন বাটনসমূহ --- */}
           <div className="flex items-center gap-2 md:gap-4">
             <button
+              aria-label="Switch theme"
               onClick={toggleTheme}
               className="p-2 rounded-xl text-text hover:bg-white/10 transition-all"
             >
               {mounted &&
                 (theme === 'dark' ? (
-                  <Sun size={18} className="text-yellow-500" />
+                  <Sun aria-label="Switch to Light Theme" size={18} className="text-yellow-500" />
                 ) : (
-                  <Moon size={18} className="text-primary" />
+                  <Moon aria-label="Switch to Dark Theme" size={18} className="text-primary" />
                 ))}
             </button>
 
             <button
+              aria-label="Search Products"
               onClick={() => setIsSearchOpen(true)}
               className="p-2 rounded-xl text-text hover:text-primary transition-all"
             >
@@ -217,18 +221,23 @@ export default function Navbar() {
             </button>
 
             <Link
+              aria-label="View Shopping Cart"
               href="/cart"
               className="relative p-3 bg-primary/10 text-primary rounded-xl hover:bg-primary hover:text-bg transition-all duration-300 group"
             >
               <ShoppingCart size={20} className="group-active:scale-75 transition-transform" />
               {mounted && cartItems.length > 0 && (
-                <span className="absolute -top-1 -right-1 bg-primary text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center ">
+                <span className="absolute -top-1 -right-1 bg-primary text-white text-[12px] font-black w-5 h-5 rounded-full flex items-center justify-center ">
                   {cartItems.length}
                 </span>
               )}
             </Link>
 
-            <button onClick={() => setIsOpen(true)} className="lg:hidden p-2 text-text ml-1">
+            <button
+              aria-label="View Mobile Menu"
+              onClick={() => setIsOpen(true)}
+              className="lg:hidden p-2 text-text ml-1"
+            >
               <Menu size={24} />
             </button>
 
@@ -238,6 +247,7 @@ export default function Navbar() {
             ) : !isAuthenticated ? (
               <div className="hidden md:block">
                 <Button
+                  arialabel="login"
                   text="প্রবেশ করুন"
                   url="/auth"
                   icon={LogIn}
@@ -248,13 +258,14 @@ export default function Navbar() {
             ) : (
               <div className="relative hidden lg:block" ref={profileRef}>
                 <button
+                  aria-label="View Profile Menu"
                   onClick={() => setIsProfileOpen(!isProfileOpen)}
                   className="flex items-center gap-2.5 p-1.5 bg-white/5 border border-white/5 rounded-2xl hover:border-primary/30 transition-all pl-2 pr-3"
                 >
                   <div className="w-8 h-8 bg-primary text-bg rounded-xl flex items-center justify-center font-black text-xs shadow-lg shadow-primary/20">
                     {user?.fullname?.charAt(0).toUpperCase()}
                   </div>
-                  <span className="text-[10px] font-black uppercase tracking-widest text-text">
+                  <span className="text-[12px] font-black uppercase tracking-widest text-text">
                     {user?.fullname?.split(' ')[0]}
                   </span>
                   <ChevronDown
@@ -273,28 +284,32 @@ export default function Navbar() {
                     >
                       {user?.role === 'admin' && (
                         <Link
+                          aria-label="View Admin Dashboard"
                           href="/admin/dashboard"
-                          className="flex items-center gap-3 px-4 py-3 text-primary bg-primary/5 rounded-2xl font-black text-[10px] uppercase mb-1"
+                          className="flex items-center gap-3 px-4 py-3 text-primary bg-primary/5 rounded-2xl font-black text-[12px] uppercase mb-1"
                         >
                           <LayoutDashboard size={16} /> ড্যাশবোর্ড
                         </Link>
                       )}
                       <Link
+                        aria-label="View Profile Page"
                         href="/profile"
-                        className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 rounded-2xl font-black text-[10px] uppercase"
+                        className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 rounded-2xl font-black text-[12px] uppercase"
                       >
                         <User size={16} /> প্রোফাইল
                       </Link>
                       <Link
+                        aria-label="View orders Page"
                         href="/orders"
-                        className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 rounded-2xl font-black text-[10px] uppercase"
+                        className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 rounded-2xl font-black text-[12px] uppercase"
                       >
                         <Package size={16} /> অর্ডারসমূহ
                       </Link>
                       <div className="my-2 border-t border-white/5" />
                       <button
+                        aria-label="Logout"
                         onClick={() => dispatch(logoutUser())}
-                        className="flex w-full items-center gap-3 px-4 py-3 text-red-500 hover:bg-red-500/10 rounded-2xl font-black text-[10px] uppercase transition-colors"
+                        className="flex w-full items-center gap-3 px-4 py-3 text-red-500 hover:bg-red-500/10 rounded-2xl font-black text-[12px] uppercase transition-colors"
                       >
                         <LogOut size={16} /> লগআউট
                       </button>
@@ -307,7 +322,6 @@ export default function Navbar() {
         </nav>
       </motion.header>
 
-      {/* সার্চ এবং মোবাইল সাইডবার কন্টেন্ট */}
       <SearchOverlay
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}

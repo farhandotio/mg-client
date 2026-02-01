@@ -87,7 +87,7 @@ export default function CategoriesPage() {
             <p className="font-black text-white text-[11px] uppercase tracking-tighter leading-none">
               {item?.name}
             </p>
-            <p className="text-[7px] text-pText tracking-widest uppercase mt-1 opacity-50">
+            <p className="text-[10px] text-pText tracking-widest uppercase mt-1 opacity-50">
               ID: {item?._id.slice(-8)}
             </p>
           </div>
@@ -98,14 +98,14 @@ export default function CategoriesPage() {
       label: 'Slug / URL',
       key: 'slug',
       render: (item) => (
-        <span className="text-[10px] font-mono text-pText/70 italic">/{item.slug}</span>
+        <span className="text-[12px] font-mono text-pText/70 italic">/{item.slug}</span>
       ),
     },
     {
       label: 'Added On',
       key: 'createdAt',
       render: (item) => (
-        <span className="text-[10px] text-pText/60 font-medium">
+        <span className="text-[12px] text-pText/60 font-medium">
           {item.createdAt ? new Date(item.createdAt).toLocaleDateString('en-GB') : 'N/A'}
         </span>
       ),
@@ -119,7 +119,7 @@ export default function CategoriesPage() {
         <div className="space-y-1">
           <div className="flex items-center gap-2 text-primary">
             <Globe size={14} className="animate-spin-slow" />
-            <span className="text-[9px] font-black uppercase tracking-[0.4em]">
+            <span className="text-[11px] font-black uppercase tracking-[0.4em]">
               Vault_Architecture
             </span>
           </div>
@@ -161,7 +161,7 @@ export default function CategoriesPage() {
                 <h2 className="text-2xl font-black italic uppercase tracking-tighter text-text">
                   Modify <span className="text-primary">Class</span>
                 </h2>
-                <p className="text-[8px] font-black uppercase tracking-widest text-pText opacity-50 mt-1">
+                <p className="text-[10px] font-black uppercase tracking-widest text-pText opacity-50 mt-1">
                   Reference_ID: {selectedCategory?._id}
                 </p>
               </div>
@@ -176,7 +176,7 @@ export default function CategoriesPage() {
 
             <form onSubmit={handleUpdateSubmit} className="space-y-6 relative">
               <div className="space-y-2">
-                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-primary">
+                <label className="text-[12px] font-black uppercase tracking-[0.2em] text-primary">
                   Category_Name
                 </label>
                 <input
@@ -189,7 +189,7 @@ export default function CategoriesPage() {
               </div>
 
               <div className="space-y-2">
-                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-primary flex items-center gap-2">
+                <label className="text-[12px] font-black uppercase tracking-[0.2em] text-primary flex items-center gap-2">
                   Image_URL <LinkIcon size={10} />
                 </label>
                 <input
@@ -229,7 +229,7 @@ export default function CategoriesPage() {
       {/* Summary Footer */}
       <div className="mt-10 flex items-center gap-4 text-pText/40">
         <div className="h-0.5 flex-1 bg-linear-to-r from-transparent via-border/50 to-transparent"></div>
-        <p className="text-[8px] font-black uppercase tracking-[0.5em] whitespace-nowrap">
+        <p className="text-[10px] font-black uppercase tracking-[0.5em] whitespace-nowrap">
           Total_Active_Classes: {categories.length}
         </p>
         <div className="h-0.5 flex-1 bg-linear-to-r from-transparent via-border/50 to-transparent"></div>

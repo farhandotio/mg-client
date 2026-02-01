@@ -79,12 +79,12 @@ export default function ProductCard({ product, priority = false }) {
         {/* ব্যাজসমূহ */}
         <div className="absolute top-2 left-2 flex flex-col gap-1 z-20">
           {discount > 0 && (
-            <div className="bg-primary text-bg text-[10px] font-black px-2 py-1 rounded-tl-xl rounded-br-xl shadow-xl italic">
+            <div className="bg-primary text-bg text-[12px] font-black px-2 py-1 rounded-tl-xl rounded-br-xl shadow-xl italic">
               -{discount}%
             </div>
           )}
           {isOutOfStock && (
-            <div className="bg-red-500/90 backdrop-blur-md text-text text-[9px] font-black px-2 py-1 rounded-lg uppercase">
+            <div className="bg-red-500/90 backdrop-blur-md text-text text-[11px] font-black px-2 py-1 rounded-lg uppercase">
               আউট অফ স্টক
             </div>
           )}
@@ -120,10 +120,10 @@ export default function ProductCard({ product, priority = false }) {
       {/* টেক্সট সেকশন */}
       <div className="pt-2 p-1 space-y-2">
         <div className="flex items-center justify-between">
-          <span className="text-[9px] font-black text-primary/70 uppercase tracking-widest flex items-center gap-1">
+          <span className="text-[11px] font-black text-primary/70 uppercase tracking-widest flex items-center gap-1">
             <ShieldCheck size={10} /> {product?.brand?.name || 'PREMIUM'}
           </span>
-          <div className="flex items-center gap-1 text-[10px] font-bold text-yellow-500">
+          <div className="flex items-center gap-1 text-[12px] font-bold text-yellow-500">
             <Star size={10} className="fill-current" />
             <span>{product?.ratings?.average || 0}</span>
           </div>
@@ -138,7 +138,7 @@ export default function ProductCard({ product, priority = false }) {
         <div className="flex items-center justify-between pt-1">
           <div className="flex flex-col md:flex-row-reverse md:gap-1 leading-none">
             {discount > 0 && (
-              <span className="text-pText/30 text-[10px] line-through font-bold mb-0.5">
+              <span className="text-pText/30 text-[12px] line-through font-bold mb-0.5">
                 ৳{basePrice.toLocaleString()}
               </span>
             )}

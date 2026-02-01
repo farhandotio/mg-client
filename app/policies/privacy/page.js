@@ -11,7 +11,7 @@ export default function PrivacyPolicy() {
         <div className="mb-16 space-y-6 relative">
           <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-xl text-primary mb-4 border border-primary/20">
             <Lock size={14} />
-            <span className="text-[10px] font-black uppercase tracking-[0.3em]">
+            <span className="text-[12px] font-black uppercase tracking-[0.3em]">
               Data_Protection_Enabled
             </span>
           </div>

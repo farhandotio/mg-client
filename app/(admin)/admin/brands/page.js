@@ -84,7 +84,7 @@ export default function BrandsPage() {
             <p className="font-black text-white text-[11px] uppercase tracking-tighter leading-none">
               {item.name}
             </p>
-            <p className="text-[7px] text-pText tracking-[0.2em] uppercase font-black mt-1 opacity-50">
+            <p className="text-[10px] text-pText tracking-[0.2em] uppercase font-black mt-1 opacity-50">
               Verified_Partner
             </p>
           </div>
@@ -95,7 +95,7 @@ export default function BrandsPage() {
       label: 'Slug_Node',
       key: 'slug',
       render: (item) => (
-        <span className="text-[10px] font-bold text-pText/70 font-mono italic">/{item.slug}</span>
+        <span className="text-[12px] font-bold text-pText/70 font-mono italic">/{item.slug}</span>
       ),
     },
     {
@@ -104,7 +104,7 @@ export default function BrandsPage() {
       render: (item) => (
         <div className="flex items-center gap-2">
           <div className="w-1 h-1 rounded-full bg-primary animate-pulse" />
-          <span className="text-[9px] font-black text-white uppercase tracking-[0.2em]">
+          <span className="text-[11px] font-black text-white uppercase tracking-[0.2em]">
             Online
           </span>
         </div>
@@ -118,7 +118,7 @@ export default function BrandsPage() {
         <div className="space-y-1">
           <div className="flex items-center gap-2 text-primary">
             <Globe size={14} className="animate-spin-slow" />
-            <span className="text-[9px] font-black uppercase tracking-[0.4em]">
+            <span className="text-[11px] font-black uppercase tracking-[0.4em]">
               Neural_Supply_Chain
             </span>
           </div>
@@ -158,7 +158,7 @@ export default function BrandsPage() {
                 <h2 className="text-2xl font-black italic uppercase tracking-tighter text-text">
                   Modify <span className="text-primary">Entity</span>
                 </h2>
-                <p className="text-[8px] font-black uppercase tracking-widest text-pText opacity-50 mt-1">
+                <p className="text-[10px] font-black uppercase tracking-widest text-pText opacity-50 mt-1">
                   ID: {selectedBrand?._id}
                 </p>
               </div>
@@ -174,7 +174,7 @@ export default function BrandsPage() {
             <form onSubmit={handleUpdateSubmit} className="space-y-6 relative">
               {/* Name Input */}
               <div className="space-y-2">
-                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-primary">
+                <label className="text-[12px] font-black uppercase tracking-[0.2em] text-primary">
                   Brand_Name
                 </label>
                 <input
@@ -188,7 +188,7 @@ export default function BrandsPage() {
 
               {/* Image URL Input */}
               <div className="space-y-2">
-                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-primary flex items-center gap-2">
+                <label className="text-[12px] font-black uppercase tracking-[0.2em] text-primary flex items-center gap-2">
                   Image_URL <LinkIcon size={10} />
                 </label>
                 <input
@@ -228,7 +228,7 @@ export default function BrandsPage() {
 
       <div className="mt-10 flex items-center gap-4 text-pText/40">
         <div className="h-0.5 flex-1 bg-linear-to-r from-transparent via-border/50 to-transparent"></div>
-        <p className="text-[8px] font-black uppercase tracking-[0.5em] whitespace-nowrap">
+        <p className="text-[10px] font-black uppercase tracking-[0.5em] whitespace-nowrap">
           Total_Entities_Captured: {brands?.length || 0}
         </p>
         <div className="h-0.5 flex-1 bg-linear-to-r from-transparent via-border/50 to-transparent"></div>

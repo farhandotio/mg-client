@@ -73,7 +73,9 @@ export default function CreateBrandPage() {
             className="inline-flex items-center gap-2 text-pText/40 hover:text-primary transition-all group px-3 py-1 bg-card/30 rounded-full border border-border/40"
           >
             <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
-            <span className="text-[9px] font-black uppercase tracking-[0.2em]">Esc / Registry</span>
+            <span className="text-[11px] font-black uppercase tracking-[0.2em]">
+              Esc / Registry
+            </span>
           </Link>
           <div className="space-y-1">
             <h1 className="text-5xl lg:text-7xl font-black uppercase italic tracking-tighter leading-none">
@@ -84,7 +86,7 @@ export default function CreateBrandPage() {
             </h1>
             <div className="flex items-center gap-2 text-primary/60">
               <Activity size={14} />
-              <span className="text-[10px] font-black uppercase tracking-[0.5em]">
+              <span className="text-[12px] font-black uppercase tracking-[0.5em]">
                 Global_Brand_Registry_v2
               </span>
             </div>
@@ -93,10 +95,10 @@ export default function CreateBrandPage() {
 
         <div className="flex gap-4 items-center bg-card/50 p-4 rounded-2xl border border-border/50 backdrop-blur-sm shadow-inner">
           <div className="text-right border-r border-border/50 pr-4">
-            <p className="text-[8px] font-black text-pText uppercase tracking-widest opacity-40">
+            <p className="text-[10px] font-black text-pText uppercase tracking-widest opacity-40">
               Security_Level
             </p>
-            <p className="text-[10px] font-bold text-primary italic">Admin_Restricted</p>
+            <p className="text-[12px] font-bold text-primary italic">Admin_Restricted</p>
           </div>
           <div className="p-2 bg-primary/10 rounded-xl text-primary animate-pulse">
             <ShieldCheck size={24} />
@@ -121,7 +123,7 @@ export default function CreateBrandPage() {
                   type="text"
                   placeholder="Insert Logo URL & Enter"
                   onKeyDown={handleImageUrl}
-                  className="w-full border border-border/80 rounded-2xl p-4 bg-bg/60 text-[10px] font-bold uppercase tracking-widest outline-none focus:border-primary focus:ring-4 focus:ring-primary/5 transition-all shadow-inner"
+                  className="w-full border border-border/80 rounded-2xl p-4 bg-bg/60 text-[12px] font-bold uppercase tracking-widest outline-none focus:border-primary focus:ring-4 focus:ring-primary/5 transition-all shadow-inner"
                 />
                 <div className="absolute right-4 top-1/2 -translate-y-1/2 p-1 bg-primary/10 rounded-lg group-hover/input:bg-primary transition-colors">
                   <Plus size={14} className="group-hover/input:text-white" />
@@ -151,7 +153,7 @@ export default function CreateBrandPage() {
                     <div className="w-16 h-16 bg-primary/5 rounded-full flex items-center justify-center mx-auto mb-4 border border-primary/10">
                       <ImageIcon size={28} className="text-primary/20" />
                     </div>
-                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-pText/30">
+                    <p className="text-[12px] font-black uppercase tracking-[0.3em] text-pText/30">
                       Waiting_for_Asset
                     </p>
                   </div>
@@ -159,10 +161,10 @@ export default function CreateBrandPage() {
               </div>
 
               <div className="bg-bg/60 p-3 rounded-2xl border border-border/50 flex justify-between items-center">
-                <span className="text-[8px] font-black uppercase text-pText/40 tracking-widest">
+                <span className="text-[10px] font-black uppercase text-pText/40 tracking-widest">
                   Global_ID
                 </span>
-                <span className="text-[9px] font-bold text-primary font-mono">
+                <span className="text-[11px] font-bold text-primary font-mono">
                   {formData.image.fileId || 'UNLINKED'}
                 </span>
               </div>
@@ -183,10 +185,10 @@ export default function CreateBrandPage() {
             <div className="space-y-10 relative z-10">
               <div className="space-y-3">
                 <div className="flex justify-between items-end px-2">
-                  <label className="text-[10px] font-black uppercase tracking-[0.3em] text-pText/60">
+                  <label className="text-[12px] font-black uppercase tracking-[0.3em] text-pText/60">
                     Brand Designation (Name)
                   </label>
-                  <span className="text-[8px] font-bold text-primary/40 uppercase tracking-widest">
+                  <span className="text-[10px] font-bold text-primary/40 uppercase tracking-widest">
                     Active_Node*
                   </span>
                 </div>
@@ -200,7 +202,7 @@ export default function CreateBrandPage() {
               </div>
 
               <div className="space-y-3">
-                <label className="text-[10px] font-black uppercase tracking-[0.3em] text-pText/60 px-2">
+                <label className="text-[12px] font-black uppercase tracking-[0.3em] text-pText/60 px-2">
                   Node Status
                 </label>
                 <div className="grid grid-cols-2 gap-4">
@@ -210,7 +212,7 @@ export default function CreateBrandPage() {
                       key={status}
                       type="button"
                       onClick={() => setFormData({ ...formData, status })}
-                      className={`group relative overflow-hidden py-5 rounded-2xl border-2 font-black text-[10px] uppercase tracking-widest transition-all 
+                      className={`group relative overflow-hidden py-5 rounded-2xl border-2 font-black text-[12px] uppercase tracking-widest transition-all 
                       ${
                         formData.status === status
                           ? 'bg-primary border-primary text-white shadow-[0_10px_20px_rgba(255,111,92,0.3)]'
@@ -239,7 +241,7 @@ export default function CreateBrandPage() {
                   `}
                   text={isLoading ? <Loader2 className="animate-spin mx-auto" /> : 'Execute_Entry'}
                 />
-                <p className="text-center text-[8px] font-black uppercase tracking-[0.5em] text-pText/30 mt-6">
+                <p className="text-center text-[10px] font-black uppercase tracking-[0.5em] text-pText/30 mt-6">
                   Log: Authorization token validated for current session
                 </p>
               </div>

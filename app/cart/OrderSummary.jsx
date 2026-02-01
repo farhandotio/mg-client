@@ -29,7 +29,7 @@ export default function OrderSummary({ subtotal = 0 }) {
       <div className="flex flex-col gap-1 mb-8 relative z-10">
         <div className="flex items-center gap-2 text-primary">
           <ShieldCheck size={14} className="animate-pulse" />
-          <span className="text-[10px] font-black uppercase tracking-[0.3em]">
+          <span className="text-[12px] font-black uppercase tracking-[0.3em]">
             পেমেন্ট প্রোটোকল
           </span>
         </div>
@@ -52,7 +52,7 @@ export default function OrderSummary({ subtotal = 0 }) {
         <div className="flex justify-between items-center group">
           <div>
             <span className="text-pText/50 group-hover:text-pText">ডেলিভারি চার্জ</span>
-            <span className="text-[8px] text-primary block tracking-tighter mt-1">
+            <span className="text-[10px] text-primary block tracking-tighter mt-1">
               <Truck size={10} className="inline mr-1" /> স্ট্যান্ডার্ড কার্গো
             </span>
           </div>
@@ -67,7 +67,7 @@ export default function OrderSummary({ subtotal = 0 }) {
         <div className="absolute -top-0.5 left-0 w-16 h-0.5 bg-primary shadow-[0_0_10px_rgba(var(--primary-rgb),1)]" />
         <div className="flex justify-between items-end">
           <div className="flex flex-col">
-            <span className="text-[10px] md:text-xs font-black text-pText/40 uppercase">
+            <span className="text-[12px] md:text-xs font-black text-pText/40 uppercase">
               সর্বমোট প্রদেয়
             </span>
           </div>
@@ -93,7 +93,7 @@ export default function OrderSummary({ subtotal = 0 }) {
 
         <Link
           href="/shop"
-          className="flex items-center justify-center gap-2 text-pText/60 text-[9px] md:text-[10px] font-black uppercase tracking-[0.4em] hover:text-primary transition-all group"
+          className="flex items-center justify-center gap-2 text-pText/60 text-[11px] md:text-[12px] font-black uppercase tracking-[0.4em] hover:text-primary transition-all group"
         >
           <ChevronLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
           শপিংয়ে ফিরে যান

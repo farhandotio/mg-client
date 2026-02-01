@@ -49,7 +49,7 @@ export default function AdminProducts() {
             <span className="font-bold text-white text-xs uppercase tracking-tight line-clamp-1">
               {item.title}
             </span>
-            <span className="text-[9px] text-pText uppercase tracking-widest">
+            <span className="text-[11px] text-pText uppercase tracking-widest">
               {item.category?.name || 'No Category'}
             </span>
           </div>
@@ -69,7 +69,7 @@ export default function AdminProducts() {
       key: 'stock',
       render: (item) => (
         <div className="flex flex-col gap-1">
-          <span className="text-[10px] font-bold text-white">{item.stock} Units</span>
+          <span className="text-[12px] font-bold text-white">{item.stock} Units</span>
           <div className="w-16 h-1 bg-white/10 rounded-full overflow-hidden">
             <div
               className={`h-full ${item.stock > 0 ? 'bg-primary' : 'bg-red-600'}`}
@@ -84,7 +84,7 @@ export default function AdminProducts() {
       key: 'status',
       render: (item) => (
         <span
-          className={`px-3 py-1.5 rounded-lg text-[8px] font-black uppercase tracking-tighter ${
+          className={`px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-tighter ${
             item.stock > 0
               ? 'bg-primary/10 text-primary border border-primary/20'
               : 'bg-red-500/10 text-red-500 border border-red-500/20'
@@ -104,7 +104,7 @@ export default function AdminProducts() {
           <h1 className="text-4xl font-black uppercase italic tracking-tighter leading-none">
             Product <span className="text-primary">Inventory</span>
           </h1>
-          <p className="text-pText text-[10px] font-black uppercase tracking-[0.3em] mt-2 opacity-60">
+          <p className="text-pText text-[12px] font-black uppercase tracking-[0.3em] mt-2 opacity-60">
             Total Tracked Units: {pagination?.totalProducts || products.length}
           </p>
         </div>

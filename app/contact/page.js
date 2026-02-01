@@ -65,7 +65,7 @@ function ContactCard({ icon, title, detail, sub }) {
       <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mb-8 group-hover:scale-110 transition-transform">
         {icon}
       </div>
-      <p className="text-[10px] font-black uppercase tracking-[0.3em] text-pText mb-2">{title}</p>
+      <p className="text-[12px] font-black uppercase tracking-[0.3em] text-pText mb-2">{title}</p>
       <h4 className="text-2xl font-black text-text italic mb-1">{detail}</h4>
       <p className="text-sm text-pText/60 font-medium">{sub}</p>
     </div>

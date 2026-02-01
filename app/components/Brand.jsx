@@ -30,7 +30,7 @@ export default function Brand() {
           <div className="space-y-3">
             <div className="flex items-center gap-2 text-primary">
               <ShieldCheck size={18} className="animate-pulse" />
-              <span className="text-[10px] font-black uppercase tracking-[0.3em]">
+              <span className="text-[12px] font-black uppercase tracking-[0.3em]">
                 অফিসিয়াল পার্টনারস
               </span>
             </div>
@@ -80,7 +80,7 @@ export default function Brand() {
 
                   {/* Minimal Brand Label */}
                   <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                    <span className="text-[9px] font-black text-bg bg-primary px-3 py-1 rounded-full uppercase">
+                    <span className="text-[11px] font-black text-bg bg-primary px-3 py-1 rounded-full uppercase">
                       {brand.name}
                     </span>
                   </div>

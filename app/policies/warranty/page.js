@@ -11,7 +11,7 @@ export default function WarrantyPolicy() {
         <div className="mb-16 space-y-4">
           <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-1 rounded-full text-primary">
             <Award size={14} />
-            <span className="text-[10px] font-black uppercase tracking-widest">
+            <span className="text-[12px] font-black uppercase tracking-widest">
               Premium Protection
             </span>
           </div>

@@ -68,10 +68,10 @@ export default function ProductInfo({ product }) {
     <div className="flex flex-col gap-6 md:gap-7 lg:pl-4">
       <div className="space-y-4">
         <div className="flex flex-wrap items-center gap-3">
-          <span className="px-3 py-1 bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-widest rounded-lg">
+          <span className="px-3 py-1 bg-primary/10 border border-primary/20 text-primary text-[12px] font-black uppercase tracking-widest rounded-lg">
             {product.brand?.name || product.brand}
           </span>
-          <span className="px-3 py-1 bg-card border border-border text-pText text-[10px] font-black uppercase tracking-widest rounded-lg">
+          <span className="px-3 py-1 bg-card border border-border text-pText text-[12px] font-black uppercase tracking-widest rounded-lg">
             এসকিউ (SKU): {product.sku || 'N/A'}
           </span>
         </div>
@@ -119,7 +119,7 @@ export default function ProductInfo({ product }) {
             <span className="text-lg text-pText/30 line-through font-bold decoration-primary/40">
               ৳{basePrice.toLocaleString()}
             </span>
-            <span className="text-[10px] font-black text-bg bg-primary px-2 py-0.5 rounded-full mt-1 animate-pulse">
+            <span className="text-[12px] font-black text-bg bg-primary px-2 py-0.5 rounded-full mt-1 animate-pulse">
               -{discountPercent}% ছাড়
             </span>
           </div>
@@ -184,7 +184,7 @@ export default function ProductInfo({ product }) {
         {/* {!isOutOfStock && (
           <button
             aria-label="সরাসরি কিনুন"
-            className="w-full h-12 rounded-2xl border-2 border-primary/20 hover:border-primary text-primary text-[10px] font-black uppercase tracking-[0.3em] italic transition-all flex items-center justify-center gap-3 group"
+            className="w-full h-12 rounded-2xl border-2 border-primary/20 hover:border-primary text-primary text-[12px] font-black uppercase tracking-[0.3em] italic transition-all flex items-center justify-center gap-3 group"
           >
             <Zap size={14} className="group-hover:fill-primary" /> সরাসরি অর্ডার করুন (Buy Now)
           </button>
@@ -205,10 +205,10 @@ function InfoBadge({ icon, title, desc }) {
     <div className="flex items-center gap-4 p-3 rounded-lg bg-card/20 border border-border/20 hover:bg-card/40 transition-all group">
       <div className="text-primary group-hover:scale-110 transition-transform">{icon}</div>
       <div>
-        <div className="text-[10px] font-black uppercase tracking-widest text-text leading-none">
+        <div className="text-[12px] font-black uppercase tracking-widest text-text leading-none">
           {title}
         </div>
-        <div className="text-[9px] font-bold text-pText/40 uppercase mt-1">{desc}</div>
+        <div className="text-[11px] font-bold text-pText/40 uppercase mt-1">{desc}</div>
       </div>
     </div>
   );

@@ -60,7 +60,7 @@ export default function TrustSection() {
           <div className="space-y-3">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 bg-primary rounded-full animate-ping" />
-              <span className="text-primary font-bold text-[10px] uppercase tracking-[0.3em]">
+              <span className="text-primary font-bold text-[12px] uppercase tracking-[0.3em]">
                 কাস্টমার রিভিউ এবং ফিডব্যাক
               </span>
             </div>
@@ -104,10 +104,8 @@ export default function TrustSection() {
                   {[...Array(4)].map((_, i) => (
                     <div
                       key={i}
-                      className="w-10 h-10 rounded-full border-2 border-card bg-primary/20 backdrop-blur-xl flex items-center justify-center text-[10px] font-black text-primary"
-                    >
-                      
-                    </div>
+                      className="w-10 h-10 rounded-full border-2 border-card bg-primary/20 backdrop-blur-xl flex items-center justify-center text-[12px] font-black text-primary"
+                    ></div>
                   ))}
                 </div>
                 <span className="text-xs font-bold text-pText italic">+১২০০ কাস্টমার</span>
@@ -148,7 +146,7 @@ export default function TrustSection() {
               <div className="flex items-end justify-between mt-6">
                 <div>
                   <h4 className="text-text font-black text-sm tracking-tight">{rev.user}</h4>
-                  <p className="text-primary/70 text-[10px] font-bold uppercase tracking-tighter">
+                  <p className="text-primary/70 text-[12px] font-bold uppercase tracking-tighter">
                     {rev.role}
                   </p>
                 </div>
@@ -168,7 +166,7 @@ export default function TrustSection() {
               <Cpu size={24} className="text-primary" />
             </div>
             <span className="text-3xl font-black italic tracking-tighter text-text">৯৯.৯%</span>
-            <span className="text-[10px] text-pText/60 uppercase font-black tracking-widest">
+            <span className="text-[12px] text-pText/60 uppercase font-black tracking-widest">
               সফল ডেলিভারি
             </span>
           </motion.div>

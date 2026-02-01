@@ -21,7 +21,7 @@ export default function ShippingInfo() {
           <div className="p-6 bg-primary text-bg rounded-3xl flex items-center gap-4 shadow-[0_20px_40px_rgba(var(--primary-rgb),0.2)]">
             <Zap size={30} fill="currentColor" />
             <div className="font-black italic uppercase leading-none">
-              <p className="text-[10px]">Average Speed</p>
+              <p className="text-[12px]">Average Speed</p>
               <p className="text-2xl tracking-tighter">24-72 Hours</p>
             </div>
           </div>
@@ -93,10 +93,10 @@ function ZoneCard({ location, time, price, detail }) {
       </div>
       <div className="space-y-4">
         <div className="flex gap-4">
-          <span className="text-[10px] font-black uppercase bg-primary/10 text-primary px-3 py-1 rounded-full">
+          <span className="text-[12px] font-black uppercase bg-primary/10 text-primary px-3 py-1 rounded-full">
             {time}
           </span>
-          <span className="text-[10px] font-black uppercase bg-bg/5 text-pText px-3 py-1 rounded-full">
+          <span className="text-[12px] font-black uppercase bg-bg/5 text-pText px-3 py-1 rounded-full">
             {price}
           </span>
         </div>

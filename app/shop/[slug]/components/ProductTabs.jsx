@@ -77,7 +77,7 @@ export default function ProductTabs({ product }) {
                       key={item._id || i}
                       className="flex justify-between items-center py-5 border-b border-border/10 group/item transition-all hover:px-2"
                     >
-                      <span className="text-pText/40 font-black uppercase text-[9px] group-hover/item:text-primary transition-colors">
+                      <span className="text-pText/40 font-black uppercase text-[11px] group-hover/item:text-primary transition-colors">
                         {item.key}
                       </span>
                       <span className="font-bold text-sm tracking-tight text-text/90 italic">
@@ -88,7 +88,7 @@ export default function ProductTabs({ product }) {
                 ) : (
                   <div className="col-span-full py-10 flex flex-col items-center opacity-20">
                     <Database size={40} className="mb-4" />
-                    <p className="text-[10px] uppercase font-black tracking-widest text-center">
+                    <p className="text-[12px] uppercase font-black tracking-widest text-center">
                       কারিগরি তথ্য পাওয়া যায়নি
                     </p>
                   </div>
@@ -99,7 +99,7 @@ export default function ProductTabs({ product }) {
             {activeTab === 'reviews' && (
               <div className="flex flex-col items-center justify-center py-16 text-center border-2 border-dashed border-border/20 rounded-3xl">
                 <Star className="text-primary/20 mb-4" size={32} />
-                <p className="text-pText font-black uppercase text-[10px]">
+                <p className="text-pText font-black uppercase text-[12px]">
                   এখনও কোনো রিভিউ দেওয়া হয়নি
                 </p>
               </div>

@@ -96,7 +96,7 @@ function AuthForm() {
         className="absolute top-6 left-6 z-50 flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 border border-white/5 text-pText hover:text-primary hover:bg-white/10 transition-all group"
       >
         <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-        <span className="text-[10px] font-black uppercase tracking-widest hidden sm:block">
+        <span className="text-[12px] font-black uppercase tracking-widest hidden sm:block">
           ফিরে যান
         </span>
       </button>
@@ -118,7 +118,7 @@ function AuthForm() {
             <h2 className="text-4xl font-black text-text tracking-tighter mb-2 italic leading-none">
               {isLogin ? 'ফিরে আসায় স্বাগতম' : 'নতুন অ্যাকাউন্ট'}
             </h2>
-            <p className="text-pText text-[10px] font-bold uppercase tracking-[0.2em] mb-6 opacity-60">
+            <p className="text-pText text-[12px] font-bold uppercase tracking-[0.2em] mb-6 opacity-60">
               {isLogin ? 'আপনার অ্যাকাউন্টে প্রবেশ করুন' : 'শুরু করতে তথ্য প্রদান করুন'}
             </p>
 
@@ -137,7 +137,7 @@ function AuthForm() {
             )}
 
             {error && (
-              <p className="text-red-500 text-[10px] font-bold uppercase tracking-widest bg-red-500/10 p-3 rounded-xl mb-4 animate-shake border border-red-500/20">
+              <p className="text-red-500 text-[12px] font-bold uppercase tracking-widest bg-red-500/10 p-3 rounded-xl mb-4 animate-shake border border-red-500/20">
                 {error}
               </p>
             )}

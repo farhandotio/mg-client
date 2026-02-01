@@ -49,16 +49,16 @@ export default function OrderDetailsPage() {
         {/* --- Top Bar: Fully Rounded --- */}
         <div className="flex justify-between items-center">
           <button
-          aria-label="access vault"
+            aria-label="access vault"
             onClick={() => router.back()}
-            className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-pText hover:text-primary transition-all"
+            className="flex items-center gap-3 text-[12px] font-black uppercase tracking-widest text-pText hover:text-primary transition-all"
           >
             <ArrowLeft size={16} /> Access Vault
           </button>
 
           <div className="md:w-fit">
             <Button
-            arialabel="print protocol"
+              arialabel="print protocol"
               size="sm"
               icon={Printer}
               onClick={() => handlePrintAction()}
@@ -78,7 +78,7 @@ export default function OrderDetailsPage() {
               <div className="md:col-span-9 space-y-6">
                 <div className="flex items-center gap-3 bg-primary/10 w-fit px-4 py-1 rounded-full text-primary border border-primary/20">
                   <Zap size={14} fill="currentColor" />
-                  <span className="text-[10px] font-black uppercase tracking-[0.3em]">
+                  <span className="text-[12px] font-black uppercase tracking-[0.3em]">
                     Order Active
                   </span>
                 </div>
@@ -86,7 +86,7 @@ export default function OrderDetailsPage() {
                   {order.orderStatus}
                   <span className="text-primary opacity-50">.</span>
                 </h1>
-                <div className="flex flex-wrap gap-6 text-[10px] font-bold text-pText uppercase tracking-widest bg-bg/40 p-4 rounded-2xl w-fit">
+                <div className="flex flex-wrap gap-6 text-[12px] font-bold text-pText uppercase tracking-widest bg-bg/40 p-4 rounded-2xl w-fit">
                   <p>
                     Hash:{' '}
                     <span className="text-text print:text-text font-mono">
@@ -172,7 +172,7 @@ export default function OrderDetailsPage() {
                         <h4 className="text-sm font-black uppercase text-text print:text-text">
                           {item.name}
                         </h4>
-                        <p className="text-[10px] text-pText uppercase font-bold">
+                        <p className="text-[12px] text-pText uppercase font-bold">
                           Qty: {item?.quantity}
                         </p>
                       </div>
@@ -197,11 +197,11 @@ export default function OrderDetailsPage() {
                   <p className="text-3xl font-black uppercase text-text print:text-text leading-none italic">
                     {order.shippingAddress?.street}
                   </p>
-                  <p className="text-[10px] font-black text-pText uppercase tracking-widest">
+                  <p className="text-[12px] font-black text-pText uppercase tracking-widest">
                     {order.shippingAddress?.city} // {order.shippingAddress?.zip}
                   </p>
                   <div className="pt-4">
-                    <span className="px-4 py-2 bg-primary/10 text-primary text-[10px] font-black rounded-full border border-primary/20">
+                    <span className="px-4 py-2 bg-primary/10 text-primary text-[12px] font-black rounded-full border border-primary/20">
                       {order.shippingAddress?.phone}
                     </span>
                   </div>
@@ -210,7 +210,7 @@ export default function OrderDetailsPage() {
 
               {/* Financial Node */}
               <div className="bg-primary text-text rounded-[3rem] p-8 md:p-10 space-y-8 shadow-xl shadow-primary/10 print:bg-card print:text-text">
-                <div className="space-y-4 text-[10px] font-black uppercase tracking-widest opacity-80">
+                <div className="space-y-4 text-[12px] font-black uppercase tracking-widest opacity-80">
                   <div className="flex justify-between border-b border-text/10 pb-2">
                     <span>Baseline Sum</span>
                     <span>৳{order.pricing?.itemsPrice?.toLocaleString()}</span>
@@ -222,7 +222,7 @@ export default function OrderDetailsPage() {
                 </div>
 
                 <div className="space-y-1 text-center">
-                  <p className="text-[10px] font-black uppercase tracking-[0.4em] opacity-60">
+                  <p className="text-[12px] font-black uppercase tracking-[0.4em] opacity-60">
                     Total Transmission
                   </p>
                   <p className="text-6xl md:text-7xl font-black italic tracking-tighter leading-none">
@@ -233,10 +233,10 @@ export default function OrderDetailsPage() {
                 <div className="flex items-center gap-4 py-4 px-6 bg-text/10 rounded-2xl border border-text/20">
                   <ShieldCheck size={20} />
                   <div className="flex flex-col">
-                    <span className="text-[8px] font-black uppercase opacity-60">
+                    <span className="text-[10px] font-black uppercase opacity-60">
                       Secure Payment
                     </span>
-                    <span className="text-[10px] font-black uppercase">
+                    <span className="text-[12px] font-black uppercase">
                       {order.payment?.method}
                     </span>
                   </div>
@@ -248,7 +248,7 @@ export default function OrderDetailsPage() {
 
         {/* Footer */}
         <div className="flex justify-center pb-10">
-          <div className="bg-card/20 px-8 py-3 rounded-full border border-border/30 text-[8px] font-bold text-pText/40 uppercase tracking-[0.4em]">
+          <div className="bg-card/20 px-8 py-3 rounded-full border border-border/30 text-[10px] font-bold text-pText/40 uppercase tracking-[0.4em]">
             © 2026 CYBERSTORE.TERMINAL / SECURE_ACCESS_GRANTED
           </div>
         </div>

@@ -41,7 +41,7 @@ export default function NotFound() {
           {/* Vertical Metadata Bar */}
           <div className="absolute -left-4 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-4 opacity-20">
             <div className="w-px h-24 bg-text" />
-            <span className="[writing-mode:vertical-lr] text-[8px] font-black uppercase tracking-[0.5em]">
+            <span className="[writing-mode:vertical-lr] text-[10px] font-black uppercase tracking-[0.5em]">
               Sector.Failure
             </span>
           </div>
@@ -57,7 +57,7 @@ export default function NotFound() {
           >
             <div className="inline-flex items-center gap-3 bg-white/30 border border-white/10 px-6 py-2 rounded-2xl">
               <ShieldAlert size={16} className="text-primary" />
-              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-pText">
+              <span className="text-[12px] font-black uppercase tracking-[0.4em] text-pText">
                 Alert: Data_Link_Severed
               </span>
             </div>
@@ -93,7 +93,13 @@ export default function NotFound() {
               </span>
             </button>
             <div>
-              <Button aria-label="go to home" size="lg" url={'/'} icon={Home} text={'Base Command'} />
+              <Button
+                aria-label="go to home"
+                size="lg"
+                url={'/'}
+                icon={Home}
+                text={'Base Command'}
+              />
             </div>
           </motion.div>
         </div>
@@ -101,7 +107,7 @@ export default function NotFound() {
         {/* --- Footer Status --- */}
         <div className="mt-20 flex justify-center items-center gap-12 border-t border-white/5 pt-10">
           <div className="flex flex-col items-center gap-2">
-            <p className="text-[8px] font-black text-pText uppercase tracking-widest">Protocol</p>
+            <p className="text-[10px] font-black text-pText uppercase tracking-widest">Protocol</p>
             <div className="flex items-center gap-2">
               <Cpu size={14} className="text-primary" />
               <span className="text-xs font-black text-text uppercase italic">v.2026.X</span>
@@ -109,7 +115,7 @@ export default function NotFound() {
           </div>
           <div className="w-px h-8 bg-white/10" />
           <div className="flex flex-col items-center gap-2">
-            <p className="text-[8px] font-black text-pText uppercase tracking-widest">Storage</p>
+            <p className="text-[10px] font-black text-pText uppercase tracking-widest">Storage</p>
             <div className="flex items-center gap-2">
               <Box size={14} className="text-primary" />
               <span className="text-xs font-black text-text uppercase italic">Void_0x404</span>

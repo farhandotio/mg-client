@@ -123,7 +123,7 @@ const LoadingScreen = () => (
       </div>
     </div>
     <div className="flex flex-col items-center gap-3">
-      <h2 className="text-primary font-black uppercase tracking-[0.5em] text-[10px] ml-[0.5em]">
+      <h2 className="text-primary font-black uppercase tracking-[0.5em] text-[12px] ml-[0.5em]">
         তথ্য লোড হচ্ছে...
       </h2>
       <div className="w-48 h-0.5 bg-white/5 overflow-hidden rounded-full">
@@ -156,7 +156,7 @@ const ErrorScreen = () => (
         <span className="text-primary font-black uppercase tracking-[0.3em] text-xs">
           পণ্যটি খুঁজে পাওয়া যায়নি
         </span>
-        <p className="text-pText/60 text-[10px] uppercase font-bold tracking-widest">
+        <p className="text-pText/60 text-[12px] uppercase font-bold tracking-widest">
           আপনার অনুরোধকৃত আইটেমটি আমাদের ডাটাবেজে নেই
         </p>
       </div>
@@ -167,7 +167,7 @@ const ErrorScreen = () => (
         <ArrowLeft size={22} className="group-hover:text-bg transition-colors" />
       </div>
       <div className="text-left">
-        <span className="block text-[9px] font-black uppercase tracking-[0.3em] text-pText/40 mb-1">
+        <span className="block text-[11px] font-black uppercase tracking-[0.3em] text-pText/40 mb-1">
           পূর্বের পাতায় ফিরুন
         </span>
         <span className="block text-lg font-black uppercase italic tracking-tighter group-hover:text-primary transition-colors">

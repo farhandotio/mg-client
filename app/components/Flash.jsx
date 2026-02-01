@@ -49,7 +49,7 @@ export default function Flash() {
               <div className="flex gap-1.5">
                 {[timeLeft.hours, timeLeft.mins, timeLeft.secs].map((unit, i) => (
                   <React.Fragment key={i}>
-                    <div className="bg-secondary text-white px-2 py-1 rounded font-mono font-bold text-sm min-w-8 text-center shadow-lg shadow-secondary/20">
+                    <div className="bg-secondary text-black/70 px-2 py-1 rounded font-mono font-bold text-sm min-w-8 text-center shadow-lg shadow-secondary/20">
                       {unit}
                     </div>
                     {i < 2 && <span className="text-secondary font-bold">:</span>}

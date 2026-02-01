@@ -43,7 +43,7 @@ export default function Category() {
         <div className="flex justify-between items-center mb-8">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-primary/10 rounded-lg">
-              <ShoppingBag size={20} className="text-primary" />
+              <ShoppingBag aria-label="View Shopping Cart" size={20} className="text-primary" />
             </div>
             <div>
               <h2 className="text-2xl md:text-3xl font-black text-text tracking-tight leading-none">
@@ -57,6 +57,7 @@ export default function Category() {
 
           <div className="flex items-center gap-4">
             <Link
+              aria-label="View All Categories"
               href="/shop"
               onClick={handleScrollToTop}
               className="group hidden sm:flex items-center gap-2 text-[12px] font-bold text-primary hover:underline transition-all"
@@ -67,12 +68,14 @@ export default function Category() {
 
             <div className="flex gap-1.5">
               <button
+                aria-label="Scroll Categories Left"
                 onClick={() => scroll('left')}
                 className="p-2 bg-card border border-border/50 rounded-full hover:bg-primary hover:text-bg transition-all active:scale-90"
               >
                 <ChevronLeft size={18} />
               </button>
               <button
+                aria-label="Scroll Categories Right"
                 onClick={() => scroll('right')}
                 className="p-2 bg-card border border-border/50 rounded-full hover:bg-primary hover:text-bg transition-all active:scale-90"
               >
@@ -97,19 +100,19 @@ export default function Category() {
             categories.map((item, idx) => (
               <motion.div
                 key={item._id}
-                initial={{ opacity: 0.5}}
-                whileInView={{ opacity: 1}}
+                initial={{ opacity: 0.5 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: idx * 0.05 }}
-                className="shrink-0 w-64 md:w-72 snap-start"
+                className="shrink-0 max-w-75 snap-start"
               >
                 <Link
                   href={`/shop?category=${item.slug}`}
                   onClick={handleScrollToTop}
                   className="group relative block"
                 >
-                  <div className="relative h-32 w-full bg-card border border-border/40 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:border-primary/30 flex items-center p-3 gap-4">
-                    <div className="relative w-24 h-24 rounded-xl overflow-hidden bg-bg shrink-0 border border-border/20">
+                  <div className="relative w-full bg-card border border-border/40 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:border-primary/30 flex items-center p-5 gap-4">
+                    <div className="relative w-20 h-20 rounded-xl overflow-hidden bg-bg shrink-0 border border-border/20">
                       <Image
                         src={item.image?.url || '/api/placeholder/400/300'}
                         alt={item.name}
@@ -121,13 +124,13 @@ export default function Category() {
                     </div>
 
                     <div className="flex-1">
-                      <h3 className="text-lg font-black text-text group-hover:text-primary transition-colors leading-tight">
+                      <h3 className="text-md font-black text-text group-hover:text-primary transition-colors leading-tight">
                         {item.name}
                       </h3>
-                      <p className="text-[10px] text-pText mt-1 font-bold">কালেকশন দেখুন</p>
+                      <p className="text-[12px] text-pText mt-1 font-bold">কালেকশন দেখুন</p>
 
                       <div className="mt-3 flex items-center gap-1 text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span className="text-[9px] font-black uppercase">বিস্তারিত</span>
+                        <span className="text-[11px] font-black uppercase">বিস্তারিত</span>
                         <ArrowRight size={10} />
                       </div>
                     </div>

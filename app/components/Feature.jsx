@@ -24,7 +24,7 @@ export default function Feature() {
           <div className="space-y-1">
             <div className="flex items-center gap-1.5 text-secondary">
               <Flame size={16} className="fill-secondary animate-pulse" />
-              <span className="text-[10px] md:text-[11px] font-black uppercase tracking-wider">
+              <span className="text-[12px] md:text-[11px] font-black uppercase tracking-wider">
                 বেস্ট কালেকশন
               </span>
             </div>

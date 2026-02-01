@@ -102,7 +102,7 @@ export default function Hero() {
             >
               {/* Product Badge */}
               <div className="absolute top-10 left-10 z-20">
-                <span className="bg-text text-bg text-[10px] font-black px-3 py-1 rounded-md uppercase">
+                <span className="bg-text text-bg text-[12px] font-black px-3 py-1 rounded-md uppercase">
                   {SLIDE_DATA[currentSlide].tag}
                 </span>
               </div>
@@ -137,7 +137,7 @@ export default function Hero() {
               <ShieldCheck className="text-green-500" size={24} />
             </div>
             <div>
-              <p className="text-[10px] font-black text-pText uppercase">অরিজিনাল</p>
+              <p className="text-[12px] font-black text-pText uppercase">অরিজিনাল</p>
               <p className="text-sm font-black text-text tracking-tight">গ্যারান্টিড প্রোডাক্ট</p>
             </div>
           </div>

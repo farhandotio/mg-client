@@ -89,7 +89,7 @@ export default function Footer() {
                 <h4 className="text-text font-black text-lg tracking-tight leading-none">
                   {item.title}
                 </h4>
-                <p className="text-pText/50 text-[10px] font-black uppercase tracking-widest italic">
+                <p className="text-pText/50 text-[12px] font-black uppercase tracking-widest italic">
                   {item.desc}
                 </p>
               </div>
@@ -123,7 +123,7 @@ export default function Footer() {
 
           {/* কুইক লিঙ্কস */}
           <div className="lg:col-span-2">
-            <h4 className="text-primary font-black uppercase text-[10px] tracking-[0.3em] mb-8">
+            <h4 className="text-primary font-black uppercase text-[12px] tracking-[0.3em] mb-8">
               লিঙ্কসমূহ
             </h4>
             <ul className="space-y-4">
@@ -143,7 +143,7 @@ export default function Footer() {
 
           {/* সহযোগিতা */}
           <div className="lg:col-span-2">
-            <h4 className="text-primary font-black uppercase text-[10px] tracking-[0.3em] mb-8">
+            <h4 className="text-primary font-black uppercase text-[12px] tracking-[0.3em] mb-8">
               সহযোগিতা
             </h4>
             <ul className="space-y-4">
@@ -164,7 +164,7 @@ export default function Footer() {
           {/* নিউজলেটার */}
           <div className="lg:col-span-4 space-y-8">
             <div className="space-y-4">
-              <h4 className="text-primary font-black uppercase text-[10px] tracking-[0.3em]">
+              <h4 className="text-primary font-black uppercase text-[12px] tracking-[0.3em]">
                 নিউজলেটার
               </h4>
               <form className="relative group" onSubmit={(e) => e.preventDefault()}>
@@ -204,7 +204,7 @@ export default function Footer() {
 
         {/* ৩. বটম বার */}
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-3 text-pText/30 text-[9px] font-black uppercase tracking-[0.3em]">
+          <div className="flex items-center gap-3 text-pText/30 text-[11px] font-black uppercase tracking-[0.3em]">
             <span>কপিরাইট © ২০২৬</span>
             <span className="text-primary">●</span>
             <span>গ্যাজেট বিডিএস</span>
@@ -213,7 +213,7 @@ export default function Footer() {
           <div className="flex items-center gap-8 opacity-40 hover:opacity-100 transition-opacity">
             <div className="flex items-center gap-2">
               <Zap size={14} className="text-primary fill-current animate-pulse" />
-              <span className="text-[9px] font-black uppercase tracking-widest italic">
+              <span className="text-[11px] font-black uppercase tracking-widest italic">
                 পাওয়ারড বাই নেক্সট কোড
               </span>
             </div>

@@ -104,10 +104,10 @@ export default function ProductGallery({ images = [], title, discount }) {
               animate={{ opacity: 1, x: 0 }}
               className="flex flex-col gap-1.5"
             >
-              <span className="bg-primary text-bg text-[10px] font-black px-3 py-1 rounded-md italic uppercase clip-path-tag-gallery shadow-[0_0_15px_rgba(41,252,86,0.3)]">
+              <span className="bg-primary text-bg text-[12px] font-black px-3 py-1 rounded-md italic uppercase clip-path-tag-gallery shadow-[0_0_15px_rgba(41,252,86,0.3)]">
                 {discount}% ছাড়
               </span>
-              <div className="bg-text/60 backdrop-blur-md border border-bg/10 text-bg text-[9px] font-bold px-2 py-1 rounded flex items-center gap-1 w-fit">
+              <div className="bg-text/60 backdrop-blur-md border border-bg/10 text-bg text-[11px] font-bold px-2 py-1 rounded flex items-center gap-1 w-fit">
                 <Box size={10} className="text-primary" /> নিরাপদ প্যাকিং
               </div>
             </motion.div>
@@ -223,9 +223,7 @@ export default function ProductGallery({ images = [], title, discount }) {
                   key={index}
                   onClick={() => setActiveImg(index)}
                   className={`relative w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${
-                    activeImg === index
-                      ? 'border-primary opacity-100'
-                      : 'border-bg/20 opacity-50'
+                    activeImg === index ? 'border-primary opacity-100' : 'border-bg/20 opacity-50'
                   }`}
                 >
                   <Image src={img?.url} fill className="object-cover" alt="thumb" />

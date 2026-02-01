@@ -63,10 +63,10 @@ export default function AdminOrdersPage() {
       key: '_id',
       render: (item) => (
         <div className="flex flex-col">
-          <span className="text-[10px] font-black text-text uppercase italic">
+          <span className="text-[12px] font-black text-text uppercase italic">
             #{item._id?.slice(-8)}
           </span>
-          <span className="text-[9px] text-pText/60 font-bold uppercase truncate max-w-7xl">
+          <span className="text-[11px] text-pText/60 font-bold uppercase truncate max-w-7xl">
             {item.shippingAddress?.fullname || 'Guest'}
           </span>
         </div>
@@ -95,7 +95,7 @@ export default function AdminOrdersPage() {
       key: 'orderStatus',
       render: (item) => (
         <div
-          className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[8px] font-black uppercase border ${getStatusStyle(
+          className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase border ${getStatusStyle(
             item.orderStatus
           )}`}
         >
@@ -113,7 +113,7 @@ export default function AdminOrdersPage() {
         <div>
           <div className="flex items-center gap-2 text-primary">
             <Terminal size={14} />
-            <span className="text-[9px] font-black uppercase tracking-[0.4em]">
+            <span className="text-[11px] font-black uppercase tracking-[0.4em]">
               Secure_Admin_Terminal
             </span>
           </div>
@@ -126,7 +126,7 @@ export default function AdminOrdersPage() {
           <Clock size={18} className="text-primary" />
           <div className="flex flex-col">
             <span className="text-xl font-black text-text leading-none">{orders?.length || 0}</span>
-            <span className="text-[7px] font-black text-pText/60 uppercase tracking-widest mt-1">
+            <span className="text-[10px] font-black text-pText/60 uppercase tracking-widest mt-1">
               Captured_Logs
             </span>
           </div>
@@ -163,13 +163,13 @@ export default function AdminOrdersPage() {
             <h2 className="text-2xl font-black italic uppercase tracking-tighter mb-1">
               Update <span className="text-primary">Protocol</span>
             </h2>
-            <p className="text-[10px] uppercase font-bold text-pText tracking-widest mb-8">
+            <p className="text-[12px] uppercase font-bold text-pText tracking-widest mb-8">
               Log_ID: #{selectedOrder?._id?.slice(-8)}
             </p>
 
             <div className="space-y-6">
               <div>
-                <label className="text-[10px] font-black uppercase tracking-widest text-primary mb-3 block">
+                <label className="text-[12px] font-black uppercase tracking-widest text-primary mb-3 block">
                   Access New Status
                 </label>
                 <select
@@ -200,7 +200,7 @@ export default function AdminOrdersPage() {
       {/* Footer */}
       <div className="mt-8 flex items-center gap-2 opacity-30 justify-center md:justify-start">
         <ShieldAlert size={12} />
-        <span className="text-[8px] font-black uppercase tracking-[0.3em]">
+        <span className="text-[10px] font-black uppercase tracking-[0.3em]">
           End-to-End Encryption Active // {new Date().getFullYear()}
         </span>
       </div>

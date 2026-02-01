@@ -27,7 +27,7 @@ export default function Best() {
           <div className="space-y-1">
             <div className="flex items-center gap-1.5 text-primary">
               <TrendingUp size={16} className="animate-bounce" />
-              <span className="text-[10px] md:text-[11px] font-black uppercase tracking-wider">
+              <span className="text-[12px] md:text-[11px] font-black uppercase tracking-wider">
                 সবচেয়ে জনপ্রিয়
               </span>
             </div>

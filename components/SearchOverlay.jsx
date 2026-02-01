@@ -19,7 +19,6 @@ export default function SearchOverlay({ isOpen, onClose }) {
     shallowEqual
   );
 
-  // ডিফল্ট সাজেশন বা ক্যাটাগরি সাজেশন
   const suggestions = useMemo(() => {
     if (!products.length) return ['আইফোন', 'গেমিং', 'ল্যাপটপ', 'অডিও'];
     const cats = products.map((p) => p.category?.name).filter(Boolean);
@@ -28,7 +27,6 @@ export default function SearchOverlay({ isOpen, onClose }) {
 
   useEffect(() => {
     if (isOpen && !searchTerm) {
-      // ওপেন হওয়ার সাথে সাথে নতুন আসা প্রোডাক্টগুলো দেখাবে
       dispatch(fetchAllProducts('limit=6&sort=-createdAt'));
     }
   }, [isOpen, dispatch]);
@@ -70,11 +68,12 @@ export default function SearchOverlay({ isOpen, onClose }) {
             <div className="flex justify-between items-center mb-6">
               <div className="flex items-center gap-2 text-primary">
                 <Database size={16} className={loading ? 'animate-pulse' : ''} />
-                <span className="text-[10px] font-black uppercase tracking-[0.3em]">
+                <span className="text-[12px] font-black uppercase tracking-[0.3em]">
                   ইনভেন্টরি সিনক্রোনাইজেশন
                 </span>
               </div>
               <button
+                aria-label="Close Search Overlay"
                 onClick={onClose}
                 className="p-3 hover:bg-white/5 rounded-full transition-colors text-text"
               >
@@ -107,6 +106,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
                 <div className="flex flex-wrap gap-2 md:gap-3">
                   {suggestions.map((item, idx) => (
                     <button
+                      aria-label={`Use Search Suggestion: ${item}`}
                       key={idx}
                       onClick={() => handleSuggestionClick(item)}
                       className="group flex items-center gap-2 px-5 py-2.5 bg-card/30 border border-border/50 rounded-full hover:border-primary/50 transition-all active:scale-95"
@@ -127,7 +127,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
             {/* --- Search Results --- */}
             <div className="flex-1 overflow-y-auto no-scrollbar">
               <div className="flex items-center gap-4 mb-6">
-                <p className="text-pText/40 text-[10px] font-black uppercase tracking-[0.3em] whitespace-nowrap">
+                <p className="text-pText/40 text-[12px] font-black uppercase tracking-[0.3em] whitespace-nowrap">
                   {searchTerm ? `"${searchTerm}" এর ফলাফল` : 'নতুন কালেকশন'}
                 </p>
                 <div className="h-0.5 w-full bg-border/20" />
@@ -140,7 +140,12 @@ export default function SearchOverlay({ isOpen, onClose }) {
               >
                 {products.length > 0
                   ? products.map((product, idx) => (
-                      <Link key={product._id} href={`/shop/${product.slug}`} onClick={onClose}>
+                      <Link
+                        aria-label={`View Product: ${product.title}`}
+                        key={product._id}
+                        href={`/shop/${product.slug}`}
+                        onClick={onClose}
+                      >
                         <motion.div
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
@@ -163,7 +168,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
                                 ৳{product.price?.discounted || product.price?.base}
                               </span>
                               {product.price?.discounted && (
-                                <span className="text-[10px] text-pText/40 line-through">
+                                <span className="text-[12px] text-pText/40 line-through">
                                   ৳{product.price.base}
                                 </span>
                               )}

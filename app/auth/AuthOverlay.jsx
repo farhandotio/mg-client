@@ -38,7 +38,7 @@ export default function AuthOverlay({ isLogin, locked, toggleMode }) {
         <button
           aria-label="toggle auth"
           onClick={toggleMode}
-          className="group relative px-12 py-5 overflow-hidden border-2 border-text rounded-2xl font-black uppercase tracking-[0.2em] text-[10px] transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]"
+          className="group relative px-12 py-5 overflow-hidden border-2 border-text rounded-2xl font-black uppercase tracking-[0.2em] text-[12px] transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]"
         >
           <span className="relative z-10 flex items-center justify-center gap-2 group-hover:text-primary transition-colors duration-300">
             {isLogin ? (

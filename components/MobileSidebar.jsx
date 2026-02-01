@@ -33,6 +33,7 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
             <div className="flex items-center justify-between mb-10">
               <Logo width={120} height={55} />
               <button
+                aria-label="Close Mobile Sidebar"
                 onClick={onClose}
                 className="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-xl text-primary active:scale-90 transition-transform"
               >
@@ -43,6 +44,7 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
             {/* Navigation Links */}
             <div className="flex flex-col gap-6 flex-1 overflow-y-auto no-scrollbar pb-2">
               <Link
+                aria-label="View Home Page"
                 href="/"
                 onClick={onClose}
                 className="text-2xl font-black italic tracking-tighter uppercase leading-none text-text"
@@ -50,6 +52,7 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
                 হোম
               </Link>
               <Link
+                aria-label="View Shop Page"
                 href="/shop"
                 onClick={onClose}
                 className="text-2xl font-black italic tracking-tighter uppercase leading-none text-text"
@@ -57,6 +60,7 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
                 শপ
               </Link>
               <Link
+                aria-label="View Hot Deals Page"
                 href="/shop?productType=HotDeals"
                 onClick={onClose}
                 className="text-2xl font-black italic tracking-tighter uppercase leading-none text-primary flex items-center gap-2"
@@ -66,13 +70,14 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
 
               {/* Dynamic Categories Section */}
               <div className="space-y-4 pt-3 border-t border-border/50">
-                <p className="text-[10px] font-black uppercase text-pText/50 tracking-[0.3em]">
+                <p className="text-[12px] font-black uppercase text-pText/50 tracking-[0.3em]">
                   ক্যাটাগরি সমূহ
                 </p>
                 <div className="grid gap-3">
                   {categories && categories.length > 0 ? (
                     categories.map((cat) => (
                       <Link
+                        aria-label={`View ${cat.name} Category`}
                         key={cat._id || cat.slug}
                         href={`/shop?category=${cat.slug}`}
                         onClick={onClose}
@@ -101,7 +106,7 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
                       </Link>
                     ))
                   ) : (
-                    <div className="py-4 text-[10px] font-black uppercase opacity-20 italic">
+                    <div className="py-4 text-[12px] font-black uppercase opacity-20 italic">
                       লোড হচ্ছে...
                     </div>
                   )}
@@ -112,6 +117,7 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
             {/* Bottom Action Button */}
             <div className="pt-6 border-t border-border/50">
               <Link
+                aria-label="View Profile or Login"
                 href={
                   !isAuthenticated
                     ? '/auth'

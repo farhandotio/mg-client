@@ -49,7 +49,7 @@ export default function GenericForm({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {fields.map((field) => (
           <div key={field.name} className={`${field.fullWidth ? 'md:col-span-2' : ''} space-y-2`}>
-            <label className="text-[10px] font-black uppercase tracking-widest text-pText/60 ml-2">
+            <label className="text-[12px] font-black uppercase tracking-widest text-pText/60 ml-2">
               {field.label}
             </label>
 

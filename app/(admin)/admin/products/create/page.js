@@ -113,7 +113,7 @@ export default function CreateProductPage() {
             <div className="p-2 bg-primary/10 rounded-lg animate-pulse">
               <Cpu size={18} />
             </div>
-            <span className="text-[10px] font-black uppercase tracking-[0.5em] opacity-70">
+            <span className="text-[12px] font-black uppercase tracking-[0.5em] opacity-70">
               Nexus / Production_Terminal
             </span>
           </div>
@@ -126,8 +126,8 @@ export default function CreateProductPage() {
         </div>
         <div className="flex items-center gap-4 bg-card/40 p-4 rounded-2xl border border-border/50 backdrop-blur-md">
           <div className="text-right border-r border-border/50 pr-4">
-            <p className="text-[8px] font-black uppercase opacity-40">System_Status</p>
-            <p className="text-[10px] font-bold text-primary">CORE_ACTIVE</p>
+            <p className="text-[10px] font-black uppercase opacity-40">System_Status</p>
+            <p className="text-[12px] font-bold text-primary">CORE_ACTIVE</p>
           </div>
           <Fingerprint size={32} className="text-primary opacity-20" />
         </div>
@@ -151,7 +151,7 @@ export default function CreateProductPage() {
                 onChange={(e) => setFormData({ ...formData, shortDescription: e.target.value })}
               />
               <div className="space-y-3">
-                <label className="text-[10px] font-black uppercase tracking-[0.3em] text-pText/60 ml-3">
+                <label className="text-[12px] font-black uppercase tracking-[0.3em] text-pText/60 ml-3">
                   Deep_Analysis_Protocol (Full Description)*
                 </label>
                 <textarea
@@ -209,7 +209,7 @@ export default function CreateProductPage() {
                 className="group flex items-center gap-2 px-4 py-2 rounded-xl bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all border border-primary/20"
               >
                 <Plus size={16} />
-                <span className="text-[10px] hidden md:block font-black uppercase tracking-widest">
+                <span className="text-[12px] hidden md:block font-black uppercase tracking-widest">
                   Add_Spec
                 </span>
               </button>
@@ -313,7 +313,7 @@ export default function CreateProductPage() {
                 placeholder="Asset URL + Press Enter"
                 onKeyDown={addImageUrl}
                 disabled={formData.images.length >= 5}
-                className="w-full bg-card border border-border rounded-[1.2rem] p-4 text-[10px] font-black uppercase tracking-widest outline-none focus:border-primary disabled:opacity-30 transition-all shadow-md pr-12"
+                className="w-full bg-card border border-border rounded-[1.2rem] p-4 text-[12px] font-black uppercase tracking-widest outline-none focus:border-primary disabled:opacity-30 transition-all shadow-md pr-12"
               />
               <Plus
                 size={16}
@@ -362,11 +362,11 @@ export default function CreateProductPage() {
                 required
               />
               <div className="space-y-3">
-                <label className="text-[10px] font-black uppercase tracking-[0.3em] text-pText/60 ml-3">
+                <label className="text-[12px] font-black uppercase tracking-[0.3em] text-pText/60 ml-3">
                   Market Classification
                 </label>
                 <select
-                  className="w-full bg-bg/80 border border-border rounded-2xl p-4 text-[10px] font-black uppercase tracking-widest outline-none focus:border-primary text-primary cursor-pointer shadow-inner appearance-none"
+                  className="w-full bg-bg/80 border border-border rounded-2xl p-4 text-[12px] font-black uppercase tracking-widest outline-none focus:border-primary text-primary cursor-pointer shadow-inner appearance-none"
                   onChange={(e) => setFormData({ ...formData, productType: e.target.value })}
                 >
                   {['Regular', 'FlashSale', 'HotDeals', 'Featured', 'BestSeller', 'NewArrival'].map(
@@ -420,7 +420,7 @@ function SelectionCard({ item, isSelected, onClick }) {
         )}
       </div>
       <p
-        className={`text-[10px] font-black uppercase tracking-tighter text-center leading-tight transition-colors px-1 ${isSelected ? 'text-white' : 'text-pText/70'}`}
+        className={`text-[12px] font-black uppercase tracking-tighter text-center leading-tight transition-colors px-1 ${isSelected ? 'text-white' : 'text-pText/70'}`}
       >
         {item.name}
       </p>
@@ -447,7 +447,7 @@ function SectionHeader({ icon, title }) {
 function CustomInput({ label, ...props }) {
   return (
     <div className="space-y-3 flex-1">
-      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-pText/60 ml-3">
+      <label className="text-[12px] font-black uppercase tracking-[0.3em] text-pText/60 ml-3">
         {label}
       </label>
       <input

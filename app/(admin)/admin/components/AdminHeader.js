@@ -29,7 +29,7 @@ export default function AdminHeader({ onMenuClick }) {
 
         <div className="flex items-center gap-3 pl-4 border-l border-border">
           <div className="text-right hidden md:block">
-            <p className="text-[10px] font-black uppercase text-white">Admin</p>
+            <p className="text-[12px] font-black uppercase text-white">Admin</p>
           </div>
           <div className="w-9 h-9 bg-primary/20 rounded-full flex items-center justify-center border border-primary/30">
             <User size={18} className="text-primary" />

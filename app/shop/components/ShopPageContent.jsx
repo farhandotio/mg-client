@@ -100,7 +100,7 @@ export default function ShopPageContent({ categorySlug }) {
             <div className="space-y-1">
               <div className="flex items-center gap-2 text-primary">
                 <Globe size={14} className="animate-spin-slow" />
-                <span className="text-[10px] font-black uppercase tracking-[0.3em]">
+                <span className="text-[12px] font-black uppercase tracking-[0.3em]">
                   গ্লোবাল_ইনভেন্টরি_লিস্ট
                 </span>
               </div>
@@ -115,7 +115,7 @@ export default function ShopPageContent({ categorySlug }) {
               </button>
 
               <div className="bg-primary/5 border border-primary/20 px-4 py-2 rounded-full">
-                <p className="text-primary text-[10px] font-black uppercase tracking-widest">
+                <p className="text-primary text-[12px] font-black uppercase tracking-widest">
                   {loading
                     ? 'স্ক্যানিং...'
                     : `পাওয়া গেছে: ${pagination?.totalProducts || 0} টি পণ্য`}
@@ -154,7 +154,7 @@ export default function ShopPageContent({ categorySlug }) {
                   <nav className="flex flex-col items-center gap-6 py-5 border-t border-border/10">
                     {/* পৃষ্ঠার সংখ্যা এবং তথ্য */}
                     <div className="flex flex-col items-center gap-1">
-                      <span className="text-[10px] font-black uppercase tracking-[0.4em] text-pText/40">
+                      <span className="text-[12px] font-black uppercase tracking-[0.4em] text-pText/40">
                         সিস্টেম নেভিগেশন
                       </span>
                       <div className="flex items-center gap-4 bg-card/50 backdrop-blur-md px-10 py-4 rounded-2xl border border-border/50 shadow-xl shadow-primary/5">
@@ -180,7 +180,7 @@ export default function ShopPageContent({ categorySlug }) {
                           size={18}
                           className="text-primary group-hover:-translate-x-1 transition-transform"
                         />
-                        <span className="text-[10px] font-black uppercase tracking-widest">
+                        <span className="text-[12px] font-black uppercase tracking-widest">
                           আগেরটি
                         </span>
                       </button>
@@ -191,7 +191,7 @@ export default function ShopPageContent({ categorySlug }) {
                         onClick={() => handlePagination(page + 1)}
                         className="group flex items-center gap-3 pl-6 pr-4 py-3 bg-card border border-border/50 rounded-2xl disabled:opacity-20 hover:border-primary/50 transition-all active:scale-95 disabled:pointer-events-none"
                       >
-                        <span className="text-[10px] font-black uppercase tracking-widest">
+                        <span className="text-[12px] font-black uppercase tracking-widest">
                           পরেরটি
                         </span>
                         <ChevronRight
@@ -213,7 +213,7 @@ export default function ShopPageContent({ categorySlug }) {
                 </h3>
                 <button
                   onClick={() => router.push('/shop')}
-                  className="mt-6 text-[10px] font-black uppercase text-primary border-b border-primary/30 pb-1"
+                  className="mt-6 text-[12px] font-black uppercase text-primary border-b border-primary/30 pb-1"
                 >
                   সব পণ্য দেখুন
                 </button>
@@ -238,7 +238,7 @@ export default function ShopPageContent({ categorySlug }) {
             className="absolute left-0 top-0 h-full w-[85%] max-w-[320px] bg-bg border-r border-border/50 p-8 overflow-y-auto"
           >
             <div className="flex justify-between items-center mb-10">
-              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-primary">
+              <span className="text-[12px] font-black uppercase tracking-[0.4em] text-primary">
                 ফিল্টার অপশন
               </span>
               <button onClick={() => setIsMobileFilterOpen(false)} className="text-pText">

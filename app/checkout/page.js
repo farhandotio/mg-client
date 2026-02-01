@@ -127,7 +127,7 @@ export default function CheckoutPage() {
               নিরাপদ <span className="text-primary">চেকআউট</span>
             </h1>
           </div>
-          <div className="flex items-center gap-1.5 text-[10px] font-black uppercase text-green-500 bg-green-500/10 px-3 py-1 rounded-full border border-green-500/20">
+          <div className="flex items-center gap-1.5 text-[12px] font-black uppercase text-green-500 bg-green-500/10 px-3 py-1 rounded-full border border-green-500/20">
             <ShieldCheck size={12} /> নিরাপদ লেনদেন
           </div>
         </div>
@@ -144,7 +144,7 @@ export default function CheckoutPage() {
                 {!showAddressForm && addresses?.length > 0 && (
                   <button
                     onClick={() => setShowAddressForm(true)}
-                    className="text-[10px] font-bold text-primary flex items-center gap-1 hover:underline"
+                    className="text-[12px] font-bold text-primary flex items-center gap-1 hover:underline"
                   >
                     <Plus size={14} /> নতুন ঠিকানা
                   </button>
@@ -227,14 +227,14 @@ export default function CheckoutPage() {
                         {selectedAddress?._id === addr._id && (
                           <CheckCircle2 size={16} className="absolute top-3 right-3 text-primary" />
                         )}
-                        <p className="text-[9px] font-black text-pText/50 uppercase tracking-tighter mb-1">
+                        <p className="text-[11px] font-black text-pText/50 uppercase tracking-tighter mb-1">
                           ঠিকানা নোড
                         </p>
                         <h4 className="font-bold text-xs text-text truncate mb-1">{addr.street}</h4>
-                        <p className="text-pText text-[10px] mb-2">
+                        <p className="text-pText text-[12px] mb-2">
                           {addr.city}, {addr.state}
                         </p>
-                        <div className="text-[10px] font-mono text-primary font-bold">
+                        <div className="text-[12px] font-mono text-primary font-bold">
                           {addr.phone}
                         </div>
                       </div>
@@ -264,7 +264,7 @@ export default function CheckoutPage() {
                       </div>
                       <div>
                         <p className="text-xs font-black uppercase">ক্যাশ অন ডেলিভারি</p>
-                        <p className="text-[10px] text-pText font-bold uppercase tracking-tighter">
+                        <p className="text-[12px] text-pText font-bold uppercase tracking-tighter">
                           পণ্য বুঝে পেয়ে টাকা পরিশোধ করুন
                         </p>
                       </div>
@@ -302,10 +302,10 @@ export default function CheckoutPage() {
                       />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-[10px] font-black uppercase text-text truncate">
+                      <p className="text-[12px] font-black uppercase text-text truncate">
                         {item.title}
                       </p>
-                      <p className="text-[9px] text-pText font-bold">
+                      <p className="text-[11px] text-pText font-bold">
                         পরিমাণ: {item.quantity} × ৳{item.price.toLocaleString()}
                       </p>
                     </div>
@@ -317,11 +317,11 @@ export default function CheckoutPage() {
               </div>
 
               <div className="space-y-3 pt-5 border-t border-border/20">
-                <div className="flex justify-between text-[10px] font-bold text-pText uppercase tracking-widest">
+                <div className="flex justify-between text-[12px] font-bold text-pText uppercase tracking-widest">
                   <span>পণ্যের মূল্য</span>
                   <span className="text-text font-mono">৳{subtotal.toLocaleString()}</span>
                 </div>
-                <div className="flex justify-between text-[10px] font-bold text-pText uppercase tracking-widest">
+                <div className="flex justify-between text-[12px] font-bold text-pText uppercase tracking-widest">
                   <span>ডেলিভারি চার্জ</span>
                   <span className="text-text font-mono">৳{shipping}</span>
                 </div>
@@ -345,7 +345,7 @@ export default function CheckoutPage() {
                 icon={ChevronRight}
               />
 
-              <p className="text-[8px] font-bold uppercase text-pText/40 mt-5 text-center tracking-[0.2em] flex items-center justify-center gap-2">
+              <p className="text-[10px] font-bold uppercase text-pText/40 mt-5 text-center tracking-[0.2em] flex items-center justify-center gap-2">
                 <ShieldCheck size={12} className="text-primary" /> SSL এনক্রিপ্টেড পেমেন্ট গেটওয়ে
               </p>
             </div>
@@ -359,7 +359,7 @@ export default function CheckoutPage() {
 function CheckoutInput({ label, icon, ...props }) {
   return (
     <div className="space-y-1.5">
-      <label className="text-[9px] font-black uppercase tracking-wider text-pText ml-1">
+      <label className="text-[11px] font-black uppercase tracking-wider text-pText ml-1">
         {label}
       </label>
       <div className="relative group">

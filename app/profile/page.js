@@ -214,7 +214,7 @@ export default function ProfilePage() {
                 <button
                   aria-label="edit open"
                   onClick={openEditModal}
-                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3 bg-white/5 border border-white/10 text-text font-black uppercase text-[10px] tracking-widest rounded-xl hover:bg-primary hover:text-white hover:border-primary hover:shadow-[0_0_20px_rgba(255,111,92,0.4)] transition-all duration-300"
+                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3 bg-white/5 border border-white/10 text-text font-black uppercase text-[12px] tracking-widest rounded-xl hover:bg-primary hover:text-white hover:border-primary hover:shadow-[0_0_20px_rgba(255,111,92,0.4)] transition-all duration-300"
                 >
                   <Edit3 size={14} /> Edit Profile
                 </button>
@@ -222,7 +222,7 @@ export default function ProfilePage() {
                   aria-label="logout"
                   onClick={handleLogout}
                   disabled={isLoggingOut}
-                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3 bg-red-500/5 text-red-500 border border-red-500/20 font-black uppercase text-[10px] tracking-widest rounded-xl hover:bg-red-500 hover:text-white transition-all duration-300 disabled:opacity-50"
+                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3 bg-red-500/5 text-red-500 border border-red-500/20 font-black uppercase text-[12px] tracking-widest rounded-xl hover:bg-red-500 hover:text-white transition-all duration-300 disabled:opacity-50"
                 >
                   {isLoggingOut ? (
                     <Loader2 size={14} className="animate-spin" />
@@ -249,7 +249,7 @@ export default function ProfilePage() {
             <div className="flex justify-between items-end px-2">
               <div>
                 <h3 className="text-xl md:text-2xl font-black italic text-text">Shipping Nodes</h3>
-                <p className="text-[9px] font-bold text-pText uppercase tracking-widest">
+                <p className="text-[11px] font-bold text-pText uppercase tracking-widest">
                   Delivery Endpoints
                 </p>
               </div>
@@ -284,15 +284,15 @@ export default function ProfilePage() {
                             {addr.street}
                           </p>
                         </div>
-                        <p className="text-[10px] font-bold text-pText/70 italic uppercase pl-6">
+                        <p className="text-[12px] font-bold text-pText/70 italic uppercase pl-6">
                           {addr.city}, {addr.zip} • {addr.state}
                         </p>
                         <div className="flex items-center gap-2 pl-6">
-                          <p className="text-[10px] text-primary font-mono bg-primary/5 px-2 py-0.5 rounded">
+                          <p className="text-[12px] text-primary font-mono bg-primary/5 px-2 py-0.5 rounded">
                             {addr.phone}
                           </p>
                           {addr.isDefault && (
-                            <span className="text-[8px] font-black bg-white/10 text-white px-2 py-0.5 rounded-full tracking-wider">
+                            <span className="text-[10px] font-black bg-white/10 text-white px-2 py-0.5 rounded-full tracking-wider">
                               DEFAULT
                             </span>
                           )}
@@ -325,7 +325,7 @@ export default function ProfilePage() {
                 ))
               ) : (
                 <div className="text-center py-12 bg-card/20 rounded-3xl border border-dashed border-border/40">
-                  <p className="text-pText/40 text-[10px] font-black uppercase tracking-widest">
+                  <p className="text-pText/40 text-[12px] font-black uppercase tracking-widest">
                     No coordinates found
                   </p>
                 </div>
@@ -338,13 +338,13 @@ export default function ProfilePage() {
             <div className="flex justify-between items-end px-2">
               <div>
                 <h3 className="text-xl md:text-2xl font-black italic text-text">Data Logs</h3>
-                <p className="text-[9px] font-bold text-pText uppercase tracking-widest">
+                <p className="text-[11px] font-bold text-pText uppercase tracking-widest">
                   Recent Acquisitions
                 </p>
               </div>
               <Link
                 href="/orders"
-                className="text-primary text-[10px] font-black uppercase tracking-widest hover:underline decoration-2 underline-offset-4"
+                className="text-primary text-[12px] font-black uppercase tracking-widest hover:underline decoration-2 underline-offset-4"
               >
                 View Archive
               </Link>
@@ -369,7 +369,7 @@ export default function ProfilePage() {
                       </div>
                       <div className="sm:hidden">
                         <span
-                          className={`text-[9px] font-black uppercase px-2.5 py-1 rounded-md border ${
+                          className={`text-[11px] font-black uppercase px-2.5 py-1 rounded-md border ${
                             order.orderStatus === 'Delivered'
                               ? 'bg-green-500/10 border-green-500/20 text-green-500'
                               : 'bg-primary/10 border-primary/20 text-primary'
@@ -384,7 +384,7 @@ export default function ProfilePage() {
                       <h4 className="font-bold text-sm text-text/90 uppercase truncate group-hover:text-primary transition-colors">
                         Order #{order._id.slice(-6)}
                       </h4>
-                      <p className="text-[10px] text-pText/60 font-black mt-1 uppercase tracking-wider">
+                      <p className="text-[12px] text-pText/60 font-black mt-1 uppercase tracking-wider">
                         {new Date(order.createdAt).toLocaleDateString('en-US', {
                           day: 'numeric',
                           month: 'short',
@@ -401,7 +401,7 @@ export default function ProfilePage() {
                       </div>
                       <div className="hidden sm:block">
                         <span
-                          className={`text-[9px] font-black uppercase px-3 py-1.5 rounded-lg border ${
+                          className={`text-[11px] font-black uppercase px-3 py-1.5 rounded-lg border ${
                             order.orderStatus === 'Delivered'
                               ? 'bg-green-500/10 border-green-500/20 text-green-500'
                               : 'bg-primary/10 border-primary/20 text-primary'
@@ -456,7 +456,7 @@ export default function ProfilePage() {
                   <h2 className="text-2xl md:text-3xl font-black italic uppercase text-white">
                     Update Protocol
                   </h2>
-                  <p className="text-[10px] text-pText uppercase tracking-widest mt-2">
+                  <p className="text-[12px] text-pText uppercase tracking-widest mt-2">
                     Modify Identity Data
                   </p>
                 </div>
@@ -478,7 +478,7 @@ export default function ProfilePage() {
 
                   {/* --- Image URL Input with Preview --- */}
                   <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-pText/60 ml-2">
+                    <label className="text-[12px] font-black uppercase tracking-[0.2em] text-pText/60 ml-2">
                       Avatar URL Link
                     </label>
                     <div className="flex gap-3">
@@ -527,7 +527,7 @@ export default function ProfilePage() {
                   <h2 className="text-2xl md:text-3xl font-black italic uppercase text-white">
                     {isEditingAddress ? 'Re-Route Node' : 'New Coordinate'}
                   </h2>
-                  <p className="text-[10px] text-pText uppercase tracking-widest mt-2">
+                  <p className="text-[12px] text-pText uppercase tracking-widest mt-2">
                     Logistics Data Entry
                   </p>
                 </div>
@@ -586,7 +586,7 @@ export default function ProfilePage() {
                   />
                   <label
                     htmlFor="isDefault"
-                    className="text-[10px] font-bold uppercase tracking-widest cursor-pointer select-none text-pText"
+                    className="text-[12px] font-bold uppercase tracking-widest cursor-pointer select-none text-pText"
                   >
                     Set as Default Node
                   </label>
@@ -621,7 +621,7 @@ function StatCard({ label, value, delay }) {
       <p className="text-2xl font-black text-primary drop-shadow-[0_0_8px_rgba(255,111,92,0.5)]">
         {value || 0}
       </p>
-      <p className="text-[9px] uppercase tracking-widest text-pText/70 mt-1">{label}</p>
+      <p className="text-[11px] uppercase tracking-widest text-pText/70 mt-1">{label}</p>
     </div>
   );
 }
@@ -629,7 +629,7 @@ function StatCard({ label, value, delay }) {
 function InputGroup({ label, icon, disabled, ...props }) {
   return (
     <div className="space-y-2">
-      <label className="text-[10px] font-black uppercase tracking-[0.2em] text-pText/60 ml-2">
+      <label className="text-[12px] font-black uppercase tracking-[0.2em] text-pText/60 ml-2">
         {label}
       </label>
       <div className="relative group">
