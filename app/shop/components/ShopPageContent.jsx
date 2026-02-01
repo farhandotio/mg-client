@@ -144,8 +144,8 @@ export default function ShopPageContent({ categorySlug }) {
             ) : products?.length > 0 ? (
               <div className="space-y-6">
                 <div className="grid grid-cols-2 xl:grid-cols-4 gap-4">
-                  {products.map((product) => (
-                    <ProductCard key={product._id} product={product} />
+                  {products.map((product, index) => (
+                    <ProductCard key={product._id} priority={index < 5} product={product} />
                   ))}
                 </div>
 

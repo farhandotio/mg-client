@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api',
+  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api',
   timeout: 15000,
   headers: {
     'Content-Type': 'application/json',
@@ -16,7 +16,6 @@ API.interceptors.response.use(
 
     if (error.code === 'ECONNABORTED' && !originalRequest._retry) {
       originalRequest._retry = true;
-      console.warn('সার্ভার চালু হতে সময় নিচ্ছে, পুনরায় চেষ্টা করা হচ্ছে...');
       return API(originalRequest);
     }
 
@@ -30,7 +29,6 @@ API.interceptors.response.use(
 
         return API(originalRequest);
       } catch (refreshError) {
-        console.error('সেশন শেষ হয়ে গেছে, দয়া করে আবার লগইন করুন।');
         return Promise.reject(refreshError);
       }
     }

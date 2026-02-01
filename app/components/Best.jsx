@@ -54,12 +54,9 @@ export default function Best() {
               </div>
             ))
           ) : bestSellerProducts && bestSellerProducts.length > 0 ? (
-            bestSellerProducts.slice(0, 10).map((product) => (
-              <div
-                key={product._id}
-                className="w-full"
-              >
-                <ProductCard product={product} />
+            bestSellerProducts.slice(0, 10).map((product, index) => (
+              <div key={product._id} className="w-full">
+                <ProductCard product={product} priority={index < 5} />
               </div>
             ))
           ) : (

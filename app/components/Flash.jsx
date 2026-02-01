@@ -77,12 +77,12 @@ export default function Flash() {
               </div>
             ))
           ) : flashSaleProducts.length > 0 ? (
-            flashSaleProducts.slice(0, 10).map((product) => (
+            flashSaleProducts.slice(0, 10).map((product, index) => (
               <div
                 key={product._id}
                 className="w-full"
               >
-                <ProductCard product={product} />
+                <ProductCard product={product} priority={index < 5} />
               </div>
             ))
           ) : (

@@ -51,12 +51,9 @@ export default function Feature() {
               </div>
             ))
           ) : featuredProducts.length > 0 ? (
-            featuredProducts.slice(0, 10).map((product) => (
-              <div
-                key={product._id}
-                className="w-full"
-              >
-                <ProductCard product={product} />
+            featuredProducts.slice(0, 10).map((product, index) => (
+              <div key={product._id} className="w-full">
+                <ProductCard product={product} priority={index < 5} />
               </div>
             ))
           ) : (

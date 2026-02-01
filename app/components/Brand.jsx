@@ -74,7 +74,7 @@ export default function Brand() {
                       fill
                       sizes="200px"
                       className="object-contain grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
-                      quality={60} // লোগোর জন্য কম কোয়ালিটি যথেষ্ট, পারফরম্যান্স বাড়বে
+                      quality={75} // লোগোর জন্য কম কোয়ালিটি যথেষ্ট, পারফরম্যান্স বাড়বে
                     />
                   </div>
 

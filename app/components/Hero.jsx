@@ -90,7 +90,7 @@ export default function Hero() {
         </div>
 
         {/* --- ডান পাশ: স্লাইডার (শুধুমাত্র ডেস্কটপে দৃশ্যমান) --- */}
-        <div className="hidden lg:flex relative w-full h-[500px] items-center justify-end">
+        <div className="hidden lg:flex relative w-full h-125 items-center justify-end">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentSlide}
@@ -98,7 +98,7 @@ export default function Hero() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 1.05 }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="relative w-full max-w-[480px] h-full flex items-center justify-center"
+              className="relative w-full max-w-120 h-full flex items-center justify-center"
             >
               {/* Product Badge */}
               <div className="absolute top-10 left-10 z-20">
@@ -114,6 +114,7 @@ export default function Hero() {
                   alt={SLIDE_DATA[currentSlide].title}
                   fill
                   priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
                   className="object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.15)]"
                 />
               </div>

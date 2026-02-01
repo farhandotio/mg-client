@@ -2,13 +2,13 @@
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Star, ShoppingCart, ShieldCheck, Loader2, Check, Eye } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCartAPI, addToCartLocal } from '@/store/features/cartSlice';
 import { toast } from 'react-hot-toast';
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, priority = false }) {
   const dispatch = useDispatch();
   const [isAdding, setIsAdding] = useState(false);
 
@@ -48,9 +48,9 @@ export default function ProductCard({ product }) {
           })
         );
       }
-      toast.success('ব্যাগে যোগ করা হয়েছে');
+      toast.success('ব্যাগে যোগ করা হয়েছে');
     } catch (err) {
-      toast.error('ব্যর্থ হয়েছে');
+      toast.error('ব্যর্থ হয়েছে');
     } finally {
       setIsAdding(false);
     }
@@ -58,23 +58,21 @@ export default function ProductCard({ product }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
       className="group relative w-full max-w-65 mx-auto bg-card/30 border border-text/5 rounded-2xl p-2 transition-all duration-500 hover:bg-card/50 hover:border-primary/50"
     >
-      {/* ইমেজ সেকশন */}
+      {/* ইমেজ সেকশন - অপ্টিমাইজড */}
       <div className="relative aspect-10/11 rounded-xl overflow-hidden bg-bg/60 border border-text/5">
-        <Link href={`/shop/${product?.slug}`} className="w-full h-full block">
+        <Link href={`/shop/${product?.slug}`} className="relative w-full h-full block">
           <Image
             src={product?.images?.[0]?.url || '/placeholder.png'}
-            alt={product?.title}
+            alt={product?.title || 'Product Image'}
             fill
-            sizes="240px"
+            sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
             className="object-cover transition-transform duration-700 group-hover:scale-110"
-            loading="lazy"
+            priority={priority}
+            loading={priority ? 'eager' : 'lazy'}
           />
-          {/* ওভারলে গ্রেডিয়েন্ট (ডেস্কটপ বাটনের জন্য) */}
           <div className="absolute inset-0 bg-linear-to-t from-bg/80 via-transparent to-transparent opacity-0 md:group-hover:opacity-100 transition-opacity duration-300" />
         </Link>
 
@@ -138,7 +136,7 @@ export default function ProductCard({ product }) {
         </Link>
 
         <div className="flex items-center justify-between pt-1">
-          <div className="flex flex-col leading-none">
+          <div className="flex flex-col md:flex-row-reverse md:gap-1 leading-none">
             {discount > 0 && (
               <span className="text-pText/30 text-[10px] line-through font-bold mb-0.5">
                 ৳{basePrice.toLocaleString()}
@@ -149,7 +147,6 @@ export default function ProductCard({ product }) {
             </span>
           </div>
 
-          {/* মোবাইল বাটন (ডেস্কটপে হিডেন) */}
           <button
             onClick={handleAddToCart}
             className={`md:hidden w-9 h-9 rounded-lg flex items-center justify-center transition-all ${

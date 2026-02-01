@@ -24,9 +24,9 @@ export default function RelatedProducts({ products, currentId }) {
 
       {/* --- Grid Layout: Mobile 2, Desktop 5 --- */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
-        {filteredProducts.map((item) => (
+        {filteredProducts.map((item, index) => (
           <div key={item._id} className="w-full">
-            <ProductCard product={item} />
+            <ProductCard product={item} priority={index < 5} />
           </div>
         ))}
       </div>
