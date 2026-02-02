@@ -128,7 +128,7 @@ export default function Category() {
                       <h3 className="text-md font-black text-text group-hover:text-primary transition-colors leading-tight">
                         {item.name}
                       </h3>
-                      <p className="text-[12px] text-pText mt-1 font-bold">কালেকশন দেখুন</p>
+                      <p className="text-[14px] text-pText mt-1 font-bold">কালেকশন দেখুন</p>
 
                       <div className="mt-3 flex items-center gap-1 text-primary opacity-0 group-hover:opacity-100 transition-opacity">
                         <span className="text-[11px] font-black uppercase">বিস্তারিত</span>

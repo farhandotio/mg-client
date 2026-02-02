@@ -49,7 +49,6 @@ export default function Navbar() {
   const allProducts = useSelector((state) => state.products?.products || [], shallowEqual);
   const { categories: dynamicCategories } = useSelector((state) => state.categories);
 
-  // --- বিশেষ লজিক: এডমিন অথবা অথ পেজে ন্যাভবার দেখাবে না ---
   const isAuthPage = pathname === '/auth';
   const isAdminPage = pathname.startsWith('/admin');
 
@@ -115,7 +114,7 @@ export default function Navbar() {
         variants={{ visible: { y: 0 }, hidden: { y: '-100%' } }}
         animate={hidden ? 'hidden' : 'visible'}
         transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-        className="sticky top-0 z-[100] w-full bg-card/60 backdrop-blur-3xl border-b border-white/5 shadow-lg shadow-black/5"
+        className="sticky top-0 z-100 w-full bg-card/60 backdrop-blur-3xl border-b max-md:py-2 border-bg/5 shadow-lg shadow-black/5"
       >
         <nav className="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between">
           <div className="flex items-center gap-12">
@@ -148,7 +147,7 @@ export default function Navbar() {
                       initial={{ opacity: 0, y: 15, scale: 0.95 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 15, scale: 0.95 }}
-                      className="absolute top-[120%] left-0 w-72 bg-card/95 backdrop-blur-3xl border border-white/10 rounded-lg shadow-2xl p-3 z-50"
+                      className="absolute top-[120%] left-0 w-72 bg-card/95 backdrop-blur-3xl border border-bg/10 rounded-lg shadow-2xl p-3 z-50"
                     >
                       <div className="grid grid-cols-1 gap-1 max-h-[400px] overflow-y-auto no-scrollbar">
                         {dynamicCategories?.map((cat) => (
@@ -202,7 +201,7 @@ export default function Navbar() {
             <button
               aria-label="Switch theme"
               onClick={toggleTheme}
-              className="p-2 rounded-md text-text hover:bg-white/10 transition-all"
+              className="p-2 rounded-md text-text hover:bg-bg/10 transition-all"
             >
               {mounted &&
                 (theme === 'dark' ? (
@@ -227,7 +226,7 @@ export default function Navbar() {
             >
               <ShoppingCart size={20} className="group-active:scale-75 transition-transform" />
               {mounted && cartItems.length > 0 && (
-                <span className="absolute -top-1 -right-1 bg-primary text-white text-[12px] font-black w-5 h-5 rounded-full flex items-center justify-center ">
+                <span className="absolute -top-1 -right-1 bg-primary text-bg text-[12px] font-black w-5 h-5 rounded-full flex items-center justify-center ">
                   {cartItems.length}
                 </span>
               )}
@@ -243,7 +242,7 @@ export default function Navbar() {
 
             {/* --- প্রোফাইল মেনু --- */}
             {!mounted ? (
-              <div className="w-24 h-10 bg-white/5 rounded-md animate-pulse hidden md:block" />
+              <div className="w-24 h-10 bg-bg/5 rounded-md animate-pulse hidden md:block" />
             ) : !isAuthenticated ? (
               <div className="hidden md:block">
                 <Button
@@ -260,7 +259,7 @@ export default function Navbar() {
                 <button
                   aria-label="View Profile Menu"
                   onClick={() => setIsProfileOpen(!isProfileOpen)}
-                  className="flex items-center gap-2.5 p-1.5 bg-white/5 border border-white/5 rounded-md hover:border-primary/30 transition-all pl-2 pr-3"
+                  className="flex items-center gap-2.5 p-1.5 bg-bg/5 border border-bg/5 rounded-md hover:border-primary/30 transition-all pl-2 pr-3"
                 >
                   <div className="w-8 h-8 bg-primary text-bg rounded-md flex items-center justify-center font-black text-xs shadow-lg shadow-primary/20">
                     {user?.fullname?.charAt(0).toUpperCase()}
@@ -280,7 +279,7 @@ export default function Navbar() {
                       initial={{ opacity: 0, scale: 0.95, y: 10 }}
                       animate={{ opacity: 1, scale: 1, y: 0 }}
                       exit={{ opacity: 0, scale: 0.95, y: 10 }}
-                      className="absolute top-[120%] right-0 w-60 bg-card/95 backdrop-blur-3xl border border-white/10 rounded-lg shadow-2xl p-2 z-50"
+                      className="absolute top-[120%] right-0 w-60 bg-card/95 backdrop-blur-3xl border border-bg/10 rounded-lg shadow-2xl p-2 z-50"
                     >
                       {user?.role === 'admin' && (
                         <Link
@@ -294,18 +293,18 @@ export default function Navbar() {
                       <Link
                         aria-label="View Profile Page"
                         href="/profile"
-                        className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 rounded-md font-black text-[12px] uppercase"
+                        className="flex items-center gap-3 px-4 py-3 hover:bg-bg/5 rounded-md font-black text-[12px] uppercase"
                       >
                         <User size={16} /> প্রোফাইল
                       </Link>
                       <Link
                         aria-label="View orders Page"
                         href="/orders"
-                        className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 rounded-md font-black text-[12px] uppercase"
+                        className="flex items-center gap-3 px-4 py-3 hover:bg-bg/5 rounded-md font-black text-[12px] uppercase"
                       >
                         <Package size={16} /> অর্ডারসমূহ
                       </Link>
-                      <div className="my-2 border-t border-white/5" />
+                      <div className="my-2 border-t border-bg/5" />
                       <button
                         aria-label="Logout"
                         onClick={() => dispatch(logoutUser())}

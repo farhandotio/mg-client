@@ -9,14 +9,34 @@ const SLIDE_DATA = [
   {
     id: 1,
     img: 'https://imgs.search.brave.com/tu2vBQIG3PFiq_7QOidoJ3FHSLbpiHRxdBesu-LYW0A/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJzLmNvbS9p/bWFnZXMvaGQvbW9k/ZXJuLXNtYXJ0d2F0/Y2gtYmxhY2stYmFu/ZC1uNnNsY280cW54/MWFlczhtLnBuZw',
-    title: 'স্মার্ট ওয়াচ প্রো',
+    title: 'স্মার্ট ওয়াচ আল্ট্রা প্রো',
     tag: 'বেস্ট সেলার',
+    desc: 'আধুনিক ফিচারে ঠাসা নতুন স্মার্ট ওয়াচ।',
+    color: 'from-blue-500/20',
   },
   {
     id: 2,
     img: 'https://imgs.search.brave.com/LhDDwEPdW5a6NHbSV8GHKq6OlKt0sMRL6WQ7v3jKRuw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/cG5nbWFydC5jb20v/ZmlsZXMvMjMvRWFy/YnVkcy1QTkctSXNv/bGF0ZWQtRmlsZS5w/bmc',
-    title: 'প্রিমিয়াম ইয়ারবাডস',
+    title: 'প্রিমিয়াম নয়েজ ক্যানসেলিং ইয়ারবাডস',
     tag: 'নতুন কালেকশন',
+    desc: 'সেরা মিউজিক এক্সপেরিয়েন্সের জন্য।',
+    color: 'from-purple-500/20',
+  },
+  {
+    id: 3,
+    img: 'https://imgs.search.brave.com/9W0Dpmla0NivVmMjLUy-uOjMBBYpstnwGzWvQgKfPOw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wMjQv/ODQxLzI4MC9zbWFs/bC93aXJlbGVzcy1o/ZWFkcGhvbmUtaXNv/bGF0ZWQtb24tdHJh/bnNwYXJlbnQtYmFj/a2dyb3VuZC1oaWdo/LXF1YWxpdHktYmx1/ZXRvb3RoLWhlYWRw/aG9uZS1mb3ItYWR2/ZXJ0aXNpbmctYW5k/LXByb2R1Y3QtY2F0/YWxvZ3MtZ2VuZXJh/dGl2ZS1haS1wbmcu/cG5n',
+    title: 'প্রফেশনাল গেমিং হেডফোন',
+    tag: 'ট্রেন্ডিং এখন',
+    desc: 'গেমিং হবে এখন আরও রিয়েলিস্টিক।',
+    color: 'from-orange-500/20',
+  },
+  {
+    id: 4,
+    img: 'https://imgs.search.brave.com/g1GNmjcHxGYSsBqQpsjgN6yNpwN8qiO8I0SLQRBT2jM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJzLmNvbS9p/bWFnZXMvaGQvYmx1/ZXRvb3RoLXNwZWFr/ZXItZm9yLWNhci1w/bmctMzctaXQxYWY2/eGthZGwyMzl3aC5w/bmc',
+    title: 'পোর্টেবল ব্লুটুথ স্পিকার',
+    tag: 'লিমিটেড অফার',
+    desc: 'বাসের বেস আর ক্রিস্টাল ক্লিয়ার সাউন্ড।',
+    color: 'from-green-500/20',
   },
 ];
 
@@ -36,10 +56,10 @@ export default function Hero() {
         {/* --- বাম পাশ: কন্টেন্ট --- */}
         <div className="space-y-8 z-10">
           <header className="space-y-6">
-            <h1 className="text-[40px] md:text-6xl font-black text-text tracking-tighter leading-none">
+            <h1 className="text-[40px] md:text-6xl font-black text-text tracking-tighter leading-[1.3]">
               প্রযুক্তির আসল স্বাদ, <br />
-              <span className="text-transparent text-[52px] md:text-7xl bg-clip-text bg-linear-to-r from-primary via-secondary to-primary">
-                এখন আপনার হাতের মুঠোয়।
+              <span className="text-transparent text-[56px] md:text-7xl bg-clip-text bg-linear-to-r from-primary via-secondary to-primary">
+                এখন আপনার হাতের মুঠোয়।
               </span>
             </h1>
             <p className="text-pText text-lg md:text-xl max-w-xl leading-relaxed font-medium italic">

@@ -122,9 +122,7 @@ export default function Footer() {
 
           {/* কুইক লিঙ্কস */}
           <div className="lg:col-span-2">
-            <h4 className="text-primary font-black uppercase text-[12px]  mb-8">
-              লিঙ্কসমূহ
-            </h4>
+            <h4 className="text-primary font-black uppercase text-[12px]  mb-8">লিঙ্কসমূহ</h4>
             <ul className="space-y-4">
               {footerData.quickLinks.map((link, index) => (
                 <li key={index}>
@@ -142,9 +140,7 @@ export default function Footer() {
 
           {/* সহযোগিতা */}
           <div className="lg:col-span-2">
-            <h4 className="text-primary font-black uppercase text-[12px]  mb-8">
-              সহযোগিতা
-            </h4>
+            <h4 className="text-primary font-black uppercase text-[12px]  mb-8">সহযোগিতা</h4>
             <ul className="space-y-4">
               {footerData.support.map((link, index) => (
                 <li key={index}>
@@ -163,9 +159,7 @@ export default function Footer() {
           {/* নিউজলেটার */}
           <div className="lg:col-span-4 space-y-8">
             <div className="space-y-4">
-              <h4 className="text-primary font-black uppercase text-[12px] ">
-                নিউজলেটার
-              </h4>
+              <h4 className="text-primary font-black uppercase text-[12px] ">নিউজলেটার</h4>
               <form className="relative group" onSubmit={(e) => e.preventDefault()}>
                 <input
                   type="email"
@@ -173,6 +167,7 @@ export default function Footer() {
                   className="w-full bg-card/30 border-2 border-border/50 rounded-md px-6 py-4 text-xs outline-none focus:border-primary/30 transition-all font-bold pr-14 italic"
                 />
                 <button
+                  aria-label="Submit Newsletter"
                   type="submit"
                   className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-primary rounded-md flex items-center justify-center text-bg shadow-lg shadow-primary/20 active:scale-90 transition-transform"
                 >
