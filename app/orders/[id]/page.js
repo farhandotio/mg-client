@@ -71,7 +71,7 @@ export default function OrderDetailsPage() {
         {/* --- Main Printable Document --- */}
         <div ref={componentRef} className="print:p-10 print:bg-bg print:text-text">
           {/* Header Card */}
-          <div className="bg-card/30 rounded-[3rem] p-8 md:p-16 border border-border/30 relative overflow-hidden">
+          <div className="bg-card/30 rounded-xl p-8 md:p-16 border border-border/30 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
 
             <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
@@ -116,7 +116,7 @@ export default function OrderDetailsPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-8">
             {/* Left: Product Stack Visual & List */}
-            <div className="lg:col-span-7 bg-card/30 rounded-[3rem] p-8 md:p-12 border border-border/30 space-y-12">
+            <div className="lg:col-span-7 bg-card/30 rounded-xl p-8 md:p-12 border border-border/30 space-y-12">
               <div className="flex items-center gap-3 text-pText">
                 <Cpu size={18} />
                 <h3 className="text-xs font-black uppercase tracking-[0.3em]">
@@ -188,7 +188,7 @@ export default function OrderDetailsPage() {
             {/* Right: Summary Node */}
             <div className="lg:col-span-5 space-y-8">
               {/* Recipient Node */}
-              <div className="bg-card/30 rounded-[3rem] p-8 md:p-10 border border-border/30 space-y-6">
+              <div className="bg-card/30 rounded-xl p-8 md:p-10 border border-border/30 space-y-6">
                 <div className="flex items-center gap-3 text-pText">
                   <Fingerprint size={18} />
                   <h3 className="text-xs font-black uppercase tracking-[0.3em]">Recipients Node</h3>
@@ -209,7 +209,7 @@ export default function OrderDetailsPage() {
               </div>
 
               {/* Financial Node */}
-              <div className="bg-primary text-text rounded-[3rem] p-8 md:p-10 space-y-8 shadow-xl shadow-primary/10 print:bg-card print:text-text">
+              <div className="bg-primary text-text rounded-xl p-8 md:p-10 space-y-8 shadow-xl shadow-primary/10 print:bg-card print:text-text">
                 <div className="space-y-4 text-[12px] font-black uppercase tracking-widest opacity-80">
                   <div className="flex justify-between border-b border-text/10 pb-2">
                     <span>Baseline Sum</span>

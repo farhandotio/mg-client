@@ -147,9 +147,9 @@ export default function Navbar() {
                       initial={{ opacity: 0, y: 15, scale: 0.95 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 15, scale: 0.95 }}
-                      className="absolute top-[120%] left-0 w-72 bg-card/95 backdrop-blur-3xl border border-bg/10 rounded-lg shadow-2xl p-3 z-50"
+                      className="absolute top-[120%] left-0 w-72 bg-card border border-bg/10 rounded-lg shadow-2xl p-3 z-50"
                     >
-                      <div className="grid grid-cols-1 gap-1 max-h-[400px] overflow-y-auto no-scrollbar">
+                      <div className="grid grid-cols-1 gap-1 max-h-100 overflow-y-auto no-scrollbar">
                         {dynamicCategories?.map((cat) => (
                           <Link
                             key={cat._id}

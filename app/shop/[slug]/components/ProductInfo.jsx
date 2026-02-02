@@ -43,7 +43,6 @@ export default function ProductInfo({ product }) {
             quantity: quantity,
           })
         ).unwrap();
-        toast.success('কার্টে যোগ করা হয়েছে!');
       } else {
         const cartItem = {
           productId: product._id,
@@ -55,10 +54,8 @@ export default function ProductInfo({ product }) {
           stock: product.stock,
         };
         dispatch(addToCartLocal(cartItem));
-        toast.success('কার্টে যোগ করা হয়েছে!');
       }
     } catch (err) {
-      toast.error(err?.message || 'সার্ভারে সমস্যা হচ্ছে, আবার চেষ্টা করুন');
     } finally {
       setIsLocalLoading(false);
     }

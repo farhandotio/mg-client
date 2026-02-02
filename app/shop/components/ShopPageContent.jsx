@@ -109,12 +109,12 @@ export default function ShopPageContent({ categorySlug }) {
             <div className="flex items-center justify-between md:justify-end gap-4">
               <button
                 onClick={() => setIsMobileFilterOpen(true)}
-                className="lg:hidden flex items-center gap-2 bg-card border border-border/50 px-4 py-2.5 rounded-md text-[11px] font-black uppercase tracking-wider"
+                className="lg:hidden flex items-center gap-2 bg-card border border-border/50 px-4 py-2.5 rounded-md text-[12px] font-black uppercase tracking-wider"
               >
                 <Filter size={14} className="text-primary" /> ফিল্টার
               </button>
 
-              <div className="bg-primary/5 border border-primary/20 px-4 py-2 rounded-full">
+              <div className="bg-primary/5 border border-primary/20 px-4 py-2.5 rounded-md">
                 <p className="text-primary text-[12px] font-black uppercase tracking-widest">
                   {loading
                     ? 'স্ক্যানিং...'
@@ -204,7 +204,7 @@ export default function ShopPageContent({ categorySlug }) {
                 )}
               </div>
             ) : (
-              <div className="flex flex-col items-center justify-center py-40 bg-card/10 border-2 border-dashed border-border/30 rounded-[3rem]">
+              <div className="flex flex-col items-center justify-center py-40 bg-card/10 border-2 border-dashed border-border/30 rounded-xl">
                 <div className="bg-primary/10 p-8 rounded-full mb-6">
                   <Search size={48} className="text-primary opacity-40" />
                 </div>

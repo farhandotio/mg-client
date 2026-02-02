@@ -68,7 +68,7 @@ export default function Hero() {
               size="lg"
               icon={ArrowRight}
               text="কালেকশন দেখুন"
-              className="w-full sm:w-fit shadow-xl shadow-primary/20"
+              className="w-full sm:w-fit"
             />
           </div>
 

@@ -81,7 +81,7 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
                         key={cat._id || cat.slug}
                         href={`/shop?category=${cat.slug}`}
                         onClick={onClose}
-                        className="group flex items-center justify-between p-4 bg-bg/40 border border-border/30 rounded-md transition-all active:bg-primary/5"
+                        className="group flex items-center justify-between py-2 transition-all active:text-primary"
                       >
                         <div className="flex items-center gap-4">
                           <div className="w-10 h-10 rounded-md bg-card border border-border/50 flex items-center justify-center text-primary overflow-hidden shadow-inner">
@@ -95,14 +95,17 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
                               <Box size={18} />
                             )}
                           </div>
-                          <span className="font-bold text-sm tracking-tight text-text">
+                          <span className="font-bold text-sm tracking-tight text-text whitespace-nowrap">
                             {cat.name}
                           </span>
                         </div>
-                        <ArrowRight
-                          size={14}
-                          className="text-primary opacity-40 group-hover:opacity-100 transition-all"
-                        />
+                        <span className="w-full h-0.5 mx-4 bg-primary/10" />
+                        <span>
+                          <ArrowRight
+                            size={14}
+                            className="text-primary opacity-40 group-hover:opacity-100 transition-all"
+                          />
+                        </span>
                       </Link>
                     ))
                   ) : (
