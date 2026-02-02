@@ -28,7 +28,7 @@ export default function Feature() {
                 বেস্ট কালেকশন
               </span>
             </div>
-            <h2 className="text-2xl md:text-3xl font-black text-text tracking-tight leading-none">
+            <h2 className="text-xl md:text-2xl font-black text-text tracking-tight leading-none">
               আপনার জন্য <span className="text-primary">বাছাইকৃত</span>
             </h2>
           </div>
@@ -57,7 +57,7 @@ export default function Feature() {
               </div>
             ))
           ) : (
-            <div className="col-span-full py-16 text-center border-2 border-dashed border-border/10 rounded-3xl">
+            <div className="col-span-full py-16 text-center border-2 border-dashed border-border/10 rounded-md">
               <p className="text-pText opacity-60 text-sm font-bold tracking-widest uppercase">
                 বর্তমানে কোনো পণ্য পাওয়া যায়নি
               </p>
@@ -68,7 +68,7 @@ export default function Feature() {
         <div className="mt-8 flex justify-center md:hidden">
           <Link
             href="/shop?productType=Featured"
-            className="w-full text-center py-3 bg-card border border-border/60 rounded-xl text-sm font-bold text-text active:scale-95 transition-transform"
+            className="w-full text-center py-3 bg-card border border-border/60 rounded-md text-sm font-bold text-text active:scale-95 transition-transform"
           >
             সবগুলো পণ্য দেখুন
           </Link>

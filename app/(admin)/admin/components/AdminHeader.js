@@ -9,7 +9,7 @@ export default function AdminHeader({ onMenuClick }) {
         <button
           aria-label="menu toggle"
           onClick={onMenuClick}
-          className="lg:hidden p-2 bg-bg border border-border rounded-xl text-primary"
+          className="lg:hidden p-2 bg-bg border border-border rounded-md text-primary"
         >
           <Menu size={20} />
         </button>

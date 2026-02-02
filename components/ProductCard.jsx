@@ -59,10 +59,10 @@ export default function ProductCard({ product, priority = false }) {
   return (
     <motion.div
       viewport={{ once: true }}
-      className="group relative w-full max-w-65 mx-auto bg-card/30 border border-text/5 rounded-2xl p-2 transition-all duration-500 hover:bg-card/50 hover:border-primary/50"
+      className="group relative w-full max-w-65 mx-auto bg-card/30 border border-text/5 rounded-md p-2 md:transition-color md:duration-500 md:hover:bg-card/50 md:hover:border-primary/50"
     >
       {/* ইমেজ সেকশন - অপ্টিমাইজড */}
-      <div className="relative aspect-10/11 rounded-xl overflow-hidden bg-bg/60 border border-text/5">
+      <div className="relative aspect-square rounded overflow-hidden bg-bg/60 border border-text/5">
         <Link href={`/shop/${product?.slug}`} className="relative w-full h-full block">
           <Image
             src={product?.images?.[0]?.url || '/placeholder.png'}
@@ -84,7 +84,7 @@ export default function ProductCard({ product, priority = false }) {
             </div>
           )}
           {isOutOfStock && (
-            <div className="bg-red-500/90 backdrop-blur-md text-text text-[11px] font-black px-2 py-1 rounded-lg uppercase">
+            <div className="bg-red-500/90 backdrop-blur-md text-text text-[11px] font-black px-2 py-1 rounded-md uppercase">
               আউট অফ স্টক
             </div>
           )}
@@ -93,9 +93,10 @@ export default function ProductCard({ product, priority = false }) {
         {/* ডেস্কটপ হোভার বাটন */}
         <div className="absolute inset-x-2 bottom-2 hidden md:flex gap-2 translate-y-12 group-hover:translate-y-0 transition-transform duration-500 z-30">
           <button
+            arial-label="Add to Cart"
             onClick={handleAddToCart}
             disabled={isOutOfStock || isAdding || isInCart}
-            className={`flex-1 h-10 rounded-xl font-black text-[11px] uppercase tracking-tighter transition-all flex items-center justify-center gap-2
+            className={`flex-1 h-10 rounded-md font-black text-[11px] uppercase tracking-tighter transition-all flex items-center justify-center gap-2
               ${isInCart ? 'bg-green-500 text-bg' : 'bg-primary text-bg'}
             `}
           >
@@ -110,7 +111,7 @@ export default function ProductCard({ product, priority = false }) {
           </button>
           <Link
             href={`/shop/${product?.slug}`}
-            className="w-10 h-10 bg-text/10 backdrop-blur-md border border-border/10 text-text rounded-xl flex items-center justify-center hover:bg-primary hover:text-bg transition-all"
+            className="w-10 h-10 bg-text/10 backdrop-blur-md border border-border/10 text-text rounded-md flex items-center justify-center hover:bg-primary hover:text-bg transition-all"
           >
             <Eye size={16} />
           </Link>
@@ -123,7 +124,7 @@ export default function ProductCard({ product, priority = false }) {
           <span className="text-[11px] font-black text-primary/70 uppercase tracking-widest flex items-center gap-1">
             <ShieldCheck size={10} /> {product?.brand?.name || 'PREMIUM'}
           </span>
-          <div className="flex items-center gap-1 text-[12px] font-bold text-yellow-500">
+          <div className="flex items-center gap-1 text-[12px] font-bold text-secondary">
             <Star size={10} className="fill-current" />
             <span>{product?.ratings?.average || 0}</span>
           </div>
@@ -148,8 +149,9 @@ export default function ProductCard({ product, priority = false }) {
           </div>
 
           <button
+            arial-label="Add to Cart"
             onClick={handleAddToCart}
-            className={`md:hidden w-9 h-9 rounded-lg flex items-center justify-center transition-all ${
+            className={`md:hidden w-9 h-9 rounded-md flex items-center justify-center transition-all ${
               isInCart
                 ? 'bg-green-500/20 text-green-500'
                 : 'bg-primary text-bg shadow-lg shadow-primary/20'

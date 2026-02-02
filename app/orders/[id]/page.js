@@ -86,7 +86,7 @@ export default function OrderDetailsPage() {
                   {order.orderStatus}
                   <span className="text-primary opacity-50">.</span>
                 </h1>
-                <div className="flex flex-wrap gap-6 text-[12px] font-bold text-pText uppercase tracking-widest bg-bg/40 p-4 rounded-2xl w-fit">
+                <div className="flex flex-wrap gap-6 text-[12px] font-bold text-pText uppercase tracking-widest bg-bg/40 p-4 rounded-md w-fit">
                   <p>
                     Hash:{' '}
                     <span className="text-text print:text-text font-mono">
@@ -103,7 +103,7 @@ export default function OrderDetailsPage() {
               </div>
 
               <div className="md:col-span-3 flex md:justify-end">
-                <div className="p-6 bg-white/5 print:bg-card rounded-3xl border border-white/10">
+                <div className="p-6 bg-white/5 print:bg-card rounded-md border border-white/10">
                   <QrCode
                     size={100}
                     className="text-text print:text-text opacity-80"
@@ -129,7 +129,7 @@ export default function OrderDetailsPage() {
                 {order.orderItems?.map((item, idx) => (
                   <div
                     key={idx}
-                    className="absolute w-48 h-48 md:w-64 md:h-64 rounded-[2.5rem] border-4 border-bg bg-card overflow-hidden shadow-2xl transition-all duration-500 hover:z-50 hover:scale-110"
+                    className="absolute w-48 h-48 md:w-64 md:h-64 rounded-lg border-4 border-bg bg-card overflow-hidden shadow-2xl transition-all duration-500 hover:z-50 hover:scale-110"
                     style={{
                       transform: `translateX(${idx * 40}px) translateY(${idx * -20}px) rotate(${
                         idx * 5
@@ -155,10 +155,10 @@ export default function OrderDetailsPage() {
                 {order.orderItems?.map((item, idx) => (
                   <div
                     key={idx}
-                    className="flex items-center justify-between p-6 bg-bg/40 rounded-3xl border border-border/20 group hover:border-primary/50 transition-all"
+                    className="flex items-center justify-between p-6 bg-bg/40 rounded-md border border-border/20 group hover:border-primary/50 transition-all"
                   >
                     <div className="flex items-center gap-4">
-                      <div className="group relative w-12 h-12 rounded-xl overflow-hidden bg-card">
+                      <div className="group relative w-12 h-12 rounded-md overflow-hidden bg-card">
                         <Image
                           src={item?.image}
                           alt={item?.name || 'Image'}
@@ -230,7 +230,7 @@ export default function OrderDetailsPage() {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-4 py-4 px-6 bg-text/10 rounded-2xl border border-text/20">
+                <div className="flex items-center gap-4 py-4 px-6 bg-text/10 rounded-md border border-text/20">
                   <ShieldCheck size={20} />
                   <div className="flex flex-col">
                     <span className="text-[10px] font-black uppercase opacity-60">

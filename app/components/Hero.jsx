@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Globe, ShieldCheck, Zap, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Globe, ShieldCheck, Zap, CheckCircle2, Activity } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Button from '@/components/Button';
 import Image from 'next/image';
@@ -35,17 +35,10 @@ export default function Hero() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
         {/* --- বাম পাশ: কন্টেন্ট --- */}
         <div className="space-y-8 z-10">
-          <div className="flex items-center gap-2 bg-primary/5 w-fit px-4 py-1.5 rounded-full border border-primary/10">
-            <CheckCircle2 size={16} className="text-primary" />
-            <span className="text-[12px] font-bold text-text uppercase tracking-widest">
-              ভেরিফাইড গ্যাজেট শপ
-            </span>
-          </div>
-
           <header className="space-y-6">
-            <h1 className="text-4xl md:text-6xl font-black text-text leading-[1] tracking-tighter">
+            <h1 className="text-[40px] md:text-6xl font-black text-text tracking-tighter leading-none">
               প্রযুক্তির আসল স্বাদ, <br />
-              <span className="text-transparent text-5xl md:text-7xl bg-clip-text bg-linear-to-r from-primary via-secondary to-primary">
+              <span className="text-transparent text-[52px] md:text-7xl bg-clip-text bg-linear-to-r from-primary via-secondary to-primary">
                 এখন আপনার হাতের মুঠোয়।
               </span>
             </h1>
@@ -62,7 +55,7 @@ export default function Hero() {
               size="lg"
               icon={ArrowRight}
               text="কালেকশন দেখুন"
-              className="w-full sm:w-fit justify-center shadow-lg shadow-primary/20"
+              className="w-full sm:w-fit"
             />
           </div>
 
@@ -71,18 +64,30 @@ export default function Hero() {
             <div className="flex items-center gap-2">
               <Zap size={20} className="text-secondary" />
               <div className="flex flex-col">
-                <span className="text-[13px] font-black text-text uppercase">দ্রুত ডেলিভারি</span>
-                <span className="text-[11px] text-pText font-bold uppercase tracking-tighter">
+                <span className="text-base font-black text-text uppercase">দ্রুত ডেলিভারি</span>
+                <span className="text-sm text-pText font-bold uppercase tracking-tighter">
                   সারা বাংলাদেশে
                 </span>
               </div>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 max-md:hidden">
               <Globe size={20} className="text-primary" />
               <div className="flex flex-col">
-                <span className="text-[13px] font-black text-text uppercase">সহজ রিটার্ন</span>
-                <span className="text-[11px] text-pText font-bold uppercase tracking-tighter">
+                <span className="text-base font-black text-text uppercase">সহজ রিটার্ন</span>
+                <span className="text-sm text-pText font-bold uppercase tracking-tighter">
                   সাত দিনের পলিসি
+                </span>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="relative">
+                <Activity size={20} className="text-success" />
+                <div className="absolute -top-1 -right-1 w-2 h-2 bg-success rounded-full animate-pulse" />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-base font-black text-text uppercase">অরিজিনাল পণ্য</span>
+                <span className="text-sm text-pText font-bold uppercase tracking-tighter">
+                  ১০০% গ্যারান্টি
                 </span>
               </div>
             </div>
@@ -102,7 +107,7 @@ export default function Hero() {
             >
               {/* Product Badge */}
               <div className="absolute top-10 left-10 z-20">
-                <span className="bg-text text-bg text-[12px] font-black px-3 py-1 rounded-md uppercase">
+                <span className="bg-text text-bg text-[12px] font-black px-3 py-1 rounded uppercase">
                   {SLIDE_DATA[currentSlide].tag}
                 </span>
               </div>
@@ -132,7 +137,7 @@ export default function Hero() {
           </AnimatePresence>
 
           {/* Floating Verification Badge */}
-          <div className="absolute bottom-10 left-0 bg-card border border-border/50 p-4 rounded-2xl shadow-2xl z-30 flex items-center gap-3">
+          <div className="absolute bottom-10 left-0 bg-card border border-border/50 p-4 rounded-md shadow-2xl z-30 flex items-center gap-3">
             <div className="h-10 w-10 bg-green-500/10 rounded-full flex items-center justify-center">
               <ShieldCheck className="text-green-500" size={24} />
             </div>

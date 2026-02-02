@@ -63,13 +63,13 @@ export default function OrdersPage() {
           </div>
 
           {/* Status Filter Tabs */}
-          <div className="flex flex-wrap gap-2 p-1 bg-card/30 border border-border/50 rounded-2xl">
+          <div className="flex flex-wrap gap-2 p-1 bg-card/30 border border-border/50 rounded-md">
             {['ALL', 'PENDING', 'CONFIRMED', 'DELIVERED', 'CANCELLED'].map((status) => (
               <button
                 aria-label="status filter"
                 key={status}
                 onClick={() => setFilter(status)}
-                className={`px-4 py-2 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all ${
+                className={`px-4 py-2 rounded-md text-[11px] font-black uppercase tracking-widest transition-all ${
                   filter === status
                     ? 'bg-primary text-bg shadow-lg shadow-primary/20'
                     : 'text-pText hover:text-text'
@@ -115,7 +115,7 @@ function OrderCard({ order }) {
   };
 
   return (
-    <div className="group relative bg-card/30 border border-border/50 rounded-[2.5rem] p-6 md:p-8 hover:border-primary/40 transition-all duration-500">
+    <div className="group relative bg-card/30 border border-border/50 rounded-lg p-6 md:p-8 hover:border-primary/40 transition-all duration-500">
       <div className="flex flex-col lg:flex-row justify-between gap-8">
         {/* Left: Info */}
         <div className="space-y-6 flex-1">
@@ -137,7 +137,7 @@ function OrderCard({ order }) {
 
           <div className="flex flex-wrap gap-8">
             <div className="flex items-center gap-3">
-              <div className="p-2.5 bg-bg rounded-xl text-primary border border-border">
+              <div className="p-2.5 bg-bg rounded-md text-primary border border-border">
                 <Clock size={16} />
               </div>
               <div>
@@ -152,7 +152,7 @@ function OrderCard({ order }) {
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <div className="p-2.5 bg-bg rounded-xl text-primary border border-border">
+              <div className="p-2.5 bg-bg rounded-md text-primary border border-border">
                 <CreditCard size={16} />
               </div>
               <div>
@@ -171,7 +171,7 @@ function OrderCard({ order }) {
           {order.orderItems?.slice(0, 3).map((item, idx) => (
             <div
               key={idx}
-              className="w-14 h-14 rounded-2xl border-2 border-bg overflow-hidden shadow-xl bg-card"
+              className="w-14 h-14 rounded-md border-2 border-bg overflow-hidden shadow-xl bg-card"
             >
               <img
                 src={item.image}
@@ -181,7 +181,7 @@ function OrderCard({ order }) {
             </div>
           ))}
           {order.orderItems?.length > 3 && (
-            <div className="w-14 h-14 rounded-2xl border-2 border-bg bg-border flex items-center justify-center text-[12px] font-black">
+            <div className="w-14 h-14 rounded-md border-2 border-bg bg-border flex items-center justify-center text-[12px] font-black">
               +{order.orderItems.length - 3}
             </div>
           )}
@@ -199,7 +199,7 @@ function OrderCard({ order }) {
           </div>
           <Link
             href={`/orders/${order._id}`}
-            className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-2xl text-[12px] font-black uppercase tracking-widest hover:bg-primary hover:text-bg transition-all group/btn"
+            className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-md text-[12px] font-black uppercase tracking-widest hover:bg-primary hover:text-bg transition-all group/btn"
           >
             View Protocol{' '}
             <ChevronRight

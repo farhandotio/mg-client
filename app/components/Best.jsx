@@ -12,17 +12,14 @@ export default function Best() {
   const { bestSellerProducts, loading } = useSelector((state) => state.products);
 
   useEffect(() => {
-    // সেরা বিক্রিত ১০টি পণ্য ফেচ করা হচ্ছে
     dispatch(fetchAllProducts('limit=10&productType=BestSeller&sort=-sold'));
   }, [dispatch]);
 
   return (
     <section className="py-12 px-4 md:px-6 bg-bg relative overflow-hidden border-t border-border/10">
-      {/* Background Accent */}
       <div className="absolute top-0 right-0 w-80 h-80 bg-primary/5 blur-[120px] rounded-full -z-10" />
 
       <div className="max-w-7xl mx-auto">
-        {/* --- Header Area --- */}
         <div className="flex justify-between items-end mb-8 gap-4 border-b border-border/10 pb-4">
           <div className="space-y-1">
             <div className="flex items-center gap-1.5 text-primary">
@@ -31,7 +28,7 @@ export default function Best() {
                 সবচেয়ে জনপ্রিয়
               </span>
             </div>
-            <h2 className="text-2xl md:text-3xl font-black text-text tracking-tight leading-none">
+            <h2 className="text-xl md:text-2xl font-black text-text tracking-tight leading-none">
               সেরা <span className="text-primary">বিক্রিত পণ্য</span>
             </h2>
           </div>
@@ -60,7 +57,7 @@ export default function Best() {
               </div>
             ))
           ) : (
-            <div className="col-span-full py-16 text-center border-2 border-dashed border-border/10 rounded-3xl bg-card/10">
+            <div className="col-span-full py-16 text-center border-2 border-dashed border-border/10 rounded-md bg-card/10">
               <div className="flex flex-col items-center gap-2 opacity-40">
                 <TrendingUp size={24} />
                 <p className="text-pText font-bold uppercase tracking-widest text-[11px]">
@@ -74,7 +71,7 @@ export default function Best() {
         <div className="mt-8 md:hidden">
           <Link
             href="/shop?productType=BestSeller"
-            className="block w-full text-center py-4 bg-card border border-border/60 rounded-xl text-sm font-black text-text active:scale-95 transition-transform"
+            className="block w-full text-center py-4 bg-card border border-border/60 rounded-md text-sm font-black text-text active:scale-95 transition-transform"
           >
             সবগুলো জনপ্রিয় পণ্য দেখুন
           </Link>

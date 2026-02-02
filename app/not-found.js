@@ -29,8 +29,8 @@ export default function NotFound() {
             <span className="text-8xl md:text-[12rem] font-black text-text italic tracking-tighter leading-none">
               4
             </span>
-            <div className="w-24 h-32 md:w-32 md:h-44 bg-primary rounded-[2.5rem] flex items-center justify-center rotate-12 relative shadow-[0_0_50px_rgba(var(--primary-rgb),0.3)]">
-              <div className="absolute inset-2 border-2 border-bg/20 rounded-3xl border-dashed" />
+            <div className="w-24 h-32 md:w-32 md:h-44 bg-primary rounded-lg flex items-center justify-center rotate-12 relative shadow-[0_0_50px_rgba(var(--primary-rgb),0.3)]">
+              <div className="absolute inset-2 border-2 border-bg/20 rounded-md border-dashed" />
               <Radio size={48} className="text-bg animate-pulse" />
             </div>
             <span className="text-8xl md:text-[12rem] font-black text-text italic tracking-tighter leading-none">
@@ -55,7 +55,7 @@ export default function NotFound() {
             transition={{ delay: 0.2 }}
             className="space-y-4"
           >
-            <div className="inline-flex items-center gap-3 bg-white/30 border border-white/10 px-6 py-2 rounded-2xl">
+            <div className="inline-flex items-center gap-3 bg-white/30 border border-white/10 px-6 py-2 rounded-md">
               <ShieldAlert size={16} className="text-primary" />
               <span className="text-[12px] font-black uppercase tracking-[0.4em] text-pText">
                 Alert: Data_Link_Severed
@@ -83,7 +83,7 @@ export default function NotFound() {
             <button
               aria-label="page back"
               onClick={() => window.history.back()}
-              className="group flex items-center gap-4 backdrop-blur-xl px-10 py-5 rounded-3xl transition-all duration-500"
+              className="group flex items-center gap-4 backdrop-blur-xl px-10 py-5 rounded-md transition-all duration-500"
             >
               <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-primary group-hover:text-bg transition-colors">
                 <ArrowLeft size={16} />

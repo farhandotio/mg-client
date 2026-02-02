@@ -22,14 +22,14 @@ const InternalCartItem = React.memo(({ item, onUpdate, onRemove, isProcessing })
     <div
       className={`relative transition-all ${isProcessing ? 'opacity-50 pointer-events-none' : ''}`}
     >
-      <div className="flex items-center gap-4 bg-card/20 backdrop-blur-md border border-border/40 rounded-2xl p-3 hover:border-primary/40 transition-colors shadow-sm">
+      <div className="flex items-center gap-4 bg-card/20 backdrop-blur-md border border-border/40 rounded-md p-3 hover:border-primary/40 transition-colors shadow-sm">
         {/* অপ্টিমাইজড ইমেজ বক্স - সাইজ কমানো হয়েছে */}
-        <div className="relative w-20 h-20 md:w-24 md:h-24 shrink-0 bg-bg/50 rounded-xl overflow-hidden border border-border/20">
+        <div className="relative w-20 h-20 md:w-24 md:h-24 shrink-0 bg-bg/50 rounded-md overflow-hidden border border-border/20">
           <img
             src={item?.image || '/placeholder.png'}
             alt={item?.title}
             loading="lazy"
-            className="w-full h-full object-contain rounded-xl transition-transform duration-500 hover:scale-110"
+            className="w-full h-full object-contain rounded-md transition-transform duration-500 hover:scale-110"
           />
         </div>
 
@@ -54,7 +54,7 @@ const InternalCartItem = React.memo(({ item, onUpdate, onRemove, isProcessing })
 
           <div className="flex justify-between items-center">
             {/* ছোট সাইজের কোয়ান্টিটি কন্ট্রোল */}
-            <div className="flex items-center bg-bg/40 border border-border/20 rounded-lg p-0.5">
+            <div className="flex items-center bg-bg/40 border border-border/20 rounded-md p-0.5">
               <button
                 onClick={() => onUpdate(item.productId, -1)}
                 className="w-7 h-7 flex items-center justify-center text-pText hover:text-primary transition-colors disabled:opacity-30"
@@ -205,12 +205,12 @@ export default function CartPage() {
                 />
               ))
             ) : (
-              <div className="py-20 text-center border-2 border-dashed border-border/20 rounded-3xl">
+              <div className="py-20 text-center border-2 border-dashed border-border/20 rounded-md">
                 <ShoppingBag size={48} className="mx-auto text-pText/10 mb-4" />
                 <p className="text-sm font-bold text-pText/40 mb-6">আপনার ব্যাগটি খালি!</p>
                 <Link
                   href="/shop"
-                  className="inline-block bg-primary text-bg font-black px-8 py-3 rounded-xl text-sm transition-transform hover:scale-105"
+                  className="inline-block bg-primary text-bg font-black px-8 py-3 rounded-md text-sm transition-transform hover:scale-105"
                 >
                   কেনাকাটা শুরু করুন
                 </Link>

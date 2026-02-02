@@ -35,7 +35,7 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
               <button
                 aria-label="Close Mobile Sidebar"
                 onClick={onClose}
-                className="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-xl text-primary active:scale-90 transition-transform"
+                className="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-md text-primary active:scale-90 transition-transform"
               >
                 <X size={20} />
               </button>
@@ -81,10 +81,10 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
                         key={cat._id || cat.slug}
                         href={`/shop?category=${cat.slug}`}
                         onClick={onClose}
-                        className="group flex items-center justify-between p-4 bg-bg/40 border border-border/30 rounded-2xl transition-all active:bg-primary/5"
+                        className="group flex items-center justify-between p-4 bg-bg/40 border border-border/30 rounded-md transition-all active:bg-primary/5"
                       >
                         <div className="flex items-center gap-4">
-                          <div className="w-10 h-10 rounded-xl bg-card border border-border/50 flex items-center justify-center text-primary overflow-hidden shadow-inner">
+                          <div className="w-10 h-10 rounded-md bg-card border border-border/50 flex items-center justify-center text-primary overflow-hidden shadow-inner">
                             {cat.image?.url ? (
                               <img
                                 src={cat.image.url}
@@ -126,7 +126,7 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
                       : '/profile'
                 }
                 onClick={onClose}
-                className="flex items-center gap-3 p-5 bg-primary text-bg rounded-2xl font-black justify-center shadow-[0_10px_30px_rgba(var(--primary-rgb),0.3)] uppercase text-[11px] tracking-widest active:scale-95 transition-all"
+                className="flex items-center gap-3 p-5 bg-primary text-bg rounded-md font-black justify-center shadow-[0_10px_30px_rgba(var(--primary-rgb),0.3)] uppercase text-[11px] tracking-widest active:scale-95 transition-all"
               >
                 <User size={18} />
                 {!isAuthenticated

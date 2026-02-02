@@ -18,7 +18,7 @@ export default function AuthOverlay({ isLogin, locked, toggleMode }) {
         }`}
       >
         {/* আইকন বক্স */}
-        <div className="w-24 h-24 mx-auto bg-text rounded-4xl flex items-center justify-center backdrop-blur-xl shadow-2xl rotate-12 group-hover:rotate-0 transition-transform duration-500">
+        <div className="w-24 h-24 mx-auto bg-text rounded-lg flex items-center justify-center backdrop-blur-xl shadow-2xl rotate-12 group-hover:rotate-0 transition-transform duration-500">
           <Sparkles size={48} className="text-primary animate-bounce" fill="currentColor" />
         </div>
 
@@ -38,7 +38,7 @@ export default function AuthOverlay({ isLogin, locked, toggleMode }) {
         <button
           aria-label="toggle auth"
           onClick={toggleMode}
-          className="group relative px-12 py-5 overflow-hidden border-2 border-text rounded-2xl font-black uppercase tracking-[0.2em] text-[12px] transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]"
+          className="group relative px-12 py-5 overflow-hidden border-2 border-text rounded-md font-black uppercase tracking-[0.2em] text-[12px] transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]"
         >
           <span className="relative z-10 flex items-center justify-center gap-2 group-hover:text-primary transition-colors duration-300">
             {isLogin ? (

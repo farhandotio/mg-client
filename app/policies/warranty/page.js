@@ -75,7 +75,7 @@ export default function WarrantyPolicy() {
             </div>
             <button
               aria-label="open ticket"
-              className="bg-bg text-text px-10 py-4 rounded-2xl font-black uppercase tracking-widest hover:scale-105 transition-transform"
+              className="bg-bg text-text px-10 py-4 rounded-md font-black uppercase tracking-widest hover:scale-105 transition-transform"
             >
               Open Ticket
             </button>
@@ -88,7 +88,7 @@ export default function WarrantyPolicy() {
 
 function Step({ number, title, desc }) {
   return (
-    <div className="p-6 bg-card/20 border border-white/5 rounded-3xl relative overflow-hidden group">
+    <div className="p-6 bg-card/20 border border-white/5 rounded-md relative overflow-hidden group">
       <span className="absolute -right-2 -top-2 text-6xl font-black text-white/30 group-hover:text-primary/10 transition-colors">
         {number}
       </span>

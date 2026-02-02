@@ -122,7 +122,7 @@ export default function AdminOrdersPage() {
           </h1>
         </div>
 
-        <div className="bg-card/50 backdrop-blur-xl border border-border/50 px-6 py-4 rounded-2xl flex items-center gap-4">
+        <div className="bg-card/50 backdrop-blur-xl border border-border/50 px-6 py-4 rounded-md flex items-center gap-4">
           <Clock size={18} className="text-primary" />
           <div className="flex flex-col">
             <span className="text-xl font-black text-text leading-none">{orders?.length || 0}</span>
@@ -135,8 +135,8 @@ export default function AdminOrdersPage() {
 
       {/* DataTable */}
       <div className="relative group">
-        <div className="absolute -inset-1 bg-primary/5 rounded-4xl blur-xl opacity-0 group-hover:opacity-100 transition duration-1000"></div>
-        <div className="relative bg-card/20 backdrop-blur-md border border-border/40 rounded-3xl overflow-hidden shadow-2xl">
+        <div className="absolute -inset-1 bg-primary/5 rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition duration-1000"></div>
+        <div className="relative bg-card/20 backdrop-blur-md border border-border/40 rounded-md overflow-hidden shadow-2xl">
           <DataTable
             columns={columns}
             data={orders}
@@ -151,7 +151,7 @@ export default function AdminOrdersPage() {
       {/* --- Simple Status Update Modal --- */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-300">
-          <div className="bg-card border border-border w-full max-w-md rounded-3xl p-8 shadow-2xl overflow-hidden relative">
+          <div className="bg-card border border-border w-full max-w-md rounded-md p-8 shadow-2xl overflow-hidden relative">
             <button
               aria-label="close"
               onClick={() => setIsModalOpen(false)}
@@ -175,7 +175,7 @@ export default function AdminOrdersPage() {
                 <select
                   value={newStatus}
                   onChange={(e) => setNewStatus(e.target.value)}
-                  className="w-full bg-card rounded-xl border border-border px-4 py-3 text-xs font-bold text-text focus:outline-none focus:border-primary transition-all appearance-none"
+                  className="w-full bg-card rounded-md border border-border px-4 py-3 text-xs font-bold text-text focus:outline-none focus:border-primary transition-all appearance-none"
                 >
                   <option value="PENDING">PENDING</option>
                   <option value="PROCESSING">PROCESSING</option>
@@ -188,7 +188,7 @@ export default function AdminOrdersPage() {
               <button
                 aria-label="execute update"
                 onClick={submitStatusUpdate}
-                className="w-full bg-primary hover:bg-primary/80 text-black font-black uppercase italic py-4 rounded-xl transition-all active:scale-95 text-xs tracking-widest shadow-[0_0_20px_rgba(var(--primary-rgb),0.3)]"
+                className="w-full bg-primary hover:bg-primary/80 text-black font-black uppercase italic py-4 rounded-md transition-all active:scale-95 text-xs tracking-widest shadow-[0_0_20px_rgba(var(--primary-rgb),0.3)]"
               >
                 Execute Update
               </button>

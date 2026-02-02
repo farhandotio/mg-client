@@ -30,11 +30,11 @@ export default function Brand() {
           <div className="space-y-3">
             <div className="flex items-center gap-2 text-primary">
               <ShieldCheck size={18} className="animate-pulse" />
-              <span className="text-[12px] font-black uppercase tracking-[0.3em]">
+              <span className="text-[12px] font-black uppercase tracking-wider">
                 অফিসিয়াল পার্টনারস
               </span>
             </div>
-            <h2 className="text-2xl md:text-3xl font-black text-text tracking-tighter uppercase italic leading-none">
+            <h2 className="text-xl md:text-2xl font-black text-text tracking-tighter uppercase italic leading-none">
               সেরা সব <span className="text-primary">ব্র্যান্ড</span>
             </h2>
             <p className="text-pText font-bold text-sm max-w-sm opacity-80">
@@ -54,7 +54,7 @@ export default function Brand() {
           <div className="flex w-max animate-marquee hover:pause gap-8 items-center">
             {isLoading ? (
               [...Array(6)].map((_, i) => (
-                <div key={i} className="w-48 h-24 bg-card/20 rounded-2xl animate-pulse" />
+                <div key={i} className="w-48 h-24 bg-card/20 rounded-md animate-pulse" />
               ))
             ) : brandsData.length > 0 ? (
               // অ্যানিমেশন স্মুথ রাখার জন্য ডাবল ডেটা ব্যবহার
@@ -64,7 +64,7 @@ export default function Brand() {
                   className="group relative w-40 h-24 md:w-56 md:h-32 flex items-center justify-center"
                 >
                   {/* Card Base */}
-                  <div className="absolute inset-0 bg-card/30 backdrop-blur-sm border border-border/40 rounded-2xl transition-all duration-500 group-hover:border-primary/40 group-hover:bg-card/60 group-hover:shadow-2xl group-hover:shadow-primary/5" />
+                  <div className="absolute inset-0 bg-card/30 backdrop-blur-sm border border-border/40 rounded-md transition-all duration-500 group-hover:border-primary/40 group-hover:bg-card/60 group-hover:shadow-2xl group-hover:shadow-primary/5" />
 
                   {/* Brand Logo Container */}
                   <div className="relative w-[70%] h-[60%] transition-all duration-500 group-hover:scale-110">

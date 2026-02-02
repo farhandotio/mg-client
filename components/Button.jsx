@@ -19,20 +19,18 @@ export default function Button({
     size === 'xs'
       ? 'h-7 px-3 text-xs'
       : size === 'sm'
-      ? 'h-8 px-4 text-xs'
-      : size === 'lg'
-      ? 'h-13 px-8 text-base'
-      : size === 'xl'
-      ? 'h-16 px-10 text-lg'
-      : size === '2xl'
-      ? 'h-20 px-14 text-2xl tracking-tighter'
-      : 'h-11 px-6 text-sm';
+        ? 'h-8 px-4 text-xs'
+        : size === 'lg'
+          ? 'h-13 px-8 text-base'
+          : size === 'xl'
+            ? 'h-16 px-10 text-lg'
+            : size === '2xl'
+              ? 'h-20 px-14 text-2xl tracking-tighter'
+              : 'h-11 px-6 text-sm';
 
   const baseClasses = `
     relative inline-flex items-center gap-3 overflow-hidden group font-black justify-center 
-    text-text whitespace-nowrap rounded-xl transition-all duration-500 w-full cursor-pointer 
-    disabled:opacity-70 
-    bg-card border max-md:bg-primary max-md:text-white border-border 
+    text-text whitespace-nowrap rounded-md transition-all duration-500 w-full cursor-pointer disabled:opacity-70 bg-card border max-md:bg-primary max-md:text-card border-border/20 
     hover:border-transparent hover:-translate-y-[1px]
     ${sizeClasses} ${className}
   `;
@@ -98,7 +96,7 @@ export default function Button({
 
   return (
     <button
-      aria-label={arialabel}
+      aria-label={arialabel || "button"}
       type={type}
       className={baseClasses}
       disabled={loading}

@@ -170,7 +170,7 @@ export default function ProfilePage() {
 
       <div className="max-w-7xl mx-auto space-y-8 px-4 md:px-6 relative z-10">
         {/* --- HERO SECTION: User Card --- */}
-        <div className="relative bg-card/30 backdrop-blur-3xl border border-white/5 md:border-border/40 rounded-3xl md:rounded-[3rem] p-6 md:p-10 overflow-hidden shadow-2xl">
+        <div className="relative bg-card/30 backdrop-blur-3xl border border-white/5 md:border-border/40 rounded-md md:rounded-[3rem] p-6 md:p-10 overflow-hidden shadow-2xl">
           {/* Decorative Elements */}
           <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/20 rounded-full blur-[80px]" />
           <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-primary/50 to-transparent opacity-50" />
@@ -178,7 +178,7 @@ export default function ProfilePage() {
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
             {/* Avatar Circle */}
             <div className="relative group">
-              <div className="w-32 h-32 md:w-48 md:h-48 rounded-full md:rounded-[2.5rem] bg-bg border-[3px] border-border/60 flex items-center justify-center overflow-hidden shadow-[0_0_30px_rgba(0,0,0,0.3)] relative z-10">
+              <div className="w-32 h-32 md:w-48 md:h-48 rounded-full md:rounded-lg bg-bg border-[3px] border-border/60 flex items-center justify-center overflow-hidden shadow-[0_0_30px_rgba(0,0,0,0.3)] relative z-10">
                 {user?.image || user?.avatar ? (
                   <img
                     src={user.image || user.avatar}
@@ -193,7 +193,7 @@ export default function ProfilePage() {
               </div>
 
               {/* Edit Badge (Visual only, triggers modal via main button) */}
-              <div className="absolute bottom-2 right-2 md:-bottom-2 md:-right-2 bg-primary text-white p-2 md:p-3 rounded-xl shadow-lg z-20 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 pointer-events-none">
+              <div className="absolute bottom-2 right-2 md:-bottom-2 md:-right-2 bg-primary text-white p-2 md:p-3 rounded-md shadow-lg z-20 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 pointer-events-none">
                 <Edit3 size={16} />
               </div>
             </div>
@@ -214,7 +214,7 @@ export default function ProfilePage() {
                 <button
                   aria-label="edit open"
                   onClick={openEditModal}
-                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3 bg-white/5 border border-white/10 text-text font-black uppercase text-[12px] tracking-widest rounded-xl hover:bg-primary hover:text-white hover:border-primary hover:shadow-[0_0_20px_rgba(255,111,92,0.4)] transition-all duration-300"
+                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3 bg-white/5 border border-white/10 text-text font-black uppercase text-[12px] tracking-widest rounded-md hover:bg-primary hover:text-white hover:border-primary hover:shadow-[0_0_20px_rgba(255,111,92,0.4)] transition-all duration-300"
                 >
                   <Edit3 size={14} /> Edit Profile
                 </button>
@@ -222,7 +222,7 @@ export default function ProfilePage() {
                   aria-label="logout"
                   onClick={handleLogout}
                   disabled={isLoggingOut}
-                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3 bg-red-500/5 text-red-500 border border-red-500/20 font-black uppercase text-[12px] tracking-widest rounded-xl hover:bg-red-500 hover:text-white transition-all duration-300 disabled:opacity-50"
+                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3 bg-red-500/5 text-red-500 border border-red-500/20 font-black uppercase text-[12px] tracking-widest rounded-md hover:bg-red-500 hover:text-white transition-all duration-300 disabled:opacity-50"
                 >
                   {isLoggingOut ? (
                     <Loader2 size={14} className="animate-spin" />
@@ -259,7 +259,7 @@ export default function ProfilePage() {
                   resetAddressForm();
                   setIsAddressModalOpen(true);
                 }}
-                className="p-3 bg-primary text-white rounded-xl hover:scale-105 active:scale-95 transition shadow-lg shadow-primary/20"
+                className="p-3 bg-primary text-white rounded-md hover:scale-105 active:scale-95 transition shadow-lg shadow-primary/20"
               >
                 <Plus size={20} />
               </button>
@@ -271,7 +271,7 @@ export default function ProfilePage() {
                   <div
                     key={addr._id}
                     style={{ animationDelay: `${idx * 100}ms` }}
-                    className="group relative bg-card/40 border border-white/5 p-5 rounded-3xl hover:border-primary/40 transition-all duration-300 hover:bg-card/60 animate-in slide-in-from-bottom-4 fade-in fill-mode-backwards"
+                    className="group relative bg-card/40 border border-white/5 p-5 rounded-md hover:border-primary/40 transition-all duration-300 hover:bg-card/60 animate-in slide-in-from-bottom-4 fade-in fill-mode-backwards"
                   >
                     {/* Active Indicator Line */}
                     <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-0 bg-primary group-hover:h-1/2 transition-all duration-300 rounded-r-full" />
@@ -308,14 +308,14 @@ export default function ProfilePage() {
                             setIsEditingAddress(true);
                             setIsAddressModalOpen(true);
                           }}
-                          className="p-2 bg-bg text-pText hover:text-primary rounded-lg hover:bg-white/5 transition-colors"
+                          className="p-2 bg-bg text-pText hover:text-primary rounded-md hover:bg-white/5 transition-colors"
                         >
                           <Edit3 size={16} />
                         </button>
                         <button
                           aria-label="delete address"
                           onClick={() => handleDeleteAddress(addr._id)}
-                          className="p-2 bg-bg text-pText hover:text-red-500 rounded-lg hover:bg-red-500/10 transition-colors"
+                          className="p-2 bg-bg text-pText hover:text-red-500 rounded-md hover:bg-red-500/10 transition-colors"
                         >
                           <Trash2 size={16} />
                         </button>
@@ -324,7 +324,7 @@ export default function ProfilePage() {
                   </div>
                 ))
               ) : (
-                <div className="text-center py-12 bg-card/20 rounded-3xl border border-dashed border-border/40">
+                <div className="text-center py-12 bg-card/20 rounded-md border border-dashed border-border/40">
                   <p className="text-pText/40 text-[12px] font-black uppercase tracking-widest">
                     No coordinates found
                   </p>
@@ -361,10 +361,10 @@ export default function ProfilePage() {
                     key={order._id}
                     href={`/orders/${order._id}`}
                     style={{ animationDelay: `${idx * 100}ms` }}
-                    className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 bg-card/30 border border-white/5 p-5 rounded-3xl hover:bg-card/50 hover:border-primary/30 transition-all group animate-in slide-in-from-bottom-4 fade-in fill-mode-backwards"
+                    className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 bg-card/30 border border-white/5 p-5 rounded-md hover:bg-card/50 hover:border-primary/30 transition-all group animate-in slide-in-from-bottom-4 fade-in fill-mode-backwards"
                   >
                     <div className="flex items-center justify-between sm:justify-start w-full sm:w-auto gap-4">
-                      <div className="w-12 h-12 bg-bg rounded-xl flex items-center justify-center text-primary/80 border border-white/5 group-hover:text-primary group-hover:border-primary/50 transition-colors">
+                      <div className="w-12 h-12 bg-bg rounded-md flex items-center justify-center text-primary/80 border border-white/5 group-hover:text-primary group-hover:border-primary/50 transition-colors">
                         <Package size={20} />
                       </div>
                       <div className="sm:hidden">
@@ -401,7 +401,7 @@ export default function ProfilePage() {
                       </div>
                       <div className="hidden sm:block">
                         <span
-                          className={`text-[11px] font-black uppercase px-3 py-1.5 rounded-lg border ${
+                          className={`text-[11px] font-black uppercase px-3 py-1.5 rounded-md border ${
                             order.orderStatus === 'Delivered'
                               ? 'bg-green-500/10 border-green-500/20 text-green-500'
                               : 'bg-primary/10 border-primary/20 text-primary'
@@ -434,7 +434,7 @@ export default function ProfilePage() {
             }}
           />
 
-          <div className="relative bg-card border border-white/10 w-full max-w-lg p-6 md:p-10 rounded-[2.5rem] shadow-2xl animate-in zoom-in-95 duration-300 overflow-hidden">
+          <div className="relative bg-card border border-white/10 w-full max-w-lg p-6 md:p-10 rounded-lg shadow-2xl animate-in zoom-in-95 duration-300 overflow-hidden">
             {/* Modal Glow */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-primary shadow-[0_0_20px_rgba(255,111,92,0.8)]" />
 
@@ -487,14 +487,14 @@ export default function ProfilePage() {
                           value={editData.image}
                           onChange={(e) => setEditData({ ...editData, image: e.target.value })}
                           placeholder="https://example.com/image.jpg"
-                          className="w-full bg-bg border border-border rounded-2xl p-4 pl-11 text-xs font-bold text-text outline-none focus:border-primary transition-all shadow-inner placeholder:text-pText/20"
+                          className="w-full bg-bg border border-border rounded-md p-4 pl-11 text-xs font-bold text-text outline-none focus:border-primary transition-all shadow-inner placeholder:text-pText/20"
                         />
                         <div className="absolute left-4 top-1/2 -translate-y-1/2 text-pText">
                           <LinkIcon size={16} />
                         </div>
                       </div>
                       {/* Preview Box */}
-                      <div className="w-12 h-12 rounded-xl bg-bg border border-border flex items-center justify-center overflow-hidden shrink-0">
+                      <div className="w-12 h-12 rounded-md bg-bg border border-border flex items-center justify-center overflow-hidden shrink-0">
                         {editData.image ? (
                           <img
                             src={editData.image}
@@ -514,7 +514,7 @@ export default function ProfilePage() {
                   arialabel="submit"
                   type="submit"
                   text={loading ? 'Uploading Data...' : 'Execute Update'}
-                  className="w-full py-4 rounded-2xl mt-4"
+                  className="w-full py-4 rounded-md mt-4"
                   disabled={loading}
                 />
               </form>
@@ -574,7 +574,7 @@ export default function ProfilePage() {
                   />
                 </div>
 
-                <div className="flex items-center gap-3 p-4 bg-bg/50 rounded-2xl border border-white/5">
+                <div className="flex items-center gap-3 p-4 bg-bg/50 rounded-md border border-white/5">
                   <input
                     type="checkbox"
                     id="isDefault"
@@ -598,7 +598,7 @@ export default function ProfilePage() {
                   text={
                     loading ? 'Processing...' : isEditingAddress ? 'Update Node' : 'Establish Node'
                   }
-                  className="w-full py-4 rounded-2xl"
+                  className="w-full py-4 rounded-md"
                   disabled={loading}
                 />
               </form>
@@ -615,7 +615,7 @@ export default function ProfilePage() {
 function StatCard({ label, value, delay }) {
   return (
     <div
-      className="bg-bg/40 backdrop-blur-md border border-white/5 p-4 rounded-2xl text-center min-w-25 animate-in zoom-in-50 fill-mode-backwards duration-500"
+      className="bg-bg/40 backdrop-blur-md border border-white/5 p-4 rounded-md text-center min-w-25 animate-in zoom-in-50 fill-mode-backwards duration-500"
       style={{ animationDelay: `${delay}ms` }}
     >
       <p className="text-2xl font-black text-primary drop-shadow-[0_0_8px_rgba(255,111,92,0.5)]">
@@ -636,7 +636,7 @@ function InputGroup({ label, icon, disabled, ...props }) {
         <input
           {...props}
           disabled={disabled}
-          className={`w-full bg-bg border border-border rounded-2xl p-4 text-xs font-bold text-text outline-none focus:border-primary transition-all shadow-inner placeholder:text-pText/20
+          className={`w-full bg-bg border border-border rounded-md p-4 text-xs font-bold text-text outline-none focus:border-primary transition-all shadow-inner placeholder:text-pText/20
           ${icon ? 'pl-11' : ''} ${disabled ? 'opacity-50 cursor-not-allowed text-pText/50' : ''}`}
         />
         {icon && (

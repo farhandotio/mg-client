@@ -7,7 +7,7 @@ export default function Logo({ width = 170, height = 55, showText = false, class
   return (
     <Link
       href="/"
-      className={`flex items-center gap-2 outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-xl transition-transform active:scale-95 ${className}`}
+      className={`flex items-center gap-2 outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md transition-transform active:scale-95 ${className}`}
       aria-label="Gadget BDs Home"
     >
       <div
@@ -19,11 +19,11 @@ export default function Logo({ width = 170, height = 55, showText = false, class
           alt="Gadget BDs Logo"
           width={width}
           height={height}
-          priority 
+          priority
           fetchPriority="high"
           decoding="async"
           className="object-contain w-full h-full"
-          quality={100} 
+          quality={100}
         />
       </div>
 

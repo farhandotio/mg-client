@@ -20,7 +20,7 @@ const AuthField = React.forwardRef(({ icon, error, ...props }, ref) => (
       <input
         {...props}
         ref={ref}
-        className={`w-full py-4 pl-12 pr-4 rounded-2xl bg-bg/30 border border-border outline-none font-bold text-sm text-text transition-all duration-500 placeholder:text-pText ${
+        className={`w-full py-4 pl-12 pr-4 rounded-md bg-bg/30 border border-border outline-none font-bold text-sm text-text transition-all duration-500 placeholder:text-pText ${
           error
             ? 'border-red-500/30 bg-red-500/5 focus:border-red-500 shadow-sm'
             : 'border-bg/5 focus:border-primary/40 focus:bg-bg/[0.07] focus:scale-[1.01] shadow-inner'
@@ -29,7 +29,7 @@ const AuthField = React.forwardRef(({ icon, error, ...props }, ref) => (
 
       {/* ফোকাস গ্লো ইফেক্ট (ডেকোরেটিভ) */}
       <div
-        className={`absolute inset-0 rounded-2xl -z-10 opacity-0 group-focus-within:opacity-100 transition-opacity duration-500 blur-xl ${error ? 'bg-red-500/5' : 'bg-primary/5'}`}
+        className={`absolute inset-0 rounded-md -z-10 opacity-0 group-focus-within:opacity-100 transition-opacity duration-500 blur-xl ${error ? 'bg-red-500/5' : 'bg-primary/5'}`}
       />
     </div>
 

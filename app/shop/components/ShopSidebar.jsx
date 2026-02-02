@@ -44,8 +44,7 @@ export default function ShopSidebar({
   if (!mounted) return null;
 
   return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-left-4 duration-500 max-w-full overflow-hidden">
-      {/* ১. হেডার ও রিসেট বাটন (সবার উপরে) */}
+    <div className="space-y-8 animate-in fade-in slide-in-from-left-4 duration-500 max-w-full overflow-hidden no-scrollbar pb-6">
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -55,6 +54,7 @@ export default function ShopSidebar({
             </h3>
           </div>
           <button
+            aria-label='reset filters'
             onClick={resetFilters}
             className="flex items-center gap-1.5 text-[12px] font-black uppercase text-red-500 hover:text-red-400 transition-colors group"
           >
@@ -75,7 +75,7 @@ export default function ShopSidebar({
           defaultValue={searchTerm}
           onChange={onSearchChange}
           placeholder="পণ্য খুঁজুন..."
-          className="w-full bg-white/5 border border-border/40 rounded-xl py-3 pl-11 pr-4 text-xs text-text focus:outline-none focus:border-primary/50 transition-all placeholder:text-pText/30"
+          className="w-full bg-white/5 border border-border/40 rounded-md py-3 pl-11 pr-4 text-xs text-text focus:outline-none focus:border-primary/50 transition-all placeholder:text-pText/30"
         />
         <Search
           size={14}
@@ -95,7 +95,7 @@ export default function ShopSidebar({
         <div className="flex flex-col gap-0.5">
           <Link
             href="/shop"
-            className={`group flex items-center justify-between py-2 px-3 rounded-lg transition-all ${
+            className={`group flex items-center justify-between py-2 px-3 rounded-md transition-all ${
               !selectedCategory ? 'bg-primary/10 text-primary' : 'text-pText hover:bg-white/5'
             }`}
             onClick={() => setIsMobileFilterOpen?.(false)}
@@ -110,7 +110,7 @@ export default function ShopSidebar({
             <Link
               key={cat._id}
               href={`/shop?category=${cat.slug}${selectedType ? `&productType=${selectedType}` : ''}`}
-              className={`group flex items-center justify-between py-2 px-3 rounded-lg transition-all ${
+              className={`group flex items-center justify-between py-2 px-3 rounded-md transition-all ${
                 selectedCategory === cat.slug
                   ? 'bg-primary/10 text-primary'
                   : 'text-pText hover:bg-white/5'
@@ -142,7 +142,7 @@ export default function ShopSidebar({
             <Link
               key={type.slug}
               href={`/shop?productType=${type.slug}${selectedCategory ? `&category=${selectedCategory}` : ''}`}
-              className={`flex items-center justify-between p-3 rounded-xl border text-[12px] font-black uppercase tracking-tighter transition-all ${
+              className={`flex items-center justify-between p-3 rounded-md border text-[12px] font-black uppercase tracking-tighter transition-all ${
                 selectedType === type.slug
                   ? 'bg-primary text-bg border-primary'
                   : 'bg-white/5 border-border/20 text-pText hover:border-primary/40'

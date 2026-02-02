@@ -9,7 +9,7 @@ export default function PrivacyPolicy() {
       <div className="max-w-4xl mx-auto px-6">
         {/* Header Section */}
         <div className="mb-16 space-y-6 relative">
-          <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-xl text-primary mb-4 border border-primary/20">
+          <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-md text-primary mb-4 border border-primary/20">
             <Lock size={14} />
             <span className="text-[12px] font-black uppercase tracking-[0.3em]">
               Data_Protection_Enabled
@@ -58,7 +58,7 @@ export default function PrivacyPolicy() {
             </p>
           </section>
 
-          <section className="space-y-4 bg-card/20 border border-white/5 p-10 rounded-[2.5rem] relative overflow-hidden">
+          <section className="space-y-4 bg-card/20 border border-white/5 p-10 rounded-lg relative overflow-hidden">
             <div className="absolute top-0 right-0 p-4 opacity-5 italic font-black text-6xl select-none">
               DATA_SEC
             </div>
@@ -88,7 +88,7 @@ export default function PrivacyPolicy() {
 
 function SecurityFeature({ icon, title, desc }) {
   return (
-    <div className="p-8 bg-card/30 border border-white/5 rounded-3xl group hover:border-primary/50 transition-all duration-500">
+    <div className="p-8 bg-card/30 border border-white/5 rounded-md group hover:border-primary/50 transition-all duration-500">
       <div className="text-primary mb-6 group-hover:scale-110 transition-transform">{icon}</div>
       <h4 className="text-lg font-black text-text uppercase italic mb-2 tracking-tighter">
         {title}

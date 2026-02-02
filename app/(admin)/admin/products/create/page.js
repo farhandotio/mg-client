@@ -110,7 +110,7 @@ export default function CreateProductPage() {
       <header className="mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-b border-border/50 pb-10 relative overflow-hidden">
         <div className="relative z-10">
           <div className="flex items-center gap-3 text-primary mb-3">
-            <div className="p-2 bg-primary/10 rounded-lg animate-pulse">
+            <div className="p-2 bg-primary/10 rounded-md animate-pulse">
               <Cpu size={18} />
             </div>
             <span className="text-[12px] font-black uppercase tracking-[0.5em] opacity-70">
@@ -124,7 +124,7 @@ export default function CreateProductPage() {
             </span>
           </h1>
         </div>
-        <div className="flex items-center gap-4 bg-card/40 p-4 rounded-2xl border border-border/50 backdrop-blur-md">
+        <div className="flex items-center gap-4 bg-card/40 p-4 rounded-md border border-border/50 backdrop-blur-md">
           <div className="text-right border-r border-border/50 pr-4">
             <p className="text-[10px] font-black uppercase opacity-40">System_Status</p>
             <p className="text-[12px] font-bold text-primary">CORE_ACTIVE</p>
@@ -136,7 +136,7 @@ export default function CreateProductPage() {
       <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
         {/* Left Column: Core Data */}
         <div className="lg:col-span-7 space-y-8">
-          <section className="bg-card/40 p-5 rounded-2xl border border-border/80 shadow-xl backdrop-blur-sm relative overflow-hidden transition-all hover:border-primary/20">
+          <section className="bg-card/40 p-5 rounded-md border border-border/80 shadow-xl backdrop-blur-sm relative overflow-hidden transition-all hover:border-primary/20">
             <SectionHeader icon={<LayoutDashboard size={20} />} title="Neural_Data_Entry" />
             <div className="grid gap-6 relative z-10">
               <CustomInput
@@ -155,7 +155,7 @@ export default function CreateProductPage() {
                   Deep_Analysis_Protocol (Full Description)*
                 </label>
                 <textarea
-                  className="w-full border border-border rounded-4xl p-6 h-56 bg-bg/50 focus:border-primary outline-none transition-all font-medium text-sm text-text shadow-inner resize-none"
+                  className="w-full border border-border rounded-lg p-6 h-56 bg-bg/50 focus:border-primary outline-none transition-all font-medium text-sm text-text shadow-inner resize-none"
                   required
                   placeholder="Enter complete product narrative..."
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
@@ -165,7 +165,7 @@ export default function CreateProductPage() {
           </section>
 
           {/* Classification */}
-          <section className="bg-card/40 p-5 rounded-2xl border border-border/80 space-y-10">
+          <section className="bg-card/40 p-5 rounded-md border border-border/80 space-y-10">
             <div>
               <SectionHeader icon={<Box size={20} />} title="Entity_Mapping" />
               <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-3">
@@ -194,7 +194,7 @@ export default function CreateProductPage() {
           </section>
 
           {/* Specifications */}
-          <section className="bg-card/40 p-5 rounded-2xl border border-border/80">
+          <section className="bg-card/40 p-5 rounded-md border border-border/80">
             <div className="flex justify-between items-center mb-8">
               <SectionHeader icon={<Settings2 size={20} />} title="Specifications" />
               <button
@@ -206,7 +206,7 @@ export default function CreateProductPage() {
                     specifications: [...formData.specifications, { key: '', value: '' }],
                   })
                 }
-                className="group flex items-center gap-2 px-4 py-2 rounded-xl bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all border border-primary/20"
+                className="group flex items-center gap-2 px-4 py-2 rounded-md bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all border border-primary/20"
               >
                 <Plus size={16} />
                 <span className="text-[12px] hidden md:block font-black uppercase tracking-widest">
@@ -218,11 +218,11 @@ export default function CreateProductPage() {
               {formData.specifications.map((spec, index) => (
                 <div
                   key={index}
-                  className="flex flex-col sm:flex-row gap-4 p-4 bg-bg/40 rounded-2xl border border-border/50 group animate-in slide-in-from-left duration-300"
+                  className="flex flex-col sm:flex-row gap-4 p-4 bg-bg/40 rounded-md border border-border/50 group animate-in slide-in-from-left duration-300"
                 >
                   <input
                     placeholder="Field Name"
-                    className="flex-1 bg-card border border-border rounded-xl p-4 text-xs font-black uppercase tracking-widest outline-none focus:border-primary shadow-inner"
+                    className="flex-1 bg-card border border-border rounded-md p-4 text-xs font-black uppercase tracking-widest outline-none focus:border-primary shadow-inner"
                     value={spec.key}
                     onChange={(e) => {
                       const newSpecs = [...formData.specifications];
@@ -232,7 +232,7 @@ export default function CreateProductPage() {
                   />
                   <input
                     placeholder="Value Data"
-                    className="flex-1 bg-card border border-border rounded-xl p-4 text-xs font-bold outline-none focus:border-primary shadow-inner text-primary"
+                    className="flex-1 bg-card border border-border rounded-md p-4 text-xs font-bold outline-none focus:border-primary shadow-inner text-primary"
                     value={spec.value}
                     onChange={(e) => {
                       const newSpecs = [...formData.specifications];
@@ -249,7 +249,7 @@ export default function CreateProductPage() {
                         specifications: formData.specifications.filter((_, i) => i !== index),
                       })
                     }
-                    className="sm:self-center p-3 text-pText/20 hover:text-primary transition-colors bg-card sm:bg-transparent rounded-xl border border-border sm:border-none"
+                    className="sm:self-center p-3 text-pText/20 hover:text-primary transition-colors bg-card sm:bg-transparent rounded-md border border-border sm:border-none"
                   >
                     <Trash2 size={18} />
                   </button>
@@ -262,7 +262,7 @@ export default function CreateProductPage() {
         {/* Right Column: Controls & Assets */}
         <div className="lg:col-span-5 space-y-8 lg:sticky lg:top-10">
           {/* Commerce Core: Updated for Base and Sell Price */}
-          <section className="bg-card/40 p-5 rounded-2xl border border-border space-y-8 shadow-xl">
+          <section className="bg-card/40 p-5 rounded-md border border-border space-y-8 shadow-xl">
             <SectionHeader icon={<BarChart3 size={20} />} title="Commerce_Core" />
             <div className="grid grid-cols-2 gap-4">
               <CustomInput
@@ -303,7 +303,7 @@ export default function CreateProductPage() {
           </section>
 
           {/* Visual Assets */}
-          <section className="bg-bg p-5 rounded-2xl border border-border/80 space-y-6 shadow-inner relative overflow-hidden">
+          <section className="bg-bg p-5 rounded-md border border-border/80 space-y-6 shadow-inner relative overflow-hidden">
             <SectionHeader
               icon={<ImageIcon size={20} />}
               title={`Visual_Sync (${formData.images.length}/5)`}
@@ -324,7 +324,7 @@ export default function CreateProductPage() {
               {formData.images.map((img, i) => (
                 <div
                   key={i}
-                  className="relative aspect-square rounded-2xl overflow-hidden border-2 border-border/50 group bg-card shadow-lg"
+                  className="relative aspect-square rounded-md overflow-hidden border-2 border-border/50 group bg-card shadow-lg"
                 >
                   <img
                     src={img.url}
@@ -352,7 +352,7 @@ export default function CreateProductPage() {
           </section>
 
           {/* Meta & Execution */}
-          <section className="bg-card/60 p-5 rounded-2xl border-2 border-primary/20 space-y-6 shadow-2xl backdrop-blur-md">
+          <section className="bg-card/60 p-5 rounded-md border-2 border-primary/20 space-y-6 shadow-2xl backdrop-blur-md">
             <SectionHeader icon={<Zap size={20} />} title="System_Registry" />
             <div className="grid gap-6">
               <CustomInput
@@ -366,7 +366,7 @@ export default function CreateProductPage() {
                   Market Classification
                 </label>
                 <select
-                  className="w-full bg-bg/80 border border-border rounded-2xl p-4 text-[12px] font-black uppercase tracking-widest outline-none focus:border-primary text-primary cursor-pointer shadow-inner appearance-none"
+                  className="w-full bg-bg/80 border border-border rounded-md p-4 text-[12px] font-black uppercase tracking-widest outline-none focus:border-primary text-primary cursor-pointer shadow-inner appearance-none"
                   onChange={(e) => setFormData({ ...formData, productType: e.target.value })}
                 >
                   {['Regular', 'FlashSale', 'HotDeals', 'Featured', 'BestSeller', 'NewArrival'].map(
@@ -385,7 +385,7 @@ export default function CreateProductPage() {
                 type="submit"
                 size="xl"
                 disabled={btnLoading}
-                className={`w-full py-8 rounded-4xl shadow-primary/20 shadow-xl active:scale-95 transition-all font-black text-xs tracking-[0.4em] italic ${btnLoading ? 'grayscale opacity-50' : 'hover:scale-[1.02]'}`}
+                className={`w-full py-8 rounded-lg shadow-primary/20 shadow-xl active:scale-95 transition-all font-black text-xs tracking-[0.4em] italic ${btnLoading ? 'grayscale opacity-50' : 'hover:scale-[1.02]'}`}
                 text={btnLoading ? <LoaderSpinner /> : 'Execute_Upload'}
               />
             </div>
@@ -401,11 +401,11 @@ function SelectionCard({ item, isSelected, onClick }) {
   return (
     <div
       onClick={onClick}
-      className={`relative p-2 rounded-2xl border-2 transition-all cursor-pointer overflow-hidden flex flex-col items-center justify-center gap-2 group
+      className={`relative p-2 rounded-md border-2 transition-all cursor-pointer overflow-hidden flex flex-col items-center justify-center gap-2 group
       ${isSelected ? 'bg-primary border-primary shadow-[0_10px_20px_rgba(255,111,92,0.2)] -translate-y-1' : 'bg-bg border-border/60 hover:border-primary/40 hover:bg-card/50'}`}
     >
       <div
-        className={`w-12 h-10 shrink-0 rounded-lg overflow-hidden flex items-center justify-center border transition-all ${isSelected ? 'bg-white/20 border-white/30' : 'bg-card border-border shadow-inner'}`}
+        className={`w-12 h-10 shrink-0 rounded-md overflow-hidden flex items-center justify-center border transition-all ${isSelected ? 'bg-white/20 border-white/30' : 'bg-card border-border shadow-inner'}`}
       >
         {item.image?.url ? (
           <Image
@@ -436,7 +436,7 @@ function SelectionCard({ item, isSelected, onClick }) {
 function SectionHeader({ icon, title }) {
   return (
     <div className="flex items-center gap-4 text-primary mb-6">
-      <div className="p-3 bg-primary/10 rounded-2xl border border-primary/20 shadow-md backdrop-blur-sm">
+      <div className="p-3 bg-primary/10 rounded-md border border-primary/20 shadow-md backdrop-blur-sm">
         {icon}
       </div>
       <h2 className="text-xs font-black uppercase tracking-[0.4em] italic">{title}</h2>
@@ -452,7 +452,7 @@ function CustomInput({ label, ...props }) {
       </label>
       <input
         {...props}
-        className="w-full border border-border rounded-2xl p-4 md:p-5 bg-bg/50 focus:border-primary outline-none transition-all font-bold text-xs text-text placeholder:text-pText/10 shadow-inner"
+        className="w-full border border-border rounded-md p-4 md:p-5 bg-bg/50 focus:border-primary outline-none transition-all font-bold text-xs text-text placeholder:text-pText/10 shadow-inner"
       />
     </div>
   );

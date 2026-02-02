@@ -59,7 +59,7 @@ export default function OrderSuccessPage() {
         <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
           <div className="relative inline-block">
             <div className="absolute inset-0 bg-primary/20 blur-2xl rounded-full animate-pulse" />
-            <div className="relative inline-flex items-center justify-center w-24 h-24 rounded-3xl bg-card border-2 border-primary rotate-12 mb-8 shadow-2xl">
+            <div className="relative inline-flex items-center justify-center w-24 h-24 rounded-md bg-card border-2 border-primary rotate-12 mb-8 shadow-2xl">
               <CheckCircle2 size={48} className="text-primary -rotate-12" />
             </div>
           </div>
@@ -78,7 +78,7 @@ export default function OrderSuccessPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Main Info Card */}
           <div className="lg:col-span-8 space-y-6">
-            <div className="bg-card/50 backdrop-blur-xl border border-border rounded-4xl overflow-hidden group">
+            <div className="bg-card/50 backdrop-blur-xl border border-border rounded-lg overflow-hidden group">
               <div className="p-1 bg-linear-to-r from-primary/50 via-transparent to-transparent" />
               <div className="p-8">
                 <div className="flex flex-wrap justify-between items-start gap-4 mb-10">
@@ -120,7 +120,7 @@ export default function OrderSuccessPage() {
 
                   <div className="space-y-6">
                     <SectionLabel icon={CreditCard} text="Payment Signal" />
-                    <div className="bg-bg/50 border border-border p-4 rounded-2xl">
+                    <div className="bg-bg/50 border border-border p-4 rounded-md">
                       <p className="text-[12px] font-black text-pText uppercase mb-1">
                         Method: {payment.method}
                       </p>
@@ -141,7 +141,7 @@ export default function OrderSuccessPage() {
                 arialabel="go to shop"
                 size="xl"
                 url="/shop"
-                className="flex-1 rounded-2xl"
+                className="flex-1 rounded-md"
                 icon={ShoppingBag}
                 text="Back to Shop"
               />
@@ -149,7 +149,7 @@ export default function OrderSuccessPage() {
                 arialabel="go to order"
                 size="xl"
                 href={`/user/orders/${orderDetails._id}`}
-                className="flex-1 rounded-2xl"
+                className="flex-1 rounded-md"
                 icon={Zap}
                 text="View Full Protocol"
               />
@@ -158,7 +158,7 @@ export default function OrderSuccessPage() {
 
           {/* Pricing Sidebar */}
           <div className="lg:col-span-4">
-            <div className="bg-card border border-border rounded-4xl p-8 sticky top-24">
+            <div className="bg-card border border-border rounded-lg p-8 sticky top-24">
               <h3 className="text-pText text-[11px] font-black uppercase tracking-[0.2em] mb-8">
                 Data Summary
               </h3>
@@ -190,7 +190,7 @@ export default function OrderSuccessPage() {
                 </div>
               </div>
 
-              <div className="mt-8 p-4 bg-primary/5 rounded-2xl border border-primary/10">
+              <div className="mt-8 p-4 bg-primary/5 rounded-md border border-primary/10">
                 <p className="text-[11px] text-primary font-bold text-center uppercase tracking-widest leading-relaxed">
                   A copy of your receipt has been transmitted to your encrypted email.
                 </p>

@@ -69,7 +69,7 @@ export default function BrandsPage() {
       key: 'name',
       render: (item) => (
         <div className="flex items-center gap-4">
-          <div className="w-10 h-10 rounded-xl bg-white/5 border border-border flex items-center justify-center overflow-hidden p-1.5 transition-transform group-hover:scale-110">
+          <div className="w-10 h-10 rounded-md bg-white/5 border border-border flex items-center justify-center overflow-hidden p-1.5 transition-transform group-hover:scale-110">
             {item.image?.url || item.logo ? (
               <img
                 src={item.image?.url || item.logo}
@@ -136,7 +136,7 @@ export default function BrandsPage() {
         </div>
       </div>
 
-      <div className="relative bg-card/20 backdrop-blur-md border border-border/40 rounded-3xl overflow-hidden shadow-2xl">
+      <div className="relative bg-card/20 backdrop-blur-md border border-border/40 rounded-md overflow-hidden shadow-2xl">
         <DataTable
           columns={columns}
           data={brands}
@@ -150,7 +150,7 @@ export default function BrandsPage() {
       {/* --- Inline Update Modal with Image URL --- */}
       {isEditModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-300">
-          <div className="bg-card border border-border w-full max-w-md rounded-3xl p-8 shadow-2xl relative overflow-hidden">
+          <div className="bg-card border border-border w-full max-w-md rounded-md p-8 shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 blur-3xl rounded-full -mr-16 -mt-16"></div>
 
             <div className="flex justify-between items-center mb-8 relative">
@@ -181,7 +181,7 @@ export default function BrandsPage() {
                   type="text"
                   value={editName}
                   onChange={(e) => setEditName(e.target.value)}
-                  className="w-full bg-white/5 border border-border rounded-xl px-4 py-3 text-xs font-bold text-text focus:outline-none focus:border-primary/50 transition-all shadow-inner"
+                  className="w-full bg-white/5 border border-border rounded-md px-4 py-3 text-xs font-bold text-text focus:outline-none focus:border-primary/50 transition-all shadow-inner"
                   placeholder="Brand identity..."
                 />
               </div>
@@ -195,14 +195,14 @@ export default function BrandsPage() {
                   type="text"
                   value={editImage}
                   onChange={(e) => setEditImage(e.target.value)}
-                  className="w-full bg-white/5 border border-border rounded-xl px-4 py-3 text-xs font-bold text-text focus:outline-none focus:border-primary/50 transition-all shadow-inner"
+                  className="w-full bg-white/5 border border-border rounded-md px-4 py-3 text-xs font-bold text-text focus:outline-none focus:border-primary/50 transition-all shadow-inner"
                   placeholder="https://image-link.com/logo.png"
                 />
               </div>
 
               {/* Preview */}
               {editImage && (
-                <div className="w-16 h-16 rounded-lg border border-border bg-white/5 p-2 overflow-hidden">
+                <div className="w-16 h-16 rounded-md border border-border bg-white/5 p-2 overflow-hidden">
                   <img
                     src={editImage}
                     alt="Preview"
@@ -216,7 +216,7 @@ export default function BrandsPage() {
                 aria-label="submit"
                 type="submit"
                 disabled={isUpdating}
-                className="w-full bg-primary hover:bg-primary/90 text-black font-black uppercase italic py-4 rounded-xl transition-all active:scale-95 flex items-center justify-center gap-2 text-xs tracking-widest disabled:opacity-50"
+                className="w-full bg-primary hover:bg-primary/90 text-black font-black uppercase italic py-4 rounded-md transition-all active:scale-95 flex items-center justify-center gap-2 text-xs tracking-widest disabled:opacity-50"
               >
                 {isUpdating ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />}
                 {isUpdating ? 'Synchronizing...' : 'Commit Changes'}

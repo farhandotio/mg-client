@@ -4,7 +4,7 @@ import { Edit, Trash2, Eye } from 'lucide-react';
 export default function DataTable({ columns, data, loading, onEdit, onDelete, onView }) {
   if (loading) {
     return (
-      <div className="w-full h-64 bg-card/20 animate-pulse rounded-3xl flex items-center justify-center">
+      <div className="w-full h-64 bg-card/20 animate-pulse rounded-md flex items-center justify-center">
         <p className="text-[12px] font-black uppercase tracking-[0.2em] text-pText">
           Fetching Data...
         </p>
@@ -13,7 +13,7 @@ export default function DataTable({ columns, data, loading, onEdit, onDelete, on
   }
 
   return (
-    <div className="bg-card border border-border rounded-xl overflow-hidden">
+    <div className="bg-card border border-border rounded-md overflow-hidden">
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse">
           <thead>
@@ -47,7 +47,7 @@ export default function DataTable({ columns, data, loading, onEdit, onDelete, on
                         <button
                           aria-label="view"
                           onClick={() => onView(item)}
-                          className="p-2 hover:bg-blue-500/10 text-blue-400 rounded-lg transition-all"
+                          className="p-2 hover:bg-blue-500/10 text-blue-400 rounded-md transition-all"
                         >
                           <Eye size={16} />
                         </button>
@@ -55,14 +55,14 @@ export default function DataTable({ columns, data, loading, onEdit, onDelete, on
                       <button
                         aria-label="edit"
                         onClick={() => onEdit(item)}
-                        className="p-2 hover:bg-primary/10 text-primary rounded-lg transition-all"
+                        className="p-2 hover:bg-primary/10 text-primary rounded-md transition-all"
                       >
                         <Edit size={16} />
                       </button>
                       <button
                         aria-label="delete"
                         onClick={() => onDelete(item._id)}
-                        className="p-2 hover:bg-red-500/10 text-red-400 rounded-lg transition-all"
+                        className="p-2 hover:bg-red-500/10 text-red-400 rounded-md transition-all"
                       >
                         <Trash2 size={16} />
                       </button>

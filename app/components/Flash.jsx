@@ -37,7 +37,7 @@ export default function Flash() {
           <div className="space-y-3">
             <div className="flex items-center gap-2 text-secondary">
               <Zap size={18} className="fill-secondary animate-pulse" />
-              <h2 className="text-2xl md:text-3xl font-black text-text tracking-tight uppercase italic">
+              <h2 className="text-xl md:text-2xl font-black text-text tracking-tight uppercase italic">
                 ফ্ল্যাশ <span className="text-secondary">ডিল</span>
               </h2>
             </div>
@@ -78,15 +78,12 @@ export default function Flash() {
             ))
           ) : flashSaleProducts.length > 0 ? (
             flashSaleProducts.slice(0, 10).map((product, index) => (
-              <div
-                key={product._id}
-                className="w-full"
-              >
+              <div key={product._id} className="w-full">
                 <ProductCard product={product} priority={index < 5} />
               </div>
             ))
           ) : (
-            <div className="col-span-full py-16 text-center border-2 border-dashed border-border/10 rounded-3xl bg-card/20">
+            <div className="col-span-full py-16 text-center border-2 border-dashed border-border/10 rounded-md bg-card/20">
               <p className="text-pText opacity-60 text-sm font-bold tracking-widest uppercase">
                 এই মুহূর্তে কোনো ফ্ল্যাশ ডিল নেই
               </p>
@@ -97,7 +94,7 @@ export default function Flash() {
         <div className="mt-8 md:hidden">
           <Link
             href="/shop?productType=FlashSale"
-            className="block w-full text-center py-4 bg-secondary/10 border border-secondary/20 rounded-xl text-sm font-black text-secondary active:scale-95 transition-transform"
+            className="block w-full text-center py-4 bg-secondary/10 border border-secondary/20 rounded-md text-sm font-black text-secondary active:scale-95 transition-transform"
           >
             সবগুলো ফ্ল্যাশ ডিল দেখুন
           </Link>

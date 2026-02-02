@@ -70,9 +70,9 @@ export default function Footer() {
   if (isAdminPage || isAuthPage) return null;
 
   return (
-    <footer className="bg-card/50 backdrop-blur-3xl border-t border-white/5 relative overflow-hidden">
+    <footer className="bg-card/500 backdrop-blur-3xl border-t border-border/50 relative overflow-hidden">
       {/* Background Glow */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none select-none" />
+      <div className="absolute top-0 right-0 w-125 h-125 bg-primary/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none select-none" />
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 pt-12 md:pt-20 pb-10 relative z-10">
         {/* ১. টপ ফিচারস - গ্লাস কার্ড ডিজাইন */}
@@ -80,9 +80,9 @@ export default function Footer() {
           {footerData.features.map((item, index) => (
             <div
               key={index}
-              className="group flex items-center gap-6 p-6 bg-white/[0.02] border border-white/5 rounded-[2rem] hover:border-primary/20 transition-all duration-500 hover:bg-white/[0.05]"
+              className="group flex items-center gap-6 p-6 bg-card/20 border border-border/50 rounded-lg hover:border-primary/20 transition-all duration-500 hover:bg-card/50"
             >
-              <div className="text-primary bg-primary/10 p-4 rounded-2xl group-hover:scale-110 group-hover:bg-primary group-hover:text-bg transition-all duration-500 shadow-lg shadow-primary/5">
+              <div className="text-primary bg-primary/10 p-4 rounded-md group-hover:scale-110 group-hover:bg-primary group-hover:text-bg transition-all duration-500 shadow-lg shadow-primary/5">
                 {item.icon}
               </div>
               <div className="space-y-1">
@@ -97,11 +97,10 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="h-px bg-linear-to-r from-transparent via-white/5 to-transparent mb-16" />
+        <div className="h-px bg-linear-to-r from-transparent via-card/5 to-transparent md:mb-12" />
 
         {/* ২. মেইন কন্টেন্ট গ্রিড */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-20">
-          {/* ব্র্যান্ড ইনফো */}
           <div className="lg:col-span-4 space-y-8">
             <Logo width={120} height={45} />
             <p className="text-pText/70 text-sm leading-relaxed max-w-sm font-medium italic">
@@ -113,7 +112,7 @@ export default function Footer() {
                 <button
                   key={i}
                   aria-label={label}
-                  className="w-11 h-11 rounded-2xl bg-white/5 border border-white/5 flex items-center justify-center text-pText hover:bg-primary hover:text-bg hover:-translate-y-1 transition-all duration-300 shadow-xl"
+                  className="w-11 h-11 rounded-md bg-card/50 border border-border/50 flex items-center justify-center text-pText hover:bg-primary hover:text-bg hover:-translate-y-1 transition-all duration-300"
                 >
                   <Icon size={20} />
                 </button>
@@ -123,7 +122,7 @@ export default function Footer() {
 
           {/* কুইক লিঙ্কস */}
           <div className="lg:col-span-2">
-            <h4 className="text-primary font-black uppercase text-[12px] tracking-[0.3em] mb-8">
+            <h4 className="text-primary font-black uppercase text-[12px]  mb-8">
               লিঙ্কসমূহ
             </h4>
             <ul className="space-y-4">
@@ -143,7 +142,7 @@ export default function Footer() {
 
           {/* সহযোগিতা */}
           <div className="lg:col-span-2">
-            <h4 className="text-primary font-black uppercase text-[12px] tracking-[0.3em] mb-8">
+            <h4 className="text-primary font-black uppercase text-[12px]  mb-8">
               সহযোগিতা
             </h4>
             <ul className="space-y-4">
@@ -164,25 +163,25 @@ export default function Footer() {
           {/* নিউজলেটার */}
           <div className="lg:col-span-4 space-y-8">
             <div className="space-y-4">
-              <h4 className="text-primary font-black uppercase text-[12px] tracking-[0.3em]">
+              <h4 className="text-primary font-black uppercase text-[12px] ">
                 নিউজলেটার
               </h4>
               <form className="relative group" onSubmit={(e) => e.preventDefault()}>
                 <input
                   type="email"
                   placeholder="ইমেইল অ্যাড্রেস লিখুন"
-                  className="w-full bg-white/[0.03] border-2 border-white/5 rounded-2xl px-6 py-4 text-xs outline-none focus:border-primary/30 transition-all font-bold pr-14 italic"
+                  className="w-full bg-card/30 border-2 border-border/50 rounded-md px-6 py-4 text-xs outline-none focus:border-primary/30 transition-all font-bold pr-14 italic"
                 />
                 <button
                   type="submit"
-                  className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-bg shadow-lg shadow-primary/20 active:scale-90 transition-transform"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-primary rounded-md flex items-center justify-center text-bg shadow-lg shadow-primary/20 active:scale-90 transition-transform"
                 >
                   <Send size={18} strokeWidth={2.5} />
                 </button>
               </form>
             </div>
 
-            <address className="not-italic space-y-4 bg-white/[0.02] p-6 rounded-3xl border border-white/5">
+            <address className="not-italic space-y-4 bg-card/20 p-6 rounded-md border border-border/50">
               <div className="flex items-center gap-4 text-pText text-[11px] font-black italic">
                 <Phone size={16} className="text-primary" />
                 <a href="tel:+8801XXXXXXXXX" className="hover:text-primary transition-colors">
@@ -203,8 +202,8 @@ export default function Footer() {
         </div>
 
         {/* ৩. বটম বার */}
-        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-3 text-pText/30 text-[11px] font-black uppercase tracking-[0.3em]">
+        <div className="pt-8 border-t border-border/50 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex items-center gap-3 text-pText/30 text-[11px] font-black uppercase ">
             <span>কপিরাইট © ২০২৬</span>
             <span className="text-primary">●</span>
             <span>গ্যাজেট বিডিএস</span>

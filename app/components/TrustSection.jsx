@@ -56,15 +56,15 @@ export default function TrustSection() {
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
         {/* --- Header: Clean & Trusted --- */}
-        <div className="mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
-          <div className="space-y-3">
+        <div className="mb-8 border-b border-border/10 pb-3 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+          <div className="space-y-2">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 bg-primary rounded-full animate-ping" />
-              <span className="text-primary font-bold text-[12px] uppercase tracking-[0.3em]">
+              <span className="text-primary font-bold text-[12px] uppercase tracking-wider">
                 কাস্টমার রিভিউ এবং ফিডব্যাক
               </span>
             </div>
-            <h2 className="text-2xl md:text-3xl font-black text-text tracking-tighter uppercase italic leading-none">
+            <h2 className="text-xl md:text-2xl font-black text-text tracking-tighter uppercase leading-none">
               ইউজারদের <span className="text-primary">আস্থা</span>
             </h2>
           </div>
@@ -75,6 +75,7 @@ export default function TrustSection() {
             </p>
           </div>
         </div>
+
 
         {/* --- Bento Grid Area --- */}
         <motion.div
@@ -87,13 +88,13 @@ export default function TrustSection() {
           {/* 1. Feature Hero Card */}
           <motion.div
             variants={itemVariants}
-            className="md:col-span-2 md:row-span-2 bg-card border border-border/50 rounded-[2.5rem] p-8 md:p-12 flex flex-col justify-between relative overflow-hidden group"
+            className="md:col-span-2 md:row-span-2 bg-card border border-border/50 rounded-lg p-8 md:p-12 flex flex-col justify-between relative overflow-hidden group"
           >
             <div className="relative z-10">
-              <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+              <div className="w-16 h-16 bg-primary/10 rounded-md flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
                 <ShieldCheck size={32} className="text-primary" />
               </div>
-              <h3 className="text-3xl md:text-5xl font-black text-text uppercase leading-[1] tracking-tighter">
+              <h3 className="text-3xl md:text-5xl font-black text-text uppercase racking-tighter">
                 ১০০% জেনুইন <br /> <span className="text-primary">প্রোডাক্টের</span> <br /> নিশ্চয়তা
               </h3>
             </div>
@@ -124,7 +125,7 @@ export default function TrustSection() {
             <motion.div
               key={rev.id}
               variants={itemVariants}
-              className={`${rev.grid} bg-card/40 backdrop-blur-md border border-border/40 p-6 rounded-3xl hover:border-primary/30 transition-all duration-500 group flex flex-col justify-between`}
+              className={`${rev.grid} bg-card/40 backdrop-blur-md border border-border/40 p-6 rounded-md hover:border-primary/30 transition-all duration-500 group flex flex-col justify-between`}
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
@@ -150,7 +151,7 @@ export default function TrustSection() {
                     {rev.role}
                   </p>
                 </div>
-                <div className="p-2 rounded-lg bg-border/20 group-hover:bg-primary group-hover:text-bg transition-colors cursor-pointer">
+                <div className="p-2 rounded-md bg-border/20 group-hover:bg-primary group-hover:text-bg transition-colors cursor-pointer">
                   <Share2 size={12} />
                 </div>
               </div>
@@ -160,7 +161,7 @@ export default function TrustSection() {
           {/* 3. Stats Section */}
           <motion.div
             variants={itemVariants}
-            className="md:col-span-1 md:row-span-1 bg-card border border-border/50 rounded-3xl p-6 flex flex-col items-center justify-center text-center gap-2 group"
+            className="md:col-span-1 md:row-span-1 bg-card border border-border/50 rounded-md p-6 flex flex-col items-center justify-center text-center gap-2 group"
           >
             <div className="p-3 bg-primary/5 rounded-full mb-1 group-hover:rotate-[360deg] transition-transform duration-700">
               <Cpu size={24} className="text-primary" />

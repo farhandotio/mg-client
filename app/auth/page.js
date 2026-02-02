@@ -93,7 +93,7 @@ function AuthForm() {
       {/* ব্যাক বাটন - মোবাইল এবং ডেস্কটপ উভয়ের জন্য */}
       <button
         onClick={() => router.back()}
-        className="absolute top-6 left-6 z-50 flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 border border-white/5 text-pText hover:text-primary hover:bg-white/10 transition-all group"
+        className="absolute top-6 left-6 z-50 flex items-center gap-2 px-3 py-2 rounded-md bg-white/5 border border-white/5 text-pText hover:text-primary hover:bg-white/10 transition-all group"
       >
         <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
         <span className="text-[12px] font-black uppercase tracking-widest hidden sm:block">
@@ -124,20 +124,20 @@ function AuthForm() {
 
             {/* অ্যালার্ট মেসেজসমূহ */}
             {isLogin && isVerified && !error && (
-              <div className="flex items-center gap-2 text-green-500 text-[11px] font-bold uppercase bg-green-500/10 p-3 rounded-xl mb-4 border border-green-500/20">
+              <div className="flex items-center gap-2 text-green-500 text-[11px] font-bold uppercase bg-green-500/10 p-3 rounded-md mb-4 border border-green-500/20">
                 <CheckCircle2 size={14} /> ইমেইল ভেরিফাইড! এখন লগইন করুন।
               </div>
             )}
 
             {verificationNotice && (
-              <div className="flex items-start gap-2 text-blue-500 text-[11px] font-bold uppercase bg-blue-500/10 p-4 rounded-xl mb-4 border border-blue-500/20">
+              <div className="flex items-start gap-2 text-blue-500 text-[11px] font-bold uppercase bg-blue-500/10 p-4 rounded-md mb-4 border border-blue-500/20">
                 <Info size={16} className="shrink-0" />
                 লগইন করার আগে ইমেইল চেক করে ভেরিফাই করুন।
               </div>
             )}
 
             {error && (
-              <p className="text-red-500 text-[12px] font-bold uppercase tracking-widest bg-red-500/10 p-3 rounded-xl mb-4 animate-shake border border-red-500/20">
+              <p className="text-red-500 text-[12px] font-bold uppercase tracking-widest bg-red-500/10 p-3 rounded-md mb-4 animate-shake border border-red-500/20">
                 {error}
               </p>
             )}
@@ -213,7 +213,7 @@ export default function AuthPage() {
       {/* গ্লো ইফেক্ট */}
       <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,rgba(var(--primary-rgb),0.05),transparent_70%)] pointer-events-none" />
 
-      <div className="relative w-full max-w-5xl bg-card/40 backdrop-blur-3xl border border-white/10 rounded-[2.5rem] overflow-hidden shadow-2xl">
+      <div className="relative w-full max-w-5xl bg-card/40 backdrop-blur-3xl border border-white/10 rounded-lg overflow-hidden shadow-2xl">
         <Suspense
           fallback={
             <div className="p-20 text-center text-text font-black uppercase tracking-widest animate-pulse">

@@ -97,7 +97,7 @@ export default function ProductTabs({ product }) {
             )}
 
             {activeTab === 'reviews' && (
-              <div className="flex flex-col items-center justify-center py-16 text-center border-2 border-dashed border-border/20 rounded-3xl">
+              <div className="flex flex-col items-center justify-center py-16 text-center border-2 border-dashed border-border/20 rounded-md">
                 <Star className="text-primary/20 mb-4" size={32} />
                 <p className="text-pText font-black uppercase text-[12px]">
                   এখনও কোনো রিভিউ দেওয়া হয়নি

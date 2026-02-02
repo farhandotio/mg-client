@@ -49,7 +49,7 @@ export default function ContactPage() {
           </div>
           <a
             href="https://wa.me/yournumber"
-            className="bg-[#25D366] text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest flex items-center gap-3 hover:scale-105 transition-transform"
+            className="bg-[#25D366] text-white px-10 py-5 rounded-md font-black uppercase tracking-widest flex items-center gap-3 hover:scale-105 transition-transform"
           >
             <MessageSquare /> Chat on WhatsApp
           </a>
@@ -61,8 +61,8 @@ export default function ContactPage() {
 
 function ContactCard({ icon, title, detail, sub }) {
   return (
-    <div className="p-10 bg-card/20 border border-white/5 rounded-[2.5rem] hover:border-primary/50 transition-all group">
-      <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mb-8 group-hover:scale-110 transition-transform">
+    <div className="p-10 bg-card/20 border border-white/5 rounded-lg hover:border-primary/50 transition-all group">
+      <div className="w-14 h-14 bg-primary/10 rounded-md flex items-center justify-center text-primary mb-8 group-hover:scale-110 transition-transform">
         {icon}
       </div>
       <p className="text-[12px] font-black uppercase tracking-[0.3em] text-pText mb-2">{title}</p>

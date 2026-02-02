@@ -150,13 +150,13 @@ export default function SearchOverlay({ isOpen, onClose }) {
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: idx * 0.04 }}
-                          className="p-3 bg-card/20 border border-border/20 rounded-2xl hover:border-primary/40 transition-all flex gap-4 group"
+                          className="p-3 bg-card/20 border border-border/20 rounded-md hover:border-primary/40 transition-all flex gap-4 group"
                         >
-                          <div className="w-20 h-20 bg-bg rounded-xl border border-border/10 flex items-center justify-center shrink-0 overflow-hidden">
+                          <div className="w-20 h-20 bg-bg rounded-md border border-border/10 flex items-center justify-center shrink-0 overflow-hidden">
                             <img
                               src={product.images?.[0]?.url || '/placeholder.png'}
                               alt={product.title}
-                              className="w-full h-full object-cover rounded-lg group-hover:scale-110 transition-transform duration-500"
+                              className="w-full h-full object-cover rounded-md group-hover:scale-110 transition-transform duration-500"
                             />
                           </div>
                           <div className="flex flex-col justify-center min-w-0 flex-1">

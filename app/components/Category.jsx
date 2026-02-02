@@ -42,11 +42,11 @@ export default function Category() {
         {/* আলিবাবা স্টাইল হেডার */}
         <div className="flex justify-between items-center mb-8">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-primary/10 rounded-lg">
+            <div className="p-2 bg-primary/10 rounded-md">
               <ShoppingBag aria-label="View Shopping Cart" size={20} className="text-primary" />
             </div>
             <div>
-              <h2 className="text-2xl md:text-3xl font-black text-text tracking-tight leading-none">
+              <h2 className="text-xl md:text-2xl font-black text-text tracking-tight leading-none">
                 ক্যাটাগরি <span className="text-primary">অনুসারে খুঁজুন</span>
               </h2>
               <p className="text-[11px] md:text-xs text-pText font-bold uppercase mt-1 tracking-wider opacity-70">
@@ -93,7 +93,7 @@ export default function Category() {
           {loading ? (
             [...Array(6)].map((_, i) => (
               <div key={i} className="shrink-0 h-32 w-64">
-                <Skeleton type="category" className="w-full h-full rounded-2xl" />
+                <Skeleton type="category" className="w-full h-full rounded-md" />
               </div>
             ))
           ) : categories && categories.length > 0 ? (
@@ -107,12 +107,13 @@ export default function Category() {
                 className="shrink-0 max-w-75 snap-start"
               >
                 <Link
+                  aria-label={`search through category ${item.name}`}
                   href={`/shop?category=${item.slug}`}
                   onClick={handleScrollToTop}
                   className="group relative block"
                 >
-                  <div className="relative w-full bg-card border border-border/40 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:border-primary/30 flex items-center p-5 gap-4">
-                    <div className="relative w-20 h-20 rounded-xl overflow-hidden bg-bg shrink-0 border border-border/20">
+                  <div className="relative w-full bg-card border border-border/40 rounded-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:border-primary/30 flex items-center p-5 pr-7 gap-4">
+                    <div className="relative w-20 h-20 rounded-md overflow-hidden bg-bg shrink-0 border border-border/20">
                       <Image
                         src={item.image?.url || '/api/placeholder/400/300'}
                         alt={item.name}

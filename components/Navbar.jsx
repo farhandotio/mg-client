@@ -148,16 +148,16 @@ export default function Navbar() {
                       initial={{ opacity: 0, y: 15, scale: 0.95 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 15, scale: 0.95 }}
-                      className="absolute top-[120%] left-0 w-72 bg-card/95 backdrop-blur-3xl border border-white/10 rounded-4xl shadow-2xl p-3 z-50"
+                      className="absolute top-[120%] left-0 w-72 bg-card/95 backdrop-blur-3xl border border-white/10 rounded-lg shadow-2xl p-3 z-50"
                     >
                       <div className="grid grid-cols-1 gap-1 max-h-[400px] overflow-y-auto no-scrollbar">
                         {dynamicCategories?.map((cat) => (
                           <Link
                             key={cat._id}
                             href={`/shop?category=${cat.slug}`}
-                            className="flex items-center gap-3 px-4 py-3 hover:bg-primary/10 rounded-2xl transition-all group"
+                            className="flex items-center gap-3 px-4 py-3 hover:bg-primary/10 rounded-md transition-all group"
                           >
-                            <div className="w-9 h-9 rounded-xl bg-primary/5 flex items-center justify-center text-primary group-hover:scale-110 transition-transform border border-primary/10">
+                            <div className="w-9 h-9 rounded-md bg-primary/5 flex items-center justify-center text-primary group-hover:scale-110 transition-transform border border-primary/10">
                               {cat.image?.url ? (
                                 <img
                                   src={cat.image.url}
@@ -202,7 +202,7 @@ export default function Navbar() {
             <button
               aria-label="Switch theme"
               onClick={toggleTheme}
-              className="p-2 rounded-xl text-text hover:bg-white/10 transition-all"
+              className="p-2 rounded-md text-text hover:bg-white/10 transition-all"
             >
               {mounted &&
                 (theme === 'dark' ? (
@@ -215,7 +215,7 @@ export default function Navbar() {
             <button
               aria-label="Search Products"
               onClick={() => setIsSearchOpen(true)}
-              className="p-2 rounded-xl text-text hover:text-primary transition-all"
+              className="p-2 rounded-md text-text hover:text-primary transition-all"
             >
               <Search size={18} />
             </button>
@@ -223,7 +223,7 @@ export default function Navbar() {
             <Link
               aria-label="View Shopping Cart"
               href="/cart"
-              className="relative p-3 bg-primary/10 text-primary rounded-xl hover:bg-primary hover:text-bg transition-all duration-300 group"
+              className="relative p-3 bg-primary/10 text-primary rounded-md hover:bg-primary hover:text-bg transition-all duration-300 group"
             >
               <ShoppingCart size={20} className="group-active:scale-75 transition-transform" />
               {mounted && cartItems.length > 0 && (
@@ -243,7 +243,7 @@ export default function Navbar() {
 
             {/* --- প্রোফাইল মেনু --- */}
             {!mounted ? (
-              <div className="w-24 h-10 bg-white/5 rounded-2xl animate-pulse hidden md:block" />
+              <div className="w-24 h-10 bg-white/5 rounded-md animate-pulse hidden md:block" />
             ) : !isAuthenticated ? (
               <div className="hidden md:block">
                 <Button
@@ -252,7 +252,7 @@ export default function Navbar() {
                   url="/auth"
                   icon={LogIn}
                   size="md"
-                  className="rounded-2xl font-bold"
+                  className="rounded-md font-bold"
                 />
               </div>
             ) : (
@@ -260,9 +260,9 @@ export default function Navbar() {
                 <button
                   aria-label="View Profile Menu"
                   onClick={() => setIsProfileOpen(!isProfileOpen)}
-                  className="flex items-center gap-2.5 p-1.5 bg-white/5 border border-white/5 rounded-2xl hover:border-primary/30 transition-all pl-2 pr-3"
+                  className="flex items-center gap-2.5 p-1.5 bg-white/5 border border-white/5 rounded-md hover:border-primary/30 transition-all pl-2 pr-3"
                 >
-                  <div className="w-8 h-8 bg-primary text-bg rounded-xl flex items-center justify-center font-black text-xs shadow-lg shadow-primary/20">
+                  <div className="w-8 h-8 bg-primary text-bg rounded-md flex items-center justify-center font-black text-xs shadow-lg shadow-primary/20">
                     {user?.fullname?.charAt(0).toUpperCase()}
                   </div>
                   <span className="text-[12px] font-black uppercase tracking-widest text-text">
@@ -280,13 +280,13 @@ export default function Navbar() {
                       initial={{ opacity: 0, scale: 0.95, y: 10 }}
                       animate={{ opacity: 1, scale: 1, y: 0 }}
                       exit={{ opacity: 0, scale: 0.95, y: 10 }}
-                      className="absolute top-[120%] right-0 w-60 bg-card/95 backdrop-blur-3xl border border-white/10 rounded-4xl shadow-2xl p-2 z-50"
+                      className="absolute top-[120%] right-0 w-60 bg-card/95 backdrop-blur-3xl border border-white/10 rounded-lg shadow-2xl p-2 z-50"
                     >
                       {user?.role === 'admin' && (
                         <Link
                           aria-label="View Admin Dashboard"
                           href="/admin/dashboard"
-                          className="flex items-center gap-3 px-4 py-3 text-primary bg-primary/5 rounded-2xl font-black text-[12px] uppercase mb-1"
+                          className="flex items-center gap-3 px-4 py-3 text-primary bg-primary/5 rounded-md font-black text-[12px] uppercase mb-1"
                         >
                           <LayoutDashboard size={16} /> ড্যাশবোর্ড
                         </Link>
@@ -294,14 +294,14 @@ export default function Navbar() {
                       <Link
                         aria-label="View Profile Page"
                         href="/profile"
-                        className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 rounded-2xl font-black text-[12px] uppercase"
+                        className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 rounded-md font-black text-[12px] uppercase"
                       >
                         <User size={16} /> প্রোফাইল
                       </Link>
                       <Link
                         aria-label="View orders Page"
                         href="/orders"
-                        className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 rounded-2xl font-black text-[12px] uppercase"
+                        className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 rounded-md font-black text-[12px] uppercase"
                       >
                         <Package size={16} /> অর্ডারসমূহ
                       </Link>
@@ -309,7 +309,7 @@ export default function Navbar() {
                       <button
                         aria-label="Logout"
                         onClick={() => dispatch(logoutUser())}
-                        className="flex w-full items-center gap-3 px-4 py-3 text-red-500 hover:bg-red-500/10 rounded-2xl font-black text-[12px] uppercase transition-colors"
+                        className="flex w-full items-center gap-3 px-4 py-3 text-red-500 hover:bg-red-500/10 rounded-md font-black text-[12px] uppercase transition-colors"
                       >
                         <LogOut size={16} /> লগআউট
                       </button>
