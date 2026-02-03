@@ -154,7 +154,7 @@ export default function ShopPageContent({ categorySlug }) {
                   <nav className="flex flex-col items-center gap-6 py-5 border-t border-border/10">
                     {/* পৃষ্ঠার সংখ্যা এবং তথ্য */}
                     <div className="flex flex-col items-center gap-1">
-                      <span className="text-[12px] font-black uppercase tracking-[0.4em] text-pText/40">
+                      <span className="text-[12px] font-black uppercase tracking-wide text-pText/40">
                         সিস্টেম নেভিগেশন
                       </span>
                       <div className="flex items-center gap-4 bg-card/50 backdrop-blur-md px-10 py-4 rounded-md border border-border/50 shadow-xl shadow-primary/5">
@@ -238,7 +238,7 @@ export default function ShopPageContent({ categorySlug }) {
             className="absolute left-0 top-0 h-full w-[85%] max-w-[320px] bg-bg border-r border-border/50 p-8 overflow-y-auto"
           >
             <div className="flex justify-between items-center mb-10">
-              <span className="text-[12px] font-black uppercase tracking-[0.4em] text-primary">
+              <span className="text-[12px] font-black uppercase tracking-wide text-primary">
                 ফিল্টার অপশন
               </span>
               <button onClick={() => setIsMobileFilterOpen(false)} className="text-pText">

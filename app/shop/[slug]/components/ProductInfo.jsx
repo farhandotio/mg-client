@@ -7,7 +7,6 @@ import {
   Plus,
   Minus,
   ShoppingCart,
-  Heart,
   Truck,
   ShieldCheck,
   RotateCcw,
@@ -20,7 +19,7 @@ import { useRouter } from 'next/navigation';
 
 export default function ProductInfo({ product }) {
   const dispatch = useDispatch();
-    const router = useRouter();
+  const router = useRouter();
   const [quantity, setQuantity] = useState(1);
   const [isLocalLoading, setIsLocalLoading] = useState(false);
 
@@ -62,28 +61,40 @@ export default function ProductInfo({ product }) {
     }
   };
 
-  const handleBuyNow = () => {
+  const handleBuyNow = async () => {
     if (isOutOfStock) return;
 
-    const directOrderData = {
-      isDirectOrder: true,
-      orderItem: {
-        product: product._id,
-        title: product.title,
-        quantity: quantity,
-        price: salePrice,
-        image: product.images?.[0]?.url || product.images?.[0] || '/placeholder.png',
-      },
-    };
+    try {
+      if (user) {
+        await dispatch(
+          addToCartAPI({
+            productId: product._id,
+            quantity: quantity,
+          })
+        ).unwrap();
+      } else {
+        const cartItem = {
+          productId: product._id,
+          title: product.title,
+          price: salePrice,
+          image: product.images?.[0]?.url || product.images?.[0] || '/placeholder.png',
+          quantity,
+          slug: product.slug,
+          stock: product.stock,
+        };
+        dispatch(addToCartLocal(cartItem));
+      }
 
-    sessionStorage.setItem('directOrder', JSON.stringify(directOrderData));
-
-    if (!user) {
-      toast.error('প্রবেশাধিকার সংরক্ষিত: অর্ডার নিশ্চিত করতে লগইন করুন।');
-      router.push('/auth');
-      return;
+      if (!user) {
+        toast.success('পণ্যটি কার্টে যোগ করা হয়েছে। অর্ডার সম্পন্ন করতে লগইন করুন।');
+        router.push('/auth?redirect=/checkout');
+      } else {
+        router.push('/checkout');
+      }
+    } catch (err) {
+      toast.error('কার্টে যোগ করতে সমস্যা হয়েছে');
+      console.error(err);
     }
-    router.push('/checkout');
   };
 
   return (
@@ -195,8 +206,8 @@ export default function ProductInfo({ product }) {
             onClick={handleBuyNow}
             text="সরাসরি অর্ডার করুন (Buy Now)"
             fillColor="bg-success"
-            size='lg'
-            className='h-14'
+            size="lg"
+            className="h-14"
           >
             <Zap size={14} className="group-hover:fill-primary" />
           </Button>

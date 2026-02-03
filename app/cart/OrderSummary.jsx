@@ -93,7 +93,7 @@ export default function OrderSummary({ subtotal = 0 }) {
 
         <Link
           href="/shop"
-          className="flex items-center justify-center gap-2 text-pText/60 text-[11px] md:text-[12px] font-black uppercase tracking-[0.4em] hover:text-primary transition-all group"
+          className="flex items-center justify-center gap-2 text-pText/60 text-[11px] md:text-[12px] font-black uppercase tracking-wide hover:text-primary transition-all group"
         >
           <ChevronLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
           শপিংয়ে ফিরে যান

@@ -57,7 +57,7 @@ export default function NotFound() {
           >
             <div className="inline-flex items-center gap-3 bg-white/30 border border-white/10 px-6 py-2 rounded-md">
               <ShieldAlert size={16} className="text-primary" />
-              <span className="text-[12px] font-black uppercase tracking-[0.4em] text-pText">
+              <span className="text-[12px] font-black uppercase tracking-wide text-pText">
                 Alert: Data_Link_Severed
               </span>
             </div>

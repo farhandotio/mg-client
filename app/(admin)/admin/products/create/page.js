@@ -385,7 +385,7 @@ export default function CreateProductPage() {
                 type="submit"
                 size="xl"
                 disabled={btnLoading}
-                className={`w-full py-8 rounded-lg shadow-primary/20 shadow-xl active:scale-95 transition-all font-black text-xs tracking-[0.4em] italic ${btnLoading ? 'grayscale opacity-50' : 'hover:scale-[1.02]'}`}
+                className={`w-full py-8 rounded-lg shadow-primary/20 shadow-xl active:scale-95 transition-all font-black text-xs tracking-wide italic ${btnLoading ? 'grayscale opacity-50' : 'hover:scale-[1.02]'}`}
                 text={btnLoading ? <LoaderSpinner /> : 'Execute_Upload'}
               />
             </div>
@@ -439,7 +439,7 @@ function SectionHeader({ icon, title }) {
       <div className="p-3 bg-primary/10 rounded-md border border-primary/20 shadow-md backdrop-blur-sm">
         {icon}
       </div>
-      <h2 className="text-xs font-black uppercase tracking-[0.4em] italic">{title}</h2>
+      <h2 className="text-xs font-black uppercase tracking-wide italic">{title}</h2>
     </div>
   );
 }

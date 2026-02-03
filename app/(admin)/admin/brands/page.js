@@ -118,7 +118,7 @@ export default function BrandsPage() {
         <div className="space-y-1">
           <div className="flex items-center gap-2 text-primary">
             <Globe size={14} className="animate-spin-slow" />
-            <span className="text-[11px] font-black uppercase tracking-[0.4em]">
+            <span className="text-[11px] font-black uppercase tracking-wide">
               Neural_Supply_Chain
             </span>
           </div>

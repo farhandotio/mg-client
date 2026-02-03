@@ -236,7 +236,7 @@ export default function CreateBrandPage() {
                   type="submit"
                   size="xl"
                   disabled={isLoading}
-                  className={`w-full py-8 rounded-md shadow-2xl active:scale-[0.97] transition-all font-black text-sm tracking-[0.4em] italic
+                  className={`w-full py-8 rounded-md shadow-2xl active:scale-[0.97] transition-all font-black text-sm tracking-wide italic
                     ${isLoading ? 'opacity-50 grayscale' : 'hover:shadow-primary/30'}
                   `}
                   text={isLoading ? <Loader2 className="animate-spin mx-auto" /> : 'Execute_Entry'}
@@ -260,7 +260,7 @@ function SectionHeader({ icon, title }) {
       <div className="p-3 bg-primary/10 rounded-md border border-primary/20 shadow-sm backdrop-blur-md">
         {icon}
       </div>
-      <h2 className="text-xs font-black uppercase tracking-[0.4em]">{title}</h2>
+      <h2 className="text-xs font-black uppercase tracking-wide">{title}</h2>
     </div>
   );
 }

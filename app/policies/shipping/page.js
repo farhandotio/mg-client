@@ -14,7 +14,7 @@ export default function ShippingInfo() {
               Rapid <br />
               <span className="text-primary">Dispatch</span>
             </h1>
-            <p className="text-pText font-black uppercase tracking-[0.4em] text-xs opacity-50">
+            <p className="text-pText font-black uppercase tracking-wide text-xs opacity-50">
               Logistics_System_Active
             </p>
           </div>

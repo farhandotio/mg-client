@@ -81,7 +81,7 @@ export default function AdminSidebar({ closeSidebar }) {
           </div>
           <h2 className="text-2xl font-black italic text-text uppercase tracking-tighter leading-none">
             VAULT{' '}
-            <span className="text-primary text-sm block tracking-[0.4em] not-italic mt-1">
+            <span className="text-primary text-sm block tracking-wide not-italic mt-1">
               OS_v2.6
             </span>
           </h2>
@@ -104,7 +104,7 @@ export default function AdminSidebar({ closeSidebar }) {
       <nav className="flex-1 px-4 space-y-2 overflow-y-auto no-scrollbar">
         <div className="px-4 mb-4 flex items-center gap-2">
           <Activity size={10} className="text-primary animate-pulse" />
-          <p className="text-[10px] font-black text-pText/40 uppercase tracking-[0.4em]">
+          <p className="text-[10px] font-black text-pText/40 uppercase tracking-wide">
             Core_Management
           </p>
         </div>

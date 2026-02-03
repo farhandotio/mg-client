@@ -38,12 +38,21 @@ export default function OrdersPage() {
         <div className="text-center space-y-4">
           <div className="w-12 h-12 border-4 border-primary/20 border-t-primary rounded-full animate-spin mx-auto" />
           <p className="text-[12px] font-black uppercase tracking-[0.3em] text-primary animate-pulse">
-            Accessing Order Vault...
+            অর্ডার ভল্ট অ্যাক্সেস করা হচ্ছে...
           </p>
         </div>
       </div>
     );
   }
+
+  // ফিল্টার লেবেল ম্যাপিং
+  const filterLabels = {
+    ALL: 'সবগুলো',
+    PENDING: 'অপেক্ষমান',
+    CONFIRMED: 'নিশ্চিত',
+    DELIVERED: 'ডেলিভারি',
+    CANCELLED: 'বাতিল',
+  };
 
   return (
     <div className="min-h-screen bg-bg text-text py-12">
@@ -55,10 +64,10 @@ export default function OrdersPage() {
               href="/profile"
               className="flex items-center gap-2 text-pText text-[12px] font-black uppercase tracking-widest hover:text-primary transition-colors mb-4"
             >
-              <ArrowLeft size={14} /> Back to Identity
+              <ArrowLeft size={14} /> প্রোফাইলে ফিরে যান
             </Link>
             <h1 className="text-5xl md:text-7xl font-black italic uppercase tracking-tighter leading-none">
-              Order <span className="text-primary">Logs</span>
+              অর্ডার <span className="text-primary">লগ</span>
             </h1>
           </div>
 
@@ -75,7 +84,7 @@ export default function OrdersPage() {
                     : 'text-pText hover:text-text'
                 }`}
               >
-                {status}
+                {filterLabels[status]}
               </button>
             ))}
           </div>
@@ -89,13 +98,13 @@ export default function OrdersPage() {
             <div className="text-center py-32 bg-card/10 rounded-xl border-2 border-dashed border-border/50">
               <Package size={48} className="mx-auto text-pText/20 mb-4" />
               <h3 className="text-xl font-black italic text-pText uppercase">
-                No Database Entries
+                কোন তথ্য পাওয়া যায়নি
               </h3>
               <Link
                 href="/shop"
                 className="text-primary text-[12px] font-black uppercase tracking-widest mt-4 inline-block border-b border-primary/30 pb-1"
               >
-                Initialize First Purchase
+                প্রথম কেনাকাটা শুরু করুন
               </Link>
             </div>
           )}
@@ -114,6 +123,14 @@ function OrderCard({ order }) {
     CANCELLED: 'text-red-500 bg-red-500/10 border-red-500/20',
   };
 
+  const statusInBangla = {
+    PENDING: 'অপেক্ষমান',
+    CONFIRMED: 'নিশ্চিত',
+    PROCESSING: 'প্রসেসিং',
+    DELIVERED: 'ডেলিভারি সম্পন্ন',
+    CANCELLED: 'বাতিল',
+  };
+
   return (
     <div className="group relative bg-card/30 border border-border/50 rounded-lg p-6 md:p-8 hover:border-primary/40 transition-all duration-500">
       <div className="flex flex-col lg:flex-row justify-between gap-8">
@@ -122,7 +139,7 @@ function OrderCard({ order }) {
           <div className="flex items-start justify-between md:justify-start md:gap-6">
             <div>
               <p className="text-[11px] font-black text-pText uppercase tracking-[0.2em] mb-1">
-                Transmission ID
+                ট্রানজিশন আইডি
               </p>
               <h4 className="text-sm font-black text-text font-mono">#{order._id.toUpperCase()}</h4>
             </div>
@@ -131,7 +148,7 @@ function OrderCard({ order }) {
                 statusColors[order.orderStatus]
               }`}
             >
-              {order.orderStatus}
+              {statusInBangla[order.orderStatus] || order.orderStatus}
             </div>
           </div>
 
@@ -141,9 +158,9 @@ function OrderCard({ order }) {
                 <Clock size={16} />
               </div>
               <div>
-                <p className="text-[11px] font-black text-pText uppercase">Timestamp</p>
+                <p className="text-[11px] font-black text-pText uppercase">অর্ডার সময়</p>
                 <p className="text-xs font-bold">
-                  {new Date(order.createdAt).toLocaleDateString('en-GB', {
+                  {new Date(order.createdAt).toLocaleDateString('bn-BD', {
                     day: '2-digit',
                     month: 'short',
                     year: 'numeric',
@@ -156,10 +173,12 @@ function OrderCard({ order }) {
                 <CreditCard size={16} />
               </div>
               <div>
-                <p className="text-[11px] font-black text-pText uppercase">Payment</p>
+                <p className="text-[11px] font-black text-pText uppercase">পেমেন্ট</p>
                 <p className="text-xs font-bold uppercase">
-                  {order.payment?.method} -{' '}
-                  <span className="text-primary">{order.payment?.status}</span>
+                  {order.payment?.method === 'COD' ? 'ক্যাশ অন ডেলিভারি' : 'অনলাইন'} -{' '}
+                  <span className="text-primary">
+                    {order.payment?.status === 'Pending' ? 'বাকি' : 'পরিশোধিত'}
+                  </span>
                 </p>
               </div>
             </div>
@@ -191,7 +210,7 @@ function OrderCard({ order }) {
         <div className="flex flex-col md:flex-row lg:flex-col justify-between items-end gap-4 min-w-42.5">
           <div className="text-right">
             <p className="text-[11px] font-black text-pText uppercase tracking-widest mb-1">
-              Net Payable
+              মোট প্রদেয়
             </p>
             <h3 className="text-3xl font-black text-primary font-mono tracking-tighter italic">
               ৳{order.pricing?.totalPrice?.toLocaleString()}
@@ -201,7 +220,7 @@ function OrderCard({ order }) {
             href={`/orders/${order._id}`}
             className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-md text-[12px] font-black uppercase tracking-widest hover:bg-primary hover:text-bg transition-all group/btn"
           >
-            View Protocol{' '}
+            বিস্তারিত দেখুন{' '}
             <ChevronRight
               size={14}
               className="group-hover/btn:translate-x-1 transition-transform"

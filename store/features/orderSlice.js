@@ -89,6 +89,16 @@ export const updateOrderStatusAdmin = createAsyncThunk(
   }
 );
 
+// --- ৭. Admin: Delete Order ---
+export const deleteOrderAdmin = createAsyncThunk('order/deleteAdmin', async (id, thunkAPI) => {
+  try {
+    await API.delete(`/orders/admin/delete/${id}`);
+    return id;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response?.data?.message || 'Delete failed');
+  }
+});
+
 const orderSlice = createSlice({
   name: 'order',
   initialState,
@@ -148,6 +158,10 @@ const orderSlice = createSlice({
         if (state.orderDetails && state.orderDetails._id === id) {
           state.orderDetails.orderStatus = status;
         }
+      })
+      .addCase(deleteOrderAdmin.fulfilled, (state, action) => {
+        state.loading = false;
+        state.orders = state.orders.filter((o) => o._id !== action.payload);
       })
 
       // ৫. Global Matchers (Pending, Fulfilled, Rejected handle kore)
