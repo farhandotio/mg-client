@@ -10,7 +10,7 @@
   --color-secondary: #ffc65c;
   --color-card: #ffffff;
   --color-border: #9c9c9c;
-  --color-success: #35ce35;
+  --color-success: #3efd3e;
 }
 
 .dark {
@@ -19,6 +19,7 @@
   --color-pText: #cfcfcf;
   --color-card: #353535;
   --color-border: #444;
+  --color-success: #3efd3e;
 }
 
 body {

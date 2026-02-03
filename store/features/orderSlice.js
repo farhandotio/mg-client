@@ -10,7 +10,7 @@ const initialState = {
   orderId: null,
 };
 
-// --- ১. Create Order ---
+// --- ১. Create Order (Regular/Cart Checkout) ---
 export const createOrder = createAsyncThunk('order/create', async (orderData, thunkAPI) => {
   try {
     const response = await API.post('/orders/create', orderData);
@@ -19,6 +19,20 @@ export const createOrder = createAsyncThunk('order/create', async (orderData, th
     return thunkAPI.rejectWithValue(error.response?.data?.message || 'Order placement failed');
   }
 });
+
+// --- ১.১ Create Single Order (Buy Now) ---
+// এটি নতুন এন্ডপয়েন্ট /orders/create-single কল করবে
+export const createSingleOrder = createAsyncThunk(
+  'order/createSingle',
+  async (orderData, thunkAPI) => {
+    try {
+      const response = await API.post('/orders/create-single', orderData);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response?.data?.message || 'Buy Now order failed');
+    }
+  }
+);
 
 // --- ২. Get My Orders ---
 export const getMyOrders = createAsyncThunk('order/myOrders', async (_, thunkAPI) => {
@@ -91,16 +105,18 @@ const orderSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // ১. প্রথমে সব addCase লিখতে হবে
-      .addCase(createOrder.pending, (state, action) => {
-        state.loading = true;
-        state.error = null;
-      })
+      // ১. Create Order & Create Single Order Fulfilled
       .addCase(createOrder.fulfilled, (state, action) => {
         state.loading = false;
         state.success = true;
         state.orderId = action.payload.orderId;
       })
+      .addCase(createSingleOrder.fulfilled, (state, action) => {
+        state.loading = false;
+        state.success = true;
+        state.orderId = action.payload.orderId;
+      })
+      // ২. Get Orders
       .addCase(getMyOrders.fulfilled, (state, action) => {
         state.loading = false;
         state.orders = action.payload.orders || [];
@@ -109,10 +125,12 @@ const orderSlice = createSlice({
         state.loading = false;
         state.orders = action.payload.orders || [];
       })
+      // ৩. Order Details
       .addCase(getOrderDetails.fulfilled, (state, action) => {
         state.loading = false;
         state.orderDetails = action.payload.order || null;
       })
+      // ৪. Status Updates (Admin & User)
       .addCase(updateOrderStatusAdmin.fulfilled, (state, action) => {
         state.loading = false;
         const { id, status } = action.payload;
@@ -132,7 +150,7 @@ const orderSlice = createSlice({
         }
       })
 
-      // ২. সবার শেষে Matchers যোগ করতে হবে
+      // ৫. Global Matchers (Pending, Fulfilled, Rejected handle kore)
       .addMatcher(
         (action) => action.type.endsWith('/pending'),
         (state) => {

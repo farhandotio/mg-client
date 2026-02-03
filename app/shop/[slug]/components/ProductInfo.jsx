@@ -16,11 +16,12 @@ import {
 } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 import Button from '@/components/Button';
+import { useRouter } from 'next/navigation';
 
 export default function ProductInfo({ product }) {
   const dispatch = useDispatch();
+    const router = useRouter();
   const [quantity, setQuantity] = useState(1);
-  const [isWishlisted, setIsWishlisted] = useState(false);
   const [isLocalLoading, setIsLocalLoading] = useState(false);
 
   const { user } = useSelector((state) => state.auth || {});
@@ -59,6 +60,30 @@ export default function ProductInfo({ product }) {
     } finally {
       setIsLocalLoading(false);
     }
+  };
+
+  const handleBuyNow = () => {
+    if (isOutOfStock) return;
+
+    const directOrderData = {
+      isDirectOrder: true,
+      orderItem: {
+        product: product._id,
+        title: product.title,
+        quantity: quantity,
+        price: salePrice,
+        image: product.images?.[0]?.url || product.images?.[0] || '/placeholder.png',
+      },
+    };
+
+    sessionStorage.setItem('directOrder', JSON.stringify(directOrderData));
+
+    if (!user) {
+      toast.error('প্রবেশাধিকার সংরক্ষিত: অর্ডার নিশ্চিত করতে লগইন করুন।');
+      router.push('/auth');
+      return;
+    }
+    router.push('/checkout');
   };
 
   return (
@@ -131,7 +156,7 @@ export default function ProductInfo({ product }) {
       {/* Actions */}
       <div className="space-y-4">
         <div className="flex flex-wrap gap-4">
-          <div className="flex justify-between px-5 items-center bg-card border border-border rounded-md p-1 h-14 w-40">
+          <div className="flex justify-between px-5 items-center bg-card border border-border/50 rounded-md p-1 h-14 w-40">
             <button
               aria-label="পরিমাণ কমান"
               disabled={quantity <= 1 || isOutOfStock || isLocalLoading}
@@ -151,20 +176,6 @@ export default function ProductInfo({ product }) {
             </button>
           </div>
 
-          {/* Wishlist Button */}
-          <button
-            aria-label="উইশলিস্টে যোগ করুন"
-            onClick={() => setIsWishlisted(!isWishlisted)}
-            className="h-14 w-14 flex items-center justify-center bg-card border border-border rounded-full hover:border-red-500/50 transition-all group"
-          >
-            <Heart
-              size={24}
-              className={
-                isWishlisted ? 'fill-red-500 text-red-500' : 'text-pText group-hover:text-red-500'
-              }
-            />
-          </button>
-
           <div className="flex-1 min-w-50">
             <Button
               aria-label="কার্টে যোগ করুন"
@@ -178,14 +189,18 @@ export default function ProductInfo({ product }) {
           </div>
         </div>
 
-        {/* {!isOutOfStock && (
-          <button
-            aria-label="সরাসরি কিনুন"
-            className="w-full h-12 rounded-md border-2 border-primary/20 hover:border-primary text-primary text-[12px] font-black uppercase tracking-[0.3em] italic transition-all flex items-center justify-center gap-3 group"
+        {!isOutOfStock && (
+          <Button
+            arialabel="সরাসরি কিনুন"
+            onClick={handleBuyNow}
+            text="সরাসরি অর্ডার করুন (Buy Now)"
+            fillColor="bg-success"
+            size='lg'
+            className='h-14'
           >
-            <Zap size={14} className="group-hover:fill-primary" /> সরাসরি অর্ডার করুন (Buy Now)
-          </button>
-        )} */}
+            <Zap size={14} className="group-hover:fill-primary" />
+          </Button>
+        )}
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">

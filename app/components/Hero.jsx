@@ -72,8 +72,7 @@ export default function Hero() {
             />
           </div>
 
-          {/* ট্রাস্ট ইন্ডিকেটরস - Optimized Contrast */}
-          <div className="pt-8 flex flex-wrap gap-6 md:gap-8 border-t border-border/20">
+          <div className="pt-8 flex flex-wrap gap-7 md:gap-10 border-t border-border/20">
             <TrustBadge
               icon={<Zap size={20} className="text-secondary" />}
               title="দ্রুত ডেলিভারি"
@@ -141,7 +140,7 @@ export default function Hero() {
 // Reusable Small Component to keep code clean
 function TrustBadge({ icon, title, desc, className = '', isLive = false }) {
   return (
-    <div className={`flex items-center gap-2 ${className}`}>
+    <div className={`flex items-center gap-3 ${className}`}>
       <div className="relative">
         {icon}
         {isLive && (
@@ -149,8 +148,8 @@ function TrustBadge({ icon, title, desc, className = '', isLive = false }) {
         )}
       </div>
       <div className="flex flex-col leading-none">
-        <span className="text-[13px] font-black text-text uppercase">{title}</span>
-        <span className="text-[11px] text-pText font-bold uppercase tracking-tighter mt-1">
+        <span className="text-base font-black text-pText uppercase">{title}</span>
+        <span className="text-sm text-pText uppercase tracking-tighter mt-1">
           {desc}
         </span>
       </div>
