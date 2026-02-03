@@ -32,7 +32,7 @@ export default function ProductCard({ product, priority = false }) {
   const handleAddToCart = useCallback(
     async (e) => {
       e.preventDefault();
-      e.stopPropagation(); 
+      e.stopPropagation();
 
       if (isOutOfStock || isInCart || isAdding) return;
 
@@ -62,7 +62,15 @@ export default function ProductCard({ product, priority = false }) {
   );
 
   return (
-    <div className="group relative w-full max-w-65 mx-auto bg-card/30 border border-border/20 rounded-md p-2 transition-all duration-300 md:hover:bg-card md:hover:border-primary/50">
+    <div
+      onClick={() => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        });
+      }}
+      className="group relative w-full max-w-65 mx-auto bg-card/30 border border-border/20 rounded-md p-2 transition-all duration-300 md:hover:bg-card md:hover:border-primary/50"
+    >
       <div className="relative aspect-square rounded overflow-hidden bg-bg/60 border border-border/10">
         <Link href={`/shop/${product?.slug}`} className="relative w-full h-full block">
           <Image
@@ -92,10 +100,9 @@ export default function ProductCard({ product, priority = false }) {
           )}
         </div>
 
-        {/* ডেস্কটপ হোভার বাটন (মোবাইলে হিডেন) */}
         <div className="absolute inset-x-2 bottom-2 hidden md:flex gap-2 translate-y-12 group-hover:translate-y-0 transition-transform duration-500 z-30">
           <button
-            aria-label={isInCart ? 'Already in cart' : 'Add to Cart'} // বানান ঠিক করা হয়েছে
+            aria-label={isInCart ? 'Already in cart' : 'Add to Cart'}
             onClick={handleAddToCart}
             disabled={isOutOfStock || isAdding || isInCart}
             className={`flex-1 h-10 rounded-md font-black text-[11px] uppercase tracking-tighter transition-all flex items-center justify-center gap-2 shadow-lg
@@ -116,14 +123,13 @@ export default function ProductCard({ product, priority = false }) {
           <Link
             href={`/shop/${product?.slug}`}
             aria-label="View Product Details"
-            className="w-10 h-10 bg-white/10 backdrop-blur-md border border-white/10 text-text rounded-md flex items-center justify-center hover:bg-primary hover:text-white transition-all"
+            className="w-10 h-10 bg-card/10 backdrop-blur-md border border-card/10 text-text rounded-md flex items-center justify-center hover:bg-primary hover:text-white transition-all"
           >
             <Eye size={16} />
           </Link>
         </div>
       </div>
 
-      {/* টেক্সট সেকশন */}
       <div className="pt-2 p-1 space-y-2">
         <div className="flex items-center justify-between">
           <span className="text-[10px] md:text-[11px] font-black text-primary/70 uppercase tracking-widest flex items-center gap-1">
@@ -144,7 +150,7 @@ export default function ProductCard({ product, priority = false }) {
         <div className="flex items-center justify-between pt-1">
           <div className="flex flex-col md:flex-row-reverse md:items-center md:gap-1.5 leading-none">
             {discount > 0 && (
-              <span className="text-pText/40 text-[11px] md:text-[12px] line-through font-bold mb-0.5">
+              <span className="text-pText/50 text-xs md:text-sm line-through font-bold mt-1.5">
                 ৳{basePrice.toLocaleString()}
               </span>
             )}

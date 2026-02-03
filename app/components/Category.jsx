@@ -39,7 +39,6 @@ export default function Category() {
   return (
     <section className="pb-12 pt-16 bg-bg relative overflow-hidden border-t border-border/10">
       <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
-        {/* আলিবাবা স্টাইল হেডার */}
         <div className="flex justify-between items-center mb-8">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-primary/10 rounded-md">
@@ -66,18 +65,18 @@ export default function Category() {
               <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </Link>
 
-            <div className="flex gap-1.5">
+            <div className="flex gap-1.5 max-md:hidden">
               <button
                 aria-label="Scroll Categories Left"
                 onClick={() => scroll('left')}
-                className="p-2 bg-card border border-border/50 rounded-full hover:bg-primary hover:text-bg transition-all active:scale-90"
+                className="p-2 bg-card border border-border/50 rounded-md hover:bg-primary hover:text-bg transition-all active:scale-90"
               >
                 <ChevronLeft size={18} />
               </button>
               <button
                 aria-label="Scroll Categories Right"
                 onClick={() => scroll('right')}
-                className="p-2 bg-card border border-border/50 rounded-full hover:bg-primary hover:text-bg transition-all active:scale-90"
+                className="p-2 bg-card border border-border/50 rounded-md hover:bg-primary hover:text-bg transition-all active:scale-90"
               >
                 <ChevronRight size={18} />
               </button>
@@ -85,7 +84,6 @@ export default function Category() {
           </div>
         </div>
 
-        {/* Categories Scroll Area */}
         <div
           ref={scrollRef}
           className="flex gap-4 overflow-x-auto no-scrollbar py-4 scroll-smooth snap-x snap-mandatory"
@@ -112,8 +110,8 @@ export default function Category() {
                   onClick={handleScrollToTop}
                   className="group relative block"
                 >
-                  <div className="relative w-full bg-card border border-border/40 rounded-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:border-primary/30 flex items-center p-5 pr-7 gap-4">
-                    <div className="relative w-20 h-20 rounded-md overflow-hidden bg-bg shrink-0 border border-border/20">
+                  <div className="relative w-full bg-card border border-border/40 rounded-md overflow-hidden transition-colors duration-300 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 flex max-md:flex-col items-center px-5 py-3 md:p-5 md:pr-7 gap-4">
+                    <div className="relative w-15 h-15 md:w-20 md:h-20 rounded-md overflow-hidden bg-bg shrink-0 border border-border/20">
                       <Image
                         src={item.image?.url || '/api/placeholder/400/300'}
                         alt={item.name}
@@ -125,12 +123,12 @@ export default function Category() {
                     </div>
 
                     <div className="flex-1">
-                      <h3 className="text-md font-black text-text group-hover:text-primary transition-colors leading-tight">
+                      <h3 className="text-md font-black text-text max-md:text-center group-hover:text-primary transition-colors leading-tight">
                         {item.name}
                       </h3>
                       <p className="text-[14px] text-pText mt-1 font-bold">কালেকশন দেখুন</p>
 
-                      <div className="mt-3 flex items-center gap-1 text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="mt-3 max-md:hidden flex items-center gap-1 text-primary opacity-0 group-hover:opacity-100 transition-opacity">
                         <span className="text-[11px] font-black uppercase">বিস্তারিত</span>
                         <ArrowRight size={10} />
                       </div>

@@ -61,7 +61,7 @@ export default function Flash() {
 
           <Link
             href="/shop?productType=FlashSale"
-            className="group flex items-center gap-1.5 text-[13px] md:text-[15px] font-bold text-secondary hover:underline transition-all"
+            className="group flex items-center gap-1.5 text-[13px] md:text-[15px] font-bold text-secondary hover:underline transition-colors max-md:hidden"
           >
             সবগুলো ডিল দেখুন
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />

@@ -35,7 +35,7 @@ export default function Best() {
 
           <Link
             href="/shop?productType=BestSeller"
-            className="group flex items-center gap-1.5 text-[12px] md:text-[14px] font-bold text-primary hover:underline transition-all"
+            className="group flex items-center gap-1.5 text-[12px] md:text-[14px] font-bold text-primary hover:underline transition-colors max-md:hidden"
           >
             র‍্যাঙ্কিং লিস্ট
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />

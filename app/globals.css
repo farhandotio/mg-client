@@ -3,14 +3,14 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-bg: #f2f2f2;
-  --color-pText: #333333;
-  --color-text: #151515;
+  --color-bg: #f1f1f1;
+  --color-pText: #222222;
+  --color-text: #000000;
   --color-primary: #ff6f5c;
   --color-secondary: #ffc65c;
   --color-card: #ffffff;
-  --color-border: #9c9c9c;
-  --color-success: #3efd3e;
+  --color-border: #7c7c7c;
+  --color-success: #22c55e;
 }
 
 .dark {
@@ -19,7 +19,7 @@
   --color-pText: #cfcfcf;
   --color-card: #353535;
   --color-border: #444;
-  --color-success: #3efd3e;
+  --color-success: #22c55e;
 }
 
 body {

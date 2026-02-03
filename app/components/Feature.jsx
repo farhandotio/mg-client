@@ -35,7 +35,7 @@ export default function Feature() {
 
           <Link
             href="/shop?productType=Featured"
-            className="group flex items-center gap-1 text-[12px] md:text-[14px] font-bold text-primary hover:underline transition-colors"
+            className="group flex items-center gap-1 text-[12px] md:text-[14px] font-bold text-primary hover:underline transition-colors max-md:hidden"
           >
             সবগুলো দেখুন
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
