@@ -14,13 +14,14 @@ API.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
-    if (error.response?.status === 500 && !originalRequest._retry) {
+    if (
+      (error.response?.status === 500 || error.code === 'ECONNABORTED') &&
+      !originalRequest._retry
+    ) {
       originalRequest._retry = true;
-      return API(originalRequest);
-    }
 
-    if (error.code === 'ECONNABORTED' && !originalRequest._retry) {
-      originalRequest._retry = true;
+      await new Promise((resolve) => setTimeout(resolve, 500));
+
       return API(originalRequest);
     }
 
