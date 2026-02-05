@@ -59,7 +59,7 @@ const mapCartItems = (serverItems) => {
 export const fetchCart = createAsyncThunk('cart/fetchCart', async (_, { rejectWithValue }) => {
   try {
     const sessionId = getSessionId();
-    const response = await API.get(`/cart?sessionId=${sessionId}`);
+    const response = await API.get(`/api/cart?sessionId=${sessionId}`);
     const items = response.data.cart?.items || response.data.items || [];
     return mapCartItems(items);
   } catch (error) {
@@ -71,7 +71,7 @@ export const updateCartQuantityAPI = createAsyncThunk(
   'cart/updateQuantity',
   async ({ productId, action, sessionId }, { rejectWithValue }) => {
     try {
-      const response = await API.post(`/cart/update`, { productId, action, sessionId });
+      const response = await API.post(`/api/cart/update`, { productId, action, sessionId });
       const items = response.data.cart?.items || [];
       return mapCartItems(items);
     } catch (error) {
@@ -86,7 +86,7 @@ export const addToCartAPI = createAsyncThunk(
     try {
       const sessionId = getSessionId();
       const idToSend = typeof productId === 'object' ? productId._id : productId;
-      const response = await API.post(`/cart/add`, { productId: idToSend, quantity, sessionId });
+      const response = await API.post(`/api/cart/add`, { productId: idToSend, quantity, sessionId });
       toast.success('Unit added to neural core');
       const items = response.data.cart?.items || response.data.items || [];
       return mapCartItems(items);
@@ -102,7 +102,7 @@ export const removeFromCartAPI = createAsyncThunk(
   async (productId, { rejectWithValue }) => {
     try {
       const sessionId = getSessionId();
-      const response = await API.post(`/cart/remove`, { productId, sessionId });
+      const response = await API.post(`/api/cart/remove`, { productId, sessionId });
       const items = response.data.cart?.items || response.data.items || [];
       return mapCartItems(items);
     } catch (error) {

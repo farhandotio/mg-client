@@ -123,7 +123,7 @@ const LoadingScreen = () => (
       </div>
     </div>
     <div className="flex flex-col items-center gap-3">
-      <h2 className="text-primary font-black uppercase tracking-[0.5em] text-[12px] ml-[0.5em]">
+      <h2 className="text-primary font-black uppercase tracking-tighter text-[12px] ml-[0.5em]">
         তথ্য লোড হচ্ছে...
       </h2>
       <div className="w-48 h-0.5 bg-white/5 overflow-hidden rounded-full">
@@ -149,14 +149,14 @@ const LoadingScreen = () => (
 const ErrorScreen = () => (
   <div className="min-h-[90vh] flex flex-col items-center justify-center text-center px-6">
     <div className="relative mb-12">
-      <h2 className="text-[12vw] font-black uppercase italic tracking-tighter text-white/10 leading-none select-none">
+      <h2 className="text-[12vw] font-black uppercase italic tracking-tighterer text-white/10 leading-none select-none">
         NOT_FOUND
       </h2>
       <div className="absolute inset-0 flex flex-col items-center justify-center space-y-2">
-        <span className="text-primary font-black uppercase tracking-[0.3em] text-xs">
+        <span className="text-primary font-black uppercase tracking-tighter text-xs">
           পণ্যটি খুঁজে পাওয়া যায়নি
         </span>
-        <p className="text-pText/60 text-[12px] uppercase font-bold tracking-widest">
+        <p className="text-pText/60 text-[12px] uppercase font-bold tracking-tighter">
           আপনার অনুরোধকৃত আইটেমটি আমাদের ডাটাবেজে নেই
         </p>
       </div>
@@ -167,10 +167,10 @@ const ErrorScreen = () => (
         <ArrowLeft size={22} className="group-hover:text-bg transition-colors" />
       </div>
       <div className="text-left">
-        <span className="block text-[11px] font-black uppercase tracking-[0.3em] text-pText/40 mb-1">
+        <span className="block text-[11px] font-black uppercase tracking-tighter text-pText/40 mb-1">
           পূর্বের পাতায় ফিরুন
         </span>
-        <span className="block text-lg font-black uppercase italic tracking-tighter group-hover:text-primary transition-colors">
+        <span className="block text-lg font-black uppercase italic tracking-tighterer group-hover:text-primary transition-colors">
           শপ পেজে যান
         </span>
       </div>

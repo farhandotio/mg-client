@@ -25,7 +25,7 @@ export default function Button({
           : size === 'xl'
             ? 'h-16 px-10 text-lg'
             : size === '2xl'
-              ? 'h-20 px-14 text-2xl tracking-tighter'
+              ? 'h-20 px-14 text-2xl tracking-tighterer'
               : 'h-11 px-6 text-sm';
 
   const baseClasses = `
@@ -65,12 +65,16 @@ export default function Button({
               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
             ></path>
           </svg>
-          <span className="group-hover:text-white transition-colors duration-300">Processing...</span>
+          <span className="group-hover:text-white transition-colors duration-300">
+            Processing...
+          </span>
         </span>
       ) : (
         <>
-          {Icon && <Icon className="w-5 h-5 group-hover:text-white transition-colors duration-300" />}
-          <span className="uppercase tracking-widest group-hover:text-white transition-colors duration-300">
+          {Icon && (
+            <Icon className="w-5 h-5 group-hover:text-white transition-colors duration-300" />
+          )}
+          <span className="uppercase tracking-tighter group-hover:text-white transition-colors duration-300">
             {text}
           </span>
         </>
@@ -96,7 +100,7 @@ export default function Button({
 
   return (
     <button
-      aria-label={arialabel || "button"}
+      aria-label={arialabel || 'button'}
       type={type}
       className={baseClasses}
       disabled={loading}

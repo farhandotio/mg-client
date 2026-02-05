@@ -120,7 +120,7 @@ export default function Dashboard() {
             key={stat.label}
             className="bg-card border border-border/50 p-6 rounded-md shadow-sm"
           >
-            <p className="text-[12px] font-black uppercase tracking-widest text-pText/70">
+            <p className="text-[12px] font-black uppercase tracking-tighter text-pText/70">
               {stat.label}
             </p>
             <h2 className="text-4xl font-black mt-2 text-text">{stat.value}</h2>
@@ -157,7 +157,7 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Recent Orders */}
         <div className="bg-card p-6 rounded-md border border-border/50">
-          <h3 className="font-black uppercase text-sm tracking-widest mb-6 border-b border-border pb-2">
+          <h3 className="font-black uppercase text-sm tracking-tighter mb-6 border-b border-border pb-2">
             Recent Terminals
           </h3>
           <div className="space-y-4 max-h-80 overflow-y-auto no-scrollbar">
@@ -194,7 +194,7 @@ export default function Dashboard() {
 
         {/* Products Overview */}
         <div className="bg-card p-6 rounded-md border border-border/50">
-          <h3 className="font-black uppercase text-sm tracking-widest mb-6 border-b border-border pb-2">
+          <h3 className="font-black uppercase text-sm tracking-tighter mb-6 border-b border-border pb-2">
             Stock Inventory
           </h3>
           <div className="space-y-4 max-h-80 overflow-y-auto no-scrollbar">

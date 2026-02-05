@@ -100,7 +100,7 @@ export default function ShopPageContent({ categorySlug }) {
             <div className="space-y-1">
               <div className="flex items-center gap-2 text-primary">
                 <Globe size={14} className="animate-spin-slow" />
-                <span className="text-[12px] font-black uppercase tracking-[0.3em]">
+                <span className="text-[12px] font-black uppercase tracking-tighter">
                   গ্লোবাল_ইনভেন্টরি_লিস্ট
                 </span>
               </div>
@@ -115,7 +115,7 @@ export default function ShopPageContent({ categorySlug }) {
               </button>
 
               <div className="bg-primary/5 border border-primary/20 px-4 py-2.5 rounded-md">
-                <p className="text-primary text-[12px] font-black uppercase tracking-widest">
+                <p className="text-primary text-[12px] font-black uppercase tracking-tighter">
                   {loading
                     ? 'স্ক্যানিং...'
                     : `পাওয়া গেছে: ${pagination?.totalProducts || 0} টি পণ্য`}
@@ -158,11 +158,11 @@ export default function ShopPageContent({ categorySlug }) {
                         সিস্টেম নেভিগেশন
                       </span>
                       <div className="flex items-center gap-4 bg-card/50 backdrop-blur-md px-10 py-4 rounded-md border border-border/50 shadow-xl shadow-primary/5">
-                        <span className="text-xs font-black tracking-widest text-text">
+                        <span className="text-xs font-black tracking-tighter text-text">
                           পৃষ্ঠা <span className="text-primary ml-2">{page}</span>
                         </span>
                         <div className="h-4 w-0.5 bg-border/50" />
-                        <span className="text-xs font-black tracking-widest text-pText/40">
+                        <span className="text-xs font-black tracking-tighter text-pText/40">
                           মোট {pagination.totalPages}
                         </span>
                       </div>
@@ -180,7 +180,7 @@ export default function ShopPageContent({ categorySlug }) {
                           size={18}
                           className="text-primary group-hover:-translate-x-1 transition-transform"
                         />
-                        <span className="text-[12px] font-black uppercase tracking-widest">
+                        <span className="text-[12px] font-black uppercase tracking-tighter">
                           আগেরটি
                         </span>
                       </button>
@@ -191,7 +191,7 @@ export default function ShopPageContent({ categorySlug }) {
                         onClick={() => handlePagination(page + 1)}
                         className="group flex items-center gap-3 pl-6 pr-4 py-3 bg-card border border-border/50 rounded-md disabled:opacity-20 hover:border-primary/50 transition-all active:scale-95 disabled:pointer-events-none"
                       >
-                        <span className="text-[12px] font-black uppercase tracking-widest">
+                        <span className="text-[12px] font-black uppercase tracking-tighter">
                           পরেরটি
                         </span>
                         <ChevronRight
@@ -208,7 +208,7 @@ export default function ShopPageContent({ categorySlug }) {
                 <div className="bg-primary/10 p-8 rounded-full mb-6">
                   <Search size={48} className="text-primary opacity-40" />
                 </div>
-                <h3 className="text-xl font-black uppercase italic text-pText/40 tracking-tighter">
+                <h3 className="text-xl font-black uppercase italic text-pText/40 tracking-tighterer">
                   কোনো পণ্য পাওয়া যায়নি
                 </h3>
                 <button

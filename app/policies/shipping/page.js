@@ -10,7 +10,7 @@ export default function ShippingInfo() {
         {/* Hero Section */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-20 border-b border-bg/5 pb-12">
           <div className="space-y-4">
-            <h1 className="text-6xl md:text-8xl font-black text-text italic uppercase tracking-tighter leading-none">
+            <h1 className="text-6xl md:text-8xl font-black text-text italic uppercase tracking-tighterer leading-none">
               Rapid <br />
               <span className="text-primary">Dispatch</span>
             </h1>
@@ -22,7 +22,7 @@ export default function ShippingInfo() {
             <Zap size={30} fill="currentColor" />
             <div className="font-black italic uppercase leading-none">
               <p className="text-[12px]">Average Speed</p>
-              <p className="text-2xl tracking-tighter">24-72 Hours</p>
+              <p className="text-2xl tracking-tighterer">24-72 Hours</p>
             </div>
           </div>
         </div>
@@ -68,7 +68,7 @@ export default function ShippingInfo() {
 
           {/* Damage Protection Note */}
           <div className="p-10 bg-card/20 border border-bg/5 rounded-xl text-center space-y-4">
-            <h4 className="text-xl font-black text-text uppercase italic tracking-widest">
+            <h4 className="text-xl font-black text-text uppercase italic tracking-tighter">
               Transit Security
             </h4>
             <p className="text-pText font-medium opacity-80">
@@ -86,7 +86,7 @@ function ZoneCard({ location, time, price, detail }) {
   return (
     <div className="p-10 bg-card/20 border border-bg/5 rounded-lg hover:bg-card/40 transition-all duration-500">
       <div className="flex justify-between items-start mb-6">
-        <h4 className="text-3xl font-black text-text italic uppercase tracking-tighter">
+        <h4 className="text-3xl font-black text-text italic uppercase tracking-tighterer">
           {location}
         </h4>
         <Truck className="text-primary" size={24} />
@@ -110,7 +110,7 @@ function ProtocolItem({ icon, text }) {
   return (
     <div className="flex items-center gap-4 p-5 bg-bg/20 rounded-md border border-bg/5">
       <div className="text-primary">{icon}</div>
-      <p className="text-sm font-bold text-pText uppercase tracking-tight italic">{text}</p>
+      <p className="text-sm font-bold text-pText uppercase tracking-tighter italic">{text}</p>
     </div>
   );
 }

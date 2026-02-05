@@ -46,10 +46,10 @@ export default function AdminProducts() {
             />
           </div>
           <div className="flex flex-col">
-            <span className="font-bold text-white text-xs uppercase tracking-tight line-clamp-1">
+            <span className="font-bold text-white text-xs uppercase tracking-tighter line-clamp-1">
               {item.title}
             </span>
-            <span className="text-[11px] text-pText uppercase tracking-widest">
+            <span className="text-[11px] text-pText uppercase tracking-tighter">
               {item.category?.name || 'No Category'}
             </span>
           </div>
@@ -84,7 +84,7 @@ export default function AdminProducts() {
       key: 'status',
       render: (item) => (
         <span
-          className={`px-3 py-1.5 rounded-md text-[10px] font-black uppercase tracking-tighter ${
+          className={`px-3 py-1.5 rounded-md text-[10px] font-black uppercase tracking-tighterer ${
             item.stock > 0
               ? 'bg-primary/10 text-primary border border-primary/20'
               : 'bg-red-500/10 text-red-500 border border-red-500/20'
@@ -101,10 +101,10 @@ export default function AdminProducts() {
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-10">
         <div>
-          <h1 className="text-4xl font-black uppercase italic tracking-tighter leading-none">
+          <h1 className="text-4xl font-black uppercase italic tracking-tighterer leading-none">
             Product <span className="text-primary">Inventory</span>
           </h1>
-          <p className="text-pText text-[12px] font-black uppercase tracking-[0.3em] mt-2 opacity-60">
+          <p className="text-pText text-[12px] font-black uppercase tracking-tighter mt-2 opacity-60">
             Total Tracked Units: {pagination?.totalProducts || products.length}
           </p>
         </div>
@@ -113,7 +113,7 @@ export default function AdminProducts() {
           <Button
             arialabel="Create product"
             icon={Plus}
-            url={'/admin/products/create'}
+            url={'/admin/api/products/create'}
             text={'Create Product'}
             className=""
           />

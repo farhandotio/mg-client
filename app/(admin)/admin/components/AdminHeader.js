@@ -14,7 +14,7 @@ export default function AdminHeader({ onMenuClick }) {
           <Menu size={20} />
         </button>
 
-        <h2 className="text-sm font-black uppercase tracking-widest hidden sm:block">
+        <h2 className="text-sm font-black uppercase tracking-tighter hidden sm:block">
           System <span className="text-primary">Console</span>
         </h2>
       </div>

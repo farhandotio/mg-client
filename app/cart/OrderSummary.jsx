@@ -29,17 +29,17 @@ export default function OrderSummary({ subtotal = 0 }) {
       <div className="flex flex-col gap-1 mb-8 relative z-10">
         <div className="flex items-center gap-2 text-primary">
           <ShieldCheck size={14} className="animate-pulse" />
-          <span className="text-[12px] font-black uppercase tracking-[0.3em]">
+          <span className="text-[12px] font-black uppercase tracking-tighter">
             পেমেন্ট প্রোটোকল
           </span>
         </div>
-        <h2 className="text-2xl md:text-3xl font-black text-text uppercase italic tracking-tighter flex items-center gap-3">
+        <h2 className="text-2xl md:text-3xl font-black text-text uppercase italic tracking-tighterer flex items-center gap-3">
           অর্ডার সামারি <div className="h-1 flex-1 bg-primary/10 rounded-full" />
         </h2>
       </div>
 
       {/* কন্টেন্ট লিস্ট */}
-      <div className="space-y-5 mb-10 relative z-10 font-bold uppercase tracking-widest text-xs md:text-sm">
+      <div className="space-y-5 mb-10 relative z-10 font-bold uppercase tracking-tighter text-xs md:text-sm">
         <div className="flex justify-between items-center group">
           <span className="text-pText/50 group-hover:text-pText transition-colors">
             পণ্যের মোট দাম
@@ -52,7 +52,7 @@ export default function OrderSummary({ subtotal = 0 }) {
         <div className="flex justify-between items-center group">
           <div>
             <span className="text-pText/50 group-hover:text-pText">ডেলিভারি চার্জ</span>
-            <span className="text-[10px] text-primary block tracking-tighter mt-1">
+            <span className="text-[10px] text-primary block tracking-tighterer mt-1">
               <Truck size={10} className="inline mr-1" /> স্ট্যান্ডার্ড কার্গো
             </span>
           </div>
@@ -72,7 +72,7 @@ export default function OrderSummary({ subtotal = 0 }) {
             </span>
           </div>
           <div className="text-right">
-            <span className="text-4xl md:text-5xl font-black text-primary tracking-tighter italic block">
+            <span className="text-4xl md:text-5xl font-black text-primary tracking-tighterer italic block">
               ৳{total.toLocaleString()}
             </span>
           </div>

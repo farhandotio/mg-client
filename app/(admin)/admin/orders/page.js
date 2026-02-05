@@ -145,7 +145,7 @@ export default function AdminOrdersPage() {
               Secure_Admin_Terminal
             </span>
           </div>
-          <h1 className="text-4xl lg:text-5xl font-black uppercase italic tracking-tighter text-text leading-none mt-1">
+          <h1 className="text-4xl lg:text-5xl font-black uppercase italic tracking-tighterer text-text leading-none mt-1">
             অর্ডার <span className="text-primary">তালিকা</span>
           </h1>
         </div>
@@ -154,7 +154,7 @@ export default function AdminOrdersPage() {
           <Clock size={18} className="text-primary" />
           <div className="flex flex-col">
             <span className="text-xl font-black text-text leading-none">{orders?.length || 0}</span>
-            <span className="text-[10px] font-black text-pText/60 uppercase tracking-widest mt-1">
+            <span className="text-[10px] font-black text-pText/60 uppercase tracking-tighter mt-1">
               Captured_Logs
             </span>
           </div>
@@ -187,10 +187,10 @@ export default function AdminOrdersPage() {
             >
               <X size={20} />
             </button>
-            <h2 className="text-2xl font-black italic uppercase tracking-tighter mb-1">
+            <h2 className="text-2xl font-black italic uppercase tracking-tighterer mb-1">
               Update <span className="text-primary">Status</span>
             </h2>
-            <p className="text-[12px] uppercase font-bold text-pText tracking-widest mb-8">
+            <p className="text-[12px] uppercase font-bold text-pText tracking-tighter mb-8">
               ID: #{selectedOrder?._id?.slice(-8)}
             </p>
             <div className="space-y-6">
@@ -208,7 +208,7 @@ export default function AdminOrdersPage() {
               </select>
               <button
                 onClick={submitStatusUpdate}
-                className="w-full bg-primary hover:bg-primary/80 text-black font-black uppercase italic py-4 rounded-md transition-all text-xs tracking-widest"
+                className="w-full bg-primary hover:bg-primary/80 text-black font-black uppercase italic py-4 rounded-md transition-all text-xs tracking-tighter"
               >
                 আপডেট করুন
               </button>

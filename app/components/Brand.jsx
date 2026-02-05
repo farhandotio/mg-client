@@ -36,7 +36,7 @@ export default function Brand() {
             </div>
             <h2
               id="brand-heading"
-              className="text-2xl md:text-3xl font-black text-text tracking-tighter uppercase italic leading-none"
+              className="text-2xl md:text-3xl font-black text-text tracking-tighterer uppercase italic leading-none"
             >
               সেরা সব <span className="text-primary">ব্র্যান্ড</span>
             </h2>
@@ -46,7 +46,7 @@ export default function Brand() {
           </div>
 
           {/* Accessibility Fix: Increased contrast from /40 to /70 */}
-          <div className="hidden md:flex items-center gap-2 text-pText/70 font-bold text-[11px] uppercase tracking-widest">
+          <div className="hidden md:flex items-center gap-2 text-pText/70 font-bold text-[11px] uppercase tracking-tighter">
             <span>কানেক্টেড ব্র্যান্ডস</span>
             <div className="w-12 h-0.5 bg-border/50" />
             <span className="text-primary">{brandsData.length} টি ইউনিট</span>

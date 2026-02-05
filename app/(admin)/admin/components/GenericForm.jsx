@@ -34,7 +34,7 @@ export default function GenericForm({
       className="space-y-8 bg-card p-8 rounded-lg border border-border/50"
     >
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-3xl font-black italic uppercase tracking-tighter text-text">
+        <h2 className="text-3xl font-black italic uppercase tracking-tighterer text-text">
           {title} <span className="text-primary">.SYS</span>
         </h2>
         <Button
@@ -49,7 +49,7 @@ export default function GenericForm({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {fields.map((field) => (
           <div key={field.name} className={`${field.fullWidth ? 'md:col-span-2' : ''} space-y-2`}>
-            <label className="text-[12px] font-black uppercase tracking-widest text-pText/60 ml-2">
+            <label className="text-[12px] font-black uppercase tracking-tighter text-pText/60 ml-2">
               {field.label}
             </label>
 

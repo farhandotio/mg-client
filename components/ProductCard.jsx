@@ -105,7 +105,7 @@ export default function ProductCard({ product, priority = false }) {
             aria-label={isInCart ? 'Already in cart' : 'Add to Cart'}
             onClick={handleAddToCart}
             disabled={isOutOfStock || isAdding || isInCart}
-            className={`flex-1 h-10 rounded-md font-black text-[11px] uppercase tracking-tighter transition-all flex items-center justify-center gap-2 shadow-lg
+            className={`flex-1 h-10 rounded-md font-black text-[11px] uppercase tracking-tighterer transition-all flex items-center justify-center gap-2 shadow-lg
               ${isInCart ? 'bg-green-500 text-white' : 'bg-primary text-white hover:bg-primary/90'}
               ${isOutOfStock || isAdding ? 'opacity-50 cursor-not-allowed' : ''}
             `}
@@ -132,7 +132,7 @@ export default function ProductCard({ product, priority = false }) {
 
       <div className="pt-2 p-1 space-y-2">
         <div className="flex items-center justify-between">
-          <span className="text-[10px] md:text-[11px] font-black text-primary/70 uppercase tracking-widest flex items-center gap-1">
+          <span className="text-[10px] md:text-[11px] font-black text-primary/70 uppercase tracking-tighter flex items-center gap-1">
             <ShieldCheck size={10} /> {product?.brand?.name || 'PREMIUM'}
           </span>
           <div className="flex items-center gap-1 text-[11px] md:text-[12px] font-bold text-secondary">
@@ -154,7 +154,7 @@ export default function ProductCard({ product, priority = false }) {
                 ৳{basePrice.toLocaleString()}
               </span>
             )}
-            <span className="text-text text-base md:text-lg font-black tracking-tighter">
+            <span className="text-text text-base md:text-lg font-black tracking-tighterer">
               ৳{salePrice.toLocaleString()}
             </span>
           </div>

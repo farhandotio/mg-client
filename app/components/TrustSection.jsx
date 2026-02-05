@@ -64,18 +64,17 @@ export default function TrustSection() {
                 কাস্টমার রিভিউ এবং ফিডব্যাক
               </span>
             </div>
-            <h2 className="text-xl md:text-2xl font-black text-text tracking-tighter uppercase leading-none">
+            <h2 className="text-xl md:text-2xl font-black text-text tracking-tighterer uppercase leading-none">
               ইউজারদের <span className="text-primary">আস্থা</span>
             </h2>
           </div>
 
           <div className="hidden md:block text-right">
-            <p className="text-pText/60 font-bold text-[11px] uppercase tracking-widest leading-relaxed">
+            <p className="text-pText/60 font-bold text-[11px] uppercase tracking-tighter leading-relaxed">
               সন্তুষ্ট কাস্টমার: ৯৯.৮% <br /> ভেরিফাইড রিভিউ সিস্টেম একটিভ
             </p>
           </div>
         </div>
-
 
         {/* --- Bento Grid Area --- */}
         <motion.div
@@ -146,8 +145,8 @@ export default function TrustSection() {
 
               <div className="flex items-end justify-between mt-6">
                 <div>
-                  <h4 className="text-text font-black text-sm tracking-tight">{rev.user}</h4>
-                  <p className="text-primary/70 text-[12px] font-bold uppercase tracking-tighter">
+                  <h4 className="text-text font-black text-sm tracking-tighter">{rev.user}</h4>
+                  <p className="text-primary/70 text-[12px] font-bold uppercase tracking-tighterer">
                     {rev.role}
                   </p>
                 </div>
@@ -166,8 +165,8 @@ export default function TrustSection() {
             <div className="p-3 bg-primary/5 rounded-full mb-1 group-hover:rotate-[360deg] transition-transform duration-700">
               <Cpu size={24} className="text-primary" />
             </div>
-            <span className="text-3xl font-black italic tracking-tighter text-text">৯৯.৯%</span>
-            <span className="text-[12px] text-pText/60 uppercase font-black tracking-widest">
+            <span className="text-3xl font-black italic tracking-tighterer text-text">৯৯.৯%</span>
+            <span className="text-[12px] text-pText/60 uppercase font-black tracking-tighter">
               সফল ডেলিভারি
             </span>
           </motion.div>

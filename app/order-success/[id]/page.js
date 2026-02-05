@@ -36,7 +36,7 @@ export default function OrderSuccessPage() {
       <div className="min-h-screen bg-bg flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <Loader2 className="w-12 h-12 text-primary animate-spin" />
-          <p className="text-primary font-black tracking-[0.2em] text-[12px] animate-pulse uppercase">
+          <p className="text-primary font-black tracking-tighter text-[12px] animate-pulse uppercase">
             আপনার অর্ডার ডাটা লোড হচ্ছে...
           </p>
         </div>
@@ -64,12 +64,12 @@ export default function OrderSuccessPage() {
               <CheckCircle2 size={48} className="text-primary -rotate-12" />
             </div>
           </div>
-          <h1 className="text-5xl md:text-7xl font-black uppercase italic tracking-tighter leading-none mb-4">
+          <h1 className="text-5xl md:text-7xl font-black uppercase italic tracking-tighterer leading-none mb-4">
             অর্ডার <span className="text-primary">সম্পন্ন</span>
           </h1>
           <div className="flex items-center justify-center gap-3">
             <span className="h-px w-8 bg-border" />
-            <p className="text-pText text-[12px] font-black tracking-[0.3em] uppercase italic">
+            <p className="text-pText text-[12px] font-black tracking-tighter uppercase italic">
               সফলভাবে গ্রহণ করা হয়েছে
             </p>
             <span className="h-px w-8 bg-border" />
@@ -84,15 +84,15 @@ export default function OrderSuccessPage() {
               <div className="p-8">
                 <div className="flex flex-wrap justify-between items-start gap-4 mb-10">
                   <div>
-                    <h3 className="text-pText text-[11px] font-black uppercase tracking-[0.2em] mb-2 flex items-center gap-2">
+                    <h3 className="text-pText text-[11px] font-black uppercase tracking-tighter mb-2 flex items-center gap-2">
                       <Hash size={12} className="text-primary" /> ট্র্যাকিং আইডি
                     </h3>
-                    <p className="text-sm font-bold font-mono tracking-tighter text-text/80">
+                    <p className="text-sm font-bold font-mono tracking-tighterer text-text/80">
                       {orderDetails._id}
                     </p>
                   </div>
                   <div className="text-right">
-                    <h3 className="text-pText text-[11px] font-black uppercase tracking-[0.2em] mb-2">
+                    <h3 className="text-pText text-[11px] font-black uppercase tracking-tighter mb-2">
                       বর্তমান অবস্থা
                     </h3>
                     <span className="px-3 py-1 bg-primary text-bg text-[10px] font-black rounded-full italic uppercase tracking-wider">
@@ -162,7 +162,7 @@ export default function OrderSuccessPage() {
           {/* প্রাইস সাইডবার */}
           <div className="lg:col-span-4">
             <div className="bg-card border border-border rounded-lg p-8 sticky top-24 shadow-2xl">
-              <h3 className="text-pText text-[11px] font-black uppercase tracking-[0.2em] mb-8 border-b border-border/20 pb-4">
+              <h3 className="text-pText text-[11px] font-black uppercase tracking-tighter mb-8 border-b border-border/20 pb-4">
                 অর্ডার লিস্ট
               </h3>
 
@@ -189,14 +189,14 @@ export default function OrderSuccessPage() {
                 <PriceRow label="ডেলিভারি চার্জ" value={pricing.shippingPrice} />
                 <div className="flex justify-between items-center pt-6 mt-2 border-t border-border">
                   <span className="text-[12px] font-black uppercase text-pText">সর্বমোট</span>
-                  <span className="text-3xl font-black text-primary italic tracking-tighter font-mono">
+                  <span className="text-3xl font-black text-primary italic tracking-tighterer font-mono">
                     ৳{pricing.totalPrice?.toLocaleString()}
                   </span>
                 </div>
               </div>
 
               <div className="mt-8 p-4 bg-primary/5 rounded-md border border-primary/10">
-                <p className="text-[10px] text-primary font-bold text-center uppercase tracking-widest leading-relaxed">
+                <p className="text-[10px] text-primary font-bold text-center uppercase tracking-tighter leading-relaxed">
                   আপনার ইনভয়েস কপিটি ইমেইলে পাঠিয়ে দেওয়া হয়েছে।
                 </p>
               </div>
@@ -216,7 +216,7 @@ function SectionLabel({ icon: Icon, text }) {
       <div className="w-6 h-6 rounded bg-primary/10 flex items-center justify-center border border-primary/20">
         <Icon size={12} className="text-primary" />
       </div>
-      <h3 className="text-pText text-[11px] font-black uppercase tracking-[0.2em]">{text}</h3>
+      <h3 className="text-pText text-[11px] font-black uppercase tracking-tighter">{text}</h3>
     </div>
   );
 }

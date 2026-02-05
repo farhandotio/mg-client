@@ -45,7 +45,7 @@ export default function Category() {
               <ShoppingBag aria-label="View Shopping Cart" size={20} className="text-primary" />
             </div>
             <div>
-              <h2 className="text-xl md:text-2xl font-black text-text tracking-tight leading-none">
+              <h2 className="text-xl md:text-2xl font-black text-text tracking-tighter leading-none">
                 ক্যাটাগরি <span className="text-primary">অনুসারে খুঁজুন</span>
               </h2>
               <p className="text-[11px] md:text-xs text-pText font-bold uppercase mt-1 tracking-wider opacity-70">

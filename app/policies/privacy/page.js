@@ -11,11 +11,11 @@ export default function PrivacyPolicy() {
         <div className="mb-16 space-y-6 relative">
           <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-md text-primary mb-4 border border-primary/20">
             <Lock size={14} />
-            <span className="text-[12px] font-black uppercase tracking-[0.3em]">
+            <span className="text-[12px] font-black uppercase tracking-tighter">
               Data_Protection_Enabled
             </span>
           </div>
-          <h1 className="text-6xl md:text-8xl font-black text-text italic uppercase tracking-tighter leading-none">
+          <h1 className="text-6xl md:text-8xl font-black text-text italic uppercase tracking-tighterer leading-none">
             Privacy <br />
             <span className="text-primary">Shield</span>
           </h1>
@@ -90,7 +90,7 @@ function SecurityFeature({ icon, title, desc }) {
   return (
     <div className="p-8 bg-card/30 border border-white/5 rounded-md group hover:border-primary/50 transition-all duration-500">
       <div className="text-primary mb-6 group-hover:scale-110 transition-transform">{icon}</div>
-      <h4 className="text-lg font-black text-text uppercase italic mb-2 tracking-tighter">
+      <h4 className="text-lg font-black text-text uppercase italic mb-2 tracking-tighterer">
         {title}
       </h4>
       <p className="text-xs text-pText font-medium leading-relaxed opacity-60">{desc}</p>

@@ -41,14 +41,14 @@ export default function AdminSidebar({ closeSidebar }) {
     {
       name: 'Products',
       icon: Box,
-      path: '/admin/products',
-      createPath: '/admin/products/create',
+      path: '/admin/api/products',
+      createPath: '/admin/api/products/create',
     },
     {
       name: 'Categories',
       icon: Layers,
-      path: '/admin/categories',
-      createPath: '/admin/categories/create',
+      path: '/admin/api/categories',
+      createPath: '/admin/api/categories/create',
     },
     {
       name: 'Brands',
@@ -79,7 +79,7 @@ export default function AdminSidebar({ closeSidebar }) {
           <div className="p-2 bg-primary rounded-md shadow-[0_0_15px_rgba(255,111,92,0.4)]">
             <Cpu size={20} className="text-white" />
           </div>
-          <h2 className="text-2xl font-black italic text-text uppercase tracking-tighter leading-none">
+          <h2 className="text-2xl font-black italic text-text uppercase tracking-tighterer leading-none">
             VAULT{' '}
             <span className="text-primary text-sm block tracking-wide not-italic mt-1">
               OS_v2.6
@@ -90,7 +90,7 @@ export default function AdminSidebar({ closeSidebar }) {
         <Link
           href="/"
           target="_blank"
-          className="flex items-center justify-between gap-2 px-4 py-3 bg-card/50 border border-border/50 rounded-md text-[11px] font-black uppercase tracking-widest text-pText hover:text-primary transition-all group backdrop-blur-md"
+          className="flex items-center justify-between gap-2 px-4 py-3 bg-card/50 border border-border/50 rounded-md text-[11px] font-black uppercase tracking-tighter text-pText hover:text-primary transition-all group backdrop-blur-md"
         >
           Explore Store
           <ExternalLink
@@ -117,7 +117,7 @@ export default function AdminSidebar({ closeSidebar }) {
                 <Link
                   href={item.path}
                   onClick={closeSidebar}
-                  className={`flex-1 flex items-center gap-4 px-4 py-3.5 rounded-md font-black text-[12px] uppercase tracking-[0.2em] transition-all duration-300 relative overflow-hidden ${
+                  className={`flex-1 flex items-center gap-4 px-4 py-3.5 rounded-md font-black text-[12px] uppercase tracking-tighter transition-all duration-300 relative overflow-hidden ${
                     isActive
                       ? 'bg-primary text-white shadow-[0_10px_20px_rgba(255,111,92,0.2)]'
                       : 'text-pText/60 hover:bg-card hover:text-text'
@@ -161,7 +161,7 @@ export default function AdminSidebar({ closeSidebar }) {
       <div className="px-6 py-4 space-y-3">
         <div className="bg-card/30 rounded-md p-4 border border-border/40 backdrop-blur-sm">
           <div className="flex justify-between items-center mb-2">
-            <span className="text-[10px] font-black uppercase text-pText/40 tracking-widest">
+            <span className="text-[10px] font-black uppercase text-pText/40 tracking-tighter">
               Network_Stability
             </span>
             <span className="text-[10px] font-bold text-green-500 uppercase">99.8%</span>
@@ -177,7 +177,7 @@ export default function AdminSidebar({ closeSidebar }) {
         <button
           aria-label="logout"
           onClick={handleLogout}
-          className="flex items-center gap-4 w-full px-4 py-5 text-red-500 font-black text-[12px] uppercase tracking-[0.3em] hover:bg-red-500/10 rounded-lg transition-all group relative overflow-hidden border border-transparent hover:border-red-500/20"
+          className="flex items-center gap-4 w-full px-4 py-5 text-red-500 font-black text-[12px] uppercase tracking-tighter hover:bg-red-500/10 rounded-lg transition-all group relative overflow-hidden border border-transparent hover:border-red-500/20"
         >
           <div className="absolute inset-0 bg-red-500/5 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300" />
           <LogOut

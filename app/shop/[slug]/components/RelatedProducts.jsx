@@ -15,9 +15,9 @@ export default function RelatedProducts({ products, currentId }) {
       <div className="flex flex-col mb-8 gap-3">
         <div className="flex items-center gap-2 text-primary">
           <Sparkles size={14} className="animate-pulse fill-primary" />
-          <span className="text-[11px] font-black uppercase tracking-[0.3em]">আপনার জন্য আরও</span>
+          <span className="text-[11px] font-black uppercase tracking-tighter">আপনার জন্য আরও</span>
         </div>
-        <h2 className="text-2xl md:text-3xl font-black text-text tracking-tighter uppercase italic leading-none">
+        <h2 className="text-2xl md:text-3xl font-black text-text tracking-tighterer uppercase italic leading-none">
           সম্পর্কিত <span className="text-primary">পণ্যসমূহ</span>
         </h2>
       </div>

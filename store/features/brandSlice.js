@@ -9,7 +9,7 @@ export const fetchBrands = createAsyncThunk(
   'brands/fetchBrands',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await API.get('/brands');
+      const response = await API.get('/api/brands');
       return response.data.brands || response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || 'Failed to fetch brands');
@@ -22,7 +22,7 @@ export const createBrand = createAsyncThunk(
   'brands/createBrand',
   async (formData, { rejectWithValue }) => {
     try {
-      const response = await API.post('/brands', formData);
+      const response = await API.post('/api/brands', formData);
       toast.success('Brand created successfully!');
       return response.data.brand || response.data;
     } catch (error) {
@@ -37,7 +37,7 @@ export const updateBrand = createAsyncThunk(
   'brands/updateBrand',
   async ({ id, formData }, { rejectWithValue }) => {
     try {
-      const response = await API.patch(`/brands/${id}`, formData);
+      const response = await API.patch(`/api/brands/${id}`, formData);
       toast.success('Brand updated successfully!');
       return response.data.brand || response.data;
     } catch (error) {
@@ -52,7 +52,7 @@ export const deleteBrand = createAsyncThunk(
   'brands/deleteBrand',
   async (id, { rejectWithValue }) => {
     try {
-      await API.delete(`/brands/${id}`);
+      await API.delete(`/api/brands/${id}`);
       toast.success('Brand deleted successfully!');
       return id;
     } catch (error) {

@@ -40,7 +40,7 @@ const InternalCartItem = React.memo(({ item, onUpdate, onRemove, isProcessing })
               <h3 className="text-sm md:text-base font-bold text-text truncate group-hover:text-primary transition-colors">
                 {item?.title}
               </h3>
-              <p className="text-[12px] text-pText/50 uppercase font-black tracking-tighter">
+              <p className="text-[12px] text-pText/50 uppercase font-black tracking-tighterer">
                 {item?.brand || 'Premium Gear'}
               </p>
             </div>
@@ -80,7 +80,7 @@ const InternalCartItem = React.memo(({ item, onUpdate, onRemove, isProcessing })
 
             {/* আধুনিক মূল্য প্রদর্শন */}
             <div className="text-right">
-              <p className="text-base md:text-xl font-black text-primary tracking-tighter">
+              <p className="text-base md:text-xl font-black text-primary tracking-tighterer">
                 ৳{(currentPrice * currentQty).toLocaleString()}
               </p>
               <p className="text-[11px] text-pText/40 font-bold">
@@ -175,12 +175,12 @@ export default function CartPage() {
             >
               <ArrowLeft size={20} />
             </Link>
-            <h1 className="text-xl md:text-3xl font-black text-text tracking-tighter uppercase italic">
+            <h1 className="text-xl md:text-3xl font-black text-text tracking-tighterer uppercase italic">
               শপিং <span className="text-primary">ব্যাগ</span>
             </h1>
           </div>
           <div className="text-right">
-            <span className="text-[12px] font-bold text-pText/40 uppercase tracking-widest block">
+            <span className="text-[12px] font-bold text-pText/40 uppercase tracking-tighter block">
               আইটেম সংখ্যা
             </span>
             <span className="text-sm font-black text-primary">{cartItems.length} টি</span>

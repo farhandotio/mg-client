@@ -9,7 +9,7 @@ export const fetchCategories = createAsyncThunk(
   'categories/fetchCategories',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await API.get(`/categories`);
+      const response = await API.get(`/api/categories`);
       return response.data.categories || response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || 'Failed to fetch categories');
@@ -22,7 +22,7 @@ export const createCategory = createAsyncThunk(
   'categories/createCategory',
   async (formData, { rejectWithValue }) => {
     try {
-      const response = await API.post(`/categories`, formData);
+      const response = await API.post(`/api/categories`, formData);
       toast.success('Category created successfully!');
       return response.data.category || response.data;
     } catch (error) {
@@ -37,7 +37,7 @@ export const updateCategory = createAsyncThunk(
   'categories/updateCategory',
   async ({ id, formData }, { rejectWithValue }) => {
     try {
-      const response = await API.patch(`${`/categories`}/${id}`, formData);
+      const response = await API.patch(`${`/api/categories`}/${id}`, formData);
       toast.success('Category updated successfully!');
       return response.data.category || response.data;
     } catch (error) {
@@ -52,7 +52,7 @@ export const deleteCategory = createAsyncThunk(
   'categories/deleteCategory',
   async (id, { rejectWithValue }) => {
     try {
-      await API.delete(`${`/categories`}/${id}`);
+      await API.delete(`${`/api/categories`}/${id}`);
       toast.success('Category removed from terminal');
       return id; // স্টেট থেকে রিমুভ করার জন্য ID রিটার্ন করছি
     } catch (error) {
@@ -97,7 +97,7 @@ const categorySlice = createSlice({
 
       // Create Category
       .addCase(createCategory.fulfilled, (state, action) => {
-        state.categories.unshift(action.payload); 
+        state.categories.unshift(action.payload);
       })
 
       // Update Category

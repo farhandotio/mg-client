@@ -28,7 +28,7 @@ export default function Logo({ width = 170, height = 55, showText = false, class
       </div>
 
       {showText && (
-        <span className="text-xl font-black tracking-tighter uppercase italic text-text ml-1">
+        <span className="text-xl font-black tracking-tighterer uppercase italic text-text ml-1">
           Gadget <span className="text-primary">BDs</span>
         </span>
       )}

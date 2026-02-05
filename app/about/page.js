@@ -35,7 +35,7 @@ export default function AboutPage() {
           {stats.map((stat, i) => (
             <div key={i} className="text-center space-y-2">
               <h2 className="text-4xl md:text-5xl font-black text-primary">{stat.value}</h2>
-              <p className="text-pText font-bold uppercase tracking-widest text-xs opacity-70">
+              <p className="text-pText font-bold uppercase tracking-tighter text-xs opacity-70">
                 {stat.label}
               </p>
             </div>
@@ -91,7 +91,9 @@ export default function AboutPage() {
       {/* --- Meet Our Team Section --- */}
       <section className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16 space-y-4">
-          <h2 className="text-4xl font-black text-text uppercase tracking-tight">Meet Our Team</h2>
+          <h2 className="text-4xl font-black text-text uppercase tracking-tighter">
+            Meet Our Team
+          </h2>
           <p className="text-pText font-medium italic opacity-80">
             The passionate people behind Gadget BDs who make it all happen.
           </p>
@@ -108,7 +110,7 @@ export default function AboutPage() {
                 {member.initials}
               </div>
               <h4 className="text-text font-bold text-lg">{member.name}</h4>
-              <p className="text-pText text-xs font-bold uppercase tracking-widest mt-1 opacity-60">
+              <p className="text-pText text-xs font-bold uppercase tracking-tighter mt-1 opacity-60">
                 {member.role}
               </p>
             </div>

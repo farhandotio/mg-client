@@ -166,12 +166,12 @@ export default function CheckoutPage() {
         <div className="flex items-center justify-between mb-8">
           <Link
             href="/cart"
-            className="flex items-center gap-1.5 text-xs font-bold text-pText hover:text-primary transition-colors uppercase tracking-widest"
+            className="flex items-center gap-1.5 text-xs font-bold text-pText hover:text-primary transition-colors uppercase tracking-tighter"
           >
             <ArrowLeft size={16} /> ব্যাগে ফিরুন
           </Link>
           <div className="text-center hidden md:block">
-            <h1 className="text-xl font-black uppercase italic tracking-widest">
+            <h1 className="text-xl font-black uppercase italic tracking-tighter">
               নিরাপদ <span className="text-primary">চেকআউট</span>
             </h1>
           </div>
@@ -192,7 +192,7 @@ export default function CheckoutPage() {
                 {!showAddressForm && addresses?.length > 0 && (
                   <button
                     onClick={() => setShowAddressForm(true)}
-                    className="text-[12px] font-bold text-primary flex items-center gap-1 hover:underline uppercase tracking-tighter"
+                    className="text-[12px] font-bold text-primary flex items-center gap-1 hover:underline uppercase tracking-tighterer"
                   >
                     <Plus size={14} /> নতুন ঠিকানা
                   </button>
@@ -271,7 +271,7 @@ export default function CheckoutPage() {
                         {selectedAddress?._id === addr._id && (
                           <CheckCircle2 size={16} className="absolute top-3 right-3 text-primary" />
                         )}
-                        <p className="text-[10px] font-black text-pText/50 uppercase tracking-tighter mb-1">
+                        <p className="text-[10px] font-black text-pText/50 uppercase tracking-tighterer mb-1">
                           শিপিং ঠিকানা
                         </p>
                         <h4 className="font-bold text-xs text-text truncate mb-1 italic">
@@ -379,19 +379,19 @@ export default function CheckoutPage() {
               </div>
 
               <div className="space-y-3 pt-5 border-t border-border/20">
-                <div className="flex justify-between text-[12px] font-bold text-pText uppercase tracking-widest">
+                <div className="flex justify-between text-[12px] font-bold text-pText uppercase tracking-tighter">
                   <span>পণ্যের মূল্য</span>
                   <span className="text-text font-mono">৳{subtotal.toLocaleString()}</span>
                 </div>
-                <div className="flex justify-between text-[12px] font-bold text-pText uppercase tracking-widest">
+                <div className="flex justify-between text-[12px] font-bold text-pText uppercase tracking-tighter">
                   <span>ডেলিভারি চার্জ {selectedAddress?.city && `(${selectedAddress.city})`}</span>
                   <span className="text-text font-mono">৳{shipping}</span>
                 </div>
                 <div className="flex justify-between items-center pt-4 border-t border-border/20">
-                  <span className="text-[11px] font-black uppercase italic text-primary tracking-widest">
+                  <span className="text-[11px] font-black uppercase italic text-primary tracking-tighter">
                     মোট প্রদেয়
                   </span>
-                  <span className="text-3xl font-black text-primary font-mono tracking-tighter drop-shadow-sm">
+                  <span className="text-3xl font-black text-primary font-mono tracking-tighterer drop-shadow-sm">
                     ৳{total.toLocaleString()}
                   </span>
                 </div>
@@ -400,12 +400,12 @@ export default function CheckoutPage() {
               <Button
                 onClick={handlePlaceOrder}
                 disabled={orderLoading || authLoading}
-                className="w-full mt-8 py-5 rounded-xl shadow-xl shadow-primary/10 uppercase tracking-widest text-[11px] font-black"
+                className="w-full mt-8 py-5 rounded-xl shadow-xl shadow-primary/10 uppercase tracking-tighter text-[11px] font-black"
                 text={orderLoading ? 'প্রসেসিং...' : 'অর্ডার সম্পন্ন করুন'}
                 icon={ChevronRight}
               />
 
-              <p className="text-[10px] font-bold uppercase text-pText/40 mt-5 text-center tracking-[0.2em] flex items-center justify-center gap-2">
+              <p className="text-[10px] font-bold uppercase text-pText/40 mt-5 text-center tracking-tighter flex items-center justify-center gap-2">
                 <ShieldCheck size={12} className="text-primary" /> SSL এনক্রিপ্টেড পেমেন্ট গেটওয়ে
               </p>
             </div>
@@ -424,7 +424,7 @@ function PaymentOption({ active, onClick, icon, title }) {
       className={`flex-1 flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all ${active ? 'border-primary bg-primary/5 shadow-md scale-[1.02]' : 'border-border/20 bg-bg/40'}`}
     >
       <div className={`${active ? 'text-primary' : 'text-pText opacity-40'}`}>{icon}</div>
-      <span className="text-[11px] font-black uppercase tracking-tighter">{title}</span>
+      <span className="text-[11px] font-black uppercase tracking-tighterer">{title}</span>
     </div>
   );
 }

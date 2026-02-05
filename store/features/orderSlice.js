@@ -13,7 +13,7 @@ const initialState = {
 // --- ১. Create Order (Regular/Cart Checkout) ---
 export const createOrder = createAsyncThunk('order/create', async (orderData, thunkAPI) => {
   try {
-    const response = await API.post('/orders/create', orderData);
+    const response = await API.post('/api/orders/create', orderData);
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response?.data?.message || 'Order placement failed');
@@ -21,12 +21,12 @@ export const createOrder = createAsyncThunk('order/create', async (orderData, th
 });
 
 // --- ১.১ Create Single Order (Buy Now) ---
-// এটি নতুন এন্ডপয়েন্ট /orders/create-single কল করবে
+// এটি নতুন এন্ডপয়েন্ট /api/orders/create-single কল করবে
 export const createSingleOrder = createAsyncThunk(
   'order/createSingle',
   async (orderData, thunkAPI) => {
     try {
-      const response = await API.post('/orders/create-single', orderData);
+      const response = await API.post('/api/orders/create-single', orderData);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response?.data?.message || 'Buy Now order failed');
@@ -37,7 +37,7 @@ export const createSingleOrder = createAsyncThunk(
 // --- ২. Get My Orders ---
 export const getMyOrders = createAsyncThunk('order/myOrders', async (_, thunkAPI) => {
   try {
-    const response = await API.get('/orders/my-orders');
+    const response = await API.get('/api/orders/my-orders');
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response?.data?.message || 'Failed to fetch orders');
@@ -47,7 +47,7 @@ export const getMyOrders = createAsyncThunk('order/myOrders', async (_, thunkAPI
 // --- ৩. Get Order Details ---
 export const getOrderDetails = createAsyncThunk('order/details', async (id, thunkAPI) => {
   try {
-    const response = await API.get(`/orders/${id}`);
+    const response = await API.get(`/api/orders/${id}`);
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response?.data?.message || 'Error fetching details');
@@ -57,7 +57,7 @@ export const getOrderDetails = createAsyncThunk('order/details', async (id, thun
 // --- ৪. Cancel Order (User) ---
 export const cancelOrder = createAsyncThunk('order/cancel', async (id, thunkAPI) => {
   try {
-    const response = await API.patch(`/orders/cancel/${id}`);
+    const response = await API.patch(`/api/orders/cancel/${id}`);
     return { id, status: 'CANCELLED' };
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response?.data?.message || 'Cancellation failed');
@@ -67,7 +67,7 @@ export const cancelOrder = createAsyncThunk('order/cancel', async (id, thunkAPI)
 // --- ৫. Admin: Get All Orders ---
 export const getAllOrdersAdmin = createAsyncThunk('order/adminAll', async (_, thunkAPI) => {
   try {
-    const response = await API.get('/orders/admin/all');
+    const response = await API.get('/api/orders/admin/all');
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(
@@ -81,7 +81,7 @@ export const updateOrderStatusAdmin = createAsyncThunk(
   'order/updateStatusAdmin',
   async ({ id, status }, thunkAPI) => {
     try {
-      const response = await API.patch(`/orders/admin/status/${id}`, { status });
+      const response = await API.patch(`/api/orders/admin/status/${id}`, { status });
       return { id, status };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response?.data?.message || 'Failed to update status');
@@ -92,7 +92,7 @@ export const updateOrderStatusAdmin = createAsyncThunk(
 // --- ৭. Admin: Delete Order ---
 export const deleteOrderAdmin = createAsyncThunk('order/deleteAdmin', async (id, thunkAPI) => {
   try {
-    await API.delete(`/orders/admin/delete/${id}`);
+    await API.delete(`/api/orders/admin/delete/${id}`);
     return id;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response?.data?.message || 'Delete failed');

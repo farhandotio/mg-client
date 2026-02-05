@@ -11,11 +11,11 @@ export default function WarrantyPolicy() {
         <div className="mb-16 space-y-4">
           <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-1 rounded-full text-primary">
             <Award size={14} />
-            <span className="text-[12px] font-black uppercase tracking-widest">
+            <span className="text-[12px] font-black uppercase tracking-tighter">
               Premium Protection
             </span>
           </div>
-          <h1 className="text-5xl md:text-7xl font-black text-text italic uppercase tracking-tighter leading-none">
+          <h1 className="text-5xl md:text-7xl font-black text-text italic uppercase tracking-tighterer leading-none">
             Warranty <br />
             <span className="text-primary">Protocols</span>
           </h1>
@@ -69,13 +69,13 @@ export default function WarrantyPolicy() {
           <div className="p-10 bg-primary rounded-xl text-bg flex flex-col md:flex-row justify-between items-center gap-8 shadow-[0_20px_50px_rgba(var(--primary-rgb),0.3)]">
             <div className="space-y-2 text-center md:text-left">
               <h3 className="text-3xl font-black uppercase italic leading-none">Need to Claim?</h3>
-              <p className="font-bold opacity-80 uppercase tracking-tight">
+              <p className="font-bold opacity-80 uppercase tracking-tighter">
                 Initiate your service ticket via our 24/7 command center.
               </p>
             </div>
             <button
               aria-label="open ticket"
-              className="bg-bg text-text px-10 py-4 rounded-md font-black uppercase tracking-widest hover:scale-105 transition-transform"
+              className="bg-bg text-text px-10 py-4 rounded-md font-black uppercase tracking-tighter hover:scale-105 transition-transform"
             >
               Open Ticket
             </button>

@@ -68,7 +68,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
             <div className="flex justify-between items-center mb-6">
               <div className="flex items-center gap-2 text-primary">
                 <Database size={16} className={loading ? 'animate-pulse' : ''} />
-                <span className="text-[12px] font-black uppercase tracking-[0.3em]">
+                <span className="text-[12px] font-black uppercase tracking-tighter">
                   ইনভেন্টরি সিনক্রোনাইজেশন
                 </span>
               </div>
@@ -89,7 +89,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
                 value={searchTerm}
                 onChange={handleInputChange}
                 placeholder="পণ্য খুঁজুন..."
-                className="w-full bg-transparent border-b-2 border-border focus:border-primary py-8 px-2 outline-none text-3xl md:text-5xl font-black italic tracking-tighter transition-all placeholder:text-white/5 text-text"
+                className="w-full bg-transparent border-b-2 border-border focus:border-primary py-8 px-2 outline-none text-3xl md:text-5xl font-black italic tracking-tighterer transition-all placeholder:text-white/5 text-text"
               />
               <div className="absolute right-4 top-1/2 -translate-y-1/2">
                 {loading ? (
@@ -127,7 +127,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
             {/* --- Search Results --- */}
             <div className="flex-1 overflow-y-auto no-scrollbar">
               <div className="flex items-center gap-4 mb-6">
-                <p className="text-pText/40 text-[12px] font-black uppercase tracking-[0.3em] whitespace-nowrap">
+                <p className="text-pText/40 text-[12px] font-black uppercase tracking-tighter whitespace-nowrap">
                   {searchTerm ? `"${searchTerm}" এর ফলাফল` : 'নতুন কালেকশন'}
                 </p>
                 <div className="h-0.5 w-full bg-border/20" />
@@ -160,7 +160,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
                             />
                           </div>
                           <div className="flex flex-col justify-center min-w-0 flex-1">
-                            <h4 className="text-sm md:text-base font-black italic uppercase truncate tracking-tighter group-hover:text-primary transition-colors text-text">
+                            <h4 className="text-sm md:text-base font-black italic uppercase truncate tracking-tighterer group-hover:text-primary transition-colors text-text">
                               {product.title}
                             </h4>
                             <div className="flex items-center gap-3 mt-1">
@@ -185,7 +185,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
                     ))
                   : !loading && (
                       <div className="col-span-full text-center py-20 opacity-30 italic">
-                        <p className="text-pText font-bold uppercase tracking-widest text-sm">
+                        <p className="text-pText font-bold uppercase tracking-tighter text-sm">
                           কোনো পণ্য পাওয়া যায়নি
                         </p>
                       </div>

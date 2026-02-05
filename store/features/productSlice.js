@@ -8,7 +8,7 @@ export const fetchAllProducts = createAsyncThunk(
   'products/fetchAll',
   async (queryString = '', { rejectWithValue }) => {
     try {
-      const response = await API.get(`/products?${queryString}`);
+      const response = await API.get(`/api/products?${queryString}`);
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || 'Failed to load products');
@@ -21,7 +21,7 @@ export const fetchProductBySlug = createAsyncThunk(
   'products/fetchBySlug',
   async (slug, { rejectWithValue }) => {
     try {
-      const response = await API.get(`/products/details/${slug}`);
+      const response = await API.get(`/api/products/details/${slug}`);
       return response.data; // { success, product }
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || 'Product not found');
@@ -34,7 +34,7 @@ export const fetchRelatedProducts = createAsyncThunk(
   'products/fetchRelated',
   async (categoryId, { rejectWithValue }) => {
     try {
-      const response = await API.get(`/products/related/${categoryId}`);
+      const response = await API.get(`/api/products/related/${categoryId}`);
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || 'Related load failed');
@@ -47,7 +47,7 @@ export const searchProducts = createAsyncThunk(
   'products/search',
   async (searchTerm, { rejectWithValue }) => {
     try {
-      const response = await API.get(`/products/search?search=${searchTerm}`);
+      const response = await API.get(`/api/products/search?search=${searchTerm}`);
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || 'Search failed');
@@ -60,7 +60,7 @@ export const createProduct = createAsyncThunk(
   'products/create',
   async (formData, { rejectWithValue }) => {
     try {
-      const response = await API.post('/products', formData);
+      const response = await API.post('/api/products', formData);
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || 'Creation failed');
@@ -73,7 +73,7 @@ export const updateProduct = createAsyncThunk(
   'products/update',
   async ({ id, formData }, { rejectWithValue }) => {
     try {
-      const response = await API.patch(`/products/${id}`, formData);
+      const response = await API.patch(`/api/products/${id}`, formData);
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || 'Update failed');
@@ -86,7 +86,7 @@ export const updateProductStatus = createAsyncThunk(
   'products/updateStatus',
   async ({ id, status }, { rejectWithValue }) => {
     try {
-      const response = await API.patch(`/products/status/${id}`, { status });
+      const response = await API.patch(`/api/products/status/${id}`, { status });
       return { id, status: response.data.status || status };
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || 'Status update failed');
@@ -99,7 +99,7 @@ export const deleteProduct = createAsyncThunk(
   'products/delete',
   async (id, { rejectWithValue }) => {
     try {
-      await API.delete(`/products/${id}`);
+      await API.delete(`/api/products/${id}`);
       return id;
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || 'Delete failed');

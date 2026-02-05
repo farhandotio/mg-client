@@ -40,7 +40,7 @@ export default function OrderDetailsPage() {
       <div className="min-h-screen bg-bg flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <Loader2 className="animate-spin text-primary" size={40} />
-          <p className="text-[12px] font-black uppercase tracking-widest text-primary animate-pulse">
+          <p className="text-[12px] font-black uppercase tracking-tighter text-primary animate-pulse">
             লোড হচ্ছে...
           </p>
         </div>
@@ -68,7 +68,7 @@ export default function OrderDetailsPage() {
           <button
             aria-label="পিছনে ফিরে যান"
             onClick={() => router.back()}
-            className="flex items-center gap-3 text-[12px] font-black uppercase tracking-widest text-pText hover:text-primary transition-all group"
+            className="flex items-center gap-3 text-[12px] font-black uppercase tracking-tighter text-pText hover:text-primary transition-all group"
           >
             <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> ফিরে
             যান
@@ -95,15 +95,15 @@ export default function OrderDetailsPage() {
               <div className="md:col-span-9 space-y-6">
                 <div className="flex items-center gap-3 bg-primary/10 w-fit px-4 py-1 rounded-full text-primary border border-primary/20">
                   <Zap size={14} fill="currentColor" />
-                  <span className="text-[10px] md:text-[12px] font-black uppercase tracking-[0.3em]">
+                  <span className="text-[10px] md:text-[12px] font-black uppercase tracking-tighter">
                     অর্ডারটি এখন: {getStatusInBangla(order.orderStatus)}
                   </span>
                 </div>
-                <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-none italic">
+                <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighterer leading-none italic">
                   {getStatusInBangla(order.orderStatus)}
                   <span className="text-primary opacity-50">.</span>
                 </h1>
-                <div className="flex flex-wrap gap-6 text-[11px] font-bold text-pText uppercase tracking-widest bg-bg/40 p-4 rounded-md w-fit border border-white/5">
+                <div className="flex flex-wrap gap-6 text-[11px] font-bold text-pText uppercase tracking-tighter bg-bg/40 p-4 rounded-md w-fit border border-white/5">
                   <p>
                     আইডি: <span className="text-text font-mono">#{order._id.slice(-12)}</span>
                   </p>
@@ -133,7 +133,7 @@ export default function OrderDetailsPage() {
             <div className="lg:col-span-7 bg-card/30 rounded-xl p-8 md:p-12 border border-border/30 space-y-12">
               <div className="flex items-center gap-3 text-pText">
                 <Cpu size={18} />
-                <h3 className="text-xs font-black uppercase tracking-[0.3em]">
+                <h3 className="text-xs font-black uppercase tracking-tighter">
                   অর্ডারকৃত পণ্যের তালিকা
                 </h3>
               </div>
@@ -196,13 +196,13 @@ export default function OrderDetailsPage() {
               <div className="bg-card/30 rounded-xl p-8 md:p-10 border border-border/30 space-y-6">
                 <div className="flex items-center gap-3 text-pText">
                   <Fingerprint size={18} />
-                  <h3 className="text-xs font-black uppercase tracking-[0.3em]">ডেলিভারি ঠিকানা</h3>
+                  <h3 className="text-xs font-black uppercase tracking-tighter">ডেলিভারি ঠিকানা</h3>
                 </div>
                 <div className="space-y-3">
                   <p className="text-2xl font-black uppercase text-text leading-tight italic">
                     {order.shippingAddress?.street}
                   </p>
-                  <p className="text-[12px] font-black text-pText uppercase tracking-widest">
+                  <p className="text-[12px] font-black text-pText uppercase tracking-tighter">
                     শহর: {order.shippingAddress?.city} <br />
                     পোস্ট কোড: {order.shippingAddress?.zip} <br />
                     বিভাগ: {order.shippingAddress?.state || 'প্রদান করা হয়নি'}
@@ -217,7 +217,7 @@ export default function OrderDetailsPage() {
 
               {/* আর্থিক হিসাব */}
               <div className="bg-primary text-white rounded-xl p-8 md:p-10 space-y-8 shadow-2xl shadow-primary/20 print:bg-black print:text-white">
-                <div className="space-y-4 text-[12px] font-black uppercase tracking-widest opacity-90">
+                <div className="space-y-4 text-[12px] font-black uppercase tracking-tighter opacity-90">
                   <div className="flex justify-between border-b border-bg/10 pb-2">
                     <span>পণ্যের মোট দাম</span>
                     <span>৳{order.pricing?.itemsPrice?.toLocaleString()}</span>
@@ -232,7 +232,7 @@ export default function OrderDetailsPage() {
                   <p className="text-[11px] font-black uppercase tracking-wide opacity-70">
                     মোট পরিশোধযোগ্য
                   </p>
-                  <p className="text-5xl md:text-6xl font-black italic tracking-tighter">
+                  <p className="text-5xl md:text-6xl font-black italic tracking-tighterer">
                     ৳{order.pricing?.totalPrice?.toLocaleString()}
                   </p>
                 </div>

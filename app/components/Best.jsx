@@ -28,7 +28,7 @@ export default function Best() {
                 সবচেয়ে জনপ্রিয়
               </span>
             </div>
-            <h2 className="text-xl md:text-2xl font-black text-text tracking-tight leading-none">
+            <h2 className="text-xl md:text-2xl font-black text-text tracking-tighter leading-none">
               সেরা <span className="text-primary">বিক্রিত পণ্য</span>
             </h2>
           </div>
@@ -60,7 +60,7 @@ export default function Best() {
             <div className="col-span-full py-16 text-center border-2 border-dashed border-border/10 rounded-md bg-card/10">
               <div className="flex flex-col items-center gap-2 opacity-40">
                 <TrendingUp size={24} />
-                <p className="text-pText font-bold uppercase tracking-widest text-[11px]">
+                <p className="text-pText font-bold uppercase tracking-tighter text-[11px]">
                   বর্তমানে কোনো তথ্য নেই
                 </p>
               </div>

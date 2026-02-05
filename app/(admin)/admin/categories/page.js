@@ -84,10 +84,10 @@ export default function CategoriesPage() {
             )}
           </div>
           <div>
-            <p className="font-black text-white text-[11px] uppercase tracking-tighter leading-none">
+            <p className="font-black text-white text-[11px] uppercase tracking-tighterer leading-none">
               {item?.name}
             </p>
-            <p className="text-[10px] text-pText tracking-widest uppercase mt-1 opacity-50">
+            <p className="text-[10px] text-pText tracking-tighter uppercase mt-1 opacity-50">
               ID: {item?._id.slice(-8)}
             </p>
           </div>
@@ -123,7 +123,7 @@ export default function CategoriesPage() {
               Vault_Architecture
             </span>
           </div>
-          <h1 className="text-4xl lg:text-5xl font-black uppercase italic tracking-tighter leading-none">
+          <h1 className="text-4xl lg:text-5xl font-black uppercase italic tracking-tighterer leading-none">
             Data <span className="text-primary">Categories</span>
           </h1>
         </div>
@@ -131,7 +131,7 @@ export default function CategoriesPage() {
         <div className="max-md:w-full">
           <Button
             aria-label="create category"
-            url={'/admin/categories/create'}
+            url={'/admin/api/categories/create'}
             text={'Create Category'}
             icon={Plus}
           />
@@ -158,10 +158,10 @@ export default function CategoriesPage() {
 
             <div className="flex justify-between items-center mb-8 relative">
               <div>
-                <h2 className="text-2xl font-black italic uppercase tracking-tighter text-text">
+                <h2 className="text-2xl font-black italic uppercase tracking-tighterer text-text">
                   Modify <span className="text-primary">Class</span>
                 </h2>
-                <p className="text-[10px] font-black uppercase tracking-widest text-pText opacity-50 mt-1">
+                <p className="text-[10px] font-black uppercase tracking-tighter text-pText opacity-50 mt-1">
                   Reference_ID: {selectedCategory?._id}
                 </p>
               </div>
@@ -176,7 +176,7 @@ export default function CategoriesPage() {
 
             <form onSubmit={handleUpdateSubmit} className="space-y-6 relative">
               <div className="space-y-2">
-                <label className="text-[12px] font-black uppercase tracking-[0.2em] text-primary">
+                <label className="text-[12px] font-black uppercase tracking-tighter text-primary">
                   Category_Name
                 </label>
                 <input
@@ -189,7 +189,7 @@ export default function CategoriesPage() {
               </div>
 
               <div className="space-y-2">
-                <label className="text-[12px] font-black uppercase tracking-[0.2em] text-primary flex items-center gap-2">
+                <label className="text-[12px] font-black uppercase tracking-tighter text-primary flex items-center gap-2">
                   Image_URL <LinkIcon size={10} />
                 </label>
                 <input
@@ -216,7 +216,7 @@ export default function CategoriesPage() {
                 aria-label="submit"
                 type="submit"
                 disabled={isUpdating}
-                className="w-full bg-primary hover:bg-primary/90 text-black font-black uppercase italic py-4 rounded-md transition-all active:scale-95 flex items-center justify-center gap-2 text-xs tracking-widest disabled:opacity-50"
+                className="w-full bg-primary hover:bg-primary/90 text-black font-black uppercase italic py-4 rounded-md transition-all active:scale-95 flex items-center justify-center gap-2 text-xs tracking-tighter disabled:opacity-50"
               >
                 {isUpdating ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />}
                 {isUpdating ? 'Synchronizing...' : 'Commit Changes'}
@@ -229,7 +229,7 @@ export default function CategoriesPage() {
       {/* Summary Footer */}
       <div className="mt-10 flex items-center gap-4 text-pText/40">
         <div className="h-0.5 flex-1 bg-linear-to-r from-transparent via-border/50 to-transparent"></div>
-        <p className="text-[10px] font-black uppercase tracking-[0.5em] whitespace-nowrap">
+        <p className="text-[10px] font-black uppercase tracking-tighter whitespace-nowrap">
           Total_Active_Classes: {categories.length}
         </p>
         <div className="h-0.5 flex-1 bg-linear-to-r from-transparent via-border/50 to-transparent"></div>

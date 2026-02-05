@@ -28,7 +28,7 @@ export default function Feature() {
                 বেস্ট কালেকশন
               </span>
             </div>
-            <h2 className="text-xl md:text-2xl font-black text-text tracking-tight leading-none">
+            <h2 className="text-xl md:text-2xl font-black text-text tracking-tighter leading-none">
               আপনার জন্য <span className="text-primary">বাছাইকৃত</span>
             </h2>
           </div>
@@ -58,7 +58,7 @@ export default function Feature() {
             ))
           ) : (
             <div className="col-span-full py-16 text-center border-2 border-dashed border-border/10 rounded-md">
-              <p className="text-pText opacity-60 text-sm font-bold tracking-widest uppercase">
+              <p className="text-pText opacity-60 text-sm font-bold tracking-tighter uppercase">
                 বর্তমানে কোনো পণ্য পাওয়া যায়নি
               </p>
             </div>

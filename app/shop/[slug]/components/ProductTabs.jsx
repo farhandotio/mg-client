@@ -80,7 +80,7 @@ export default function ProductTabs({ product }) {
                       <span className="text-pText/40 font-black uppercase text-[11px] group-hover/item:text-primary transition-colors">
                         {item.key}
                       </span>
-                      <span className="font-bold text-sm tracking-tight text-text/90 italic">
+                      <span className="font-bold text-sm tracking-tighter text-text/90 italic">
                         {item.value}
                       </span>
                     </div>
@@ -88,7 +88,7 @@ export default function ProductTabs({ product }) {
                 ) : (
                   <div className="col-span-full py-10 flex flex-col items-center opacity-20">
                     <Database size={40} className="mb-4" />
-                    <p className="text-[12px] uppercase font-black tracking-widest text-center">
+                    <p className="text-[12px] uppercase font-black tracking-tighter text-center">
                       কারিগরি তথ্য পাওয়া যায়নি
                     </p>
                   </div>

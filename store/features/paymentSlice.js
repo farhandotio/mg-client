@@ -8,10 +8,10 @@ const initialState = {
   success: false,
 };
 
-// ১️⃣ Init Payment → ব্যাকএন্ডের /api/payment/ssl/init রুটে হিট করবে
+// ১️⃣ Init Payment → ব্যাকএন্ডের /api/api/payment/ssl/init রুটে হিট করবে
 export const initSSLPayment = createAsyncThunk('payment/init', async ({ orderId }, thunkAPI) => {
   try {
-    const response = await API.post('/payment/ssl/init', { orderId });
+    const response = await API.post('/api/payment/ssl/init', { orderId });
     // ব্যাকএন্ড রেসপন্স: { success: true, gatewayUrl: "..." }
     return response.data;
   } catch (error) {

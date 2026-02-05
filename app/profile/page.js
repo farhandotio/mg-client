@@ -201,10 +201,10 @@ export default function ProfilePage() {
             {/* Info Section */}
             <div className="flex-1 text-center md:text-left space-y-4 md:space-y-6 w-full">
               <div>
-                <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-text tracking-tighter italic uppercase leading-[0.9]">
+                <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-text tracking-tighterer italic uppercase leading-[0.9]">
                   {user?.fullname || 'Unknown Entity'}
                 </h1>
-                <p className="text-xs md:text-sm font-bold text-primary/80 tracking-[0.3em] uppercase mt-2">
+                <p className="text-xs md:text-sm font-bold text-primary/80 tracking-tighter uppercase mt-2">
                   {user?.role === 'admin' ? 'System Administrator' : 'Authorized User'}
                 </p>
                 <p className="text-xs text-pText/50 font-mono mt-1">ID: {user?._id}</p>
@@ -214,7 +214,7 @@ export default function ProfilePage() {
                 <button
                   aria-label="edit open"
                   onClick={openEditModal}
-                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3 bg-white/5 border border-white/10 text-text font-black uppercase text-[12px] tracking-widest rounded-md hover:bg-primary hover:text-white hover:border-primary hover:shadow-[0_0_20px_rgba(255,111,92,0.4)] transition-all duration-300"
+                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3 bg-white/5 border border-white/10 text-text font-black uppercase text-[12px] tracking-tighter rounded-md hover:bg-primary hover:text-white hover:border-primary hover:shadow-[0_0_20px_rgba(255,111,92,0.4)] transition-all duration-300"
                 >
                   <Edit3 size={14} /> Edit Profile
                 </button>
@@ -222,7 +222,7 @@ export default function ProfilePage() {
                   aria-label="logout"
                   onClick={handleLogout}
                   disabled={isLoggingOut}
-                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3 bg-red-500/5 text-red-500 border border-red-500/20 font-black uppercase text-[12px] tracking-widest rounded-md hover:bg-red-500 hover:text-white transition-all duration-300 disabled:opacity-50"
+                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3 bg-red-500/5 text-red-500 border border-red-500/20 font-black uppercase text-[12px] tracking-tighter rounded-md hover:bg-red-500 hover:text-white transition-all duration-300 disabled:opacity-50"
                 >
                   {isLoggingOut ? (
                     <Loader2 size={14} className="animate-spin" />
@@ -249,7 +249,7 @@ export default function ProfilePage() {
             <div className="flex justify-between items-end px-2">
               <div>
                 <h3 className="text-xl md:text-2xl font-black italic text-text">Shipping Nodes</h3>
-                <p className="text-[11px] font-bold text-pText uppercase tracking-widest">
+                <p className="text-[11px] font-bold text-pText uppercase tracking-tighter">
                   Delivery Endpoints
                 </p>
               </div>
@@ -280,7 +280,7 @@ export default function ProfilePage() {
                       <div className="space-y-1.5">
                         <div className="flex items-center gap-2 text-primary">
                           <MapPin size={14} className="shrink-0" />
-                          <p className="text-xs font-black uppercase tracking-widest text-text line-clamp-1">
+                          <p className="text-xs font-black uppercase tracking-tighter text-text line-clamp-1">
                             {addr.street}
                           </p>
                         </div>
@@ -325,7 +325,7 @@ export default function ProfilePage() {
                 ))
               ) : (
                 <div className="text-center py-12 bg-card/20 rounded-md border border-dashed border-border/40">
-                  <p className="text-pText/40 text-[12px] font-black uppercase tracking-widest">
+                  <p className="text-pText/40 text-[12px] font-black uppercase tracking-tighter">
                     No coordinates found
                   </p>
                 </div>
@@ -338,13 +338,13 @@ export default function ProfilePage() {
             <div className="flex justify-between items-end px-2">
               <div>
                 <h3 className="text-xl md:text-2xl font-black italic text-text">Data Logs</h3>
-                <p className="text-[11px] font-bold text-pText uppercase tracking-widest">
+                <p className="text-[11px] font-bold text-pText uppercase tracking-tighter">
                   Recent Acquisitions
                 </p>
               </div>
               <Link
                 href="/orders"
-                className="text-primary text-[12px] font-black uppercase tracking-widest hover:underline decoration-2 underline-offset-4"
+                className="text-primary text-[12px] font-black uppercase tracking-tighter hover:underline decoration-2 underline-offset-4"
               >
                 View Archive
               </Link>
@@ -456,7 +456,7 @@ export default function ProfilePage() {
                   <h2 className="text-2xl md:text-3xl font-black italic uppercase text-white">
                     Update Protocol
                   </h2>
-                  <p className="text-[12px] text-pText uppercase tracking-widest mt-2">
+                  <p className="text-[12px] text-pText uppercase tracking-tighter mt-2">
                     Modify Identity Data
                   </p>
                 </div>
@@ -478,7 +478,7 @@ export default function ProfilePage() {
 
                   {/* --- Image URL Input with Preview --- */}
                   <div className="space-y-2">
-                    <label className="text-[12px] font-black uppercase tracking-[0.2em] text-pText/60 ml-2">
+                    <label className="text-[12px] font-black uppercase tracking-tighter text-pText/60 ml-2">
                       Avatar URL Link
                     </label>
                     <div className="flex gap-3">
@@ -527,7 +527,7 @@ export default function ProfilePage() {
                   <h2 className="text-2xl md:text-3xl font-black italic uppercase text-white">
                     {isEditingAddress ? 'Re-Route Node' : 'New Coordinate'}
                   </h2>
-                  <p className="text-[12px] text-pText uppercase tracking-widest mt-2">
+                  <p className="text-[12px] text-pText uppercase tracking-tighter mt-2">
                     Logistics Data Entry
                   </p>
                 </div>
@@ -586,7 +586,7 @@ export default function ProfilePage() {
                   />
                   <label
                     htmlFor="isDefault"
-                    className="text-[12px] font-bold uppercase tracking-widest cursor-pointer select-none text-pText"
+                    className="text-[12px] font-bold uppercase tracking-tighter cursor-pointer select-none text-pText"
                   >
                     Set as Default Node
                   </label>
@@ -621,7 +621,7 @@ function StatCard({ label, value, delay }) {
       <p className="text-2xl font-black text-primary drop-shadow-[0_0_8px_rgba(255,111,92,0.5)]">
         {value || 0}
       </p>
-      <p className="text-[11px] uppercase tracking-widest text-pText/70 mt-1">{label}</p>
+      <p className="text-[11px] uppercase tracking-tighter text-pText/70 mt-1">{label}</p>
     </div>
   );
 }
@@ -629,7 +629,7 @@ function StatCard({ label, value, delay }) {
 function InputGroup({ label, icon, disabled, ...props }) {
   return (
     <div className="space-y-2">
-      <label className="text-[12px] font-black uppercase tracking-[0.2em] text-pText/60 ml-2">
+      <label className="text-[12px] font-black uppercase tracking-tighter text-pText/60 ml-2">
         {label}
       </label>
       <div className="relative group">

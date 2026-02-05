@@ -37,7 +37,7 @@ export default function OrdersPage() {
       <div className="min-h-screen bg-bg flex items-center justify-center">
         <div className="text-center space-y-4">
           <div className="w-12 h-12 border-4 border-primary/20 border-t-primary rounded-full animate-spin mx-auto" />
-          <p className="text-[12px] font-black uppercase tracking-[0.3em] text-primary animate-pulse">
+          <p className="text-[12px] font-black uppercase tracking-tighter text-primary animate-pulse">
             অর্ডার ভল্ট অ্যাক্সেস করা হচ্ছে...
           </p>
         </div>
@@ -62,11 +62,11 @@ export default function OrdersPage() {
           <div className="space-y-2">
             <Link
               href="/profile"
-              className="flex items-center gap-2 text-pText text-[12px] font-black uppercase tracking-widest hover:text-primary transition-colors mb-4"
+              className="flex items-center gap-2 text-pText text-[12px] font-black uppercase tracking-tighter hover:text-primary transition-colors mb-4"
             >
               <ArrowLeft size={14} /> প্রোফাইলে ফিরে যান
             </Link>
-            <h1 className="text-5xl md:text-7xl font-black italic uppercase tracking-tighter leading-none">
+            <h1 className="text-5xl md:text-7xl font-black italic uppercase tracking-tighterer leading-none">
               অর্ডার <span className="text-primary">লগ</span>
             </h1>
           </div>
@@ -78,7 +78,7 @@ export default function OrdersPage() {
                 aria-label="status filter"
                 key={status}
                 onClick={() => setFilter(status)}
-                className={`px-4 py-2 rounded-md text-[11px] font-black uppercase tracking-widest transition-all ${
+                className={`px-4 py-2 rounded-md text-[11px] font-black uppercase tracking-tighter transition-all ${
                   filter === status
                     ? 'bg-primary text-bg shadow-lg shadow-primary/20'
                     : 'text-pText hover:text-text'
@@ -102,7 +102,7 @@ export default function OrdersPage() {
               </h3>
               <Link
                 href="/shop"
-                className="text-primary text-[12px] font-black uppercase tracking-widest mt-4 inline-block border-b border-primary/30 pb-1"
+                className="text-primary text-[12px] font-black uppercase tracking-tighter mt-4 inline-block border-b border-primary/30 pb-1"
               >
                 প্রথম কেনাকাটা শুরু করুন
               </Link>
@@ -138,13 +138,13 @@ function OrderCard({ order }) {
         <div className="space-y-6 flex-1">
           <div className="flex items-start justify-between md:justify-start md:gap-6">
             <div>
-              <p className="text-[11px] font-black text-pText uppercase tracking-[0.2em] mb-1">
+              <p className="text-[11px] font-black text-pText uppercase tracking-tighter mb-1">
                 ট্রানজিশন আইডি
               </p>
               <h4 className="text-sm font-black text-text font-mono">#{order._id.toUpperCase()}</h4>
             </div>
             <div
-              className={`px-4 py-1.5 rounded-full border text-[11px] font-black uppercase tracking-widest ${
+              className={`px-4 py-1.5 rounded-full border text-[11px] font-black uppercase tracking-tighter ${
                 statusColors[order.orderStatus]
               }`}
             >
@@ -209,16 +209,16 @@ function OrderCard({ order }) {
         {/* Right: Price & CTA */}
         <div className="flex flex-col md:flex-row lg:flex-col justify-between items-end gap-4 min-w-42.5">
           <div className="text-right">
-            <p className="text-[11px] font-black text-pText uppercase tracking-widest mb-1">
+            <p className="text-[11px] font-black text-pText uppercase tracking-tighter mb-1">
               মোট প্রদেয়
             </p>
-            <h3 className="text-3xl font-black text-primary font-mono tracking-tighter italic">
+            <h3 className="text-3xl font-black text-primary font-mono tracking-tighterer italic">
               ৳{order.pricing?.totalPrice?.toLocaleString()}
             </h3>
           </div>
           <Link
             href={`/orders/${order._id}`}
-            className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-md text-[12px] font-black uppercase tracking-widest hover:bg-primary hover:text-bg transition-all group/btn"
+            className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-md text-[12px] font-black uppercase tracking-tighter hover:bg-primary hover:text-bg transition-all group/btn"
           >
             বিস্তারিত দেখুন{' '}
             <ChevronRight

@@ -49,12 +49,12 @@ export default function ShopSidebar({
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Filter size={16} className="text-primary" />
-            <h3 className="text-text font-black uppercase tracking-tighter text-sm italic">
+            <h3 className="text-text font-black uppercase tracking-tighterer text-sm italic">
               ফিল্টার
             </h3>
           </div>
           <button
-            aria-label='reset filters'
+            aria-label="reset filters"
             onClick={resetFilters}
             className="flex items-center gap-1.5 text-[12px] font-black uppercase text-red-500 hover:text-red-400 transition-colors group"
           >
@@ -87,7 +87,7 @@ export default function ShopSidebar({
       <div className="space-y-4">
         <div className="flex items-center gap-2 px-1">
           <LayoutGrid size={12} className="text-primary/60" />
-          <label className="text-[12px] font-black uppercase tracking-[0.2em] text-pText/60">
+          <label className="text-[12px] font-black uppercase tracking-tighter text-pText/60">
             ক্যাটাগরি সমূহ
           </label>
         </div>
@@ -134,7 +134,7 @@ export default function ShopSidebar({
 
       {/* ৪. গিয়ার টাইপ (স্লিম চিপস) */}
       <div className="space-y-4">
-        <label className="text-[12px] font-black uppercase tracking-[0.2em] text-pText/60 px-1">
+        <label className="text-[12px] font-black uppercase tracking-tighter text-pText/60 px-1">
           কালেকশন টাইপ
         </label>
         <div className="grid grid-cols-1 gap-2">
@@ -142,7 +142,7 @@ export default function ShopSidebar({
             <Link
               key={type.slug}
               href={`/shop?productType=${type.slug}${selectedCategory ? `&category=${selectedCategory}` : ''}`}
-              className={`flex items-center justify-between p-3 rounded-md border text-[12px] font-black uppercase tracking-tighter transition-all ${
+              className={`flex items-center justify-between p-3 rounded-md border text-[12px] font-black uppercase tracking-tighterer transition-all ${
                 selectedType === type.slug
                   ? 'bg-primary text-bg border-primary'
                   : 'bg-white/5 border-border/20 text-pText hover:border-primary/40'
@@ -165,7 +165,7 @@ export default function ShopSidebar({
       <div className="space-y-5 pt-2">
         <div className="flex justify-between items-end px-1">
           <div className="flex flex-col">
-            <label className="text-[12px] font-black uppercase tracking-[0.2em] text-pText/60">
+            <label className="text-[12px] font-black uppercase tracking-tighter text-pText/60">
               বাজেট লিমিট
             </label>
             <span className="text-[10px] font-bold text-pText/40 uppercase mt-0.5">
@@ -192,7 +192,7 @@ export default function ShopSidebar({
             style={{ width: `${((priceRange - 500) / (200000 - 500)) * 100}%` }}
           />
         </div>
-        <div className="flex justify-between text-[10px] font-black text-pText/30 uppercase tracking-tighter px-1">
+        <div className="flex justify-between text-[10px] font-black text-pText/30 uppercase tracking-tighterer px-1">
           <span>৳৫০০</span>
           <span>৳২,০০,০০০</span>
         </div>
@@ -202,7 +202,7 @@ export default function ShopSidebar({
       <div className="pt-4 border-t border-border/10">
         <div className="flex items-center gap-2 opacity-30 group hover:opacity-100 transition-opacity">
           <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-          <span className="text-[10px] font-bold uppercase tracking-[0.3em]">
+          <span className="text-[10px] font-bold uppercase tracking-tighter">
             সিস্টেম সিঙ্ক: অনলাইন
           </span>
         </div>

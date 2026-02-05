@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Globe, Zap, Activity, ShieldCheck } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -49,7 +49,7 @@ export default function Hero() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
         <div className="space-y-8 z-10">
           <header className="space-y-6">
-            <h1 className="text-[40px] md:text-6xl font-black text-text tracking-tighter leading-[1.3]">
+            <h1 className="text-[40px] md:text-6xl font-black text-text tracking-tighterer leading-[1.3]">
               প্রযুক্তির আসল স্বাদ, <br />
               <span className="text-transparent text-[56px] md:text-7xl bg-clip-text bg-linear-to-r from-primary via-secondary to-primary">
                 এখন আপনার হাতের মুঠোয়।
@@ -149,9 +149,7 @@ function TrustBadge({ icon, title, desc, className = '', isLive = false }) {
       </div>
       <div className="flex flex-col leading-none">
         <span className="text-base font-black text-pText uppercase">{title}</span>
-        <span className="text-sm text-pText uppercase tracking-tighter mt-1">
-          {desc}
-        </span>
+        <span className="text-sm text-pText uppercase tracking-tighterer mt-1">{desc}</span>
       </div>
     </div>
   );

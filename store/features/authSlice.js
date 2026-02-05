@@ -18,7 +18,7 @@ const initialState = {
 
 export const registerUser = createAsyncThunk('auth/register', async (userData, thunkAPI) => {
   try {
-    const response = await API.post('/auth/register', userData);
+    const response = await API.post('/api/auth/register', userData);
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response?.data?.message || 'Registration failed');
@@ -27,7 +27,7 @@ export const registerUser = createAsyncThunk('auth/register', async (userData, t
 
 export const loginUser = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
   try {
-    const response = await API.post('/auth/login', credentials);
+    const response = await API.post('/api/auth/login', credentials);
     return response.data;
   } catch (error) {
     const errorData = error.response?.data;
@@ -41,7 +41,7 @@ export const loginUser = createAsyncThunk('auth/login', async (credentials, thun
 
 export const logoutUser = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    await API.post('/auth/logout');
+    await API.post('/api/auth/logout');
     return null;
   } catch (error) {
     return thunkAPI.rejectWithValue('Logout failed');
@@ -50,7 +50,7 @@ export const logoutUser = createAsyncThunk('auth/logout', async (_, thunkAPI) =>
 
 export const getMe = createAsyncThunk('auth/getMe', async (_, thunkAPI) => {
   try {
-    const response = await API.get('/auth/user/profile');
+    const response = await API.get('/api/auth/user/profile');
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(null);
@@ -60,7 +60,7 @@ export const getMe = createAsyncThunk('auth/getMe', async (_, thunkAPI) => {
 // নতুন: প্রোফাইল আপডেট
 export const updateMe = createAsyncThunk('auth/updateMe', async (userData, thunkAPI) => {
   try {
-    const response = await API.patch('/auth/user/update-me', userData);
+    const response = await API.patch('/api/auth/user/update-me', userData);
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response?.data?.message || 'Update failed');
@@ -73,7 +73,7 @@ export const updateMe = createAsyncThunk('auth/updateMe', async (userData, thunk
 
 export const getAddresses = createAsyncThunk('auth/getAddresses', async (_, thunkAPI) => {
   try {
-    const response = await API.get('/auth/user/addresses');
+    const response = await API.get('/api/auth/user/addresses');
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response?.data?.message || 'Failed to fetch addresses');
@@ -82,7 +82,7 @@ export const getAddresses = createAsyncThunk('auth/getAddresses', async (_, thun
 
 export const addAddress = createAsyncThunk('auth/addAddress', async (addressData, thunkAPI) => {
   try {
-    const response = await API.post('/auth/user/addresses', addressData);
+    const response = await API.post('/api/auth/user/addresses', addressData);
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response?.data?.message || 'Failed to add address');
@@ -94,7 +94,7 @@ export const updateAddress = createAsyncThunk(
   'auth/updateAddress',
   async ({ addressId, addressData }, thunkAPI) => {
     try {
-      const response = await API.patch(`/auth/user/addresses/${addressId}`, addressData);
+      const response = await API.patch(`/api/auth/user/addresses/${addressId}`, addressData);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response?.data?.message || 'Update failed');
@@ -107,7 +107,7 @@ export const setDefaultAddress = createAsyncThunk(
   'auth/setDefaultAddress',
   async (addressId, thunkAPI) => {
     try {
-      const response = await API.patch(`/auth/user/addresses/${addressId}/set-default`);
+      const response = await API.patch(`/api/auth/user/addresses/${addressId}/set-default`);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response?.data?.message || 'Action failed');
@@ -117,7 +117,7 @@ export const setDefaultAddress = createAsyncThunk(
 
 export const deleteAddress = createAsyncThunk('auth/deleteAddress', async (addressId, thunkAPI) => {
   try {
-    const response = await API.delete(`/auth/user/addresses/${addressId}`);
+    const response = await API.delete(`/api/auth/user/addresses/${addressId}`);
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response?.data?.message || 'Failed to delete address');
@@ -131,7 +131,7 @@ export const deleteAddress = createAsyncThunk('auth/deleteAddress', async (addre
 // নতুন: সব ইউজার ফেচ করা
 export const getAllUsersAdmin = createAsyncThunk('auth/getAllUsers', async (_, thunkAPI) => {
   try {
-    const response = await API.get('/auth/users');
+    const response = await API.get('/api/auth/users');
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response?.data?.message || 'Failed to fetch users');
@@ -141,7 +141,7 @@ export const getAllUsersAdmin = createAsyncThunk('auth/getAllUsers', async (_, t
 // নতুন: ইউজার ডিলিট করা
 export const deleteUserAdmin = createAsyncThunk('auth/deleteUser', async (userId, thunkAPI) => {
   try {
-    await API.delete(`/auth/users/${userId}`);
+    await API.delete(`/api/auth/users/${userId}`);
     return userId; // ডিলিট হওয়া আইডির রেফারেন্স রিটার্ন করা
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response?.data?.message || 'Delete failed');

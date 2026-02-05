@@ -86,10 +86,10 @@ export default function Footer() {
                 {item.icon}
               </div>
               <div className="space-y-1">
-                <h4 className="text-text font-black text-lg tracking-tight leading-none">
+                <h4 className="text-text font-black text-lg tracking-tighter leading-none">
                   {item.title}
                 </h4>
-                <p className="text-pText/50 text-[12px] font-black uppercase tracking-widest italic">
+                <p className="text-pText/50 text-[12px] font-black uppercase tracking-tighter italic">
                   {item.desc}
                 </p>
               </div>
@@ -207,7 +207,7 @@ export default function Footer() {
           <div className="flex items-center gap-8 opacity-40 hover:opacity-100 transition-opacity">
             <div className="flex items-center gap-2">
               <Zap size={14} className="text-primary fill-current animate-pulse" />
-              <span className="text-[11px] font-black uppercase tracking-widest italic">
+              <span className="text-[11px] font-black uppercase tracking-tighter italic">
                 পাওয়ারড বাই নেক্সট কোড
               </span>
             </div>

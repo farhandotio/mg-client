@@ -9,10 +9,10 @@ export default function RefundPolicy() {
       <div className="max-w-4xl mx-auto px-6">
         {/* Header */}
         <div className="mb-16 space-y-4 border-l-4 border-primary pl-8">
-          <h1 className="text-5xl md:text-7xl font-black text-text italic uppercase tracking-tighter">
+          <h1 className="text-5xl md:text-7xl font-black text-text italic uppercase tracking-tighterer">
             Return <span className="text-primary">& Refund</span>
           </h1>
-          <p className="text-pText font-bold uppercase tracking-[0.3em] text-sm opacity-60">
+          <p className="text-pText font-bold uppercase tracking-tighter text-sm opacity-60">
             Protocol_v2.1 // Last Updated: 2026
           </p>
         </div>

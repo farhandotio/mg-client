@@ -37,7 +37,7 @@ export default function Flash() {
           <div className="space-y-3">
             <div className="flex items-center gap-2 text-secondary">
               <Zap size={18} className="fill-secondary animate-pulse" />
-              <h2 className="text-xl md:text-2xl font-black text-text tracking-tight uppercase italic">
+              <h2 className="text-xl md:text-2xl font-black text-text tracking-tighter uppercase italic">
                 ফ্ল্যাশ <span className="text-secondary">ডিল</span>
               </h2>
             </div>
@@ -84,7 +84,7 @@ export default function Flash() {
             ))
           ) : (
             <div className="col-span-full py-16 text-center border-2 border-dashed border-border/10 rounded-md bg-card/20">
-              <p className="text-pText opacity-60 text-sm font-bold tracking-widest uppercase">
+              <p className="text-pText opacity-60 text-sm font-bold tracking-tighter uppercase">
                 এই মুহূর্তে কোনো ফ্ল্যাশ ডিল নেই
               </p>
             </div>

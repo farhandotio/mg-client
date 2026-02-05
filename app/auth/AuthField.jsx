@@ -37,7 +37,7 @@ const AuthField = React.forwardRef(({ icon, error, ...props }, ref) => (
     {error && (
       <div className="flex items-center gap-1.5 px-3 py-1 text-red-500 animate-in fade-in slide-in-from-top-1 duration-300">
         <AlertCircle size={12} strokeWidth={3} className="shrink-0" />
-        <span className="text-[12px] font-black uppercase tracking-widest leading-none">
+        <span className="text-[12px] font-black uppercase tracking-tighter leading-none">
           {error.message}
         </span>
       </div>

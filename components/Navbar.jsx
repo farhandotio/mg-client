@@ -121,7 +121,7 @@ export default function Navbar() {
             <Logo width={110} height={40} />
 
             {/* --- ডেস্কটপ মেনু --- */}
-            <div className="hidden lg:flex items-center gap-10 text-[11px] font-black uppercase tracking-[0.2em]">
+            <div className="hidden lg:flex items-center gap-10 text-[11px] font-black uppercase tracking-tighter">
               <Link
                 href="/"
                 className={`transition-colors hover:text-primary ${pathname === '/' ? 'text-primary' : 'text-text'}`}
@@ -264,7 +264,7 @@ export default function Navbar() {
                   <div className="w-8 h-8 bg-primary text-bg rounded-md flex items-center justify-center font-black text-xs shadow-lg shadow-primary/20">
                     {user?.fullname?.charAt(0).toUpperCase()}
                   </div>
-                  <span className="text-[12px] font-black uppercase tracking-widest text-text">
+                  <span className="text-[12px] font-black uppercase tracking-tighter text-text">
                     {user?.fullname?.split(' ')[0]}
                   </span>
                   <ChevronDown
