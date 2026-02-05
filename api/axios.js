@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api',
+  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000',
   timeout: 15000,
   headers: {
     'Content-Type': 'application/json',
@@ -23,7 +23,7 @@ API.interceptors.response.use(
       originalRequest._retry = true;
 
       try {
-        await axios.get(`${API.defaults.baseURL}/auth/refresh`, {
+        await axios.get(`${API.defaults.baseURL}/api/auth/refresh`, {
           withCredentials: true,
         });
 
