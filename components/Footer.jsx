@@ -16,9 +16,9 @@ export default function Footer() {
   if (isAdminPage || isAuthPage) return null;
 
   return (
-    <footer className="relative p-4 sm:p-6 lg:p-8 -mt-1">
+    <footer className="relative p-4 sm:p-6 lg:p-8">
       {/* Outer Rounded Container */}
-      <div className="relative mx-auto overflow-hidden rounded-[2.5rem] bg-bg p-8 text-text md:p-12 lg:p-16">
+      <div className="relative mx-auto overflow-hidden bg-bg text-text p-4 md:p-8 lg:p-12">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
           {/* Left Column - Navigation, CTA, Contact Info, Newsletter & Socials */}
           <div className="flex flex-col justify-between space-y-12 lg:col-span-7">

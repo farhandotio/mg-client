@@ -19,9 +19,9 @@ const Hero = () => {
         <div className="absolute inset-0 bg-linear-to-b from-black/30 via-black/10 to-black/70" />
       </div>
 
-      <div className="relative mx-auto flex min-h-[78vh] max-w-7xl flex-col justify-center px-4 pb-20 pt-2 md:pt-34 sm:px-6 lg:px-8">
+      <div className="relative mx-auto flex min-h-[78vh] max-w-7xl flex-col justify-center px-4 pb-10 md:pb-20 pt-2 md:pt-15 sm:px-6 lg:px-8">
         <div className="max-w-3xl space-y-8 text-white">
-          <h1 className="text-5xl font-medium leading-tight tracking-tight text-white sm:text-5xl md:text-6xl">
+          <h1 className="text-5xl font-bold leading-tight text-white sm:text-5xl md:text-6xl">
             Your <span className="text-primary">style + function</span> together online in audio and
             gadgets.
           </h1>

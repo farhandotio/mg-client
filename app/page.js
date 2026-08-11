@@ -12,8 +12,8 @@ export default function page() {
       <Hero />
       <FloatingHeadphoneSection />
       <Feature />
-      <FeatureShowcaseSection />
       <KeywordCardSection />
+      <FeatureShowcaseSection />
       <Footer/>
     </main>
   );

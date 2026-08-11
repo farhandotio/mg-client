@@ -46,10 +46,10 @@ export default function FeatureShowcaseSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-bg px-4 py-16 sm:px-6 lg:px-8"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-bg"
     >
       {/* Dark Outer Container */}
-      <div className="relative w-full rounded-[2.5rem] bg-pText p-8 md:p-12 lg:p-16 text-bg shadow-2xl">
+      <div className="relative w-full bg-pText p-4 md:p-8 lg:p-12 text-bg shadow-2xl">
         {/* Main Section Heading */}
         <h2 className="max-w-3xl text-3xl font-medium leading-tight tracking-tight text-bg sm:text-4xl md:text-5xl lg:text-[3.25rem]">
           Unmatched quality, smart features, and innovative technologies
@@ -111,10 +111,7 @@ export default function FeatureShowcaseSection() {
                     />
                   </svg>
                 </button>
-                <button
-                  aria-label="Next"
-                  className="text-bg transition-colors hover:text-bg/90"
-                >
+                <button aria-label="Next" className="text-bg transition-colors hover:text-bg/90">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"

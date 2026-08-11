@@ -58,11 +58,11 @@ export default function FloatingHeadphoneSection() {
       className="relative flex min-h-[80vh] items-center justify-center overflow-hidden bg-bg px-4 py-24 sm:px-6 lg:px-8"
     >
       {/* Outer Card Wrapper matching the image border radius and shadow */}
-      <div className="relative flex w-full items-center justify-center p-8 py-20 md:p-16 lg:p-24">
+      <div className="relative flex w-full items-center justify-center p-4 py-20 md:p-16 lg:p-24">
         {/* Background Text (Centered & Behind Image) */}
         <h1
           ref={textRef}
-          className="pointer-events-none select-none text-center text-3xl font-extrabold leading-[1.15] tracking-tight text-text sm:text-5xl md:text-6xl lg:text-7xl max-w-4xl z-0"
+          className="pointer-events-none select-none text-center text-5xl font-extrabold leading-[1.15] tracking-tight text-text sm:text-5xl md:text-6xl lg:text-7xl max-w-4xl z-0"
         >
           From pioneering wireless audio to designing state-of-the-art speakers,{' '}
           <span className="italic font-serif">Sonos</span>{' '}
