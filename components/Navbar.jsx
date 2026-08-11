@@ -10,7 +10,6 @@ import {
   ShoppingCart,
   User,
   ChevronDown,
-  Menu,
   Zap,
   LayoutDashboard,
   LogOut,
@@ -105,6 +104,10 @@ export default function Navbar() {
     setIsCategoryOpen(false);
   }, [pathname]);
 
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+
   // কন্ডিশনাল রেন্ডারিং
   if (isAdminPage || isAuthPage) return null;
 
@@ -114,131 +117,174 @@ export default function Navbar() {
         variants={{ visible: { y: 0 }, hidden: { y: '-100%' } }}
         animate={hidden ? 'hidden' : 'visible'}
         transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-        className="sticky top-0 z-100 w-full bg-card/60 backdrop-blur-3xl border-b max-md:py-2 border-bg/5 shadow-lg shadow-black/5"
+        className="sticky top-0 z-100 w-full bg-linear-to-b to-transparent from-card/60 backdrop-blur-3xl max-md:py-2"
       >
         <nav className="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between">
-          <div className="flex items-center gap-12">
+          <div className="flex items-center justify-between w-full">
             <Logo width={110} height={40} />
 
-            {/* --- ডেস্কটপ মেনু --- */}
-            <div className="hidden lg:flex items-center gap-10 text-[11px] font-black uppercase tracking-tighter">
-              <Link
-                href="/"
-                className={`transition-colors hover:text-primary ${pathname === '/' ? 'text-primary' : 'text-text'}`}
-              >
-                হোম
-              </Link>
-
-              <div className="relative" ref={categoryRef}>
-                <button
-                  onClick={() => setIsCategoryOpen(!isCategoryOpen)}
-                  className={`flex items-center gap-1.5 transition-colors hover:text-primary ${isCategoryOpen ? 'text-primary' : 'text-text'}`}
+            <div className="flex items-center gap-3 lg:gap-12 w-full px-0 lg:px-6">
+              {/* --- ডেস্কটপ মেনু --- */}
+              <div className="hidden lg:flex items-center gap-10 text-sm font-black uppercase tracking-tighter">
+                <Link
+                  href="/"
+                  className={`transition-colors hover:text-primary ${pathname === '/' ? 'text-primary' : 'text-text'}`}
                 >
-                  ক্যাটাগরি
-                  <ChevronDown
-                    size={12}
-                    className={`transition-transform duration-500 ${isCategoryOpen ? 'rotate-180' : '0'}`}
-                  />
-                </button>
+                  হোম
+                </Link>
 
-                <AnimatePresence>
-                  {isCategoryOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 15, scale: 0.95 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 15, scale: 0.95 }}
-                      className="absolute top-[120%] left-0 w-72 bg-card border border-bg/10 rounded-lg shadow-2xl p-3 z-50"
-                    >
-                      <div className="grid grid-cols-1 gap-1 max-h-100 overflow-y-auto no-scrollbar">
-                        {dynamicCategories?.map((cat) => (
-                          <Link
-                            key={cat._id}
-                            href={`/shop?category=${cat.slug}`}
-                            className="flex items-center gap-3 px-4 py-3 hover:bg-primary/10 rounded-md transition-all group"
-                          >
-                            <div className="w-9 h-9 rounded-md bg-primary/5 flex items-center justify-center text-primary group-hover:scale-110 transition-transform border border-primary/10">
-                              {cat.image?.url ? (
-                                <img
-                                  src={cat.image.url}
-                                  alt=""
-                                  className="w-5 h-5 object-contain"
-                                />
-                              ) : (
-                                <Box size={18} />
-                              )}
-                            </div>
-                            <span className="text-[12px] font-bold text-text group-hover:text-primary">
-                              {cat.name}
-                            </span>
-                          </Link>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                <div className="relative" ref={categoryRef}>
+                  <button
+                    onClick={() => setIsCategoryOpen(!isCategoryOpen)}
+                    className={`flex items-center gap-1.5 transition-colors hover:text-primary ${isCategoryOpen ? 'text-primary' : 'text-text'}`}
+                  >
+                    ক্যাটাগরি
+                    <ChevronDown
+                      size={12}
+                      className={`transition-transform duration-500 ${isCategoryOpen ? 'rotate-180' : '0'}`}
+                    />
+                  </button>
+
+                  <AnimatePresence>
+                    {isCategoryOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 15, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 15, scale: 0.95 }}
+                        className="absolute top-[120%] left-0 w-72 bg-card border border-bg/10 rounded-lg shadow-2xl p-3 z-50"
+                      >
+                        <div className="grid grid-cols-1 gap-1 max-h-100 overflow-y-auto no-scrollbar">
+                          {dynamicCategories?.map((cat) => (
+                            <Link
+                              key={cat._id}
+                              href={`/shop?category=${cat.slug}`}
+                              className="flex items-center gap-3 px-4 py-3 hover:bg-primary/10 rounded-md transition-all group"
+                            >
+                              <div className="w-9 h-9 rounded-md bg-primary/5 flex items-center justify-center text-primary group-hover:scale-110 transition-transform border border-primary/10">
+                                {cat.image?.url ? (
+                                  <img
+                                    src={cat.image.url}
+                                    alt=""
+                                    className="w-5 h-5 object-contain"
+                                  />
+                                ) : (
+                                  <Box size={18} />
+                                )}
+                              </div>
+                              <span className="text-[12px] font-bold text-text group-hover:text-primary">
+                                {cat.name}
+                              </span>
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                <Link
+                  href="/shop"
+                  aria-label="View Shopping Page"
+                  className={`transition-colors hover:text-primary ${pathname === '/shop' ? 'text-primary' : 'text-text'}`}
+                >
+                  শপ
+                </Link>
+
+                <Link
+                  aria-label="View Hot Deals Page"
+                  href="/shop?productType=HotDeals"
+                  className="flex items-center gap-1.5 text-secondary font-black italic hover:scale-105 transition-transform"
+                >
+                  <Zap size={14} fill="currentColor" className="animate-pulse" /> হট ডিলস
+                </Link>
               </div>
+            </div>
+
+            {/* --- ডানদিকের অ্যাকশন বাটনসমূহ --- */}
+            <div className="flex items-center gap-2 lg:hidden">
+              <button
+                aria-label="Search Products"
+                onClick={() => setIsSearchOpen(true)}
+                className="p-2 rounded-md text-text hover:text-primary transition-all"
+              >
+                <Search size={18} />
+              </button>
+
+              <button
+                aria-label="Toggle Menu"
+                onClick={() => setIsOpen((prev) => !prev)}
+                className="p-2 text-text ml-1 relative w-10 h-10 flex items-center justify-center"
+              >
+                <svg viewBox="0 0 24 24" className="w-6 h-6 text-current">
+                  <line
+                    x1="4"
+                    y1="7"
+                    x2="20"
+                    y2="7"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    className={`transition-transform duration-300 ${isOpen ? 'translate-y-5 rotate-45' : ''}`}
+                  />
+                  <line
+                    x1="4"
+                    y1="12"
+                    x2="20"
+                    y2="12"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    className={`transition-opacity duration-300 ${isOpen ? 'opacity-0' : 'opacity-100'}`}
+                  />
+                  <line
+                    x1="4"
+                    y1="17"
+                    x2="20"
+                    y2="17"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    className={`transition-transform duration-300 ${isOpen ? '-translate-y-5 -rotate-45' : ''}`}
+                  />
+                </svg>
+              </button>
+            </div>
+
+            <div className="hidden lg:flex items-center gap-2 md:gap-4 px-0 lg:px-6">
+              <button
+                aria-label="Switch theme"
+                onClick={toggleTheme}
+                className="p-2 rounded-md text-text hover:bg-bg/10 transition-all"
+              >
+                {mounted &&
+                  (theme === 'dark' ? (
+                    <Sun aria-label="Switch to Light Theme" size={18} className="text-yellow-500" />
+                  ) : (
+                    <Moon aria-label="Switch to Dark Theme" size={18} className="text-primary" />
+                  ))}
+              </button>
+
+              <button
+                aria-label="Search Products"
+                onClick={() => setIsSearchOpen(true)}
+                className="p-2 rounded-md text-text hover:text-primary transition-all"
+              >
+                <Search size={18} />
+              </button>
 
               <Link
-                href="/shop"
-                aria-label="View Shopping Page"
-                className={`transition-colors hover:text-primary ${pathname === '/shop' ? 'text-primary' : 'text-text'}`}
+                aria-label="View Shopping Cart"
+                href="/cart"
+                className="relative p-3 bg-primary/10 text-primary rounded-md hover:bg-primary hover:text-bg transition-all duration-300 group"
               >
-                শপ
-              </Link>
-
-              <Link
-                aria-label="View Hot Deals Page"
-                href="/shop?productType=HotDeals"
-                className="flex items-center gap-1.5 text-secondary font-black italic hover:scale-105 transition-transform"
-              >
-                <Zap size={14} fill="currentColor" className="animate-pulse" /> হট ডিলস
+                <ShoppingCart size={20} className="group-active:scale-75 transition-transform" />
+                {mounted && cartItems.length > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-primary text-bg text-[12px] font-black w-5 h-5 rounded-full flex items-center justify-center ">
+                    {cartItems.length}
+                  </span>
+                )}
               </Link>
             </div>
-          </div>
-
-          {/* --- ডানদিকের অ্যাকশন বাটনসমূহ --- */}
-          <div className="flex items-center gap-2 md:gap-4">
-            <button
-              aria-label="Switch theme"
-              onClick={toggleTheme}
-              className="p-2 rounded-md text-text hover:bg-bg/10 transition-all"
-            >
-              {mounted &&
-                (theme === 'dark' ? (
-                  <Sun aria-label="Switch to Light Theme" size={18} className="text-yellow-500" />
-                ) : (
-                  <Moon aria-label="Switch to Dark Theme" size={18} className="text-primary" />
-                ))}
-            </button>
-
-            <button
-              aria-label="Search Products"
-              onClick={() => setIsSearchOpen(true)}
-              className="p-2 rounded-md text-text hover:text-primary transition-all"
-            >
-              <Search size={18} />
-            </button>
-
-            <Link
-              aria-label="View Shopping Cart"
-              href="/cart"
-              className="relative p-3 bg-primary/10 text-primary rounded-md hover:bg-primary hover:text-bg transition-all duration-300 group"
-            >
-              <ShoppingCart size={20} className="group-active:scale-75 transition-transform" />
-              {mounted && cartItems.length > 0 && (
-                <span className="absolute -top-1 -right-1 bg-primary text-bg text-[12px] font-black w-5 h-5 rounded-full flex items-center justify-center ">
-                  {cartItems.length}
-                </span>
-              )}
-            </Link>
-
-            <button
-              aria-label="View Mobile Menu"
-              onClick={() => setIsOpen(true)}
-              className="lg:hidden p-2 text-text ml-1"
-            >
-              <Menu size={24} />
-            </button>
 
             {/* --- প্রোফাইল মেনু --- */}
             {!mounted ? (
