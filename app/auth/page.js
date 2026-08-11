@@ -191,7 +191,7 @@ function AuthForm() {
                     callbackUrl
                   )}`;
                 }}
-                className="w-full inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200/80 bg-white/90 px-4 py-3 text-sm font-semibold text-slate-900 shadow-sm transition hover:bg-slate-100"
+                className="w-full inline-flex items-center justify-center gap-2 rounded-md border border-slate-200/80 bg-white/90 px-4 py-4 text-sm font-semibold text-slate-900 shadow-sm transition hover:bg-slate-100 cursor-pointer"
               >
                 <FcGoogle size={18} /> Google দিয়ে সাইন ইন করুন
               </button>
