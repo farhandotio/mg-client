@@ -1,60 +1,25 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import Image from 'next/image';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { motion, useInView } from 'framer-motion';
 
 export default function KeywordCardSection() {
-  const sectionRef = useRef(null);
   const cardRef = useRef(null);
   const textGroupRef = useRef(null);
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const ctx = gsap.context(() => {
-      // Entrance animation for background texts
-      gsap.from(textGroupRef.current, {
-        opacity: 0,
-        scale: 0.9,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-          toggleActions: 'play none none reverse',
-        },
-      });
-
-      // Floating tilt animation for the image card
-      gsap.fromTo(
-        cardRef.current,
-        { rotation: 10, y: 0 },
-        {
-          rotation: 6,
-          y: -12,
-          repeat: -1,
-          yoyo: true,
-          duration: 3,
-          ease: 'sine.inOut',
-        }
-      );
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  const textInView = useInView(textGroupRef, { once: true, amount: 0.35 });
+  const cardInView = useInView(cardRef, { once: true, amount: 0.35 });
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative flex min-h-[80vh] items-center justify-center overflow-hidden bg-bg px-4 py-20 sm:px-6 lg:px-8"
-    >
+    <section className="relative flex min-h-[80vh] items-center justify-center overflow-hidden bg-bg px-4 py-20 sm:px-6 lg:px-8">
       {/* Outer Card Wrapper */}
       <div className="relative flex w-full items-center justify-center">
         {/* Typographic Layout Container */}
-        <div
+        <motion.div
           ref={textGroupRef}
+          initial={{ opacity: 0, y: 24, scale: 0.96 }}
+          animate={textInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 24, scale: 0.96 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
           className="relative flex flex-col items-center justify-center font-medium tracking-tight select-none"
         >
           {/* Top Words */}
@@ -77,8 +42,17 @@ export default function KeywordCardSection() {
             </span>
 
             {/* Rotated Floating Card */}
-            <div
+            <motion.div
               ref={cardRef}
+              initial={{ rotate: 10, y: 0 }}
+              animate={cardInView ? { rotate: 6, y: [0, -12, 0] } : { orotate: 10, y: 0 }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                repeatType: 'mirror',
+                ease: 'easeInOut',
+                delay: 0.2,
+              }}
               className="absolute right-[12%] top-[-40%] z-10 h-36 w-28 overflow-hidden rounded-2xl shadow-2xl transition-shadow duration-300 hover:shadow-2xl sm:h-52 sm:w-40 md:h-60 md:w-44"
             >
               <Image
@@ -89,13 +63,13 @@ export default function KeywordCardSection() {
                 sizes="(max-width: 640px) 112px, (max-width: 768px) 160px, 176px"
                 priority
               />
-            </div>
+            </motion.div>
           </div>
 
           {/* Bottom Words */}
           <span className="mt-2 text-3xl text-text sm:text-5xl md:text-6xl">Amplify</span>
           <span className="mt-2 text-3xl text-text sm:text-5xl md:text-6xl">Move</span>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

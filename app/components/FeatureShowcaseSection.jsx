@@ -1,53 +1,17 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import Image from 'next/image';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { motion, useInView } from 'framer-motion';
 
 export default function FeatureShowcaseSection() {
-  const sectionRef = useRef(null);
   const leftContentRef = useRef(null);
   const rightCardRef = useRef(null);
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const ctx = gsap.context(() => {
-      // Entrance animation for content
-      gsap.from(leftContentRef.current, {
-        opacity: 0,
-        x: -40,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-          toggleActions: 'play none none reverse',
-        },
-      });
-
-      gsap.from(rightCardRef.current, {
-        opacity: 0,
-        x: 40,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-          toggleActions: 'play none none reverse',
-        },
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  const leftInView = useInView(leftContentRef, { once: true, amount: 0.25 });
+  const rightInView = useInView(rightCardRef, { once: true, amount: 0.25 });
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-bg"
-    >
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-bg">
       {/* Dark Outer Container */}
       <div className="relative w-full bg-pText p-4 md:p-8 lg:p-12 text-bg shadow-2xl">
         {/* Main Section Heading */}
@@ -58,8 +22,11 @@ export default function FeatureShowcaseSection() {
         {/* Content Layout Grid */}
         <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end">
           {/* Left Column (Icon, Text, Controls & Small Image) */}
-          <div
+          <motion.div
             ref={leftContentRef}
+            initial={{ opacity: 0, x: -40 }}
+            animate={leftInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
             className="flex flex-col justify-between space-y-8 lg:col-span-5"
           >
             <div className="space-y-6">
@@ -133,21 +100,27 @@ export default function FeatureShowcaseSection() {
             {/* Left Small Image Card */}
             <div className="relative h-28 w-56 overflow-hidden rounded-2xl border border-white/10 bg-white/5">
               <Image
-                src="/images/Wireless_earbuds_in_charging_case_202608111348.jpeg"
+                src="/images/Consumer_robot_standing_on_table_202608111343.jpeg"
                 alt="Wireless earbuds charging case detail"
                 fill
                 className="object-cover"
                 sizes="224px"
               />
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column (Large Hero Card) */}
-          <div ref={rightCardRef} className="relative lg:col-span-7">
+          <motion.div
+            ref={rightCardRef}
+            initial={{ opacity: 0, x: 40 }}
+            animate={rightInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
+            transition={{ duration: 0.8, ease: 'easeOut', delay: 0.1 }}
+            className="relative lg:col-span-7"
+          >
             <div className="group relative h-[320px] w-full overflow-hidden rounded-3xl sm:h-[400px]">
               {/* Main Image */}
               <Image
-                src="/images/Gadgets_arranged_on_dark_surface_202608111352.jpeg"
+                src="/images/Technology_products_and_robotics…_202608111349.jpeg"
                 alt="Smart soundbar room setup"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -185,7 +158,7 @@ export default function FeatureShowcaseSection() {
                 </svg>
               </button>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

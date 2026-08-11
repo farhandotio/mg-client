@@ -104,8 +104,8 @@ export default function Footer() {
             <div className="relative h-[480px] w-full overflow-hidden rounded-3xl sm:h-[560px] lg:h-full min-h-[480px]">
               {/* Main Image */}
               <Image
-                src="/images/Man_wearing_wireless_headphones_202608111353.jpeg"
-                alt="Man wearing wireless headphones"
+                src="/images/Man_interacting_with_consumer_robot_202608111350.jpeg"
+                alt="Man interacting with consumer robot"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 500px"

@@ -9,7 +9,7 @@ const Hero = () => {
     <section className="relative overflow-hidden bg-bg">
       <div className="fixed top-0 left-0 inset-0">
         <Image
-          src="/images/Man_using_wireless_headphones_202608111342.jpeg"
+          src="/images/Consumer_robot_and_gadgets_in_202608111351.jpeg"
           alt="Man using wireless headphones"
           fill
           className="object-cover"

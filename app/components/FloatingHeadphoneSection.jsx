@@ -66,19 +66,17 @@ export default function FloatingHeadphoneSection() {
         >
           From pioneering wireless audio to designing state-of-the-art speakers,{' '}
           <span className="italic font-serif">Sonos</span>{' '}
-          <span className="text-text/30">
-            commitment to innovation that connects and inspires.
-          </span>
+          <span className="text-text/30">commitment to innovation that connects and inspires.</span>
         </h1>
 
         {/* Floating Headphone Overlay (Centered & In Front of Text) */}
         <div
           ref={imageRef}
-          className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none"
+          className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none overflow-hidden"
         >
-          <div className="relative h-72 w-72 sm:h-96 sm:w-96 md:h-[450px] md:w-[450px] lg:h-[500px] lg:w-[500px]">
+          <div className="relative h-150 w-150 md:h-150 md:w-150 lg:h-200 lg:w-200">
             <Image
-              src="/images/Headphone_floating_against_white__202608111342-removebg-preview.png"
+              src="/images/robot-png.png"
               alt="Floating Sonos Headphone"
               fill
               priority

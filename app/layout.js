@@ -1,7 +1,7 @@
 import './globals.css';
 import { ReduxProvider } from '@/store/Provider';
 import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import Footer from '@/app/components/Footer';
 import AuthInit from '@/components/AuthInit';
 import { Analytics } from '@vercel/analytics/next';
 
