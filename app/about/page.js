@@ -21,7 +21,7 @@ export default function AboutPage() {
       {/* --- About Header Section --- */}
       <section className="px-6 text-center max-w-4xl mx-auto mb-20">
         <h1 className="text-5xl md:text-6xl font-medium text-text mb-6">
-          About <span className="text-primary">Gadget BDs</span>
+          About <span className="text-primary">My Gadget</span>
         </h1>
         <p className="text-pText text-lg font-medium leading-relaxed">
           We're on a mission to make premium technology accessible to everyone. Since 2020, we've
@@ -49,7 +49,7 @@ export default function AboutPage() {
           <div className="space-y-6">
             <h2 className="text-4xl font-medium text-text uppercase">Our Story</h2>
             <p className="text-pText leading-loose italic">
-              Gadget BDs was founded in 2020 with a simple idea: everyone deserves access to premium
+              My Gadget was founded in 2020 with a simple idea: everyone deserves access to premium
               technology without the premium price tag.
             </p>
             <p className="text-pText leading-loose">
@@ -95,7 +95,7 @@ export default function AboutPage() {
             Meet Our Team
           </h2>
           <p className="text-pText font-medium italic opacity-80">
-            The passionate people behind Gadget BDs who make it all happen.
+            The passionate people behind My Gadget who make it all happen.
           </p>
         </div>
 

@@ -123,66 +123,17 @@ export default function Navbar() {
                 <Link href="/shop" className="hover:text-white/90 transition-colors">
                   SHOP
                 </Link>
-
-                {/* Categories Dropdown */}
-                <div className="relative z-30" ref={categoryRef}>
-                  <button
-                    onClick={() => setIsCategoryOpen(!isCategoryOpen)}
-                    className="flex items-center gap-1 hover:text-white/90 transition-colors uppercase"
-                  >
-                    CATEGORIES
-                    <ChevronDown
-                      size={12}
-                      className={`transition-transform duration-300 ${
-                        isCategoryOpen ? 'rotate-180' : ''
-                      }`}
-                    />
-                  </button>
-
-                  <AnimatePresence>
-                    {isCategoryOpen && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        className="absolute top-12 left-0 w-60 bg-white border border-slate-200 rounded-2xl shadow-2xl p-2 z-50 normal-case"
-                      >
-                        <div className="max-h-72 overflow-y-auto">
-                          {dynamicCategories?.map((cat) => (
-                            <Link
-                              key={cat._id}
-                              href={`/shop?category=${cat.slug}`}
-                              className="flex items-center gap-3 px-3 py-2 hover:bg-slate-100 rounded-lg transition-all"
-                            >
-                              {cat.image?.url ? (
-                                <img
-                                  src={cat.image.url}
-                                  alt=""
-                                  className="w-4 h-4 object-contain"
-                                />
-                              ) : (
-                                <Box size={14} className="text-slate-500" />
-                              )}
-                              <span className="text-xs font-medium text-slate-800">{cat.name}</span>
-                            </Link>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-
-                <Link href="/shop?gender=men" className="hover:text-white/90 transition-colors">
-                  MEN
-                </Link>
-                <Link href="/shop?gender=women" className="hover:text-white/90 transition-colors">
-                  WOMEN
-                </Link>
                 <Link
                   href="/shop?productType=HotDeals"
                   className="hover:text-white/90 transition-colors"
                 >
                   TRENDING
+                </Link>
+                <Link href="/privacy" className="hover:text-white/90 transition-colors">
+                  PRIVACY
+                </Link>
+                <Link href="/about" className="hover:text-white/90 transition-colors">
+                  OUR STORY
                 </Link>
               </div>
             </div>
@@ -206,11 +157,8 @@ export default function Navbar() {
             >
               {/* Desktop Menu */}
               <div className="flex items-center gap-3 lg:gap-6">
-                <Link
-                  href="/shop?season=true"
-                  className="max-md:hidden hover:text-white/90 transition-colors"
-                >
-                  SEASONAL
+                <Link href="/orders" className="max-md:hidden hover:text-white/90 transition-colors">
+                  Orders
                 </Link>
 
                 {/* Search Toggle */}

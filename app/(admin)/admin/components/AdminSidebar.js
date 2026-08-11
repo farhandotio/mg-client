@@ -184,7 +184,7 @@ export default function AdminSidebar({ closeSidebar }) {
             size={18}
             className="group-hover:-translate-x-1 transition-transform relative z-10"
           />
-          <span className="relative z-10">Terminate Session</span>
+          <span className="relative z-10"> Logout </span>
         </button>
       </div>
     </div>

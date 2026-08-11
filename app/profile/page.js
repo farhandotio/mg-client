@@ -83,7 +83,7 @@ export default function ProfilePage() {
     try {
       setIsLoggingOut(true);
       await dispatch(logoutUser()).unwrap();
-      toast.success('Session Terminated');
+      toast.success('Session Logged Out');
       router.push('/');
     } catch (error) {
       toast.error('Logout failed');
@@ -141,10 +141,10 @@ export default function ProfilePage() {
   };
 
   const handleDeleteAddress = async (id) => {
-    if (window.confirm('Terminate this shipping node?')) {
+    if (window.confirm('Delete this shipping node?')) {
       try {
         await dispatch(deleteAddress(id)).unwrap();
-        toast.success('Node Terminated');
+        toast.success('Node Deleted');
       } catch (err) {
         toast.error('Delete Failed');
       }
@@ -229,7 +229,7 @@ export default function ProfilePage() {
                   ) : (
                     <LogOut size={14} />
                   )}
-                  Terminate
+                  Logout
                 </button>
               </div>
             </div>

@@ -56,7 +56,7 @@ export default function ProductDetailsPage({ params }) {
         image: product.images?.map((img) => img.url) || [],
         description:
           product.shortDescription || product.description?.replace(/<[^>]*>?/gm, '').slice(0, 160),
-        brand: { '@type': 'Brand', name: product.brand?.name || 'Gadget BDs' },
+        brand: { '@type': 'Brand', name: product.brand?.name || 'My Gadget' },
         offers: {
           '@type': 'Offer',
           priceCurrency: 'BDT',

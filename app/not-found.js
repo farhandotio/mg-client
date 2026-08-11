@@ -64,7 +64,7 @@ export default function NotFound() {
 
             <h2 className="text-5xl md:text-7xl font-medium text-text tracking-tighterer uppercase italic leading-[0.85]">
               Pathways <br />
-              <span className="text-primary">Terminated.</span>
+              <span className="text-primary">Not Found</span>
             </h2>
 
             <p className="text-pText text-lg max-w-lg mx-auto font-medium leading-relaxed opacity-80 pl-6 border-l-2 border-primary/30">
