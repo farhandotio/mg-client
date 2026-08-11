@@ -99,7 +99,7 @@ export default function CreateProductPage() {
     if (success) {
       toast.success('System Update: Product Synthesized');
       dispatch(resetProductState());
-      router.push('/admin/api/products');
+      router.push('/admin/products');
     }
     if (error) toast.error(error);
   }, [success, error, dispatch, router]);

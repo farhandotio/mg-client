@@ -23,10 +23,10 @@ export default function Feature() {
       <div className="">
         <div className="flex justify-between items-end mb-8 gap-4 border-b border-border/10 pb-4">
           <div className="flex items-start justify-between gap-6 w-full h-fit">
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 leading-[1.1] max-w-2xl">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-text leading-[1.1] max-w-2xl">
               Designed for seamless sound and advanced technology.
             </h2>
-              <div className="relative shrink-0 w-16 h-16 md:w-24 md:h-24 rounded-2xl overflow-hidden shadow-sm bg-slate-100">
+              <div className="relative shrink-0 w-16 h-16 md:w-24 md:h-24 rounded-2xl overflow-hidden">
                 <Image
                   src="/images/Audio_gadgets_commercial_product…_202608111342.jpeg"
                   alt="Featured Lifestyle"

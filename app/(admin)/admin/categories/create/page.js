@@ -53,7 +53,7 @@ export default function CreateCategoryPage() {
       const resultAction = await dispatch(createCategory(formData));
 
       if (createCategory.fulfilled.match(resultAction)) {
-        router.push('/admin/api/categories');
+        router.push('/admin/categories');
       }
     } catch (err) {
       toast.error(
@@ -68,7 +68,7 @@ export default function CreateCategoryPage() {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-16 border-b border-border/60 pb-10">
         <div className="space-y-4">
           <Link
-            href="/admin/api/categories"
+            href="/admin/categories"
             className="inline-flex items-center gap-2 text-pText/40 hover:text-primary transition-all group px-3 py-1 bg-card/30 rounded-full border border-border/40"
           >
             <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />

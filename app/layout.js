@@ -36,7 +36,7 @@ export default function RootLayout({ children }) {
         <ReduxProvider>
           <AuthInit>
             <Navbar />
-            <main id="main-content" className="grow w-full relative outline-none">
+            <main className="grow w-full relative outline-none max-md:pb-15">
               {children}
               <Analytics />
             </main>

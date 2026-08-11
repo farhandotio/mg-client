@@ -113,7 +113,7 @@ export default function AdminProducts() {
           <Button
             arialabel="Create product"
             icon={Plus}
-            url={'/admin/api/products/create'}
+            url={'/admin/products/create'}
             text={'Create Product'}
             className=""
           />

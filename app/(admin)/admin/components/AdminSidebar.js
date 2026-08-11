@@ -41,14 +41,14 @@ export default function AdminSidebar({ closeSidebar }) {
     {
       name: 'Products',
       icon: Box,
-      path: '/admin/api/products',
-      createPath: '/admin/api/products/create',
+      path: '/admin/products',
+      createPath: '/admin/products/create',
     },
     {
       name: 'Categories',
       icon: Layers,
-      path: '/admin/api/categories',
-      createPath: '/admin/api/categories/create',
+      path: '/admin/categories',
+      createPath: '/admin/categories/create',
     },
     {
       name: 'Brands',

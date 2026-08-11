@@ -95,7 +95,7 @@ export default function ShopPageContent({ categorySlug }) {
   return (
     <section className="bg-bg h-[95vh] overflow-hidden flex flex-col">
       <div className="w-full flex flex-col h-full">
-        {/* <header className="pb-4 shrink-0">
+        <header className="pb-4 shrink-0">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="space-y-1">
               <div className="flex items-center gap-2 text-primary">
@@ -123,7 +123,7 @@ export default function ShopPageContent({ categorySlug }) {
               </div>
             </div>
           </div>
-        </header> */}
+        </header>
 
         {/* --- Main Content Area --- */}
         <div className="flex grow overflow-hidden gap-5 pt-2">

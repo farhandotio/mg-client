@@ -131,7 +131,7 @@ export default function CategoriesPage() {
         <div className="max-md:w-full">
           <Button
             aria-label="create category"
-            url={'/admin/api/categories/create'}
+            url={'/admin/categories/create'}
             text={'Create Category'}
             icon={Plus}
           />
