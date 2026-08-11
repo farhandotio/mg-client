@@ -30,7 +30,7 @@ export default function Button({
 
   const baseClasses = `
     relative inline-flex items-center gap-3 overflow-hidden group font-black justify-center 
-    text-text whitespace-nowrap rounded-md transition-all duration-500 w-full cursor-pointer disabled:opacity-70 bg-card border ${fillColor} md:bg-card max-md:text-white border-border/20 
+    text-text whitespace-nowrap rounded-md transition-all duration-500 w-full cursor-pointer disabled:opacity-70 bg-border border ${fillColor} md:bg-border max-md:text-white border-border/20 
     hover:border-transparent hover:-translate-y-[1px]
     ${sizeClasses} ${className}
   `;

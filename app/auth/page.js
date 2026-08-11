@@ -15,9 +15,9 @@ import {
   ArrowLeft,
 } from 'lucide-react';
 import AuthField from './AuthField';
-import AuthOverlay from './AuthOverlay';
 import Button from '@/components/Button';
 import toast from 'react-hot-toast';
+import { FcGoogle } from 'react-icons/fc';
 
 function AuthForm() {
   const [mode, setMode] = useState('login');
@@ -89,11 +89,11 @@ function AuthForm() {
   };
 
   return (
-    <div className="flex flex-col md:flex-row min-h-[600px] relative">
+    <div className="flex flex-col max-md:h-full w-full md:rounded-lg md:py-4 md:bg-card max-w-lg">
       {/* ব্যাক বাটন - মোবাইল এবং ডেস্কটপ উভয়ের জন্য */}
       <button
         onClick={() => router.back()}
-        className="absolute top-6 left-6 z-50 flex items-center gap-2 px-3 py-2 rounded-md bg-white/5 border border-white/5 text-pText hover:text-primary hover:bg-white/10 transition-all group"
+        className="absolute top-6 right-6 z-50 flex items-center gap-2 px-3 py-2 rounded-md bg-white/5 border border-white/5 text-pText hover:text-primary hover:bg-white/10 transition-all group"
       >
         <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
         <span className="text-[12px] font-black uppercase tracking-tighter hidden sm:block">
@@ -101,122 +101,144 @@ function AuthForm() {
         </span>
       </button>
 
-      <div className="flex-1 p-8 md:p-14 flex items-center">
-        <div
-          className={`w-full transition-all duration-500 ${
-            locked ? 'opacity-0 -translate-x-8' : 'opacity-100 translate-x-0'
-          }`}
-        >
-          <div className="mb-10 pt-8 md:pt-0">
-            <div className="flex items-center gap-2 mb-4 text-primary">
-              <Sparkles size={24} fill="currentColor" />
-              <span className="font-black tracking-tighterer text-xl uppercase italic">
-                Gadget BDs
-              </span>
+      <div className="flex-1 p-6 flex items-center justify-center">
+        <div className="w-full max-w-lg">
+          <div
+            className={`w-full transition-all duration-500 ${
+              locked ? 'opacity-0 -translate-y-4' : 'opacity-100 translate-y-0'
+            }`}
+          >
+            <div className="mb-10 pt-8 md:pt-0">
+              <h2 className="text-4xl font-black text-text tracking-tighterer mb-2 text-center leading-none">
+                {isLogin ? 'ফিরে আসায় স্বাগতম' : 'নতুন অ্যাকাউন্ট'}
+              </h2>
+
+              {/* অ্যালার্ট মেসেজসমূহ */}
+              {isLogin && isVerified && !error && (
+                <div className="flex items-center gap-2 text-green-500 text-[11px] font-bold uppercase bg-green-500/10 p-3 rounded-md mb-4 border border-green-500/20">
+                  <CheckCircle2 size={14} /> ইমেইল ভেরিফাইড! এখন লগইন করুন।
+                </div>
+              )}
+
+              {verificationNotice && (
+                <div className="flex items-start gap-2 text-blue-500 text-[11px] font-bold uppercase bg-blue-500/10 p-4 rounded-md mb-4 border border-blue-500/20">
+                  <Info size={16} className="shrink-0" />
+                  লগইন করার আগে ইমেইল চেক করে ভেরিফাই করুন।
+                </div>
+              )}
+
+              {error && (
+                <p className="text-red-500 text-[12px] font-bold uppercase tracking-tighter bg-red-500/10 p-3 rounded-md mb-4 animate-shake border border-red-500/20">
+                  {error}
+                </p>
+              )}
             </div>
 
-            <h2 className="text-4xl font-black text-text tracking-tighterer mb-2 italic leading-none">
-              {isLogin ? 'ফিরে আসায় স্বাগতম' : 'নতুন অ্যাকাউন্ট'}
-            </h2>
-            <p className="text-pText text-[12px] font-bold uppercase tracking-tighter mb-6 opacity-60">
-              {isLogin ? 'আপনার অ্যাকাউন্টে প্রবেশ করুন' : 'শুরু করতে তথ্য প্রদান করুন'}
-            </p>
-
-            {/* অ্যালার্ট মেসেজসমূহ */}
-            {isLogin && isVerified && !error && (
-              <div className="flex items-center gap-2 text-green-500 text-[11px] font-bold uppercase bg-green-500/10 p-3 rounded-md mb-4 border border-green-500/20">
-                <CheckCircle2 size={14} /> ইমেইল ভেরিফাইড! এখন লগইন করুন।
-              </div>
-            )}
-
-            {verificationNotice && (
-              <div className="flex items-start gap-2 text-blue-500 text-[11px] font-bold uppercase bg-blue-500/10 p-4 rounded-md mb-4 border border-blue-500/20">
-                <Info size={16} className="shrink-0" />
-                লগইন করার আগে ইমেইল চেক করে ভেরিফাই করুন।
-              </div>
-            )}
-
-            {error && (
-              <p className="text-red-500 text-[12px] font-bold uppercase tracking-tighter bg-red-500/10 p-3 rounded-md mb-4 animate-shake border border-red-500/20">
-                {error}
-              </p>
-            )}
-          </div>
-
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            {!isLogin && (
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+              {!isLogin && (
+                <AuthField
+                  icon={<User size={18} />}
+                  placeholder="আপনার পূর্ণ নাম"
+                  {...register('fullname', { required: 'নাম প্রয়োজন' })}
+                  error={errors.fullname}
+                />
+              )}
               <AuthField
-                icon={<User size={18} />}
-                placeholder="আপনার পূর্ণ নাম"
-                {...register('fullname', { required: 'নাম প্রয়োজন' })}
-                error={errors.fullname}
+                icon={<Mail size={18} />}
+                type="email"
+                placeholder="ইমেইল অ্যাড্রেস"
+                {...register('email', { required: 'ইমেইল প্রয়োজন' })}
+                error={errors.email}
               />
-            )}
-            <AuthField
-              icon={<Mail size={18} />}
-              type="email"
-              placeholder="ইমেইল অ্যাড্রেস"
-              {...register('email', { required: 'ইমেইল প্রয়োজন' })}
-              error={errors.email}
-            />
-            <AuthField
-              icon={<Lock size={18} />}
-              type="password"
-              placeholder="পাসওয়ার্ড"
-              {...register('password', { required: 'পাসওয়ার্ড প্রয়োজন' })}
-              error={errors.password}
-            />
+              <AuthField
+                icon={<Lock size={18} />}
+                type="password"
+                placeholder="পাসওয়ার্ড"
+                {...register('password', { required: 'পাসওয়ার্ড প্রয়োজন' })}
+                error={errors.password}
+              />
 
-            <div className="pt-4">
-              <Button
-                arialabel="submit"
-                type="submit"
-                text={
-                  success
-                    ? isLogin
-                      ? 'প্রবেশ করা হচ্ছে...'
-                      : 'ইমেইল দেখুন!'
-                    : isLogin
-                      ? 'লগইন করুন'
-                      : 'অ্যাকাউন্ট তৈরি করুন'
-                }
-                loading={loading}
-                size="xl"
-                icon={success ? CheckCircle2 : ArrowRight}
-              />
+              <div className="pt-4">
+                <Button
+                  arialabel="submit"
+                  type="submit"
+                  text={
+                    success
+                      ? isLogin
+                        ? 'প্রবেশ করা হচ্ছে...'
+                        : 'ইমেইল দেখুন!'
+                      : isLogin
+                        ? 'লগইন করুন'
+                        : 'অ্যাকাউন্ট তৈরি করুন'
+                  }
+                  loading={loading}
+                  size="xl"
+                  icon={success ? CheckCircle2 : ArrowRight}
+                />
+              </div>
+
+              <div className="p-4 w-full flex items-center justify-center gap-2">
+                <div className="h-0.5 w-full bg-border" />
+                <div className="h-2 w-2 bg-border rounded-full shrink-0" />
+                <div className="h-0.5 w-full bg-border" />
+              </div>
+
+              <button
+                type="button"
+                onClick={() => {
+                  const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+                  window.location.href = `${baseUrl}/api/auth/google?callbackUrl=${encodeURIComponent(
+                    callbackUrl
+                  )}`;
+                }}
+                className="w-full inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200/80 bg-white/90 px-4 py-3 text-sm font-semibold text-slate-900 shadow-sm transition hover:bg-slate-100"
+              >
+                <FcGoogle size={18} /> Google দিয়ে সাইন ইন করুন
+              </button>
+            </form>
+
+            <div className="mt-8 text-center md:hidden">
+              <button
+                aria-label="toggle auth"
+                onClick={toggleMode}
+                className="text-xs font-bold uppercase tracking-tighter text-pText hover:text-primary transition-colors"
+              >
+                {isLogin ? 'নতুন ইউজার? ' : 'আগে থেকেই অ্যাকাউন্ট আছে? '}
+                <span className="text-primary underline ml-1 font-black">
+                  {isLogin ? 'নিবন্ধন করুন' : 'লগইন করুন'}
+                </span>
+              </button>
             </div>
-          </form>
-
-          <div className="mt-8 text-center md:hidden">
-            <button
-              aria-label="toggle auth"
-              onClick={toggleMode}
-              className="text-xs font-bold uppercase tracking-tighter text-pText hover:text-primary transition-colors"
-            >
-              {isLogin ? 'নতুন ইউজার? ' : 'আগে থেকেই অ্যাকাউন্ট আছে? '}
-              <span className="text-primary underline ml-1 font-black">
-                {isLogin ? 'নিবন্ধন করুন' : 'লগইন করুন'}
-              </span>
-            </button>
           </div>
         </div>
       </div>
 
-      <AuthOverlay isLogin={isLogin} locked={locked} toggleMode={toggleMode} />
+      <div className="mt-8 px-6 md:px-0 text-center">
+        <button
+          aria-label="toggle auth"
+          onClick={toggleMode}
+          className="text-xs font-bold uppercase tracking-tighter text-pText hover:text-primary transition-colors"
+        >
+          {isLogin ? 'নতুন ইউজার? ' : 'আগে থেকেই অ্যাকাউন্ট আছে? '}
+          <span className="text-primary underline ml-1 font-black">
+            {isLogin ? 'নিবন্ধন করুন' : 'লগইন করুন'}
+          </span>
+        </button>
+      </div>
     </div>
   );
 }
 
 export default function AuthPage() {
   return (
-    <div className="min-h-screen bg-bg flex items-center justify-center p-4 overflow-hidden relative">
+    <div className="bg-bg flex items-center justify-center overflow-hidden relative w-full">
       {/* গ্লো ইফেক্ট */}
       <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,rgba(var(--primary-rgb),0.05),transparent_70%)] pointer-events-none" />
 
-      <div className="relative w-full max-w-5xl bg-card/40 backdrop-blur-3xl border border-white/10 rounded-lg overflow-hidden shadow-2xl">
+      <div className="w-full backdrop-blur-3xl  overflow-hidden min-h-screen flex items-center md:justify-center">
         <Suspense
           fallback={
-            <div className="p-20 text-center text-text font-black uppercase tracking-tighter animate-pulse">
+            <div className="p-20 text-center text-text font-black uppercase tracking-tighter animate-pulse w-full">
               লোড হচ্ছে...
             </div>
           }
