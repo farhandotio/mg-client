@@ -213,14 +213,14 @@ function AuthForm() {
         </div>
       </div>
 
-      <div className="mt-8 px-6 md:px-0 text-center">
+      <div className="mt-8 px-6 md:px-0 text-center text-pText">
         <button
           aria-label="toggle auth"
           onClick={toggleMode}
-          className="text-xs font-medium uppercase tracking-tighter text-pText hover:text-primary transition-colors"
+          className="text-xs font-medium uppercase tracking-tighterransition-colors"
         >
           {isLogin ? 'নতুন ইউজার? ' : 'আগে থেকেই অ্যাকাউন্ট আছে? '}
-          <span className="text-primary underline ml-1 font-medium">
+          <span className="underline ml-1 font-medium hover:text-secondary cursor-pointer">
             {isLogin ? 'নিবন্ধন করুন' : 'লগইন করুন'}
           </span>
         </button>

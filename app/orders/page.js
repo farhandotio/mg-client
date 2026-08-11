@@ -95,7 +95,7 @@ export default function OrdersPage() {
           {filteredOrders?.length > 0 ? (
             filteredOrders.map((order) => <OrderCard key={order._id} order={order} />)
           ) : (
-            <div className="text-center py-32 bg-card/10 rounded-xl border-2 border-dashed border-border/50">
+            <div className="text-center py-32 bg-card/10 rounded-2xl border-2 border-dashed border-border/50">
               <Package size={48} className="mx-auto text-pText/20 mb-4" />
               <h3 className="text-xl font-medium italic text-pText uppercase">
                 কোন তথ্য পাওয়া যায়নি

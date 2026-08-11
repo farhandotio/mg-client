@@ -55,7 +55,7 @@ export default function KeywordCardSection() {
         {/* Typographic Layout Container */}
         <div
           ref={textGroupRef}
-          className="relative flex flex-col items-center justify-center font-bold tracking-tight select-none"
+          className="relative flex flex-col items-center justify-center font-medium tracking-tight select-none"
         >
           {/* Top Words */}
           <span className="text-3xl text-text sm:text-5xl md:text-6xl">Vibe</span>

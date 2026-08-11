@@ -31,7 +31,7 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
           >
             {/* Header */}
             <div className="flex items-center justify-between mb-10">
-              <Logo width={120} height={55} />
+              <Logo width={55} height={55} />
               <button
                 aria-label="Close Mobile Sidebar"
                 onClick={onClose}
@@ -49,7 +49,7 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
                 onClick={onClose}
                 className="text-2xl font-medium italic tracking-tighterer uppercase leading-none text-text"
               >
-                হোম
+                HOME
               </Link>
               <Link
                 aria-label="View Shop Page"
@@ -57,7 +57,7 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
                 onClick={onClose}
                 className="text-2xl font-medium italic tracking-tighterer uppercase leading-none text-text"
               >
-                শপ
+                SHOP
               </Link>
               <Link
                 aria-label="View Hot Deals Page"
@@ -65,13 +65,13 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
                 onClick={onClose}
                 className="text-2xl font-medium italic tracking-tighterer uppercase leading-none text-primary flex items-center gap-2"
               >
-                ডিলস <Zap size={30} fill="currentColor" />
+                DEALS <Zap size={30} fill="currentColor" />
               </Link>
 
               {/* Dynamic Categories Section */}
               <div className="space-y-4 pt-3 border-t border-border/50">
                 <p className="text-[12px] font-medium uppercase text-pText/50 tracking-tighter">
-                  ক্যাটাগরি সমূহ
+                  CATEGORIES
                 </p>
                 <div className="grid gap-3">
                   {categories && categories.length > 0 ? (
@@ -110,7 +110,7 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
                     ))
                   ) : (
                     <div className="py-4 text-[12px] font-medium uppercase opacity-20 italic">
-                      লোড হচ্ছে...
+                      Loading...
                     </div>
                   )}
                 </div>
@@ -133,10 +133,10 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
               >
                 <User size={18} />
                 {!isAuthenticated
-                  ? 'লগইন করুন'
+                  ? 'Login'
                   : user?.role === 'admin'
-                    ? 'অ্যাডমিন ড্যাশবোর্ড'
-                    : 'প্রোফাইল দেখুন'}
+                    ? 'Admin Dashboard'
+                    : 'View Profile'}
               </Link>
             </div>
           </motion.aside>

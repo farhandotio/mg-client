@@ -94,9 +94,9 @@ export default function ShopPageContent({ categorySlug }) {
 
   return (
     <section className="bg-bg h-[95vh] overflow-hidden flex flex-col">
-      <div className="max-w-7xl mx-auto w-full flex flex-col h-full">
-        <header className="pb-4 shrink-0">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <div className="w-full flex flex-col h-full">
+        {/* <header className="pb-4 shrink-0">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="space-y-1">
               <div className="flex items-center gap-2 text-primary">
                 <Globe size={14} className="animate-spin-slow" />
@@ -123,7 +123,7 @@ export default function ShopPageContent({ categorySlug }) {
               </div>
             </div>
           </div>
-        </header>
+        </header> */}
 
         {/* --- Main Content Area --- */}
         <div className="flex grow overflow-hidden gap-5 pt-2">
@@ -138,12 +138,12 @@ export default function ShopPageContent({ categorySlug }) {
             className="grow h-full overflow-y-auto no-scrollbar pb-5"
           >
             {loading ? (
-              <div className="grid grid-cols-2 xl:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                 <Skeleton type="product" count={8} />
               </div>
             ) : products?.length > 0 ? (
               <div className="space-y-6">
-                <div className="grid grid-cols-2 xl:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                   {products.map((product, index) => (
                     <ProductCard key={product._id} priority={index < 5} product={product} />
                   ))}
@@ -204,7 +204,7 @@ export default function ShopPageContent({ categorySlug }) {
                 )}
               </div>
             ) : (
-              <div className="flex flex-col items-center justify-center py-40 bg-card/10 border-2 border-dashed border-border/30 rounded-xl">
+              <div className="flex flex-col items-center justify-center py-40 bg-card/10 border-2 border-dashed border-border/30 rounded-2xl">
                 <div className="bg-primary/10 p-8 rounded-full mb-6">
                   <Search size={48} className="text-primary opacity-40" />
                 </div>

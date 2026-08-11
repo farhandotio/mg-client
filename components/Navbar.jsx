@@ -1,4 +1,5 @@
 'use client';
+
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -10,7 +11,6 @@ import {
   ShoppingCart,
   User,
   ChevronDown,
-  Zap,
   LayoutDashboard,
   LogOut,
   Package,
@@ -19,9 +19,9 @@ import {
   Box,
   Sun,
   Moon,
+  Lock,
 } from 'lucide-react';
 
-import Button from '@/components/Button';
 import SearchOverlay from './SearchOverlay';
 import MobileSidebar from './MobileSidebar';
 import Logo from './Logo';
@@ -87,7 +87,7 @@ export default function Navbar() {
   }, [searchQuery, allProducts]);
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
-    const previous = scrollY.getPrevious();
+    const previous = scrollY.getPrevious() || 0;
     if (latest > previous && latest > 150) {
       setHidden(true);
       setIsCategoryOpen(false);
@@ -104,11 +104,6 @@ export default function Navbar() {
     setIsCategoryOpen(false);
   }, [pathname]);
 
-  const closeMenu = () => {
-    setIsOpen(false);
-  };
-
-  // কন্ডিশনাল রেন্ডারিং
   if (isAdminPage || isAuthPage) return null;
 
   return (
@@ -117,262 +112,211 @@ export default function Navbar() {
         variants={{ visible: { y: 0 }, hidden: { y: '-100%' } }}
         animate={hidden ? 'hidden' : 'visible'}
         transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-        className="sticky top-0 z-100 w-full bg-linear-to-b to-transparent from-card/60 backdrop-blur-3xl max-md:py-2"
+        className="sticky top-0 z-50 w-full bg-bg md:pt-3"
       >
-        <nav className="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between">
-          <div className="flex items-center justify-between w-full">
-            <Logo width={110} height={40} />
+        <div className="relative mx-auto">
+          {/* Main Desktop Angled Layout */}
+          <div className="hidden lg:grid grid-cols-16 items-center relative">
+            {/* Left Wing (Angled Polygon Cutout) */}
+            <div
+              className="col-span-7 flex items-center gap-8 pl-8 pr-12 h-full bg-secondary text-sm font-medium tracking-widest uppercase text-white pb-3 pt-3"
+              style={{
+                clipPath: 'polygon(0 0, 88% 0, 100% 100%, 0% 100%)',
+              }}
+            >
+              <Link href="/shop" className="hover:text-white/90 transition-colors">
+                SHOP
+              </Link>
 
-            <div className="flex items-center gap-3 lg:gap-12 w-full px-0 lg:px-6">
-              {/* --- ডেস্কটপ মেনু --- */}
-              <div className="hidden lg:flex items-center gap-10 text-sm font-medium uppercase tracking-tighter">
-                <Link
-                  href="/"
-                  className={`transition-colors hover:text-primary ${pathname === '/' ? 'text-primary' : 'text-text'}`}
+              {/* Categories Dropdown */}
+              <div className="relative" ref={categoryRef}>
+                <button
+                  onClick={() => setIsCategoryOpen(!isCategoryOpen)}
+                  className="flex items-center gap-1 hover:text-white/90 transition-colors uppercase"
                 >
-                  হোম
-                </Link>
+                  CATEGORIES
+                  <ChevronDown
+                    size={12}
+                    className={`transition-transform duration-300 ${isCategoryOpen ? 'rotate-180' : ''}`}
+                  />
+                </button>
 
-                <div className="relative" ref={categoryRef}>
+                <AnimatePresence>
+                  {isCategoryOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      className="absolute top-12 left-0 w-60 bg-white border border-slate-200 rounded-2xl shadow-2xl p-2 z-50 normal-case"
+                    >
+                      <div className="max-h-72 overflow-y-auto">
+                        {dynamicCategories?.map((cat) => (
+                          <Link
+                            key={cat._id}
+                            href={`/shop?category=${cat.slug}`}
+                            className="flex items-center gap-3 px-3 py-2 hover:bg-slate-100 rounded-lg transition-all"
+                          >
+                            {cat.image?.url ? (
+                              <img src={cat.image.url} alt="" className="w-4 h-4 object-contain" />
+                            ) : (
+                              <Box size={14} className="text-slate-500" />
+                            )}
+                            <span className="text-xs font-medium text-slate-800">{cat.name}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              <Link href="/shop?gender=men" className="hover:text-white/90 transition-colors">
+                MEN
+              </Link>
+              <Link href="/shop?gender=women" className="hover:text-white/90 transition-colors">
+                WOMEN
+              </Link>
+              <Link
+                href="/shop?productType=HotDeals"
+                className="hover:text-white/90 transition-colors"
+              >
+                TRENDING
+              </Link>
+            </div>
+
+            {/* Center Logo Area */}
+            <div className="col-span-2 flex justify-center items-center h-full z-10 px-2 pb-3 pt-2">
+              <Link href="/" className="scale-110 transition-transform hover:scale-115">
+                <Logo width={45} height={45} useLink={false} />
+              </Link>
+            </div>
+
+            {/* Right Wing (Angled Polygon Cutout) */}
+            <div
+              className="col-span-7 flex items-center justify-end gap-6 pr-8 pl-12 h-full bg-secondary text-sm font-medium tracking-widest uppercase text-white pb-3 pt-3"
+              style={{
+                clipPath: 'polygon(0 100%, 12% 0, 100% 0, 100% 100%)',
+              }}
+            >
+              <Link href="/shop?season=true" className="hover:text-white/90 transition-colors">
+                SEASONAL
+              </Link>
+
+              {/* Search Toggle */}
+              <button
+                onClick={() => setIsSearchOpen(true)}
+                className="p-1 hover:text-white/90 transition-colors"
+                aria-label="Search"
+              >
+                <Search size={16} />
+              </button>
+
+              {/* Theme Toggle */}
+              <button
+                aria-label="Switch theme"
+                onClick={toggleTheme}
+                className="p-1 hover:text-white/90 transition-colors"
+              >
+                {mounted && (theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />)}
+              </button>
+
+              {/* Auth / Profile Pill */}
+              {!mounted ? (
+                <div className="w-20 h-8 rounded-full bg-slate-300 animate-pulse" />
+              ) : !isAuthenticated ? (
+                <Link
+                  href="/auth"
+                  className="flex items-center gap-2 rounded-full bg-black px-5 py-3 text-xs whitespace-nowrap font-medium text-white transition-all hover:bg-slate-800"
+                >
+                  SIGN IN / UP
+                </Link>
+              ) : (
+                <div className="relative" ref={profileRef}>
                   <button
-                    onClick={() => setIsCategoryOpen(!isCategoryOpen)}
-                    className={`flex items-center gap-1.5 transition-colors hover:text-primary ${isCategoryOpen ? 'text-primary' : 'text-text'}`}
+                    onClick={() => setIsProfileOpen(!isProfileOpen)}
+                    className="flex items-center gap-2 rounded-full bg-black px-4 py-1.5 text-xs whitespace-nowrap font-medium text-white transition-all"
                   >
-                    ক্যাটাগরি
-                    <ChevronDown
-                      size={12}
-                      className={`transition-transform duration-500 ${isCategoryOpen ? 'rotate-180' : '0'}`}
-                    />
+                    <span className="uppercase">{user?.fullname?.split(' ')[0]}</span>
+                    <ChevronDown size={10} />
                   </button>
 
                   <AnimatePresence>
-                    {isCategoryOpen && (
+                    {isProfileOpen && (
                       <motion.div
-                        initial={{ opacity: 0, y: 15, scale: 0.95 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 15, scale: 0.95 }}
-                        className="absolute top-[120%] left-0 w-72 bg-card border border-bg/10 rounded-lg shadow-2xl p-3 z-50"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        className="absolute right-0 top-10 w-48 bg-white border border-slate-200 rounded-2xl shadow-2xl p-2 z-50 text-slate-800 normal-case"
                       >
-                        <div className="grid grid-cols-1 gap-1 max-h-100 overflow-y-auto no-scrollbar">
-                          {dynamicCategories?.map((cat) => (
-                            <Link
-                              key={cat._id}
-                              href={`/shop?category=${cat.slug}`}
-                              className="flex items-center gap-3 px-4 py-3 hover:bg-primary/10 rounded-md transition-all group"
-                            >
-                              <div className="w-9 h-9 rounded-md bg-primary/5 flex items-center justify-center text-primary group-hover:scale-110 transition-transform border border-primary/10">
-                                {cat.image?.url ? (
-                                  <img
-                                    src={cat.image.url}
-                                    alt=""
-                                    className="w-5 h-5 object-contain"
-                                  />
-                                ) : (
-                                  <Box size={18} />
-                                )}
-                              </div>
-                              <span className="text-[12px] font-medium text-text group-hover:text-primary">
-                                {cat.name}
-                              </span>
-                            </Link>
-                          ))}
-                        </div>
+                        {user?.role === 'admin' && (
+                          <Link
+                            href="/admin/dashboard"
+                            className="flex items-center gap-2 px-3 py-2 text-xs hover:bg-slate-100 rounded-lg"
+                          >
+                            <LayoutDashboard size={14} /> Dashboard
+                          </Link>
+                        )}
+                        <Link
+                          href="/profile"
+                          className="flex items-center gap-2 px-3 py-2 text-xs hover:bg-slate-100 rounded-lg"
+                        >
+                          <User size={14} /> Profile
+                        </Link>
+                        <Link
+                          href="/orders"
+                          className="flex items-center gap-2 px-3 py-2 text-xs hover:bg-slate-100 rounded-lg"
+                        >
+                          <Package size={14} /> Orders
+                        </Link>
+                        <button
+                          onClick={() => dispatch(logoutUser())}
+                          className="flex w-full items-center gap-2 px-3 py-2 text-xs text-red-600 hover:bg-red-50 rounded-lg"
+                        >
+                          <LogOut size={14} /> Logout
+                        </button>
                       </motion.div>
                     )}
                   </AnimatePresence>
                 </div>
+              )}
 
-                <Link
-                  href="/shop"
-                  aria-label="View Shopping Page"
-                  className={`transition-colors hover:text-primary ${pathname === '/shop' ? 'text-primary' : 'text-text'}`}
-                >
-                  শপ
-                </Link>
-
-                <Link
-                  aria-label="View Hot Deals Page"
-                  href="/shop?productType=HotDeals"
-                  className="flex items-center gap-1.5 text-secondary font-medium italic hover:scale-105 transition-transform"
-                >
-                  <Zap size={14} fill="currentColor" className="animate-pulse" /> হট ডিলস
-                </Link>
-              </div>
-            </div>
-
-            {/* --- ডানদিকের অ্যাকশন বাটনসমূহ --- */}
-            <div className="flex items-center gap-2 lg:hidden">
-              <button
-                aria-label="Search Products"
-                onClick={() => setIsSearchOpen(true)}
-                className="p-2 rounded-md text-text hover:text-primary transition-all"
-              >
-                <Search size={18} />
-              </button>
-
-              <button
-                aria-label="Toggle Menu"
-                onClick={() => setIsOpen((prev) => !prev)}
-                className="p-2 text-text ml-1 relative w-10 h-10 flex items-center justify-center"
-              >
-                <svg viewBox="0 0 24 24" className="w-6 h-6 text-current">
-                  <line
-                    x1="4"
-                    y1="7"
-                    x2="20"
-                    y2="7"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    className={`transition-transform duration-300 ${isOpen ? 'translate-y-5 rotate-45' : ''}`}
-                  />
-                  <line
-                    x1="4"
-                    y1="12"
-                    x2="20"
-                    y2="12"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    className={`transition-opacity duration-300 ${isOpen ? 'opacity-0' : 'opacity-100'}`}
-                  />
-                  <line
-                    x1="4"
-                    y1="17"
-                    x2="20"
-                    y2="17"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    className={`transition-transform duration-300 ${isOpen ? '-translate-y-5 -rotate-45' : ''}`}
-                  />
-                </svg>
-              </button>
-            </div>
-
-            <div className="hidden lg:flex items-center gap-2 md:gap-4 px-0 lg:px-6">
-              <button
-                aria-label="Switch theme"
-                onClick={toggleTheme}
-                className="p-2 rounded-md text-text hover:bg-bg/10 transition-all"
-              >
-                {mounted &&
-                  (theme === 'dark' ? (
-                    <Sun aria-label="Switch to Light Theme" size={18} className="text-yellow-500" />
-                  ) : (
-                    <Moon aria-label="Switch to Dark Theme" size={18} className="text-primary" />
-                  ))}
-              </button>
-
-              <button
-                aria-label="Search Products"
-                onClick={() => setIsSearchOpen(true)}
-                className="p-2 rounded-md text-text hover:text-primary transition-all"
-              >
-                <Search size={18} />
-              </button>
-
+              {/* Cart Rounded Button */}
               <Link
-                aria-label="View Shopping Cart"
                 href="/cart"
-                className="relative p-3 bg-card text-text rounded-md hover:bg-primary hover:text-bg transition-all duration-300 group"
+                aria-label="Shopping Cart"
+                className="relative flex h-10 w-10 items-center justify-center rounded-full bg-black text-white transition-transform hover:scale-105"
               >
-                <ShoppingCart size={20} className="group-active:scale-75 transition-transform" />
+                <Lock size={13} />
                 {mounted && cartItems.length > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-primary text-bg text-[12px] font-medium w-5 h-5 rounded-full flex items-center justify-center ">
+                  <span className="absolute -top-1.5 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-danger text-[9px] font-medium text-white">
                     {cartItems.length}
                   </span>
                 )}
               </Link>
             </div>
-
-            {/* --- প্রোফাইল মেনু --- */}
-            {!mounted ? (
-              <div className="w-24 h-10 bg-bg/5 rounded-md animate-pulse hidden md:block" />
-            ) : !isAuthenticated ? (
-              <div className="hidden md:block">
-                <Button
-                  arialabel="login"
-                  text="প্রবেশ করুন"
-                  url="/auth"
-                  icon={LogIn}
-                  size="md"
-                  className="rounded-md font-medium"
-                />
-              </div>
-            ) : (
-              <div className="relative hidden lg:block" ref={profileRef}>
-                <button
-                  aria-label="View Profile Menu"
-                  onClick={() => setIsProfileOpen(!isProfileOpen)}
-                  className="flex items-center gap-2.5 p-1.5 border border-bg/5 rounded-md hover:border-primary/30 bg-card transition-all pl-2 pr-3"
-                >
-                  <div className="w-8 h-8 rounded-md overflow-hidden text-bg flex items-center justify-center">
-                    {user?.image || user?.avatar ? (
-                      <img
-                        src={user.image || user.avatar}
-                        alt="profile"
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <User size={16} />
-                    )}
-                  </div>
-                  <span className="text-[12px] font-medium uppercase tracking-tighter text-text">
-                    {user?.fullname?.split(' ')[0]}
-                  </span>
-                  <ChevronDown
-                    size={12}
-                    className={`transition-transform duration-500 ${isProfileOpen ? 'rotate-180' : '0'}`}
-                  />
-                </button>
-
-                <AnimatePresence>
-                  {isProfileOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.95, y: 10 }}
-                      animate={{ opacity: 1, scale: 1, y: 0 }}
-                      exit={{ opacity: 0, scale: 0.95, y: 10 }}
-                      className="absolute top-[120%] right-0 w-60 bg-card/95 backdrop-blur-3xl border border-bg/10 rounded-lg shadow-2xl p-2 z-50"
-                    >
-                      {user?.role === 'admin' && (
-                        <Link
-                          aria-label="View Admin Dashboard"
-                          href="/admin/dashboard"
-                          className="flex items-center gap-3 px-4 py-3 text-primary bg-primary/5 rounded-md font-medium text-[12px] uppercase mb-1"
-                        >
-                          <LayoutDashboard size={16} /> ড্যাশবোর্ড
-                        </Link>
-                      )}
-                      <Link
-                        aria-label="View Profile Page"
-                        href="/profile"
-                        className="flex items-center gap-3 px-4 py-3 hover:bg-bg/5 rounded-md font-medium text-[12px] uppercase"
-                      >
-                        <User size={16} /> প্রোফাইল
-                      </Link>
-                      <Link
-                        aria-label="View orders Page"
-                        href="/orders"
-                        className="flex items-center gap-3 px-4 py-3 hover:bg-bg/5 rounded-md font-medium text-[12px] uppercase"
-                      >
-                        <Package size={16} /> অর্ডারসমূহ
-                      </Link>
-                      <div className="my-2 border-t border-bg/5" />
-                      <button
-                        aria-label="Logout"
-                        onClick={() => dispatch(logoutUser())}
-                        className="flex w-full items-center gap-3 px-4 py-3 text-red-500 hover:bg-red-500/10 rounded-md font-medium text-[12px] uppercase transition-colors"
-                      >
-                        <LogOut size={16} /> লগআউট
-                      </button>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            )}
           </div>
-        </nav>
+
+          {/* Mobile Fallback Navigation */}
+          <div className="flex lg:hidden items-center justify-between py-3 bg-bg px-4 text-text">
+            <Logo width={40} height={40} />
+            <div className="flex items-center gap-3">
+              <button onClick={() => setIsSearchOpen(true)} className="p-1">
+                <Search size={18} />
+              </button>
+              <Link href="/cart" className="relative p-2 bg-text rounded-full text-bg">
+                <ShoppingCart size={15} />
+                {cartItems.length > 0 && (
+                  <span className="absolute -top-1 -right-1 h-4 w-4 bg-danger text-[9px] flex items-center justify-center rounded-full text-white">
+                    {cartItems.length}
+                  </span>
+                )}
+              </Link>
+              <button onClick={() => setIsOpen(!isOpen)} className="p-1 font-medium text-2xl">
+                ☰
+              </button>
+            </div>
+          </div>
+        </div>
       </motion.header>
 
       <SearchOverlay
@@ -382,6 +326,7 @@ export default function Navbar() {
         setQuery={setSearchQuery}
         results={filteredProducts}
       />
+
       <MobileSidebar
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}

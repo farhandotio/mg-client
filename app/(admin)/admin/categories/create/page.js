@@ -235,7 +235,7 @@ export default function CreateCategoryPage() {
                   type="submit"
                   size="xl"
                   disabled={loading}
-                  className={`w-full py-8 rounded-[1.8rem] shadow-2xl active:scale-[0.97] transition-all font-medium text-sm tracking-wide italic
+                  className={`w-full py-8 rounded-2xl shadow-2xl active:scale-[0.97] transition-all font-medium text-sm tracking-wide italic
                     ${loading ? 'opacity-50 grayscale' : 'hover:shadow-primary/30'}
                   `}
                   text={

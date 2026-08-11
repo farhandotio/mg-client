@@ -67,7 +67,7 @@ export default function ShippingInfo() {
           </div>
 
           {/* Damage Protection Note */}
-          <div className="p-10 bg-card/20 border border-bg/5 rounded-xl text-center space-y-4">
+          <div className="p-10 bg-card/20 border border-bg/5 rounded-2xl text-center space-y-4">
             <h4 className="text-xl font-medium text-text uppercase italic tracking-tighter">
               Transit Security
             </h4>

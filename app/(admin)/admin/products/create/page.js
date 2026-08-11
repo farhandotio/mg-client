@@ -313,7 +313,7 @@ export default function CreateProductPage() {
                 placeholder="Asset URL + Press Enter"
                 onKeyDown={addImageUrl}
                 disabled={formData.images.length >= 5}
-                className="w-full bg-card border border-border rounded-[1.2rem] p-4 text-[12px] font-medium uppercase tracking-tighter outline-none focus:border-primary disabled:opacity-30 transition-all shadow-md pr-12"
+                className="w-full bg-card border border-border rounded-2xl p-4 text-[12px] font-medium uppercase tracking-tighter outline-none focus:border-primary disabled:opacity-30 transition-all shadow-md pr-12"
               />
               <Plus
                 size={16}

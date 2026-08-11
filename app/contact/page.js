@@ -40,7 +40,7 @@ export default function ContactPage() {
         </div>
 
         {/* Support Section */}
-        <div className="mt-12 p-12 bg-card/30 border border-white/5 rounded-xl flex flex-col md:flex-row justify-between items-center gap-8">
+        <div className="mt-12 p-12 bg-card/30 border border-white/5 rounded-2xl flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="space-y-2">
             <h3 className="text-3xl font-medium italic uppercase text-text">Direct Message</h3>
             <p className="text-pText font-medium">

@@ -40,7 +40,6 @@ export default function RootLayout({ children }) {
               {children}
               <Analytics />
             </main>
-            <Footer />
           </AuthInit>
         </ReduxProvider>
       </body>

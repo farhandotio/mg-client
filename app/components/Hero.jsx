@@ -21,7 +21,7 @@ const Hero = () => {
 
       <div className="relative mx-auto flex min-h-[78vh] max-w-7xl flex-col justify-center px-4 py-20 sm:px-6 lg:px-8">
         <div className="max-w-2xl space-y-8 text-white">
-          <h1 className="text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl md:text-6xl">
+          <h1 className="text-4xl font-medium leading-tight tracking-tight text-white sm:text-5xl md:text-6xl">
             Your <span className="text-primary">style + function</span> together online in audio and
             gadgets.
           </h1>
@@ -49,8 +49,8 @@ const Hero = () => {
 function FeatureCard({ title, subtitle }) {
   return (
     <div className="rounded-3xl border border-white/10 bg-white/10 p-5 shadow-xl shadow-black/10 backdrop-blur-xl">
-      <p className="text-sm font-semibold uppercase tracking-[0.24em] text-white/70">{title}</p>
-      <p className="mt-3 text-base font-semibold text-white">{subtitle}</p>
+      <p className="text-sm font-medium uppercase tracking-[0.24em] text-white/70">{title}</p>
+      <p className="mt-3 text-base font-medium text-white">{subtitle}</p>
     </div>
   );
 }

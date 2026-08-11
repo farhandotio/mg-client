@@ -66,7 +66,7 @@ export default function WarrantyPolicy() {
           </div>
 
           {/* Support Call to Action */}
-          <div className="p-10 bg-primary rounded-xl text-bg flex flex-col md:flex-row justify-between items-center gap-8 shadow-[0_20px_50px_rgba(var(--primary-rgb),0.3)]">
+          <div className="p-10 bg-primary rounded-2xl text-bg flex flex-col md:flex-row justify-between items-center gap-8 shadow-[0_20px_50px_rgba(var(--primary-rgb),0.3)]">
             <div className="space-y-2 text-center md:text-left">
               <h3 className="text-3xl font-medium uppercase italic leading-none">Need to Claim?</h3>
               <p className="font-medium opacity-80 uppercase tracking-tighter">

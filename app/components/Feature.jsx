@@ -6,6 +6,7 @@ import Skeleton from '@/components/Skeleton';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllProducts } from '@/store/features/productSlice';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Feature() {
   const dispatch = useDispatch();
@@ -16,34 +17,28 @@ export default function Feature() {
   }, [dispatch]);
 
   return (
-    <section className="py-12 px-4 md:px-6 bg-bg relative overflow-hidden border-t border-border/10">
+    <section className="py-12 px-4 sm:px-6 md:px-8 bg-bg relative overflow-hidden border-t border-border/10">
       <div className="absolute top-0 right-0 w-80 h-80 bg-primary/5 blur-[120px] rounded-full -z-10" />
 
-      <div className="max-w-7xl mx-auto">
+      <div className="">
         <div className="flex justify-between items-end mb-8 gap-4 border-b border-border/10 pb-4">
-          <div className="space-y-1">
-            <div className="flex items-center gap-1.5 text-secondary">
-              <Flame size={16} className="fill-secondary animate-pulse" />
-              <span className="text-[12px] md:text-[11px] font-medium uppercase tracking-wider">
-                Best Collection
-              </span>
-            </div>
-            <h2 className="text-xl md:text-2xl font-medium text-text tracking-tighter leading-none">
-              Curated <span className="text-primary">For You</span>
+          <div className="flex items-start justify-between gap-6 w-full h-fit">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 leading-[1.1] max-w-2xl">
+              Designed for seamless sound and advanced technology.
             </h2>
+              <div className="relative shrink-0 w-16 h-16 md:w-24 md:h-24 rounded-2xl overflow-hidden shadow-sm bg-slate-100">
+                <Image
+                  src="/images/Audio_gadgets_commercial_product…_202608111342.jpeg"
+                  alt="Featured Lifestyle"
+                  fill
+                  className="object-cover"
+                />
+              </div>
           </div>
-
-          <Link
-            href="/shop?productType=Featured"
-            className="group flex items-center gap-1 text-[12px] md:text-[14px] font-medium text-primary hover:underline transition-colors max-md:hidden"
-          >
-            View All
-            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-          </Link>
         </div>
 
         {/* --- Grid Area: Mobile 2 columns, Desktop 5 columns --- */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {loading ? (
             [...Array(10)].map((_, i) => (
               <div key={i} className="w-full">
@@ -65,12 +60,13 @@ export default function Feature() {
           )}
         </div>
 
-        <div className="mt-8 flex justify-center md:hidden">
+        <div className="mt-8 flex justify-center">
           <Link
             href="/shop?productType=Featured"
-            className="w-full text-center py-3 bg-card border border-border/60 rounded-md text-sm font-medium text-text active:scale-95 transition-transform"
+            className="w-full text-center py-3 bg-card border border-border/60 rounded-md text-sm font-medium text-text active:scale-95 transition-transform md:w-fit px-5"
           >
             View All Products
+            <ArrowRight size={16} className="inline-block ml-1 -rotate-45" />
           </Link>
         </div>
       </div>

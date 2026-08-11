@@ -88,7 +88,7 @@ export default function OrderDetailsPage() {
         {/* --- প্রিন্টযোগ্য ডকুমেন্ট --- */}
         <div ref={componentRef} className="print:p-10 print:bg-white print:text-black">
           {/* হেডার কার্ড */}
-          <div className="bg-card/30 rounded-xl p-8 md:p-16 border border-border/30 relative overflow-hidden shadow-2xl">
+          <div className="bg-card/30 rounded-2xl p-8 md:p-16 border border-border/30 relative overflow-hidden shadow-2xl">
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
 
             <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
@@ -130,7 +130,7 @@ export default function OrderDetailsPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-8">
             {/* বাম পাশ: পণ্যের তালিকা */}
-            <div className="lg:col-span-7 bg-card/30 rounded-xl p-8 md:p-12 border border-border/30 space-y-12">
+            <div className="lg:col-span-7 bg-card/30 rounded-2xl p-8 md:p-12 border border-border/30 space-y-12">
               <div className="flex items-center gap-3 text-pText">
                 <Cpu size={18} />
                 <h3 className="text-xs font-medium uppercase tracking-tighter">
@@ -195,7 +195,7 @@ export default function OrderDetailsPage() {
             {/* ডান পাশ: ঠিকানা ও পেমেন্ট */}
             <div className="lg:col-span-5 space-y-8">
               {/* ডেলিভারি ঠিকানা */}
-              <div className="bg-card/30 rounded-xl p-8 md:p-10 border border-border/30 space-y-6">
+              <div className="bg-card/30 rounded-2xl p-8 md:p-10 border border-border/30 space-y-6">
                 <div className="flex items-center gap-3 text-pText">
                   <Fingerprint size={18} />
                   <h3 className="text-xs font-medium uppercase tracking-tighter">
@@ -220,7 +220,7 @@ export default function OrderDetailsPage() {
               </div>
 
               {/* আর্থিক হিসাব */}
-              <div className="bg-primary text-white rounded-xl p-8 md:p-10 space-y-8 shadow-2xl shadow-primary/20 print:bg-black print:text-white">
+              <div className="bg-primary text-white rounded-2xl p-8 md:p-10 space-y-8 shadow-2xl shadow-primary/20 print:bg-black print:text-white">
                 <div className="space-y-4 text-[12px] font-medium uppercase tracking-tighter opacity-90">
                   <div className="flex justify-between border-b border-bg/10 pb-2">
                     <span>পণ্যের মোট দাম</span>

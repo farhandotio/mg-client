@@ -170,7 +170,7 @@ export default function ProfilePage() {
 
       <div className="max-w-7xl mx-auto space-y-8 px-4 md:px-6 relative z-10">
         {/* --- HERO SECTION: User Card --- */}
-        <div className="relative bg-card/30 backdrop-blur-3xl border border-white/5 md:border-border/40 rounded-md md:rounded-xl p-6 md:p-10 overflow-hidden shadow-2xl">
+        <div className="relative bg-card/30 backdrop-blur-3xl border border-white/5 md:border-border/40 rounded-md md:rounded-2xl p-6 md:p-10 overflow-hidden shadow-2xl">
           {/* Decorative Elements */}
           <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/20 rounded-full blur-[80px]" />
           <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-primary/50 to-transparent opacity-50" />

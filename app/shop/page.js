@@ -4,7 +4,7 @@ import Skeleton from '@/components/Skeleton';
 
 export default function ShopPage() {
   return (
-    <div className="max-w-7xl mx-auto px-4 md:px-8 py-5 min-h-screen">
+    <div className="px-4 md:px-8 py-5 min-h-screen">
       <Suspense fallback={<ShopLoadingFallback />}>
         <ShopPageContent />
       </Suspense>
@@ -20,7 +20,7 @@ function ShopLoadingFallback() {
         <div className="h-12 w-64 bg-card border border-border/50 rounded-md animate-pulse" />
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         <Skeleton type="product" count={8} className="aspect-3/4 rounded-md" />
       </div>
     </div>
