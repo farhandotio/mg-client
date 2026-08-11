@@ -41,7 +41,7 @@ export default function AdminProtection({ children }) {
           />
         </div>
         <div className="text-center">
-          <p className="text-[12px] font-black uppercase tracking-tighter text-white">
+          <p className="text-[12px] font-medium uppercase tracking-tighter text-white">
             Verifying <span className="text-primary">Admin</span> Session
           </p>
           <p className="text-[10px] text-pText opacity-40 uppercase mt-1">

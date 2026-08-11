@@ -37,22 +37,22 @@ export default function Flash() {
           <div className="space-y-3">
             <div className="flex items-center gap-2 text-secondary">
               <Zap size={18} className="fill-secondary animate-pulse" />
-              <h2 className="text-xl md:text-2xl font-black text-text tracking-tighter uppercase italic">
-                ফ্ল্যাশ <span className="text-secondary">ডিল</span>
+              <h2 className="text-xl md:text-2xl font-medium text-text tracking-tighter uppercase italic">
+                Flash <span className="text-secondary">Deals</span>
               </h2>
             </div>
 
             <div className="flex items-center gap-3">
-              <span className="text-[11px] font-bold text-pText uppercase tracking-wider">
-                শেষ হতে বাকি:
+              <span className="text-[11px] font-medium text-pText uppercase tracking-wider">
+                Time left:
               </span>
               <div className="flex gap-1.5">
                 {[timeLeft.hours, timeLeft.mins, timeLeft.secs].map((unit, i) => (
                   <React.Fragment key={i}>
-                    <div className="bg-secondary text-black/70 px-2 py-1 rounded font-mono font-bold text-sm min-w-8 text-center shadow-lg shadow-secondary/20">
+                    <div className="bg-secondary text-black/70 px-2 py-1 rounded font-mono font-medium text-sm min-w-8 text-center shadow-lg shadow-secondary/20">
                       {unit}
                     </div>
-                    {i < 2 && <span className="text-secondary font-bold">:</span>}
+                    {i < 2 && <span className="text-secondary font-medium">:</span>}
                   </React.Fragment>
                 ))}
               </div>
@@ -61,9 +61,9 @@ export default function Flash() {
 
           <Link
             href="/shop?productType=FlashSale"
-            className="group flex items-center gap-1.5 text-[13px] md:text-[15px] font-bold text-secondary hover:underline transition-colors max-md:hidden"
+            className="group flex items-center gap-1.5 text-[13px] md:text-[15px] font-medium text-secondary hover:underline transition-colors max-md:hidden"
           >
-            সবগুলো ডিল দেখুন
+            View All Deals
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
@@ -84,8 +84,8 @@ export default function Flash() {
             ))
           ) : (
             <div className="col-span-full py-16 text-center border-2 border-dashed border-border/10 rounded-md bg-card/20">
-              <p className="text-pText opacity-60 text-sm font-bold tracking-tighter uppercase">
-                এই মুহূর্তে কোনো ফ্ল্যাশ ডিল নেই
+              <p className="text-pText opacity-60 text-sm font-medium tracking-tighter uppercase">
+                No flash deals available right now
               </p>
             </div>
           )}
@@ -94,9 +94,9 @@ export default function Flash() {
         <div className="mt-8 md:hidden">
           <Link
             href="/shop?productType=FlashSale"
-            className="block w-full text-center py-4 bg-secondary/10 border border-secondary/20 rounded-md text-sm font-black text-secondary active:scale-95 transition-transform"
+            className="block w-full text-center py-4 bg-secondary/10 border border-secondary/20 rounded-md text-sm font-medium text-secondary active:scale-95 transition-transform"
           >
-            সবগুলো ফ্ল্যাশ ডিল দেখুন
+            View All Flash Deals
           </Link>
         </div>
       </div>

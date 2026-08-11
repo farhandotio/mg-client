@@ -5,7 +5,7 @@ export default function DataTable({ columns, data, loading, onEdit, onDelete, on
   if (loading) {
     return (
       <div className="w-full h-64 bg-card/20 animate-pulse rounded-md flex items-center justify-center">
-        <p className="text-[12px] font-black uppercase tracking-tighter text-pText">
+        <p className="text-[12px] font-medium uppercase tracking-tighter text-pText">
           Fetching Data...
         </p>
       </div>
@@ -21,12 +21,12 @@ export default function DataTable({ columns, data, loading, onEdit, onDelete, on
               {columns.map((col) => (
                 <th
                   key={col.key}
-                  className="px-6 py-5 text-[12px] font-black uppercase tracking-tighter text-primary"
+                  className="px-6 py-5 text-[12px] font-medium uppercase tracking-tighter text-primary"
                 >
                   {col.label}
                 </th>
               ))}
-              <th className="px-6 py-5 text-[12px] font-black uppercase tracking-tighter text-primary text-right">
+              <th className="px-6 py-5 text-[12px] font-medium uppercase tracking-tighter text-primary text-right">
                 Actions
               </th>
             </tr>
@@ -74,7 +74,7 @@ export default function DataTable({ columns, data, loading, onEdit, onDelete, on
               <tr>
                 <td
                   colSpan={columns.length + 1}
-                  className="px-6 py-20 text-center text-pText font-bold uppercase text-[12px] tracking-tighter"
+                  className="px-6 py-20 text-center text-pText font-medium uppercase text-[12px] tracking-tighter"
                 >
                   No records found in the vault.
                 </td>

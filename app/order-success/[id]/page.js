@@ -36,7 +36,7 @@ export default function OrderSuccessPage() {
       <div className="min-h-screen bg-bg flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <Loader2 className="w-12 h-12 text-primary animate-spin" />
-          <p className="text-primary font-black tracking-tighter text-[12px] animate-pulse uppercase">
+          <p className="text-primary font-medium tracking-tighter text-[12px] animate-pulse uppercase">
             আপনার অর্ডার ডাটা লোড হচ্ছে...
           </p>
         </div>
@@ -64,12 +64,12 @@ export default function OrderSuccessPage() {
               <CheckCircle2 size={48} className="text-primary -rotate-12" />
             </div>
           </div>
-          <h1 className="text-5xl md:text-7xl font-black uppercase italic tracking-tighterer leading-none mb-4">
+          <h1 className="text-5xl md:text-7xl font-medium uppercase italic tracking-tighterer leading-none mb-4">
             অর্ডার <span className="text-primary">সম্পন্ন</span>
           </h1>
           <div className="flex items-center justify-center gap-3">
             <span className="h-px w-8 bg-border" />
-            <p className="text-pText text-[12px] font-black tracking-tighter uppercase italic">
+            <p className="text-pText text-[12px] font-medium tracking-tighter uppercase italic">
               সফলভাবে গ্রহণ করা হয়েছে
             </p>
             <span className="h-px w-8 bg-border" />
@@ -84,18 +84,18 @@ export default function OrderSuccessPage() {
               <div className="p-8">
                 <div className="flex flex-wrap justify-between items-start gap-4 mb-10">
                   <div>
-                    <h3 className="text-pText text-[11px] font-black uppercase tracking-tighter mb-2 flex items-center gap-2">
+                    <h3 className="text-pText text-[11px] font-medium uppercase tracking-tighter mb-2 flex items-center gap-2">
                       <Hash size={12} className="text-primary" /> ট্র্যাকিং আইডি
                     </h3>
-                    <p className="text-sm font-bold font-mono tracking-tighterer text-text/80">
+                    <p className="text-sm font-medium font-mono tracking-tighterer text-text/80">
                       {orderDetails._id}
                     </p>
                   </div>
                   <div className="text-right">
-                    <h3 className="text-pText text-[11px] font-black uppercase tracking-tighter mb-2">
+                    <h3 className="text-pText text-[11px] font-medium uppercase tracking-tighter mb-2">
                       বর্তমান অবস্থা
                     </h3>
-                    <span className="px-3 py-1 bg-primary text-bg text-[10px] font-black rounded-full italic uppercase tracking-wider">
+                    <span className="px-3 py-1 bg-primary text-bg text-[10px] font-medium rounded-full italic uppercase tracking-wider">
                       {orderDetails.orderStatus === 'Pending'
                         ? 'অপেক্ষমান'
                         : orderDetails.orderStatus}
@@ -107,7 +107,7 @@ export default function OrderSuccessPage() {
                   <div className="space-y-6">
                     <SectionLabel icon={MapPin} text="ডেলিভারি ঠিকানা" />
                     <div className="border-l-2 border-primary/20 pl-4 py-1">
-                      <p className="text-sm font-bold text-text uppercase leading-tight mb-1">
+                      <p className="text-sm font-medium text-text uppercase leading-tight mb-1">
                         {shipping.fullname || 'গ্রাহকের নাম'}
                       </p>
                       <p className="text-xs text-pText font-medium leading-relaxed italic">
@@ -115,7 +115,7 @@ export default function OrderSuccessPage() {
                         <br />
                         {shipping.state}, {shipping.zip}
                       </p>
-                      <p className="text-[12px] text-primary font-black mt-3 font-mono">
+                      <p className="text-[12px] text-primary font-medium mt-3 font-mono">
                         {shipping.phone}
                       </p>
                     </div>
@@ -124,13 +124,13 @@ export default function OrderSuccessPage() {
                   <div className="space-y-6">
                     <SectionLabel icon={CreditCard} text="পেমেন্ট তথ্য" />
                     <div className="bg-bg/50 border border-border p-4 rounded-md">
-                      <p className="text-[12px] font-black text-pText uppercase mb-1">
+                      <p className="text-[12px] font-medium text-pText uppercase mb-1">
                         পদ্ধতি: {payment.method === 'COD' ? 'ক্যাশ অন ডেলিভারি' : 'অনলাইন'}
                       </p>
-                      <p className="text-[12px] font-black text-primary uppercase">
+                      <p className="text-[12px] font-medium text-primary uppercase">
                         স্ট্যাটাস: {payment.status === 'Pending' ? 'বাকি' : 'পরিশোধিত'}
                       </p>
-                      <p className="text-[11px] text-pText/40 mt-4 italic font-bold">
+                      <p className="text-[11px] text-pText/40 mt-4 italic font-medium">
                         অর্ডার সময়: {new Date(orderDetails.createdAt).toLocaleString('bn-BD')}
                       </p>
                     </div>
@@ -162,7 +162,7 @@ export default function OrderSuccessPage() {
           {/* প্রাইস সাইডবার */}
           <div className="lg:col-span-4">
             <div className="bg-card border border-border rounded-lg p-8 sticky top-24 shadow-2xl">
-              <h3 className="text-pText text-[11px] font-black uppercase tracking-tighter mb-8 border-b border-border/20 pb-4">
+              <h3 className="text-pText text-[11px] font-medium uppercase tracking-tighter mb-8 border-b border-border/20 pb-4">
                 অর্ডার লিস্ট
               </h3>
 
@@ -170,14 +170,14 @@ export default function OrderSuccessPage() {
                 {orderDetails.orderItems?.map((item, idx) => (
                   <div key={idx} className="flex justify-between items-start gap-4 group">
                     <div className="flex-1">
-                      <p className="text-[11px] font-bold text-text leading-tight group-hover:text-primary transition-colors line-clamp-2 uppercase italic">
+                      <p className="text-[11px] font-medium text-text leading-tight group-hover:text-primary transition-colors line-clamp-2 uppercase italic">
                         {item.title}
                       </p>
-                      <p className="text-[12px] text-pText font-black mt-1 uppercase">
+                      <p className="text-[12px] text-pText font-medium mt-1 uppercase">
                         পরিমাণ: {item.quantity}
                       </p>
                     </div>
-                    <p className="text-[11px] font-mono font-bold">
+                    <p className="text-[11px] font-mono font-medium">
                       ৳{item.price.toLocaleString()}
                     </p>
                   </div>
@@ -188,15 +188,15 @@ export default function OrderSuccessPage() {
                 <PriceRow label="মোট পণ্যের দাম" value={pricing.itemsPrice} />
                 <PriceRow label="ডেলিভারি চার্জ" value={pricing.shippingPrice} />
                 <div className="flex justify-between items-center pt-6 mt-2 border-t border-border">
-                  <span className="text-[12px] font-black uppercase text-pText">সর্বমোট</span>
-                  <span className="text-3xl font-black text-primary italic tracking-tighterer font-mono">
+                  <span className="text-[12px] font-medium uppercase text-pText">সর্বমোট</span>
+                  <span className="text-3xl font-medium text-primary italic tracking-tighterer font-mono">
                     ৳{pricing.totalPrice?.toLocaleString()}
                   </span>
                 </div>
               </div>
 
               <div className="mt-8 p-4 bg-primary/5 rounded-md border border-primary/10">
-                <p className="text-[10px] text-primary font-bold text-center uppercase tracking-tighter leading-relaxed">
+                <p className="text-[10px] text-primary font-medium text-center uppercase tracking-tighter leading-relaxed">
                   আপনার ইনভয়েস কপিটি ইমেইলে পাঠিয়ে দেওয়া হয়েছে।
                 </p>
               </div>
@@ -216,14 +216,14 @@ function SectionLabel({ icon: Icon, text }) {
       <div className="w-6 h-6 rounded bg-primary/10 flex items-center justify-center border border-primary/20">
         <Icon size={12} className="text-primary" />
       </div>
-      <h3 className="text-pText text-[11px] font-black uppercase tracking-tighter">{text}</h3>
+      <h3 className="text-pText text-[11px] font-medium uppercase tracking-tighter">{text}</h3>
     </div>
   );
 }
 
 function PriceRow({ label, value }) {
   return (
-    <div className="flex justify-between text-[11px] font-bold uppercase tracking-wider">
+    <div className="flex justify-between text-[11px] font-medium uppercase tracking-wider">
       <span className="text-pText">{label}</span>
       <span className="text-text font-mono">৳{value?.toLocaleString()}</span>
     </div>

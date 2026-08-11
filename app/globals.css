@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Space+Grotesk:wght@300..700&display=swap');
+@import url('https://fonts.cdnfonts.com/css/clash-display');
 
 @import 'tailwindcss';
 
@@ -10,6 +10,7 @@
   --color-secondary: #ffc65c;
   --color-card: #ffffff;
   --color-border: #ddd;
+  --color-danger: #ff4d4f;
   --color-success: #22c55e;
 }
 
@@ -22,10 +23,20 @@
   --color-success: #22c55e;
 }
 
+html,
+body,
+input,
+textarea,
+select,
+button,
+optgroup,
+option {
+  font-family: 'Clash Display', sans-serif;
+}
+
 body {
   background: var(--color-bg);
   color: var(--color-text);
-  font-family: 'Inter', sans-serif;
 }
 
 h1,
@@ -34,7 +45,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Clash Display', sans-serif;
 }
 @layer utilities {
   .no-scrollbar::-webkit-scrollbar {

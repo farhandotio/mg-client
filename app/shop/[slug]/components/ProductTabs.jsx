@@ -33,7 +33,7 @@ export default function ProductTabs({ product }) {
               {tab.icon}
             </span>
             <span
-              className={`font-black uppercase text-xs md:text-sm transition-colors duration-300 ${
+              className={`font-medium uppercase text-xs md:text-sm transition-colors duration-300 ${
                 activeTab === tab.id ? 'text-text' : 'text-pText/40 group-hover:text-pText'
               }`}
             >
@@ -77,10 +77,10 @@ export default function ProductTabs({ product }) {
                       key={item._id || i}
                       className="flex justify-between items-center py-5 border-b border-border/10 group/item transition-all hover:px-2"
                     >
-                      <span className="text-pText/40 font-black uppercase text-[11px] group-hover/item:text-primary transition-colors">
+                      <span className="text-pText/40 font-medium uppercase text-[11px] group-hover/item:text-primary transition-colors">
                         {item.key}
                       </span>
-                      <span className="font-bold text-sm tracking-tighter text-text/90 italic">
+                      <span className="font-medium text-sm tracking-tighter text-text/90 italic">
                         {item.value}
                       </span>
                     </div>
@@ -88,7 +88,7 @@ export default function ProductTabs({ product }) {
                 ) : (
                   <div className="col-span-full py-10 flex flex-col items-center opacity-20">
                     <Database size={40} className="mb-4" />
-                    <p className="text-[12px] uppercase font-black tracking-tighter text-center">
+                    <p className="text-[12px] uppercase font-medium tracking-tighter text-center">
                       কারিগরি তথ্য পাওয়া যায়নি
                     </p>
                   </div>
@@ -99,7 +99,7 @@ export default function ProductTabs({ product }) {
             {activeTab === 'reviews' && (
               <div className="flex flex-col items-center justify-center py-16 text-center border-2 border-dashed border-border/20 rounded-md">
                 <Star className="text-primary/20 mb-4" size={32} />
-                <p className="text-pText font-black uppercase text-[12px]">
+                <p className="text-pText font-medium uppercase text-[12px]">
                   এখনও কোনো রিভিউ দেওয়া হয়নি
                 </p>
               </div>

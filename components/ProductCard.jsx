@@ -89,12 +89,12 @@ export default function ProductCard({ product, priority = false }) {
         {/* ব্যাজসমূহ */}
         <div className="absolute top-2 left-2 flex flex-col gap-1 z-20 pointer-events-none">
           {discount > 0 && (
-            <div className="bg-primary text-bg text-[10px] md:text-[12px] font-black px-2 py-0.5 md:py-1 rounded-tl-lg rounded-br-lg shadow-xl italic">
+            <div className="bg-primary text-bg text-[10px] md:text-[12px] font-medium px-2 py-0.5 md:py-1 rounded-tl-lg rounded-br-lg shadow-xl italic">
               -{discount}%
             </div>
           )}
           {isOutOfStock && (
-            <div className="bg-red-500/90 backdrop-blur-md text-white text-[9px] md:text-[11px] font-black px-2 py-1 rounded-md uppercase">
+            <div className="bg-red-500/90 backdrop-blur-md text-white text-[9px] md:text-[11px] font-medium px-2 py-1 rounded-md uppercase">
               স্টক শেষ
             </div>
           )}
@@ -105,7 +105,7 @@ export default function ProductCard({ product, priority = false }) {
             aria-label={isInCart ? 'Already in cart' : 'Add to Cart'}
             onClick={handleAddToCart}
             disabled={isOutOfStock || isAdding || isInCart}
-            className={`flex-1 h-10 rounded-md font-black text-[11px] uppercase tracking-tighterer transition-all flex items-center justify-center gap-2 shadow-lg
+            className={`flex-1 h-10 rounded-md font-medium text-[11px] uppercase tracking-tighterer transition-all flex items-center justify-center gap-2 shadow-lg
               ${isInCart ? 'bg-green-500 text-white' : 'bg-primary text-white hover:bg-primary/90'}
               ${isOutOfStock || isAdding ? 'opacity-50 cursor-not-allowed' : ''}
             `}
@@ -132,17 +132,17 @@ export default function ProductCard({ product, priority = false }) {
 
       <div className="pt-2 p-1 space-y-2">
         <div className="flex items-center justify-between">
-          <span className="text-[10px] md:text-[11px] font-black text-primary/70 uppercase tracking-tighter flex items-center gap-1">
+          <span className="text-[10px] md:text-[11px] font-medium text-primary/70 uppercase tracking-tighter flex items-center gap-1">
             <ShieldCheck size={10} /> {product?.brand?.name || 'PREMIUM'}
           </span>
-          <div className="flex items-center gap-1 text-[11px] md:text-[12px] font-bold text-secondary">
+          <div className="flex items-center gap-1 text-[11px] md:text-[12px] font-medium text-secondary">
             <Star size={10} className="fill-current" />
             <span>{product?.ratings?.average || 0}</span>
           </div>
         </div>
 
         <Link href={`/shop/${product?.slug}`}>
-          <h3 className="text-text font-bold text-[13px] md:text-[15px] leading-tight line-clamp-1 md:group-hover:text-primary transition-colors">
+          <h3 className="text-text font-medium text-[13px] md:text-[15px] leading-tight line-clamp-1 md:group-hover:text-primary transition-colors">
             {product?.title}
           </h3>
         </Link>
@@ -150,11 +150,11 @@ export default function ProductCard({ product, priority = false }) {
         <div className="flex items-center justify-between pt-1">
           <div className="flex flex-col md:flex-row-reverse md:items-center md:gap-1.5 leading-none">
             {discount > 0 && (
-              <span className="text-pText/50 text-xs md:text-sm line-through font-bold mt-1.5">
+              <span className="text-pText/50 text-xs md:text-sm line-through font-medium mt-1.5">
                 ৳{basePrice.toLocaleString()}
               </span>
             )}
-            <span className="text-text text-base md:text-lg font-black tracking-tighterer">
+            <span className="text-text text-base md:text-lg font-medium tracking-tighterer">
               ৳{salePrice.toLocaleString()}
             </span>
           </div>

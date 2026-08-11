@@ -10,17 +10,17 @@ export default function ShippingInfo() {
         {/* Hero Section */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-20 border-b border-bg/5 pb-12">
           <div className="space-y-4">
-            <h1 className="text-6xl md:text-8xl font-black text-text italic uppercase tracking-tighterer leading-none">
+            <h1 className="text-6xl md:text-8xl font-medium text-text italic uppercase tracking-tighterer leading-none">
               Rapid <br />
               <span className="text-primary">Dispatch</span>
             </h1>
-            <p className="text-pText font-black uppercase tracking-wide text-xs opacity-50">
+            <p className="text-pText font-medium uppercase tracking-wide text-xs opacity-50">
               Logistics_System_Active
             </p>
           </div>
           <div className="p-6 bg-primary text-bg rounded-md flex items-center gap-4 shadow-[0_20px_40px_rgba(var(--primary-rgb),0.2)]">
             <Zap size={30} fill="currentColor" />
-            <div className="font-black italic uppercase leading-none">
+            <div className="font-medium italic uppercase leading-none">
               <p className="text-[12px]">Average Speed</p>
               <p className="text-2xl tracking-tighterer">24-72 Hours</p>
             </div>
@@ -46,7 +46,7 @@ export default function ShippingInfo() {
         {/* Delivery Protocols */}
         <div className="space-y-12">
           <div className="space-y-6">
-            <h3 className="text-2xl font-black text-text uppercase italic border-b border-primary/20 pb-4">
+            <h3 className="text-2xl font-medium text-text uppercase italic border-b border-primary/20 pb-4">
               Extraction Protocols
             </h3>
 
@@ -68,7 +68,7 @@ export default function ShippingInfo() {
 
           {/* Damage Protection Note */}
           <div className="p-10 bg-card/20 border border-bg/5 rounded-xl text-center space-y-4">
-            <h4 className="text-xl font-black text-text uppercase italic tracking-tighter">
+            <h4 className="text-xl font-medium text-text uppercase italic tracking-tighter">
               Transit Security
             </h4>
             <p className="text-pText font-medium opacity-80">
@@ -86,17 +86,17 @@ function ZoneCard({ location, time, price, detail }) {
   return (
     <div className="p-10 bg-card/20 border border-bg/5 rounded-lg hover:bg-card/40 transition-all duration-500">
       <div className="flex justify-between items-start mb-6">
-        <h4 className="text-3xl font-black text-text italic uppercase tracking-tighterer">
+        <h4 className="text-3xl font-medium text-text italic uppercase tracking-tighterer">
           {location}
         </h4>
         <Truck className="text-primary" size={24} />
       </div>
       <div className="space-y-4">
         <div className="flex gap-4">
-          <span className="text-[12px] font-black uppercase bg-primary/10 text-primary px-3 py-1 rounded-full">
+          <span className="text-[12px] font-medium uppercase bg-primary/10 text-primary px-3 py-1 rounded-full">
             {time}
           </span>
-          <span className="text-[12px] font-black uppercase bg-bg/5 text-pText px-3 py-1 rounded-full">
+          <span className="text-[12px] font-medium uppercase bg-bg/5 text-pText px-3 py-1 rounded-full">
             {price}
           </span>
         </div>
@@ -110,7 +110,7 @@ function ProtocolItem({ icon, text }) {
   return (
     <div className="flex items-center gap-4 p-5 bg-bg/20 rounded-md border border-bg/5">
       <div className="text-primary">{icon}</div>
-      <p className="text-sm font-bold text-pText uppercase tracking-tighter italic">{text}</p>
+      <p className="text-sm font-medium text-pText uppercase tracking-tighter italic">{text}</p>
     </div>
   );
 }

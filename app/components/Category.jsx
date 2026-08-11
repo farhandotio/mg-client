@@ -45,11 +45,11 @@ export default function Category() {
               <ShoppingBag aria-label="View Shopping Cart" size={20} className="text-primary" />
             </div>
             <div>
-              <h2 className="text-xl md:text-2xl font-black text-text tracking-tighter leading-none">
-                ক্যাটাগরি <span className="text-primary">অনুসারে খুঁজুন</span>
+              <h2 className="text-xl md:text-2xl font-medium text-text tracking-tighter leading-none">
+                Explore by <span className="text-primary">Category</span>
               </h2>
-              <p className="text-[11px] md:text-xs text-pText font-bold uppercase mt-1 tracking-wider opacity-70">
-                আপনার পছন্দের পণ্যটি দ্রুত খুঁজে নিন
+              <p className="text-[11px] md:text-xs text-pText font-medium uppercase mt-1 tracking-wider opacity-70">
+                Find your favorite product faster
               </p>
             </div>
           </div>
@@ -59,9 +59,9 @@ export default function Category() {
               aria-label="View All Categories"
               href="/shop"
               onClick={handleScrollToTop}
-              className="group hidden sm:flex items-center gap-2 text-[12px] font-bold text-primary hover:underline transition-all"
+              className="group hidden sm:flex items-center gap-2 text-[12px] font-medium text-primary hover:underline transition-all"
             >
-              সব দেখুন
+              View All
               <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </Link>
 
@@ -123,13 +123,13 @@ export default function Category() {
                     </div>
 
                     <div className="flex-1">
-                      <h3 className="text-md font-black text-text max-md:text-center group-hover:text-primary transition-colors leading-tight">
+                      <h3 className="text-md font-medium text-text max-md:text-center group-hover:text-primary transition-colors leading-tight">
                         {item.name}
                       </h3>
-                      <p className="text-[14px] text-pText mt-1 font-bold">কালেকশন দেখুন</p>
+                      <p className="text-[14px] text-pText mt-1 font-medium">View Collection</p>
 
                       <div className="mt-3 max-md:hidden flex items-center gap-1 text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span className="text-[11px] font-black uppercase">বিস্তারিত</span>
+                        <span className="text-[11px] font-medium uppercase">Details</span>
                         <ArrowRight size={10} />
                       </div>
                     </div>
@@ -144,7 +144,7 @@ export default function Category() {
             ))
           ) : (
             <div className="w-full py-10 text-pText italic text-center text-sm">
-              বর্তমানে কোনো ক্যাটাগরি পাওয়া যায়নি...
+              No categories found currently...
             </div>
           )}
         </div>

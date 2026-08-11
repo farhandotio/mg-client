@@ -125,7 +125,7 @@ export default function Navbar() {
 
             <div className="flex items-center gap-3 lg:gap-12 w-full px-0 lg:px-6">
               {/* --- ডেস্কটপ মেনু --- */}
-              <div className="hidden lg:flex items-center gap-10 text-sm font-black uppercase tracking-tighter">
+              <div className="hidden lg:flex items-center gap-10 text-sm font-medium uppercase tracking-tighter">
                 <Link
                   href="/"
                   className={`transition-colors hover:text-primary ${pathname === '/' ? 'text-primary' : 'text-text'}`}
@@ -171,7 +171,7 @@ export default function Navbar() {
                                   <Box size={18} />
                                 )}
                               </div>
-                              <span className="text-[12px] font-bold text-text group-hover:text-primary">
+                              <span className="text-[12px] font-medium text-text group-hover:text-primary">
                                 {cat.name}
                               </span>
                             </Link>
@@ -193,7 +193,7 @@ export default function Navbar() {
                 <Link
                   aria-label="View Hot Deals Page"
                   href="/shop?productType=HotDeals"
-                  className="flex items-center gap-1.5 text-secondary font-black italic hover:scale-105 transition-transform"
+                  className="flex items-center gap-1.5 text-secondary font-medium italic hover:scale-105 transition-transform"
                 >
                   <Zap size={14} fill="currentColor" className="animate-pulse" /> হট ডিলস
                 </Link>
@@ -275,11 +275,11 @@ export default function Navbar() {
               <Link
                 aria-label="View Shopping Cart"
                 href="/cart"
-                className="relative p-3 bg-primary/10 text-primary rounded-md hover:bg-primary hover:text-bg transition-all duration-300 group"
+                className="relative p-3 bg-card text-text rounded-md hover:bg-primary hover:text-bg transition-all duration-300 group"
               >
                 <ShoppingCart size={20} className="group-active:scale-75 transition-transform" />
                 {mounted && cartItems.length > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-primary text-bg text-[12px] font-black w-5 h-5 rounded-full flex items-center justify-center ">
+                  <span className="absolute -top-1 -right-1 bg-primary text-bg text-[12px] font-medium w-5 h-5 rounded-full flex items-center justify-center ">
                     {cartItems.length}
                   </span>
                 )}
@@ -297,7 +297,7 @@ export default function Navbar() {
                   url="/auth"
                   icon={LogIn}
                   size="md"
-                  className="rounded-md font-bold"
+                  className="rounded-md font-medium"
                 />
               </div>
             ) : (
@@ -305,12 +305,20 @@ export default function Navbar() {
                 <button
                   aria-label="View Profile Menu"
                   onClick={() => setIsProfileOpen(!isProfileOpen)}
-                  className="flex items-center gap-2.5 p-1.5 bg-bg/5 border border-bg/5 rounded-md hover:border-primary/30 transition-all pl-2 pr-3"
+                  className="flex items-center gap-2.5 p-1.5 border border-bg/5 rounded-md hover:border-primary/30 bg-card transition-all pl-2 pr-3"
                 >
-                  <div className="w-8 h-8 bg-primary text-bg rounded-md flex items-center justify-center font-black text-xs shadow-lg shadow-primary/20">
-                    {user?.fullname?.charAt(0).toUpperCase()}
+                  <div className="w-8 h-8 rounded-md overflow-hidden text-bg flex items-center justify-center">
+                    {user?.image || user?.avatar ? (
+                      <img
+                        src={user.image || user.avatar}
+                        alt="profile"
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <User size={16} />
+                    )}
                   </div>
-                  <span className="text-[12px] font-black uppercase tracking-tighter text-text">
+                  <span className="text-[12px] font-medium uppercase tracking-tighter text-text">
                     {user?.fullname?.split(' ')[0]}
                   </span>
                   <ChevronDown
@@ -331,7 +339,7 @@ export default function Navbar() {
                         <Link
                           aria-label="View Admin Dashboard"
                           href="/admin/dashboard"
-                          className="flex items-center gap-3 px-4 py-3 text-primary bg-primary/5 rounded-md font-black text-[12px] uppercase mb-1"
+                          className="flex items-center gap-3 px-4 py-3 text-primary bg-primary/5 rounded-md font-medium text-[12px] uppercase mb-1"
                         >
                           <LayoutDashboard size={16} /> ড্যাশবোর্ড
                         </Link>
@@ -339,14 +347,14 @@ export default function Navbar() {
                       <Link
                         aria-label="View Profile Page"
                         href="/profile"
-                        className="flex items-center gap-3 px-4 py-3 hover:bg-bg/5 rounded-md font-black text-[12px] uppercase"
+                        className="flex items-center gap-3 px-4 py-3 hover:bg-bg/5 rounded-md font-medium text-[12px] uppercase"
                       >
                         <User size={16} /> প্রোফাইল
                       </Link>
                       <Link
                         aria-label="View orders Page"
                         href="/orders"
-                        className="flex items-center gap-3 px-4 py-3 hover:bg-bg/5 rounded-md font-black text-[12px] uppercase"
+                        className="flex items-center gap-3 px-4 py-3 hover:bg-bg/5 rounded-md font-medium text-[12px] uppercase"
                       >
                         <Package size={16} /> অর্ডারসমূহ
                       </Link>
@@ -354,7 +362,7 @@ export default function Navbar() {
                       <button
                         aria-label="Logout"
                         onClick={() => dispatch(logoutUser())}
-                        className="flex w-full items-center gap-3 px-4 py-3 text-red-500 hover:bg-red-500/10 rounded-md font-black text-[12px] uppercase transition-colors"
+                        className="flex w-full items-center gap-3 px-4 py-3 text-red-500 hover:bg-red-500/10 rounded-md font-medium text-[12px] uppercase transition-colors"
                       >
                         <LogOut size={16} /> লগআউট
                       </button>

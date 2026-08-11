@@ -86,10 +86,10 @@ export default function Footer() {
                 {item.icon}
               </div>
               <div className="space-y-1">
-                <h4 className="text-text font-black text-lg tracking-tighter leading-none">
+                <h4 className="text-text font-medium text-lg tracking-tighter leading-none">
                   {item.title}
                 </h4>
-                <p className="text-pText/50 text-[12px] font-black uppercase tracking-tighter italic">
+                <p className="text-pText/50 text-[12px] font-medium uppercase tracking-tighter italic">
                   {item.desc}
                 </p>
               </div>
@@ -122,13 +122,13 @@ export default function Footer() {
 
           {/* কুইক লিঙ্কস */}
           <div className="lg:col-span-2">
-            <h4 className="text-primary font-black uppercase text-[12px]  mb-8">লিঙ্কসমূহ</h4>
+            <h4 className="text-primary font-medium uppercase text-[12px]  mb-8">লিঙ্কসমূহ</h4>
             <ul className="space-y-4">
               {footerData.quickLinks.map((link, index) => (
                 <li key={index}>
                   <Link
                     href={link.href}
-                    className="text-pText/60 text-[13px] font-bold hover:text-primary transition-all flex items-center gap-2 group italic"
+                    className="text-pText/60 text-[13px] font-medium hover:text-primary transition-all flex items-center gap-2 group italic"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-primary/20 group-hover:bg-primary transition-colors" />
                     {link.name}
@@ -140,13 +140,13 @@ export default function Footer() {
 
           {/* সহযোগিতা */}
           <div className="lg:col-span-2">
-            <h4 className="text-primary font-black uppercase text-[12px]  mb-8">সহযোগিতা</h4>
+            <h4 className="text-primary font-medium uppercase text-[12px]  mb-8">সহযোগিতা</h4>
             <ul className="space-y-4">
               {footerData.support.map((link, index) => (
                 <li key={index}>
                   <Link
                     href={link.href}
-                    className="text-pText/60 text-[13px] font-bold hover:text-primary transition-all flex items-center gap-2 group italic"
+                    className="text-pText/60 text-[13px] font-medium hover:text-primary transition-all flex items-center gap-2 group italic"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-primary/20 group-hover:bg-primary transition-colors" />
                     {link.name}
@@ -159,12 +159,12 @@ export default function Footer() {
           {/* নিউজলেটার */}
           <div className="lg:col-span-4 space-y-8">
             <div className="space-y-4">
-              <h4 className="text-primary font-black uppercase text-[12px] ">নিউজলেটার</h4>
+              <h4 className="text-primary font-medium uppercase text-[12px] ">নিউজলেটার</h4>
               <form className="relative group" onSubmit={(e) => e.preventDefault()}>
                 <input
                   type="email"
                   placeholder="ইমেইল অ্যাড্রেস লিখুন"
-                  className="w-full bg-card/30 border-2 border-border/50 rounded-md px-6 py-4 text-xs outline-none focus:border-primary/30 transition-all font-bold pr-14 italic"
+                  className="w-full bg-card/30 border-2 border-border/50 rounded-md px-6 py-4 text-xs outline-none focus:border-primary/30 transition-all font-medium pr-14 italic"
                 />
                 <button
                   aria-label="Submit Newsletter"
@@ -177,13 +177,13 @@ export default function Footer() {
             </div>
 
             <address className="not-italic space-y-4 bg-card/20 p-6 rounded-md border border-border/50">
-              <div className="flex items-center gap-4 text-pText text-[11px] font-black italic">
+              <div className="flex items-center gap-4 text-pText text-[11px] font-medium italic">
                 <Phone size={16} className="text-primary" />
                 <a href="tel:+8801XXXXXXXXX" className="hover:text-primary transition-colors">
                   +৮৮০ ১XXX-XXXXXX
                 </a>
               </div>
-              <div className="flex items-center gap-4 text-pText text-[11px] font-black italic">
+              <div className="flex items-center gap-4 text-pText text-[11px] font-medium italic">
                 <Mail size={16} className="text-primary" />
                 <a
                   href="mailto:HQ@GADGETBD.TECH"
@@ -198,7 +198,7 @@ export default function Footer() {
 
         {/* ৩. বটম বার */}
         <div className="pt-8 border-t border-border/50 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-3 text-pText/30 text-[11px] font-black uppercase ">
+          <div className="flex items-center gap-3 text-pText/30 text-[11px] font-medium uppercase ">
             <span>কপিরাইট © ২০২৬</span>
             <span className="text-primary">●</span>
             <span>গ্যাজেট বিডিএস</span>
@@ -207,7 +207,7 @@ export default function Footer() {
           <div className="flex items-center gap-8 opacity-40 hover:opacity-100 transition-opacity">
             <div className="flex items-center gap-2">
               <Zap size={14} className="text-primary fill-current animate-pulse" />
-              <span className="text-[11px] font-black uppercase tracking-tighter italic">
+              <span className="text-[11px] font-medium uppercase tracking-tighter italic">
                 পাওয়ারড বাই নেক্সট কোড
               </span>
             </div>

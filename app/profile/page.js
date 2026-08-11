@@ -186,7 +186,7 @@ export default function ProfilePage() {
                     alt="profile"
                   />
                 ) : (
-                  <span className="text-5xl md:text-7xl font-black text-primary/80 italic uppercase select-none">
+                  <span className="text-5xl md:text-7xl font-medium text-primary/80 italic uppercase select-none">
                     {user?.fullname?.charAt(0)}
                   </span>
                 )}
@@ -201,10 +201,10 @@ export default function ProfilePage() {
             {/* Info Section */}
             <div className="flex-1 text-center md:text-left space-y-4 md:space-y-6 w-full">
               <div>
-                <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-text tracking-tighterer italic uppercase leading-[0.9]">
+                <h1 className="text-3xl md:text-5xl lg:text-6xl font-medium text-text tracking-tighterer italic uppercase leading-[0.9]">
                   {user?.fullname || 'Unknown Entity'}
                 </h1>
-                <p className="text-xs md:text-sm font-bold text-primary/80 tracking-tighter uppercase mt-2">
+                <p className="text-xs md:text-sm font-medium text-primary/80 tracking-tighter uppercase mt-2">
                   {user?.role === 'admin' ? 'System Administrator' : 'Authorized User'}
                 </p>
                 <p className="text-xs text-pText/50 font-mono mt-1">ID: {user?._id}</p>
@@ -214,7 +214,7 @@ export default function ProfilePage() {
                 <button
                   aria-label="edit open"
                   onClick={openEditModal}
-                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3 bg-white/5 border border-white/10 text-text font-black uppercase text-[12px] tracking-tighter rounded-md hover:bg-primary hover:text-white hover:border-primary hover:shadow-[0_0_20px_rgba(255,111,92,0.4)] transition-all duration-300"
+                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3 bg-white/5 border border-white/10 text-text font-medium uppercase text-[12px] tracking-tighter rounded-md hover:bg-primary hover:text-white hover:border-primary hover:shadow-[0_0_20px_rgba(255,111,92,0.4)] transition-all duration-300"
                 >
                   <Edit3 size={14} /> Edit Profile
                 </button>
@@ -222,7 +222,7 @@ export default function ProfilePage() {
                   aria-label="logout"
                   onClick={handleLogout}
                   disabled={isLoggingOut}
-                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3 bg-red-500/5 text-red-500 border border-red-500/20 font-black uppercase text-[12px] tracking-tighter rounded-md hover:bg-red-500 hover:text-white transition-all duration-300 disabled:opacity-50"
+                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3 bg-red-500/5 text-red-500 border border-red-500/20 font-medium uppercase text-[12px] tracking-tighter rounded-md hover:bg-red-500 hover:text-white transition-all duration-300 disabled:opacity-50"
                 >
                   {isLoggingOut ? (
                     <Loader2 size={14} className="animate-spin" />
@@ -248,8 +248,8 @@ export default function ProfilePage() {
           <div className="lg:col-span-5 space-y-6">
             <div className="flex justify-between items-end px-2">
               <div>
-                <h3 className="text-xl md:text-2xl font-black italic text-text">Shipping Nodes</h3>
-                <p className="text-[11px] font-bold text-pText uppercase tracking-tighter">
+                <h3 className="text-xl md:text-2xl font-medium italic text-text">Shipping Nodes</h3>
+                <p className="text-[11px] font-medium text-pText uppercase tracking-tighter">
                   Delivery Endpoints
                 </p>
               </div>
@@ -280,11 +280,11 @@ export default function ProfilePage() {
                       <div className="space-y-1.5">
                         <div className="flex items-center gap-2 text-primary">
                           <MapPin size={14} className="shrink-0" />
-                          <p className="text-xs font-black uppercase tracking-tighter text-text line-clamp-1">
+                          <p className="text-xs font-medium uppercase tracking-tighter text-text line-clamp-1">
                             {addr.street}
                           </p>
                         </div>
-                        <p className="text-[12px] font-bold text-pText/70 italic uppercase pl-6">
+                        <p className="text-[12px] font-medium text-pText/70 italic uppercase pl-6">
                           {addr.city}, {addr.zip} • {addr.state}
                         </p>
                         <div className="flex items-center gap-2 pl-6">
@@ -292,7 +292,7 @@ export default function ProfilePage() {
                             {addr.phone}
                           </p>
                           {addr.isDefault && (
-                            <span className="text-[10px] font-black bg-white/10 text-white px-2 py-0.5 rounded-full tracking-wider">
+                            <span className="text-[10px] font-medium bg-white/10 text-white px-2 py-0.5 rounded-full tracking-wider">
                               DEFAULT
                             </span>
                           )}
@@ -325,7 +325,7 @@ export default function ProfilePage() {
                 ))
               ) : (
                 <div className="text-center py-12 bg-card/20 rounded-md border border-dashed border-border/40">
-                  <p className="text-pText/40 text-[12px] font-black uppercase tracking-tighter">
+                  <p className="text-pText/40 text-[12px] font-medium uppercase tracking-tighter">
                     No coordinates found
                   </p>
                 </div>
@@ -337,14 +337,14 @@ export default function ProfilePage() {
           <div className="lg:col-span-7 space-y-6">
             <div className="flex justify-between items-end px-2">
               <div>
-                <h3 className="text-xl md:text-2xl font-black italic text-text">Data Logs</h3>
-                <p className="text-[11px] font-bold text-pText uppercase tracking-tighter">
+                <h3 className="text-xl md:text-2xl font-medium italic text-text">Data Logs</h3>
+                <p className="text-[11px] font-medium text-pText uppercase tracking-tighter">
                   Recent Acquisitions
                 </p>
               </div>
               <Link
                 href="/orders"
-                className="text-primary text-[12px] font-black uppercase tracking-tighter hover:underline decoration-2 underline-offset-4"
+                className="text-primary text-[12px] font-medium uppercase tracking-tighter hover:underline decoration-2 underline-offset-4"
               >
                 View Archive
               </Link>
@@ -369,7 +369,7 @@ export default function ProfilePage() {
                       </div>
                       <div className="sm:hidden">
                         <span
-                          className={`text-[11px] font-black uppercase px-2.5 py-1 rounded-md border ${
+                          className={`text-[11px] font-medium uppercase px-2.5 py-1 rounded-md border ${
                             order.orderStatus === 'Delivered'
                               ? 'bg-green-500/10 border-green-500/20 text-green-500'
                               : 'bg-primary/10 border-primary/20 text-primary'
@@ -381,10 +381,10 @@ export default function ProfilePage() {
                     </div>
 
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-bold text-sm text-text/90 uppercase truncate group-hover:text-primary transition-colors">
+                      <h4 className="font-medium text-sm text-text/90 uppercase truncate group-hover:text-primary transition-colors">
                         Order #{order._id.slice(-6)}
                       </h4>
-                      <p className="text-[12px] text-pText/60 font-black mt-1 uppercase tracking-wider">
+                      <p className="text-[12px] text-pText/60 font-medium mt-1 uppercase tracking-wider">
                         {new Date(order.createdAt).toLocaleDateString('en-US', {
                           day: 'numeric',
                           month: 'short',
@@ -395,13 +395,13 @@ export default function ProfilePage() {
 
                     <div className="flex items-center justify-between sm:justify-end gap-6 w-full sm:w-auto mt-2 sm:mt-0 border-t sm:border-t-0 border-white/5 pt-3 sm:pt-0">
                       <div className="text-right">
-                        <p className="text-base font-black text-text font-mono">
+                        <p className="text-base font-medium text-text font-mono">
                           ৳{order.pricing?.totalPrice?.toLocaleString()}
                         </p>
                       </div>
                       <div className="hidden sm:block">
                         <span
-                          className={`text-[11px] font-black uppercase px-3 py-1.5 rounded-md border ${
+                          className={`text-[11px] font-medium uppercase px-3 py-1.5 rounded-md border ${
                             order.orderStatus === 'Delivered'
                               ? 'bg-green-500/10 border-green-500/20 text-green-500'
                               : 'bg-primary/10 border-primary/20 text-primary'
@@ -453,7 +453,7 @@ export default function ProfilePage() {
             {isEditModalOpen && (
               <form onSubmit={handleUpdateProfile} className="space-y-6">
                 <div className="text-center mb-8">
-                  <h2 className="text-2xl md:text-3xl font-black italic uppercase text-white">
+                  <h2 className="text-2xl md:text-3xl font-medium italic uppercase text-white">
                     Update Protocol
                   </h2>
                   <p className="text-[12px] text-pText uppercase tracking-tighter mt-2">
@@ -478,7 +478,7 @@ export default function ProfilePage() {
 
                   {/* --- Image URL Input with Preview --- */}
                   <div className="space-y-2">
-                    <label className="text-[12px] font-black uppercase tracking-tighter text-pText/60 ml-2">
+                    <label className="text-[12px] font-medium uppercase tracking-tighter text-pText/60 ml-2">
                       Avatar URL Link
                     </label>
                     <div className="flex gap-3">
@@ -487,7 +487,7 @@ export default function ProfilePage() {
                           value={editData.image}
                           onChange={(e) => setEditData({ ...editData, image: e.target.value })}
                           placeholder="https://example.com/image.jpg"
-                          className="w-full bg-bg border border-border rounded-md p-4 pl-11 text-xs font-bold text-text outline-none focus:border-primary transition-all shadow-inner placeholder:text-pText/20"
+                          className="w-full bg-bg border border-border rounded-md p-4 pl-11 text-xs font-medium text-text outline-none focus:border-primary transition-all shadow-inner placeholder:text-pText/20"
                         />
                         <div className="absolute left-4 top-1/2 -translate-y-1/2 text-pText">
                           <LinkIcon size={16} />
@@ -524,7 +524,7 @@ export default function ProfilePage() {
             {isAddressModalOpen && (
               <form onSubmit={handleAddressSubmit} className="space-y-6">
                 <div className="text-center mb-8">
-                  <h2 className="text-2xl md:text-3xl font-black italic uppercase text-white">
+                  <h2 className="text-2xl md:text-3xl font-medium italic uppercase text-white">
                     {isEditingAddress ? 'Re-Route Node' : 'New Coordinate'}
                   </h2>
                   <p className="text-[12px] text-pText uppercase tracking-tighter mt-2">
@@ -586,7 +586,7 @@ export default function ProfilePage() {
                   />
                   <label
                     htmlFor="isDefault"
-                    className="text-[12px] font-bold uppercase tracking-tighter cursor-pointer select-none text-pText"
+                    className="text-[12px] font-medium uppercase tracking-tighter cursor-pointer select-none text-pText"
                   >
                     Set as Default Node
                   </label>
@@ -618,7 +618,7 @@ function StatCard({ label, value, delay }) {
       className="bg-bg/40 backdrop-blur-md border border-white/5 p-4 rounded-md text-center min-w-25 animate-in zoom-in-50 fill-mode-backwards duration-500"
       style={{ animationDelay: `${delay}ms` }}
     >
-      <p className="text-2xl font-black text-primary drop-shadow-[0_0_8px_rgba(255,111,92,0.5)]">
+      <p className="text-2xl font-medium text-primary drop-shadow-[0_0_8px_rgba(255,111,92,0.5)]">
         {value || 0}
       </p>
       <p className="text-[11px] uppercase tracking-tighter text-pText/70 mt-1">{label}</p>
@@ -629,14 +629,14 @@ function StatCard({ label, value, delay }) {
 function InputGroup({ label, icon, disabled, ...props }) {
   return (
     <div className="space-y-2">
-      <label className="text-[12px] font-black uppercase tracking-tighter text-pText/60 ml-2">
+      <label className="text-[12px] font-medium uppercase tracking-tighter text-pText/60 ml-2">
         {label}
       </label>
       <div className="relative group">
         <input
           {...props}
           disabled={disabled}
-          className={`w-full bg-bg border border-border rounded-md p-4 text-xs font-bold text-text outline-none focus:border-primary transition-all shadow-inner placeholder:text-pText/20
+          className={`w-full bg-bg border border-border rounded-md p-4 text-xs font-medium text-text outline-none focus:border-primary transition-all shadow-inner placeholder:text-pText/20
           ${icon ? 'pl-11' : ''} ${disabled ? 'opacity-50 cursor-not-allowed text-pText/50' : ''}`}
         />
         {icon && (

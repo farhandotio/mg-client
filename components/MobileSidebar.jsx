@@ -47,7 +47,7 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
                 aria-label="View Home Page"
                 href="/"
                 onClick={onClose}
-                className="text-2xl font-black italic tracking-tighterer uppercase leading-none text-text"
+                className="text-2xl font-medium italic tracking-tighterer uppercase leading-none text-text"
               >
                 হোম
               </Link>
@@ -55,7 +55,7 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
                 aria-label="View Shop Page"
                 href="/shop"
                 onClick={onClose}
-                className="text-2xl font-black italic tracking-tighterer uppercase leading-none text-text"
+                className="text-2xl font-medium italic tracking-tighterer uppercase leading-none text-text"
               >
                 শপ
               </Link>
@@ -63,14 +63,14 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
                 aria-label="View Hot Deals Page"
                 href="/shop?productType=HotDeals"
                 onClick={onClose}
-                className="text-2xl font-black italic tracking-tighterer uppercase leading-none text-primary flex items-center gap-2"
+                className="text-2xl font-medium italic tracking-tighterer uppercase leading-none text-primary flex items-center gap-2"
               >
                 ডিলস <Zap size={30} fill="currentColor" />
               </Link>
 
               {/* Dynamic Categories Section */}
               <div className="space-y-4 pt-3 border-t border-border/50">
-                <p className="text-[12px] font-black uppercase text-pText/50 tracking-tighter">
+                <p className="text-[12px] font-medium uppercase text-pText/50 tracking-tighter">
                   ক্যাটাগরি সমূহ
                 </p>
                 <div className="grid gap-3">
@@ -95,7 +95,7 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
                               <Box size={18} />
                             )}
                           </div>
-                          <span className="font-bold text-sm tracking-tighter text-text whitespace-nowrap">
+                          <span className="font-medium text-sm tracking-tighter text-text whitespace-nowrap">
                             {cat.name}
                           </span>
                         </div>
@@ -109,7 +109,7 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
                       </Link>
                     ))
                   ) : (
-                    <div className="py-4 text-[12px] font-black uppercase opacity-20 italic">
+                    <div className="py-4 text-[12px] font-medium uppercase opacity-20 italic">
                       লোড হচ্ছে...
                     </div>
                   )}
@@ -129,7 +129,7 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
                       : '/profile'
                 }
                 onClick={onClose}
-                className="flex items-center gap-3 p-5 bg-primary text-bg rounded-md font-black justify-center shadow-[0_10px_30px_rgba(var(--primary-rgb),0.3)] uppercase text-[11px] tracking-tighter active:scale-95 transition-all"
+                className="flex items-center gap-3 p-5 bg-primary text-bg rounded-md font-medium justify-center shadow-[0_10px_30px_rgba(var(--primary-rgb),0.3)] uppercase text-[11px] tracking-tighter active:scale-95 transition-all"
               >
                 <User size={18} />
                 {!isAuthenticated

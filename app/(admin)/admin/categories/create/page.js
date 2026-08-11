@@ -72,12 +72,12 @@ export default function CreateCategoryPage() {
             className="inline-flex items-center gap-2 text-pText/40 hover:text-primary transition-all group px-3 py-1 bg-card/30 rounded-full border border-border/40"
           >
             <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
-            <span className="text-[11px] font-black uppercase tracking-tighter">
+            <span className="text-[11px] font-medium uppercase tracking-tighter">
               Esc / Terminal
             </span>
           </Link>
           <div className="space-y-1">
-            <h1 className="text-5xl lg:text-7xl font-black uppercase italic tracking-tighterer leading-none">
+            <h1 className="text-5xl lg:text-7xl font-medium uppercase italic tracking-tighterer leading-none">
               New{' '}
               <span className="text-primary drop-shadow-[0_4px_10px_rgba(255,111,92,0.2)]">
                 Class
@@ -85,7 +85,7 @@ export default function CreateCategoryPage() {
             </h1>
             <div className="flex items-center gap-2 text-primary/60">
               <Activity size={14} />
-              <span className="text-[12px] font-black uppercase tracking-tighter">
+              <span className="text-[12px] font-medium uppercase tracking-tighter">
                 System_Initialization_v2
               </span>
             </div>
@@ -94,10 +94,10 @@ export default function CreateCategoryPage() {
 
         <div className="flex gap-4 items-center bg-card/50 p-4 rounded-md border border-border/50 backdrop-blur-sm shadow-inner">
           <div className="text-right border-r border-border/50 pr-4">
-            <p className="text-[10px] font-black text-pText uppercase tracking-tighter opacity-40">
+            <p className="text-[10px] font-medium text-pText uppercase tracking-tighter opacity-40">
               Security_Level
             </p>
-            <p className="text-[12px] font-bold text-primary italic">Admin_Restricted</p>
+            <p className="text-[12px] font-medium text-primary italic">Admin_Restricted</p>
           </div>
           <div className="p-2 bg-primary/10 rounded-md text-primary animate-pulse">
             <ShieldCheck size={24} />
@@ -122,7 +122,7 @@ export default function CreateCategoryPage() {
                   type="text"
                   placeholder="Insert Asset URL & Enter"
                   onKeyDown={handleImageUrl}
-                  className="w-full border border-border/80 rounded-md p-4 bg-bg/60 text-[12px] font-bold uppercase tracking-tighter outline-none focus:border-primary focus:ring-4 focus:ring-primary/5 transition-all shadow-inner"
+                  className="w-full border border-border/80 rounded-md p-4 bg-bg/60 text-[12px] font-medium uppercase tracking-tighter outline-none focus:border-primary focus:ring-4 focus:ring-primary/5 transition-all shadow-inner"
                 />
                 <div className="absolute right-4 top-1/2 -translate-y-1/2 p-1 bg-primary/10 rounded-md group-hover/input:bg-primary transition-colors">
                   <Plus size={14} className="group-hover/input:text-white" />
@@ -152,7 +152,7 @@ export default function CreateCategoryPage() {
                     <div className="w-16 h-16 bg-primary/5 rounded-full flex items-center justify-center mx-auto mb-4 border border-primary/10">
                       <ImageIcon size={28} className="text-primary/20" />
                     </div>
-                    <p className="text-[12px] font-black uppercase tracking-tighter text-pText/30">
+                    <p className="text-[12px] font-medium uppercase tracking-tighter text-pText/30">
                       Waiting_for_Signal
                     </p>
                   </div>
@@ -160,10 +160,10 @@ export default function CreateCategoryPage() {
               </div>
 
               <div className="bg-bg/60 p-3 rounded-md border border-border/50 flex justify-between items-center">
-                <span className="text-[10px] font-black uppercase text-pText/40 tracking-tighter">
+                <span className="text-[10px] font-medium uppercase text-pText/40 tracking-tighter">
                   Asset_ID
                 </span>
-                <span className="text-[11px] font-bold text-primary font-mono">
+                <span className="text-[11px] font-medium text-primary font-mono">
                   {formData.image.fileId || 'NULL'}
                 </span>
               </div>
@@ -184,10 +184,10 @@ export default function CreateCategoryPage() {
             <div className="space-y-10 relative z-10">
               <div className="space-y-3">
                 <div className="flex justify-between items-end px-2">
-                  <label className="text-[12px] font-black uppercase tracking-tighter text-pText/60">
+                  <label className="text-[12px] font-medium uppercase tracking-tighter text-pText/60">
                     Classification_Label
                   </label>
-                  <span className="text-[10px] font-bold text-primary/40 uppercase tracking-tighter">
+                  <span className="text-[10px] font-medium text-primary/40 uppercase tracking-tighter">
                     Required*
                   </span>
                 </div>
@@ -195,13 +195,13 @@ export default function CreateCategoryPage() {
                   type="text"
                   required
                   placeholder="e.g. Mechanical_Nodes"
-                  className="w-full border border-border rounded-md p-6 bg-bg/60 focus:border-primary outline-none transition-all font-black text-lg text-text placeholder:text-pText/10 shadow-inner"
+                  className="w-full border border-border rounded-md p-6 bg-bg/60 focus:border-primary outline-none transition-all font-medium text-lg text-text placeholder:text-pText/10 shadow-inner"
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 />
               </div>
 
               <div className="space-y-3">
-                <label className="text-[12px] font-black uppercase tracking-tighter text-pText/60 px-2">
+                <label className="text-[12px] font-medium uppercase tracking-tighter text-pText/60 px-2">
                   Broadcast_Signal
                 </label>
                 <div className="grid grid-cols-2 gap-4">
@@ -211,7 +211,7 @@ export default function CreateCategoryPage() {
                       key={status}
                       type="button"
                       onClick={() => setFormData({ ...formData, status })}
-                      className={`group relative overflow-hidden py-5 rounded-md border-2 font-black text-[12px] uppercase tracking-tighter transition-all 
+                      className={`group relative overflow-hidden py-5 rounded-md border-2 font-medium text-[12px] uppercase tracking-tighter transition-all 
                       ${
                         formData.status === status
                           ? 'bg-primary border-primary text-white shadow-[0_10px_20px_rgba(255,111,92,0.3)]'
@@ -235,7 +235,7 @@ export default function CreateCategoryPage() {
                   type="submit"
                   size="xl"
                   disabled={loading}
-                  className={`w-full py-8 rounded-[1.8rem] shadow-2xl active:scale-[0.97] transition-all font-black text-sm tracking-wide italic
+                  className={`w-full py-8 rounded-[1.8rem] shadow-2xl active:scale-[0.97] transition-all font-medium text-sm tracking-wide italic
                     ${loading ? 'opacity-50 grayscale' : 'hover:shadow-primary/30'}
                   `}
                   text={
@@ -246,7 +246,7 @@ export default function CreateCategoryPage() {
                     )
                   }
                 />
-                <p className="text-center text-[10px] font-black uppercase tracking-tighter text-pText/30 mt-6">
+                <p className="text-center text-[10px] font-medium uppercase tracking-tighter text-pText/30 mt-6">
                   Warning: System entry is permanent until manual override
                 </p>
               </div>
@@ -265,7 +265,7 @@ function SectionHeader({ icon, title }) {
       <div className="p-3 bg-primary/10 rounded-md border border-primary/20 shadow-sm backdrop-blur-md">
         {icon}
       </div>
-      <h2 className="text-xs font-black uppercase tracking-wide">{title}</h2>
+      <h2 className="text-xs font-medium uppercase tracking-wide">{title}</h2>
     </div>
   );
 }

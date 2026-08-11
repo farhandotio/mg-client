@@ -9,10 +9,10 @@ export default function RefundPolicy() {
       <div className="max-w-4xl mx-auto px-6">
         {/* Header */}
         <div className="mb-16 space-y-4 border-l-4 border-primary pl-8">
-          <h1 className="text-5xl md:text-7xl font-black text-text italic uppercase tracking-tighterer">
+          <h1 className="text-5xl md:text-7xl font-medium text-text italic uppercase tracking-tighterer">
             Return <span className="text-primary">& Refund</span>
           </h1>
-          <p className="text-pText font-bold uppercase tracking-tighter text-sm opacity-60">
+          <p className="text-pText font-medium uppercase tracking-tighter text-sm opacity-60">
             Protocol_v2.1 // Last Updated: 2026
           </p>
         </div>
@@ -34,7 +34,7 @@ export default function RefundPolicy() {
         {/* Detailed Sections */}
         <div className="space-y-12 text-pText font-medium leading-relaxed">
           <section className="space-y-4">
-            <h3 className="text-2xl font-black text-text uppercase italic">
+            <h3 className="text-2xl font-medium text-text uppercase italic">
               01. Eligibility Criteria
             </h3>
             <p>
@@ -45,7 +45,7 @@ export default function RefundPolicy() {
           </section>
 
           <section className="space-y-4 bg-card/20 p-8 rounded-md border border-white/5">
-            <h3 className="text-2xl font-black text-text uppercase italic flex items-center gap-3">
+            <h3 className="text-2xl font-medium text-text uppercase italic flex items-center gap-3">
               <AlertTriangle className="text-yellow-500" /> Non-Returnable Items
             </h3>
             <ul className="list-disc pl-5 space-y-2 opacity-80">
@@ -56,7 +56,7 @@ export default function RefundPolicy() {
           </section>
 
           <section className="space-y-4">
-            <h3 className="text-2xl font-black text-text uppercase italic">02. Refund Process</h3>
+            <h3 className="text-2xl font-medium text-text uppercase italic">02. Refund Process</h3>
             <p>
               Once your return is received and inspected, we will notify you of the approval or
               rejection of your refund. If approved, the credit will automatically be applied to
@@ -73,7 +73,7 @@ function PolicyCard({ icon, title, desc }) {
   return (
     <div className="p-8 bg-card/30 border border-white/5 rounded-md">
       <div className="mb-4">{icon}</div>
-      <h4 className="text-xl font-black text-text uppercase italic mb-2">{title}</h4>
+      <h4 className="text-xl font-medium text-text uppercase italic mb-2">{title}</h4>
       <p className="text-sm opacity-70">{desc}</p>
     </div>
   );

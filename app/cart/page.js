@@ -37,10 +37,10 @@ const InternalCartItem = React.memo(({ item, onUpdate, onRemove, isProcessing })
         <div className="flex-1 min-w-0">
           <div className="flex justify-between items-start mb-2">
             <div className="truncate pr-4">
-              <h3 className="text-sm md:text-base font-bold text-text truncate group-hover:text-primary transition-colors">
+              <h3 className="text-sm md:text-base font-medium text-text truncate group-hover:text-primary transition-colors">
                 {item?.title}
               </h3>
-              <p className="text-[12px] text-pText/50 uppercase font-black tracking-tighterer">
+              <p className="text-[12px] text-pText/50 uppercase font-medium tracking-tighterer">
                 {item?.brand || 'Premium Gear'}
               </p>
             </div>
@@ -66,7 +66,7 @@ const InternalCartItem = React.memo(({ item, onUpdate, onRemove, isProcessing })
                 {isProcessing ? (
                   <Loader2 size={12} className="animate-spin text-primary mx-auto" />
                 ) : (
-                  <span className="text-sm font-bold text-text">{item.quantity}</span>
+                  <span className="text-sm font-medium text-text">{item.quantity}</span>
                 )}
               </div>
               <button
@@ -80,10 +80,10 @@ const InternalCartItem = React.memo(({ item, onUpdate, onRemove, isProcessing })
 
             {/* আধুনিক মূল্য প্রদর্শন */}
             <div className="text-right">
-              <p className="text-base md:text-xl font-black text-primary tracking-tighterer">
+              <p className="text-base md:text-xl font-medium text-primary tracking-tighterer">
                 ৳{(currentPrice * currentQty).toLocaleString()}
               </p>
-              <p className="text-[11px] text-pText/40 font-bold">
+              <p className="text-[11px] text-pText/40 font-medium">
                 ৳{currentPrice.toLocaleString()}/প্রতিটি
               </p>
             </div>
@@ -175,15 +175,15 @@ export default function CartPage() {
             >
               <ArrowLeft size={20} />
             </Link>
-            <h1 className="text-xl md:text-3xl font-black text-text tracking-tighterer uppercase italic">
+            <h1 className="text-xl md:text-3xl font-medium text-text tracking-tighterer uppercase italic">
               শপিং <span className="text-primary">ব্যাগ</span>
             </h1>
           </div>
           <div className="text-right">
-            <span className="text-[12px] font-bold text-pText/40 uppercase tracking-tighter block">
+            <span className="text-[12px] font-medium text-pText/40 uppercase tracking-tighter block">
               আইটেম সংখ্যা
             </span>
-            <span className="text-sm font-black text-primary">{cartItems.length} টি</span>
+            <span className="text-sm font-medium text-primary">{cartItems.length} টি</span>
           </div>
         </header>
 
@@ -207,10 +207,10 @@ export default function CartPage() {
             ) : (
               <div className="py-20 text-center border-2 border-dashed border-border/20 rounded-md">
                 <ShoppingBag size={48} className="mx-auto text-pText/10 mb-4" />
-                <p className="text-sm font-bold text-pText/40 mb-6">আপনার ব্যাগটি খালি!</p>
+                <p className="text-sm font-medium text-pText/40 mb-6">আপনার ব্যাগটি খালি!</p>
                 <Link
                   href="/shop"
-                  className="inline-block bg-primary text-bg font-black px-8 py-3 rounded-md text-sm transition-transform hover:scale-105"
+                  className="inline-block bg-primary text-bg font-medium px-8 py-3 rounded-md text-sm transition-transform hover:scale-105"
                 >
                   কেনাকাটা শুরু করুন
                 </Link>

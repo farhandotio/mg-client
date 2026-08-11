@@ -96,7 +96,7 @@ function AuthForm() {
         className="absolute top-6 right-6 z-50 flex items-center gap-2 px-3 py-2 rounded-md bg-white/5 border border-white/5 text-pText hover:text-primary hover:bg-white/10 transition-all group"
       >
         <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-        <span className="text-[12px] font-black uppercase tracking-tighter hidden sm:block">
+        <span className="text-[12px] font-medium uppercase tracking-tighter hidden sm:block">
           ফিরে যান
         </span>
       </button>
@@ -109,26 +109,26 @@ function AuthForm() {
             }`}
           >
             <div className="mb-10 pt-8 md:pt-0">
-              <h2 className="text-4xl font-black text-text tracking-tighterer mb-2 text-center leading-none">
+              <h2 className="text-4xl font-medium text-text tracking-tighterer mb-2 text-center leading-none">
                 {isLogin ? 'ফিরে আসায় স্বাগতম' : 'নতুন অ্যাকাউন্ট'}
               </h2>
 
               {/* অ্যালার্ট মেসেজসমূহ */}
               {isLogin && isVerified && !error && (
-                <div className="flex items-center gap-2 text-green-500 text-[11px] font-bold uppercase bg-green-500/10 p-3 rounded-md mb-4 border border-green-500/20">
+                <div className="flex items-center gap-2 text-green-500 text-[11px] font-medium uppercase bg-green-500/10 p-3 rounded-md mb-4 border border-green-500/20">
                   <CheckCircle2 size={14} /> ইমেইল ভেরিফাইড! এখন লগইন করুন।
                 </div>
               )}
 
               {verificationNotice && (
-                <div className="flex items-start gap-2 text-blue-500 text-[11px] font-bold uppercase bg-blue-500/10 p-4 rounded-md mb-4 border border-blue-500/20">
+                <div className="flex items-start gap-2 text-blue-500 text-[11px] font-medium uppercase bg-blue-500/10 p-4 rounded-md mb-4 border border-blue-500/20">
                   <Info size={16} className="shrink-0" />
                   লগইন করার আগে ইমেইল চেক করে ভেরিফাই করুন।
                 </div>
               )}
 
               {error && (
-                <p className="text-red-500 text-[12px] font-bold uppercase tracking-tighter bg-red-500/10 p-3 rounded-md mb-4 animate-shake border border-red-500/20">
+                <p className="text-red-500 text-[12px] font-medium uppercase tracking-tighter bg-red-500/10 p-3 rounded-md mb-4 animate-shake border border-red-500/20">
                   {error}
                 </p>
               )}
@@ -191,7 +191,7 @@ function AuthForm() {
                     callbackUrl
                   )}`;
                 }}
-                className="w-full inline-flex items-center justify-center gap-2 rounded-md border border-slate-200/80 bg-white/90 px-4 py-4 text-sm font-semibold text-slate-900 shadow-sm transition hover:bg-slate-100 cursor-pointer"
+                className="w-full inline-flex items-center justify-center gap-2 rounded-md border border-slate-200/80 bg-white/90 px-4 py-4 text-sm font-medium text-slate-900 shadow-sm transition hover:bg-slate-100 cursor-pointer"
               >
                 <FcGoogle size={18} /> Google দিয়ে সাইন ইন করুন
               </button>
@@ -201,10 +201,10 @@ function AuthForm() {
               <button
                 aria-label="toggle auth"
                 onClick={toggleMode}
-                className="text-xs font-bold uppercase tracking-tighter text-pText hover:text-primary transition-colors"
+                className="text-xs font-medium uppercase tracking-tighter text-pText hover:text-primary transition-colors"
               >
                 {isLogin ? 'নতুন ইউজার? ' : 'আগে থেকেই অ্যাকাউন্ট আছে? '}
-                <span className="text-primary underline ml-1 font-black">
+                <span className="text-primary underline ml-1 font-medium">
                   {isLogin ? 'নিবন্ধন করুন' : 'লগইন করুন'}
                 </span>
               </button>
@@ -217,10 +217,10 @@ function AuthForm() {
         <button
           aria-label="toggle auth"
           onClick={toggleMode}
-          className="text-xs font-bold uppercase tracking-tighter text-pText hover:text-primary transition-colors"
+          className="text-xs font-medium uppercase tracking-tighter text-pText hover:text-primary transition-colors"
         >
           {isLogin ? 'নতুন ইউজার? ' : 'আগে থেকেই অ্যাকাউন্ট আছে? '}
-          <span className="text-primary underline ml-1 font-black">
+          <span className="text-primary underline ml-1 font-medium">
             {isLogin ? 'নিবন্ধন করুন' : 'লগইন করুন'}
           </span>
         </button>
@@ -238,7 +238,7 @@ export default function AuthPage() {
       <div className="w-full backdrop-blur-3xl  overflow-hidden min-h-screen flex items-center md:justify-center">
         <Suspense
           fallback={
-            <div className="p-20 text-center text-text font-black uppercase tracking-tighter animate-pulse w-full">
+            <div className="p-20 text-center text-text font-medium uppercase tracking-tighter animate-pulse w-full">
               লোড হচ্ছে...
             </div>
           }

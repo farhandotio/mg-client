@@ -101,15 +101,15 @@ export default function ProductInfo({ product }) {
     <div className="flex flex-col gap-6 md:gap-7 lg:pl-4">
       <div className="space-y-4">
         <div className="flex flex-wrap items-center gap-3">
-          <span className="px-3 py-1 bg-primary/10 border border-primary/20 text-primary text-[12px] font-black uppercase tracking-tighter rounded-md">
+          <span className="px-3 py-1 bg-primary/10 border border-primary/20 text-primary text-[12px] font-medium uppercase tracking-tighter rounded-md">
             {product.brand?.name || product.brand}
           </span>
-          <span className="px-3 py-1 bg-card border border-border text-pText text-[12px] font-black uppercase tracking-tighter rounded-md">
+          <span className="px-3 py-1 bg-card border border-border text-pText text-[12px] font-medium uppercase tracking-tighter rounded-md">
             এসকিউ (SKU): {product.sku || 'N/A'}
           </span>
         </div>
 
-        <h1 className="text-3xl font-black italic tracking-tighterer leading-[1.1] text-text">
+        <h1 className="text-3xl font-medium italic tracking-tighterer leading-[1.1] text-text">
           {product.title}
         </h1>
 
@@ -126,12 +126,12 @@ export default function ProductInfo({ product }) {
                 }
               />
             ))}
-            <span className="font-black text-sm ml-1 italic">
+            <span className="font-medium text-sm ml-1 italic">
               {(product.ratings?.average || 0).toFixed(1)}
             </span>
           </div>
           <div className="w-1.5 h-1.5 rounded-full bg-border" />
-          <span className="text-xs font-bold text-pText opacity-50 uppercase tracking-tighter">
+          <span className="text-xs font-medium text-pText opacity-50 uppercase tracking-tighter">
             {product.ratings?.count || 0}টি রিভিউ
           </span>
         </div>
@@ -139,20 +139,20 @@ export default function ProductInfo({ product }) {
 
       <div className="flex items-center gap-3 rounded-md backdrop-blur-sm w-fit">
         <div className="flex flex-col">
-          <span className="text-2xl font-black text-text italic tracking-tighterer leading-none">
+          <span className="text-2xl font-medium text-text italic tracking-tighterer leading-none">
             ৳{salePrice.toLocaleString()}
           </span>
-          <span className="text-[11px] font-black uppercase tracking-tighter mt-2 ml-1 text-primary">
+          <span className="text-[11px] font-medium uppercase tracking-tighter mt-2 ml-1 text-primary">
             বর্তমান বাজার মূল্য
           </span>
         </div>
 
         {discountPercent > 0 && (
           <div className="flex flex-col border-l border-border/50 pl-6">
-            <span className="text-lg text-pText/30 line-through font-bold decoration-primary/40">
+            <span className="text-lg text-pText/30 line-through font-medium decoration-primary/40">
               ৳{basePrice.toLocaleString()}
             </span>
-            <span className="text-[12px] font-black text-bg bg-primary px-2 py-0.5 rounded-full mt-1 animate-pulse">
+            <span className="text-[12px] font-medium text-bg bg-primary px-2 py-0.5 rounded-full mt-1 animate-pulse">
               -{discountPercent}% ছাড়
             </span>
           </div>
@@ -176,7 +176,7 @@ export default function ProductInfo({ product }) {
             >
               <Minus size={18} strokeWidth={3} />
             </button>
-            <span className="text-center font-black text-xl italic min-w-[2ch]">{quantity}</span>
+            <span className="text-center font-medium text-xl italic min-w-[2ch]">{quantity}</span>
             <button
               aria-label="পরিমাণ বাড়ান"
               disabled={quantity >= (product.stock || 50) || isOutOfStock || isLocalLoading}
@@ -228,10 +228,10 @@ function InfoBadge({ icon, title, desc }) {
     <div className="flex items-center gap-4 p-3 rounded-md bg-card/20 border border-border/20 hover:bg-card/40 transition-all group">
       <div className="text-primary group-hover:scale-110 transition-transform">{icon}</div>
       <div>
-        <div className="text-[12px] font-black uppercase tracking-tighter text-text leading-none">
+        <div className="text-[12px] font-medium uppercase tracking-tighter text-text leading-none">
           {title}
         </div>
-        <div className="text-[11px] font-bold text-pText/40 uppercase mt-1">{desc}</div>
+        <div className="text-[11px] font-medium text-pText/40 uppercase mt-1">{desc}</div>
       </div>
     </div>
   );

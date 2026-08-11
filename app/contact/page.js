@@ -8,7 +8,7 @@ export default function ContactPage() {
     <main className="pt-16 pb-20 bg-bg min-h-screen">
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-16 space-y-4">
-          <h1 className="text-6xl md:text-8xl font-black text-text italic uppercase tracking-tighterer">
+          <h1 className="text-6xl md:text-8xl font-medium text-text italic uppercase tracking-tighterer">
             Get In <span className="text-primary">Touch.</span>
           </h1>
           <p className="text-pText text-xl max-w-2xl font-medium border-l-2 border-primary pl-6">
@@ -42,14 +42,14 @@ export default function ContactPage() {
         {/* Support Section */}
         <div className="mt-12 p-12 bg-card/30 border border-white/5 rounded-xl flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="space-y-2">
-            <h3 className="text-3xl font-black italic uppercase text-text">Direct Message</h3>
+            <h3 className="text-3xl font-medium italic uppercase text-text">Direct Message</h3>
             <p className="text-pText font-medium">
               Connect with our live agents via WhatsApp for instant support.
             </p>
           </div>
           <a
             href="https://wa.me/yournumber"
-            className="bg-[#25D366] text-white px-10 py-5 rounded-md font-black uppercase tracking-tighter flex items-center gap-3 hover:scale-105 transition-transform"
+            className="bg-[#25D366] text-white px-10 py-5 rounded-md font-medium uppercase tracking-tighter flex items-center gap-3 hover:scale-105 transition-transform"
           >
             <MessageSquare /> Chat on WhatsApp
           </a>
@@ -65,8 +65,8 @@ function ContactCard({ icon, title, detail, sub }) {
       <div className="w-14 h-14 bg-primary/10 rounded-md flex items-center justify-center text-primary mb-8 group-hover:scale-110 transition-transform">
         {icon}
       </div>
-      <p className="text-[12px] font-black uppercase tracking-tighter text-pText mb-2">{title}</p>
-      <h4 className="text-2xl font-black text-text italic mb-1">{detail}</h4>
+      <p className="text-[12px] font-medium uppercase tracking-tighter text-pText mb-2">{title}</p>
+      <h4 className="text-2xl font-medium text-text italic mb-1">{detail}</h4>
       <p className="text-sm text-pText/60 font-medium">{sub}</p>
     </div>
   );

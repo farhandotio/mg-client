@@ -100,7 +100,7 @@ export default function ShopPageContent({ categorySlug }) {
             <div className="space-y-1">
               <div className="flex items-center gap-2 text-primary">
                 <Globe size={14} className="animate-spin-slow" />
-                <span className="text-[12px] font-black uppercase tracking-tighter">
+                <span className="text-[12px] font-medium uppercase tracking-tighter">
                   গ্লোবাল_ইনভেন্টরি_লিস্ট
                 </span>
               </div>
@@ -109,13 +109,13 @@ export default function ShopPageContent({ categorySlug }) {
             <div className="flex items-center justify-between md:justify-end gap-4">
               <button
                 onClick={() => setIsMobileFilterOpen(true)}
-                className="lg:hidden flex items-center gap-2 bg-card border border-border/50 px-4 py-2.5 rounded-md text-[12px] font-black uppercase tracking-wider"
+                className="lg:hidden flex items-center gap-2 bg-card border border-border/50 px-4 py-2.5 rounded-md text-[12px] font-medium uppercase tracking-wider"
               >
                 <Filter size={14} className="text-primary" /> ফিল্টার
               </button>
 
               <div className="bg-primary/5 border border-primary/20 px-4 py-2.5 rounded-md">
-                <p className="text-primary text-[12px] font-black uppercase tracking-tighter">
+                <p className="text-primary text-[12px] font-medium uppercase tracking-tighter">
                   {loading
                     ? 'স্ক্যানিং...'
                     : `পাওয়া গেছে: ${pagination?.totalProducts || 0} টি পণ্য`}
@@ -154,15 +154,15 @@ export default function ShopPageContent({ categorySlug }) {
                   <nav className="flex flex-col items-center gap-6 py-5 border-t border-border/10">
                     {/* পৃষ্ঠার সংখ্যা এবং তথ্য */}
                     <div className="flex flex-col items-center gap-1">
-                      <span className="text-[12px] font-black uppercase tracking-wide text-pText/40">
+                      <span className="text-[12px] font-medium uppercase tracking-wide text-pText/40">
                         সিস্টেম নেভিগেশন
                       </span>
                       <div className="flex items-center gap-4 bg-card/50 backdrop-blur-md px-10 py-4 rounded-md border border-border/50 shadow-xl shadow-primary/5">
-                        <span className="text-xs font-black tracking-tighter text-text">
+                        <span className="text-xs font-medium tracking-tighter text-text">
                           পৃষ্ঠা <span className="text-primary ml-2">{page}</span>
                         </span>
                         <div className="h-4 w-0.5 bg-border/50" />
-                        <span className="text-xs font-black tracking-tighter text-pText/40">
+                        <span className="text-xs font-medium tracking-tighter text-pText/40">
                           মোট {pagination.totalPages}
                         </span>
                       </div>
@@ -180,7 +180,7 @@ export default function ShopPageContent({ categorySlug }) {
                           size={18}
                           className="text-primary group-hover:-translate-x-1 transition-transform"
                         />
-                        <span className="text-[12px] font-black uppercase tracking-tighter">
+                        <span className="text-[12px] font-medium uppercase tracking-tighter">
                           আগেরটি
                         </span>
                       </button>
@@ -191,7 +191,7 @@ export default function ShopPageContent({ categorySlug }) {
                         onClick={() => handlePagination(page + 1)}
                         className="group flex items-center gap-3 pl-6 pr-4 py-3 bg-card border border-border/50 rounded-md disabled:opacity-20 hover:border-primary/50 transition-all active:scale-95 disabled:pointer-events-none"
                       >
-                        <span className="text-[12px] font-black uppercase tracking-tighter">
+                        <span className="text-[12px] font-medium uppercase tracking-tighter">
                           পরেরটি
                         </span>
                         <ChevronRight
@@ -208,12 +208,12 @@ export default function ShopPageContent({ categorySlug }) {
                 <div className="bg-primary/10 p-8 rounded-full mb-6">
                   <Search size={48} className="text-primary opacity-40" />
                 </div>
-                <h3 className="text-xl font-black uppercase italic text-pText/40 tracking-tighterer">
+                <h3 className="text-xl font-medium uppercase italic text-pText/40 tracking-tighterer">
                   কোনো পণ্য পাওয়া যায়নি
                 </h3>
                 <button
                   onClick={() => router.push('/shop')}
-                  className="mt-6 text-[12px] font-black uppercase text-primary border-b border-primary/30 pb-1"
+                  className="mt-6 text-[12px] font-medium uppercase text-primary border-b border-primary/30 pb-1"
                 >
                   সব পণ্য দেখুন
                 </button>
@@ -238,7 +238,7 @@ export default function ShopPageContent({ categorySlug }) {
             className="absolute left-0 top-0 h-full w-[85%] max-w-[320px] bg-bg border-r border-border/50 p-8 overflow-y-auto"
           >
             <div className="flex justify-between items-center mb-10">
-              <span className="text-[12px] font-black uppercase tracking-wide text-primary">
+              <span className="text-[12px] font-medium uppercase tracking-wide text-primary">
                 ফিল্টার অপশন
               </span>
               <button onClick={() => setIsMobileFilterOpen(false)} className="text-pText">

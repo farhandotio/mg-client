@@ -23,11 +23,11 @@ export default function AuthOverlay({ isLogin, locked, toggleMode }) {
         </div>
 
         <div className="space-y-4">
-          <h2 className="text-5xl font-black tracking-tighterer leading-none italic uppercase">
+          <h2 className="text-5xl font-medium tracking-tighterer leading-none italic uppercase">
             {isLogin ? 'নতুন এখানে?' : 'কেমন আছেন?'}
           </h2>
 
-          <p className="font-bold text-text/90 leading-relaxed text-sm">
+          <p className="font-medium text-text/90 leading-relaxed text-sm">
             {isLogin
               ? 'সেরা সব গ্যাজেট এবং এক্সক্লুসিভ অফার পেতে আজই আমাদের সাথে যুক্ত হন।'
               : 'আপনার অর্ডার এবং সংরক্ষিত গ্যাজেটগুলো দেখতে পুনরায় লগইন করুন।'}
@@ -38,7 +38,7 @@ export default function AuthOverlay({ isLogin, locked, toggleMode }) {
         <button
           aria-label="toggle auth"
           onClick={toggleMode}
-          className="group relative px-12 py-5 overflow-hidden border-2 border-text rounded-md font-black uppercase tracking-tighter text-[12px] transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]"
+          className="group relative px-12 py-5 overflow-hidden border-2 border-text rounded-md font-medium uppercase tracking-tighter text-[12px] transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]"
         >
           <span className="relative z-10 flex items-center justify-center gap-2 group-hover:text-primary transition-colors duration-300">
             {isLogin ? (

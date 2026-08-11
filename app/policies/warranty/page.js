@@ -11,11 +11,11 @@ export default function WarrantyPolicy() {
         <div className="mb-16 space-y-4">
           <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-1 rounded-full text-primary">
             <Award size={14} />
-            <span className="text-[12px] font-black uppercase tracking-tighter">
+            <span className="text-[12px] font-medium uppercase tracking-tighter">
               Premium Protection
             </span>
           </div>
-          <h1 className="text-5xl md:text-7xl font-black text-text italic uppercase tracking-tighterer leading-none">
+          <h1 className="text-5xl md:text-7xl font-medium text-text italic uppercase tracking-tighterer leading-none">
             Warranty <br />
             <span className="text-primary">Protocols</span>
           </h1>
@@ -44,7 +44,7 @@ export default function WarrantyPolicy() {
         <div className="space-y-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div className="space-y-4">
-              <h3 className="text-2xl font-black text-text uppercase italic flex items-center gap-3">
+              <h3 className="text-2xl font-medium text-text uppercase italic flex items-center gap-3">
                 <Cpu size={20} className="text-primary" /> What's Covered
               </h3>
               <p className="text-pText opacity-80 font-medium">
@@ -54,7 +54,7 @@ export default function WarrantyPolicy() {
               </p>
             </div>
             <div className="space-y-4">
-              <h3 className="text-2xl font-black text-text uppercase italic flex items-center gap-3">
+              <h3 className="text-2xl font-medium text-text uppercase italic flex items-center gap-3">
                 <Zap size={20} className="text-primary" /> Void Conditions
               </h3>
               <p className="text-pText opacity-80 font-medium">
@@ -68,14 +68,14 @@ export default function WarrantyPolicy() {
           {/* Support Call to Action */}
           <div className="p-10 bg-primary rounded-xl text-bg flex flex-col md:flex-row justify-between items-center gap-8 shadow-[0_20px_50px_rgba(var(--primary-rgb),0.3)]">
             <div className="space-y-2 text-center md:text-left">
-              <h3 className="text-3xl font-black uppercase italic leading-none">Need to Claim?</h3>
-              <p className="font-bold opacity-80 uppercase tracking-tighter">
+              <h3 className="text-3xl font-medium uppercase italic leading-none">Need to Claim?</h3>
+              <p className="font-medium opacity-80 uppercase tracking-tighter">
                 Initiate your service ticket via our 24/7 command center.
               </p>
             </div>
             <button
               aria-label="open ticket"
-              className="bg-bg text-text px-10 py-4 rounded-md font-black uppercase tracking-tighter hover:scale-105 transition-transform"
+              className="bg-bg text-text px-10 py-4 rounded-md font-medium uppercase tracking-tighter hover:scale-105 transition-transform"
             >
               Open Ticket
             </button>
@@ -89,10 +89,10 @@ export default function WarrantyPolicy() {
 function Step({ number, title, desc }) {
   return (
     <div className="p-6 bg-card/20 border border-white/5 rounded-md relative overflow-hidden group">
-      <span className="absolute -right-2 -top-2 text-6xl font-black text-white/30 group-hover:text-primary/10 transition-colors">
+      <span className="absolute -right-2 -top-2 text-6xl font-medium text-white/30 group-hover:text-primary/10 transition-colors">
         {number}
       </span>
-      <h4 className="text-lg font-black text-text uppercase italic mb-2 relative z-10">{title}</h4>
+      <h4 className="text-lg font-medium text-text uppercase italic mb-2 relative z-10">{title}</h4>
       <p className="text-xs text-pText opacity-70 leading-relaxed relative z-10">{desc}</p>
     </div>
   );

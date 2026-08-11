@@ -24,20 +24,20 @@ export default function Best() {
           <div className="space-y-1">
             <div className="flex items-center gap-1.5 text-primary">
               <TrendingUp size={16} className="animate-bounce" />
-              <span className="text-[12px] md:text-[11px] font-black uppercase tracking-wider">
-                সবচেয়ে জনপ্রিয়
+              <span className="text-[12px] md:text-[11px] font-medium uppercase tracking-wider">
+                Most Popular
               </span>
             </div>
-            <h2 className="text-xl md:text-2xl font-black text-text tracking-tighter leading-none">
-              সেরা <span className="text-primary">বিক্রিত পণ্য</span>
+            <h2 className="text-xl md:text-2xl font-medium text-text tracking-tighter leading-none">
+              Top <span className="text-primary">Selling Products</span>
             </h2>
           </div>
 
           <Link
             href="/shop?productType=BestSeller"
-            className="group flex items-center gap-1.5 text-[12px] md:text-[14px] font-bold text-primary hover:underline transition-colors max-md:hidden"
+            className="group flex items-center gap-1.5 text-[12px] md:text-[14px] font-medium text-primary hover:underline transition-colors max-md:hidden"
           >
-            র‍্যাঙ্কিং লিস্ট
+            Ranking List
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
@@ -60,8 +60,8 @@ export default function Best() {
             <div className="col-span-full py-16 text-center border-2 border-dashed border-border/10 rounded-md bg-card/10">
               <div className="flex flex-col items-center gap-2 opacity-40">
                 <TrendingUp size={24} />
-                <p className="text-pText font-bold uppercase tracking-tighter text-[11px]">
-                  বর্তমানে কোনো তথ্য নেই
+                <p className="text-pText font-medium uppercase tracking-tighter text-[11px]">
+                  No data available currently
                 </p>
               </div>
             </div>
@@ -71,9 +71,9 @@ export default function Best() {
         <div className="mt-8 md:hidden">
           <Link
             href="/shop?productType=BestSeller"
-            className="block w-full text-center py-4 bg-card border border-border/60 rounded-md text-sm font-black text-text active:scale-95 transition-transform"
+            className="block w-full text-center py-4 bg-card border border-border/60 rounded-md text-sm font-medium text-text active:scale-95 transition-transform"
           >
-            সবগুলো জনপ্রিয় পণ্য দেখুন
+            View All Popular Products
           </Link>
         </div>
       </div>

@@ -25,7 +25,7 @@ export default function AdminUsersPage() {
 
   return (
     <div className="">
-      <h1 className="text-2xl font-bold mb-6 italic uppercase">User Registry</h1>
+      <h1 className="text-2xl font-medium mb-6 italic uppercase">User Registry</h1>
       <DataTable columns={columns} data={Array.isArray(users) ? users : []} loading={loading} />
     </div>
   );

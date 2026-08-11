@@ -6,33 +6,33 @@ import { motion } from 'framer-motion';
 const reviews = [
   {
     id: 1,
-    user: 'তানভীর আহমেদ',
-    role: 'সফটওয়্যার ইঞ্জিনিয়ার',
-    comment: 'প্রোডাক্টের কোয়ালিটি অসাধারন। ডেলিভারিও পেয়েছি একদম সঠিক সময়ে।',
+    user: 'Tanvir Ahmed',
+    role: 'Software Engineer',
+    comment: 'The product quality is outstanding. Delivery arrived exactly on time.',
     rating: 5,
     grid: 'md:col-span-2 md:row-span-1',
   },
   {
     id: 2,
-    user: 'আরিফ রায়হান',
-    role: 'গেমার',
-    comment: 'স্মার্টওয়াচটি অরিজিনাল ছিল। প্যাকেজিং দেখে মন ভরে গেছে।',
+    user: 'Arif Raihan',
+    role: 'Gamer',
+    comment: 'The smartwatch was original. The packaging made me very happy.',
     rating: 5,
     grid: 'md:col-span-1 md:row-span-2',
   },
   {
     id: 3,
-    user: 'নুসরাত জাহান',
-    role: 'আর্কিটেক্ট',
-    comment: 'খুবই ক্লিন ডিজাইন এবং বিল্ড কোয়ালিটি প্রিমিয়াম।',
+    user: 'Nusrat Jahan',
+    role: 'Architect',
+    comment: 'Very clean design and premium build quality.',
     rating: 4,
     grid: 'md:col-span-1 md:row-span-1',
   },
   {
     id: 4,
-    user: 'সাব্বির হোসেন',
-    role: 'কন্টেন্ট ক্রিয়েটর',
-    comment: 'গ্যাজেট বিডিএস থেকে কেনা হেডফোনটি আমার প্রতিদিনের কাজে খুব সাহায্য করছে।',
+    user: 'Sabbir Hossain',
+    role: 'Content Creator',
+    comment: 'The headphones I bought from Gadget BDS help me a lot in my daily work.',
     rating: 5,
     grid: 'md:col-span-2 md:row-span-1',
   },
@@ -60,18 +60,18 @@ export default function TrustSection() {
           <div className="space-y-2">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 bg-primary rounded-full animate-ping" />
-              <span className="text-primary font-bold text-[12px] uppercase tracking-wider">
-                কাস্টমার রিভিউ এবং ফিডব্যাক
+              <span className="text-primary font-medium text-[12px] uppercase tracking-wider">
+                Customer Reviews and Feedback
               </span>
             </div>
-            <h2 className="text-xl md:text-2xl font-black text-text tracking-tighterer uppercase leading-none">
-              ইউজারদের <span className="text-primary">আস্থা</span>
+            <h2 className="text-xl md:text-2xl font-medium text-text tracking-tighterer uppercase leading-none">
+              User <span className="text-primary">Trust</span>
             </h2>
           </div>
 
           <div className="hidden md:block text-right">
-            <p className="text-pText/60 font-bold text-[11px] uppercase tracking-tighter leading-relaxed">
-              সন্তুষ্ট কাস্টমার: ৯৯.৮% <br /> ভেরিফাইড রিভিউ সিস্টেম একটিভ
+            <p className="text-pText/60 font-medium text-[11px] uppercase tracking-tighter leading-relaxed">
+              Satisfied customers: 99.8% <br /> Verified review system active
             </p>
           </div>
         </div>
@@ -93,8 +93,8 @@ export default function TrustSection() {
               <div className="w-16 h-16 bg-primary/10 rounded-md flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
                 <ShieldCheck size={32} className="text-primary" />
               </div>
-              <h3 className="text-3xl md:text-5xl font-black text-text uppercase racking-tighter">
-                ১০০% জেনুইন <br /> <span className="text-primary">প্রোডাক্টের</span> <br /> নিশ্চয়তা
+              <h3 className="text-3xl md:text-5xl font-medium text-text uppercase tracking-tighter">
+                100% Genuine <br /> <span className="text-primary">Product</span> <br /> Assurance
               </h3>
             </div>
 
@@ -104,15 +104,15 @@ export default function TrustSection() {
                   {[...Array(4)].map((_, i) => (
                     <div
                       key={i}
-                      className="w-10 h-10 rounded-full border-2 border-card bg-primary/20 backdrop-blur-xl flex items-center justify-center text-[12px] font-black text-primary"
+                      className="w-10 h-10 rounded-full border-2 border-card bg-primary/20 backdrop-blur-xl flex items-center justify-center text-[12px] font-medium text-primary"
                     ></div>
                   ))}
                 </div>
-                <span className="text-xs font-bold text-pText italic">+১২০০ কাস্টমার</span>
+                <span className="text-xs font-medium text-pText italic">+1200 Customers</span>
               </div>
               <p className="text-pText text-sm max-w-xs leading-relaxed font-medium">
-                আমাদের প্রতিটি পণ্য কঠোর মাননিয়ন্ত্রণের মাধ্যমে যাচাই করা হয়। আপনি পাচ্ছেন আসল
-                পণ্যের পূর্ণ গ্যারান্টি।
+                Every product is inspected through strict quality control. You get the full warranty
+                of a genuine product.
               </p>
             </div>
 
@@ -138,15 +138,15 @@ export default function TrustSection() {
                     className="text-primary/20 group-hover:text-primary transition-colors"
                   />
                 </div>
-                <p className="text-pText text-sm md:text-base font-bold leading-relaxed italic">
+                <p className="text-pText text-sm md:text-base font-medium leading-relaxed italic">
                   "{rev.comment}"
                 </p>
               </div>
 
               <div className="flex items-end justify-between mt-6">
                 <div>
-                  <h4 className="text-text font-black text-sm tracking-tighter">{rev.user}</h4>
-                  <p className="text-primary/70 text-[12px] font-bold uppercase tracking-tighterer">
+                  <h4 className="text-text font-medium text-sm tracking-tighter">{rev.user}</h4>
+                  <p className="text-primary/70 text-[12px] font-medium uppercase tracking-tighterer">
                     {rev.role}
                   </p>
                 </div>
@@ -165,9 +165,9 @@ export default function TrustSection() {
             <div className="p-3 bg-primary/5 rounded-full mb-1 group-hover:rotate-[360deg] transition-transform duration-700">
               <Cpu size={24} className="text-primary" />
             </div>
-            <span className="text-3xl font-black italic tracking-tighterer text-text">৯৯.৯%</span>
-            <span className="text-[12px] text-pText/60 uppercase font-black tracking-tighter">
-              সফল ডেলিভারি
+            <span className="text-3xl font-medium italic tracking-tighterer text-text">99.9%</span>
+            <span className="text-[12px] text-pText/60 uppercase font-medium tracking-tighter">
+              Successful Deliveries
             </span>
           </motion.div>
         </motion.div>

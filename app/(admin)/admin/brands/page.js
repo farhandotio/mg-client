@@ -81,10 +81,10 @@ export default function BrandsPage() {
             )}
           </div>
           <div className="flex flex-col">
-            <p className="font-black text-white text-[11px] uppercase tracking-tighterer leading-none">
+            <p className="font-medium text-white text-[11px] uppercase tracking-tighterer leading-none">
               {item.name}
             </p>
-            <p className="text-[10px] text-pText tracking-tighter uppercase font-black mt-1 opacity-50">
+            <p className="text-[10px] text-pText tracking-tighter uppercase font-medium mt-1 opacity-50">
               Verified_Partner
             </p>
           </div>
@@ -95,7 +95,7 @@ export default function BrandsPage() {
       label: 'Slug_Node',
       key: 'slug',
       render: (item) => (
-        <span className="text-[12px] font-bold text-pText/70 font-mono italic">/{item.slug}</span>
+        <span className="text-[12px] font-medium text-pText/70 font-mono italic">/{item.slug}</span>
       ),
     },
     {
@@ -104,7 +104,7 @@ export default function BrandsPage() {
       render: (item) => (
         <div className="flex items-center gap-2">
           <div className="w-1 h-1 rounded-full bg-primary animate-pulse" />
-          <span className="text-[11px] font-black text-white uppercase tracking-tighter">
+          <span className="text-[11px] font-medium text-white uppercase tracking-tighter">
             Online
           </span>
         </div>
@@ -118,11 +118,11 @@ export default function BrandsPage() {
         <div className="space-y-1">
           <div className="flex items-center gap-2 text-primary">
             <Globe size={14} className="animate-spin-slow" />
-            <span className="text-[11px] font-black uppercase tracking-wide">
+            <span className="text-[11px] font-medium uppercase tracking-wide">
               Neural_Supply_Chain
             </span>
           </div>
-          <h1 className="text-4xl lg:text-5xl font-black uppercase italic tracking-tighterer leading-none text-text">
+          <h1 className="text-4xl lg:text-5xl font-medium uppercase italic tracking-tighterer leading-none text-text">
             Global <span className="text-primary">Brands</span>
           </h1>
         </div>
@@ -155,10 +155,10 @@ export default function BrandsPage() {
 
             <div className="flex justify-between items-center mb-8 relative">
               <div>
-                <h2 className="text-2xl font-black italic uppercase tracking-tighterer text-text">
+                <h2 className="text-2xl font-medium italic uppercase tracking-tighterer text-text">
                   Modify <span className="text-primary">Entity</span>
                 </h2>
-                <p className="text-[10px] font-black uppercase tracking-tighter text-pText opacity-50 mt-1">
+                <p className="text-[10px] font-medium uppercase tracking-tighter text-pText opacity-50 mt-1">
                   ID: {selectedBrand?._id}
                 </p>
               </div>
@@ -174,28 +174,28 @@ export default function BrandsPage() {
             <form onSubmit={handleUpdateSubmit} className="space-y-6 relative">
               {/* Name Input */}
               <div className="space-y-2">
-                <label className="text-[12px] font-black uppercase tracking-tighter text-primary">
+                <label className="text-[12px] font-medium uppercase tracking-tighter text-primary">
                   Brand_Name
                 </label>
                 <input
                   type="text"
                   value={editName}
                   onChange={(e) => setEditName(e.target.value)}
-                  className="w-full bg-white/5 border border-border rounded-md px-4 py-3 text-xs font-bold text-text focus:outline-none focus:border-primary/50 transition-all shadow-inner"
+                  className="w-full bg-white/5 border border-border rounded-md px-4 py-3 text-xs font-medium text-text focus:outline-none focus:border-primary/50 transition-all shadow-inner"
                   placeholder="Brand identity..."
                 />
               </div>
 
               {/* Image URL Input */}
               <div className="space-y-2">
-                <label className="text-[12px] font-black uppercase tracking-tighter text-primary flex items-center gap-2">
+                <label className="text-[12px] font-medium uppercase tracking-tighter text-primary flex items-center gap-2">
                   Image_URL <LinkIcon size={10} />
                 </label>
                 <input
                   type="text"
                   value={editImage}
                   onChange={(e) => setEditImage(e.target.value)}
-                  className="w-full bg-white/5 border border-border rounded-md px-4 py-3 text-xs font-bold text-text focus:outline-none focus:border-primary/50 transition-all shadow-inner"
+                  className="w-full bg-white/5 border border-border rounded-md px-4 py-3 text-xs font-medium text-text focus:outline-none focus:border-primary/50 transition-all shadow-inner"
                   placeholder="https://image-link.com/logo.png"
                 />
               </div>
@@ -216,7 +216,7 @@ export default function BrandsPage() {
                 aria-label="submit"
                 type="submit"
                 disabled={isUpdating}
-                className="w-full bg-primary hover:bg-primary/90 text-black font-black uppercase italic py-4 rounded-md transition-all active:scale-95 flex items-center justify-center gap-2 text-xs tracking-tighter disabled:opacity-50"
+                className="w-full bg-primary hover:bg-primary/90 text-black font-medium uppercase italic py-4 rounded-md transition-all active:scale-95 flex items-center justify-center gap-2 text-xs tracking-tighter disabled:opacity-50"
               >
                 {isUpdating ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />}
                 {isUpdating ? 'Synchronizing...' : 'Commit Changes'}
@@ -228,7 +228,7 @@ export default function BrandsPage() {
 
       <div className="mt-10 flex items-center gap-4 text-pText/40">
         <div className="h-0.5 flex-1 bg-linear-to-r from-transparent via-border/50 to-transparent"></div>
-        <p className="text-[10px] font-black uppercase tracking-tighter whitespace-nowrap">
+        <p className="text-[10px] font-medium uppercase tracking-tighter whitespace-nowrap">
           Total_Entities_Captured: {brands?.length || 0}
         </p>
         <div className="h-0.5 flex-1 bg-linear-to-r from-transparent via-border/50 to-transparent"></div>

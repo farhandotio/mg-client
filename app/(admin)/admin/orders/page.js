@@ -72,12 +72,12 @@ export default function AdminOrdersPage() {
       key: '_id',
       render: (item) => (
         <div className="flex flex-col gap-1">
-          <span className="text-[10px] font-mono text-primary/70 font-bold uppercase">
+          <span className="text-[10px] font-mono text-primary/70 font-medium uppercase">
             #{item._id?.slice(-8)}
           </span>
           <div className="flex items-center gap-1.5">
             <User size={10} className="text-pText" />
-            <span className="text-[12px] font-black text-text uppercase italic">
+            <span className="text-[12px] font-medium text-text uppercase italic">
               {item.user?.fullname || 'অজানা গ্রাহক'}
             </span>
           </div>
@@ -91,7 +91,7 @@ export default function AdminOrdersPage() {
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-1.5 text-pText">
             <Phone size={10} />
-            <span className="text-[11px] font-bold">{item.shippingAddress?.phone}</span>
+            <span className="text-[11px] font-medium">{item.shippingAddress?.phone}</span>
           </div>
           <div className="flex items-center gap-1.5 text-pText/60 italic">
             <MapPin size={10} />
@@ -115,7 +115,7 @@ export default function AdminOrdersPage() {
       label: 'মোট টাকা',
       key: 'totalPrice',
       render: (item) => (
-        <span className="font-black text-primary text-xs italic">
+        <span className="font-medium text-primary text-xs italic">
           ৳{item?.pricing?.totalPrice?.toLocaleString()}
         </span>
       ),
@@ -125,7 +125,7 @@ export default function AdminOrdersPage() {
       key: 'orderStatus',
       render: (item) => (
         <div
-          className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase border ${getStatusStyle(item.orderStatus)}`}
+          className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-medium uppercase border ${getStatusStyle(item.orderStatus)}`}
         >
           <span className="w-1 h-1 rounded-full bg-current mr-1.5 animate-pulse" />
           {item.orderStatus || 'Pending'}
@@ -141,11 +141,11 @@ export default function AdminOrdersPage() {
         <div>
           <div className="flex items-center gap-2 text-primary">
             <Terminal size={14} />
-            <span className="text-[11px] font-black uppercase tracking-wide">
+            <span className="text-[11px] font-medium uppercase tracking-wide">
               Secure_Admin_Terminal
             </span>
           </div>
-          <h1 className="text-4xl lg:text-5xl font-black uppercase italic tracking-tighterer text-text leading-none mt-1">
+          <h1 className="text-4xl lg:text-5xl font-medium uppercase italic tracking-tighterer text-text leading-none mt-1">
             অর্ডার <span className="text-primary">তালিকা</span>
           </h1>
         </div>
@@ -153,8 +153,10 @@ export default function AdminOrdersPage() {
         <div className="bg-card/50 backdrop-blur-xl border border-border/50 px-6 py-4 rounded-md flex items-center gap-4">
           <Clock size={18} className="text-primary" />
           <div className="flex flex-col">
-            <span className="text-xl font-black text-text leading-none">{orders?.length || 0}</span>
-            <span className="text-[10px] font-black text-pText/60 uppercase tracking-tighter mt-1">
+            <span className="text-xl font-medium text-text leading-none">
+              {orders?.length || 0}
+            </span>
+            <span className="text-[10px] font-medium text-pText/60 uppercase tracking-tighter mt-1">
               Captured_Logs
             </span>
           </div>
@@ -187,17 +189,17 @@ export default function AdminOrdersPage() {
             >
               <X size={20} />
             </button>
-            <h2 className="text-2xl font-black italic uppercase tracking-tighterer mb-1">
+            <h2 className="text-2xl font-medium italic uppercase tracking-tighterer mb-1">
               Update <span className="text-primary">Status</span>
             </h2>
-            <p className="text-[12px] uppercase font-bold text-pText tracking-tighter mb-8">
+            <p className="text-[12px] uppercase font-medium text-pText tracking-tighter mb-8">
               ID: #{selectedOrder?._id?.slice(-8)}
             </p>
             <div className="space-y-6">
               <select
                 value={newStatus}
                 onChange={(e) => setNewStatus(e.target.value)}
-                className="w-full bg-bg rounded-md border border-border px-4 py-3 text-xs font-bold text-text focus:border-primary outline-none appearance-none"
+                className="w-full bg-bg rounded-md border border-border px-4 py-3 text-xs font-medium text-text focus:border-primary outline-none appearance-none"
               >
                 <option value="PENDING">PENDING</option>
                 <option value="CONFIRMED">CONFIRMED</option>
@@ -208,7 +210,7 @@ export default function AdminOrdersPage() {
               </select>
               <button
                 onClick={submitStatusUpdate}
-                className="w-full bg-primary hover:bg-primary/80 text-black font-black uppercase italic py-4 rounded-md transition-all text-xs tracking-tighter"
+                className="w-full bg-primary hover:bg-primary/80 text-black font-medium uppercase italic py-4 rounded-md transition-all text-xs tracking-tighter"
               >
                 আপডেট করুন
               </button>

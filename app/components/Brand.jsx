@@ -30,26 +30,26 @@ export default function Brand() {
           <div className="space-y-3">
             <div className="flex items-center gap-2 text-primary">
               <ShieldCheck size={18} className="animate-pulse" aria-hidden="true" />
-              <span className="text-[12px] font-black uppercase tracking-wider">
-                অফিসিয়াল পার্টনারস
+              <span className="text-[12px] font-medium uppercase tracking-wider">
+                Official Partners
               </span>
             </div>
             <h2
               id="brand-heading"
-              className="text-2xl md:text-3xl font-black text-text tracking-tighterer uppercase italic leading-none"
+              className="text-2xl md:text-3xl font-medium text-text tracking-tighterer uppercase italic leading-none"
             >
-              সেরা সব <span className="text-primary">ব্র্যান্ড</span>
+              Top <span className="text-primary">Brands</span>
             </h2>
-            <p className="text-pText font-bold text-sm max-w-sm">
-              বিশ্বখ্যাত প্রযুক্তি ব্র্যান্ডের অরিজিনাল গ্যাজেট এখন একই ছাদের নিচে।
+            <p className="text-pText font-medium text-sm max-w-sm">
+              Original gadgets from world-class tech brands are now under one roof.
             </p>
           </div>
 
           {/* Accessibility Fix: Increased contrast from /40 to /70 */}
-          <div className="hidden md:flex items-center gap-2 text-pText/70 font-bold text-[11px] uppercase tracking-tighter">
-            <span>কানেক্টেড ব্র্যান্ডস</span>
+          <div className="hidden md:flex items-center gap-2 text-pText/70 font-medium text-[11px] uppercase tracking-tighter">
+            <span>Connected Brands</span>
             <div className="w-12 h-0.5 bg-border/50" />
-            <span className="text-primary">{brandsData.length} টি ইউনিট</span>
+            <span className="text-primary">{brandsData.length} units</span>
           </div>
         </div>
 
@@ -84,22 +84,22 @@ export default function Brand() {
                       fill
                       sizes="(max-width: 768px) 160px, 224px"
                       className="object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 pointer-events-none"
-                      quality={60} // লোগোর জন্য এটি যথেষ্ট, ফাস্ট লোড হবে
+                      quality={60} // enough quality for logos, loads fast
                       loading="lazy"
                     />
                   </div>
 
                   {/* Minimal Brand Label */}
                   <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 z-20">
-                    <span className="text-[10px] font-black text-white bg-primary px-3 py-1 rounded-full uppercase whitespace-nowrap shadow-lg">
+                    <span className="text-[10px] font-medium text-white bg-primary px-3 py-1 rounded-full uppercase whitespace-nowrap shadow-lg">
                       {brand.name}
                     </span>
                   </div>
                 </div>
               ))
             ) : (
-              <div className="w-full text-center text-pText/50 italic font-black uppercase py-10">
-                কোনো ব্র্যান্ড পাওয়া যায়নি
+              <div className="w-full text-center text-pText/50 italic font-medium uppercase py-10">
+                No brands found
               </div>
             )}
           </div>
@@ -133,7 +133,7 @@ export default function Brand() {
         .hover\:pause:hover {
           animation-play-state: paused;
         }
-        /* মোবাইলে এনিমেশন স্পিড একটু বাড়ানো যাতে ইউজার বোর না হয় */
+        /* Increase animation speed slightly on mobile so users don't get bored */
         @media (max-width: 768px) {
           .animate-marquee {
             animation-duration: 30s;

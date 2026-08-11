@@ -109,7 +109,7 @@ export default function Dashboard() {
 
   return (
     <div className="bg-bg min-h-screen">
-      <h1 className="text-3xl font-black italic uppercase mb-8">
+      <h1 className="text-3xl font-medium italic uppercase mb-8">
         System <span className="text-primary">Overview</span>
       </h1>
 
@@ -120,11 +120,11 @@ export default function Dashboard() {
             key={stat.label}
             className="bg-card border border-border/50 p-6 rounded-md shadow-sm"
           >
-            <p className="text-[12px] font-black uppercase tracking-tighter text-pText/70">
+            <p className="text-[12px] font-medium uppercase tracking-tighter text-pText/70">
               {stat.label}
             </p>
-            <h2 className="text-4xl font-black mt-2 text-text">{stat.value}</h2>
-            <span className="text-primary font-bold text-xs">{stat.change} since last month</span>
+            <h2 className="text-4xl font-medium mt-2 text-text">{stat.value}</h2>
+            <span className="text-primary font-medium text-xs">{stat.change} since last month</span>
           </div>
         ))}
       </div>
@@ -157,7 +157,7 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Recent Orders */}
         <div className="bg-card p-6 rounded-md border border-border/50">
-          <h3 className="font-black uppercase text-sm tracking-tighter mb-6 border-b border-border pb-2">
+          <h3 className="font-medium uppercase text-sm tracking-tighter mb-6 border-b border-border pb-2">
             Recent Terminals
           </h3>
           <div className="space-y-4 max-h-80 overflow-y-auto no-scrollbar">
@@ -168,7 +168,7 @@ export default function Dashboard() {
               .map((order) => (
                 <div key={order._id} className="flex justify-between items-center group">
                   <div>
-                    <p className="text-xs font-bold text-text uppercase">
+                    <p className="text-xs font-medium text-text uppercase">
                       ID: {order._id.slice(-8)}
                     </p>
                     <p className="text-[12px] text-pText">
@@ -176,9 +176,9 @@ export default function Dashboard() {
                     </p>
                   </div>
                   <div className="text-right">
-                    <p className="text-xs font-black text-primary">৳{order.pricing?.totalPrice}</p>
+                    <p className="text-xs font-medium text-primary">৳{order.pricing?.totalPrice}</p>
                     <span
-                      className={`text-[10px] font-black px-2 py-0.5 rounded-full uppercase ${
+                      className={`text-[10px] font-medium px-2 py-0.5 rounded-full uppercase ${
                         order.orderStatus === 'DELIVERED'
                           ? 'bg-green-500/10 text-green-500'
                           : 'bg-primary/10 text-primary'
@@ -194,7 +194,7 @@ export default function Dashboard() {
 
         {/* Products Overview */}
         <div className="bg-card p-6 rounded-md border border-border/50">
-          <h3 className="font-black uppercase text-sm tracking-tighter mb-6 border-b border-border pb-2">
+          <h3 className="font-medium uppercase text-sm tracking-tighter mb-6 border-b border-border pb-2">
             Stock Inventory
           </h3>
           <div className="space-y-4 max-h-80 overflow-y-auto no-scrollbar">
@@ -208,12 +208,12 @@ export default function Dashboard() {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <span className="text-[11px] font-bold text-text uppercase truncate w-32 md:w-48">
+                  <span className="text-[11px] font-medium text-text uppercase truncate w-32 md:w-48">
                     {product.title}
                   </span>
                 </div>
                 <span
-                  className={`text-[12px] font-black ${
+                  className={`text-[12px] font-medium ${
                     product.stock < 5 ? 'text-red-500' : 'text-primary'
                   }`}
                 >

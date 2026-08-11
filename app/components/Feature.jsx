@@ -24,20 +24,20 @@ export default function Feature() {
           <div className="space-y-1">
             <div className="flex items-center gap-1.5 text-secondary">
               <Flame size={16} className="fill-secondary animate-pulse" />
-              <span className="text-[12px] md:text-[11px] font-black uppercase tracking-wider">
-                বেস্ট কালেকশন
+              <span className="text-[12px] md:text-[11px] font-medium uppercase tracking-wider">
+                Best Collection
               </span>
             </div>
-            <h2 className="text-xl md:text-2xl font-black text-text tracking-tighter leading-none">
-              আপনার জন্য <span className="text-primary">বাছাইকৃত</span>
+            <h2 className="text-xl md:text-2xl font-medium text-text tracking-tighter leading-none">
+              Curated <span className="text-primary">For You</span>
             </h2>
           </div>
 
           <Link
             href="/shop?productType=Featured"
-            className="group flex items-center gap-1 text-[12px] md:text-[14px] font-bold text-primary hover:underline transition-colors max-md:hidden"
+            className="group flex items-center gap-1 text-[12px] md:text-[14px] font-medium text-primary hover:underline transition-colors max-md:hidden"
           >
-            সবগুলো দেখুন
+            View All
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
@@ -58,8 +58,8 @@ export default function Feature() {
             ))
           ) : (
             <div className="col-span-full py-16 text-center border-2 border-dashed border-border/10 rounded-md">
-              <p className="text-pText opacity-60 text-sm font-bold tracking-tighter uppercase">
-                বর্তমানে কোনো পণ্য পাওয়া যায়নি
+              <p className="text-pText opacity-60 text-sm font-medium tracking-tighter uppercase">
+                No products found currently
               </p>
             </div>
           )}
@@ -68,9 +68,9 @@ export default function Feature() {
         <div className="mt-8 flex justify-center md:hidden">
           <Link
             href="/shop?productType=Featured"
-            className="w-full text-center py-3 bg-card border border-border/60 rounded-md text-sm font-bold text-text active:scale-95 transition-transform"
+            className="w-full text-center py-3 bg-card border border-border/60 rounded-md text-sm font-medium text-text active:scale-95 transition-transform"
           >
-            সবগুলো পণ্য দেখুন
+            View All Products
           </Link>
         </div>
       </div>

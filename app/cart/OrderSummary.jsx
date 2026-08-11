@@ -29,17 +29,17 @@ export default function OrderSummary({ subtotal = 0 }) {
       <div className="flex flex-col gap-1 mb-8 relative z-10">
         <div className="flex items-center gap-2 text-primary">
           <ShieldCheck size={14} className="animate-pulse" />
-          <span className="text-[12px] font-black uppercase tracking-tighter">
+          <span className="text-[12px] font-medium uppercase tracking-tighter">
             পেমেন্ট প্রোটোকল
           </span>
         </div>
-        <h2 className="text-2xl md:text-3xl font-black text-text uppercase italic tracking-tighterer flex items-center gap-3">
+        <h2 className="text-2xl md:text-3xl font-medium text-text uppercase italic tracking-tighterer flex items-center gap-3">
           অর্ডার সামারি <div className="h-1 flex-1 bg-primary/10 rounded-full" />
         </h2>
       </div>
 
       {/* কন্টেন্ট লিস্ট */}
-      <div className="space-y-5 mb-10 relative z-10 font-bold uppercase tracking-tighter text-xs md:text-sm">
+      <div className="space-y-5 mb-10 relative z-10 font-medium uppercase tracking-tighter text-xs md:text-sm">
         <div className="flex justify-between items-center group">
           <span className="text-pText/50 group-hover:text-pText transition-colors">
             পণ্যের মোট দাম
@@ -67,12 +67,12 @@ export default function OrderSummary({ subtotal = 0 }) {
         <div className="absolute -top-0.5 left-0 w-16 h-0.5 bg-primary shadow-[0_0_10px_rgba(var(--primary-rgb),1)]" />
         <div className="flex justify-between items-end">
           <div className="flex flex-col">
-            <span className="text-[12px] md:text-xs font-black text-pText/40 uppercase">
+            <span className="text-[12px] md:text-xs font-medium text-pText/40 uppercase">
               সর্বমোট প্রদেয়
             </span>
           </div>
           <div className="text-right">
-            <span className="text-4xl md:text-5xl font-black text-primary tracking-tighterer italic block">
+            <span className="text-4xl md:text-5xl font-medium text-primary tracking-tighterer italic block">
               ৳{total.toLocaleString()}
             </span>
           </div>
@@ -93,7 +93,7 @@ export default function OrderSummary({ subtotal = 0 }) {
 
         <Link
           href="/shop"
-          className="flex items-center justify-center gap-2 text-pText/60 text-[11px] md:text-[12px] font-black uppercase tracking-wide hover:text-primary transition-all group"
+          className="flex items-center justify-center gap-2 text-pText/60 text-[11px] md:text-[12px] font-medium uppercase tracking-wide hover:text-primary transition-all group"
         >
           <ChevronLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
           শপিংয়ে ফিরে যান

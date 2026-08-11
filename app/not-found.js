@@ -26,14 +26,14 @@ export default function NotFound() {
             animate={{ opacity: 1, scale: 1 }}
             className="flex justify-center items-center gap-4"
           >
-            <span className="text-8xl md:text-[12rem] font-black text-text italic tracking-tighterer leading-none">
+            <span className="text-8xl md:text-[12rem] font-medium text-text italic tracking-tighterer leading-none">
               4
             </span>
             <div className="w-24 h-32 md:w-32 md:h-44 bg-primary rounded-lg flex items-center justify-center rotate-12 relative shadow-[0_0_50px_rgba(var(--primary-rgb),0.3)]">
               <div className="absolute inset-2 border-2 border-bg/20 rounded-md border-dashed" />
               <Radio size={48} className="text-bg animate-pulse" />
             </div>
-            <span className="text-8xl md:text-[12rem] font-black text-text italic tracking-tighterer leading-none">
+            <span className="text-8xl md:text-[12rem] font-medium text-text italic tracking-tighterer leading-none">
               4
             </span>
           </motion.div>
@@ -41,7 +41,7 @@ export default function NotFound() {
           {/* Vertical Metadata Bar */}
           <div className="absolute -left-4 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-4 opacity-20">
             <div className="w-px h-24 bg-text" />
-            <span className="[writing-mode:vertical-lr] text-[10px] font-black uppercase tracking-tighter">
+            <span className="[writing-mode:vertical-lr] text-[10px] font-medium uppercase tracking-tighter">
               Sector.Failure
             </span>
           </div>
@@ -57,12 +57,12 @@ export default function NotFound() {
           >
             <div className="inline-flex items-center gap-3 bg-white/30 border border-white/10 px-6 py-2 rounded-md">
               <ShieldAlert size={16} className="text-primary" />
-              <span className="text-[12px] font-black uppercase tracking-wide text-pText">
+              <span className="text-[12px] font-medium uppercase tracking-wide text-pText">
                 Alert: Data_Link_Severed
               </span>
             </div>
 
-            <h2 className="text-5xl md:text-7xl font-black text-text tracking-tighterer uppercase italic leading-[0.85]">
+            <h2 className="text-5xl md:text-7xl font-medium text-text tracking-tighterer uppercase italic leading-[0.85]">
               Pathways <br />
               <span className="text-primary">Terminated.</span>
             </h2>
@@ -88,7 +88,7 @@ export default function NotFound() {
               <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-primary group-hover:text-bg transition-colors">
                 <ArrowLeft size={16} />
               </div>
-              <span className="text-[11px] font-black uppercase tracking-tighter text-text">
+              <span className="text-[11px] font-medium uppercase tracking-tighter text-text">
                 Revert Sector
               </span>
             </button>
@@ -107,18 +107,20 @@ export default function NotFound() {
         {/* --- Footer Status --- */}
         <div className="mt-20 flex justify-center items-center gap-12 border-t border-white/5 pt-10">
           <div className="flex flex-col items-center gap-2">
-            <p className="text-[10px] font-black text-pText uppercase tracking-tighter">Protocol</p>
+            <p className="text-[10px] font-medium text-pText uppercase tracking-tighter">
+              Protocol
+            </p>
             <div className="flex items-center gap-2">
               <Cpu size={14} className="text-primary" />
-              <span className="text-xs font-black text-text uppercase italic">v.2026.X</span>
+              <span className="text-xs font-medium text-text uppercase italic">v.2026.X</span>
             </div>
           </div>
           <div className="w-px h-8 bg-white/10" />
           <div className="flex flex-col items-center gap-2">
-            <p className="text-[10px] font-black text-pText uppercase tracking-tighter">Storage</p>
+            <p className="text-[10px] font-medium text-pText uppercase tracking-tighter">Storage</p>
             <div className="flex items-center gap-2">
               <Box size={14} className="text-primary" />
-              <span className="text-xs font-black text-text uppercase italic">Void_0x404</span>
+              <span className="text-xs font-medium text-text uppercase italic">Void_0x404</span>
             </div>
           </div>
         </div>

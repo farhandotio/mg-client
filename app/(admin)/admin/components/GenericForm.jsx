@@ -34,7 +34,7 @@ export default function GenericForm({
       className="space-y-8 bg-card p-8 rounded-lg border border-border/50"
     >
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-3xl font-black italic uppercase tracking-tighterer text-text">
+        <h2 className="text-3xl font-medium italic uppercase tracking-tighterer text-text">
           {title} <span className="text-primary">.SYS</span>
         </h2>
         <Button
@@ -49,7 +49,7 @@ export default function GenericForm({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {fields.map((field) => (
           <div key={field.name} className={`${field.fullWidth ? 'md:col-span-2' : ''} space-y-2`}>
-            <label className="text-[12px] font-black uppercase tracking-tighter text-pText/60 ml-2">
+            <label className="text-[12px] font-medium uppercase tracking-tighter text-pText/60 ml-2">
               {field.label}
             </label>
 
@@ -57,7 +57,7 @@ export default function GenericForm({
               <input
                 type={field.type}
                 required={field.required}
-                className="w-full bg-bg border border-border/50 rounded-md px-6 py-4 text-text focus:border-primary outline-none transition-all font-bold"
+                className="w-full bg-bg border border-border/50 rounded-md px-6 py-4 text-text focus:border-primary outline-none transition-all font-medium"
                 value={
                   field.nested ? formData[field.nested]?.[field.name] : formData[field.name] || ''
                 }
@@ -69,7 +69,7 @@ export default function GenericForm({
               />
             ) : field.type === 'select' ? (
               <select
-                className="w-full bg-bg border border-border/50 rounded-md px-6 py-4 text-text focus:border-primary outline-none transition-all font-bold appearance-none"
+                className="w-full bg-bg border border-border/50 rounded-md px-6 py-4 text-text focus:border-primary outline-none transition-all font-medium appearance-none"
                 value={formData[field.name] || ''}
                 onChange={(e) => handleChange(field.name, e.target.value)}
               >
@@ -83,7 +83,7 @@ export default function GenericForm({
             ) : field.type === 'textarea' ? (
               <textarea
                 rows={4}
-                className="w-full bg-bg border border-border/50 rounded-md px-6 py-4 text-text focus:border-primary outline-none transition-all font-bold"
+                className="w-full bg-bg border border-border/50 rounded-md px-6 py-4 text-text focus:border-primary outline-none transition-all font-medium"
                 value={formData[field.name] || ''}
                 onChange={(e) => handleChange(field.name, e.target.value)}
               />

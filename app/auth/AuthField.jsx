@@ -20,7 +20,7 @@ const AuthField = React.forwardRef(({ icon, error, ...props }, ref) => (
       <input
         {...props}
         ref={ref}
-        className={`w-full py-4 pl-12 pr-4 rounded-md bg-bg/30 border border-border outline-none font-bold text-sm text-text transition-all duration-500 placeholder:text-pText ${
+        className={`w-full py-4 pl-12 pr-4 rounded-md bg-bg/30 border border-border outline-none font-medium text-sm text-text transition-all duration-500 placeholder:text-pText ${
           error
             ? 'border-red-500/30 bg-red-500/5 focus:border-red-500 shadow-sm'
             : 'border-bg/5 focus:border-primary/40 focus:bg-bg/[0.07] focus:scale-[1.01] shadow-inner'
@@ -37,7 +37,7 @@ const AuthField = React.forwardRef(({ icon, error, ...props }, ref) => (
     {error && (
       <div className="flex items-center gap-1.5 px-3 py-1 text-red-500 animate-in fade-in slide-in-from-top-1 duration-300">
         <AlertCircle size={12} strokeWidth={3} className="shrink-0" />
-        <span className="text-[12px] font-black uppercase tracking-tighter leading-none">
+        <span className="text-[12px] font-medium uppercase tracking-tighter leading-none">
           {error.message}
         </span>
       </div>

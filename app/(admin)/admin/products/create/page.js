@@ -113,11 +113,11 @@ export default function CreateProductPage() {
             <div className="p-2 bg-primary/10 rounded-md animate-pulse">
               <Cpu size={18} />
             </div>
-            <span className="text-[12px] font-black uppercase tracking-tighter opacity-70">
+            <span className="text-[12px] font-medium uppercase tracking-tighter opacity-70">
               Nexus / Production_Terminal
             </span>
           </div>
-          <h1 className="text-5xl lg:text-7xl font-black uppercase italic tracking-tighterer leading-none">
+          <h1 className="text-5xl lg:text-7xl font-medium uppercase italic tracking-tighterer leading-none">
             Forge{' '}
             <span className="text-primary drop-shadow-[0_0_15px_rgba(255,111,92,0.3)]">
               Product
@@ -126,8 +126,8 @@ export default function CreateProductPage() {
         </div>
         <div className="flex items-center gap-4 bg-card/40 p-4 rounded-md border border-border/50 backdrop-blur-md">
           <div className="text-right border-r border-border/50 pr-4">
-            <p className="text-[10px] font-black uppercase opacity-40">System_Status</p>
-            <p className="text-[12px] font-bold text-primary">CORE_ACTIVE</p>
+            <p className="text-[10px] font-medium uppercase opacity-40">System_Status</p>
+            <p className="text-[12px] font-medium text-primary">CORE_ACTIVE</p>
           </div>
           <Fingerprint size={32} className="text-primary opacity-20" />
         </div>
@@ -151,7 +151,7 @@ export default function CreateProductPage() {
                 onChange={(e) => setFormData({ ...formData, shortDescription: e.target.value })}
               />
               <div className="space-y-3">
-                <label className="text-[12px] font-black uppercase tracking-tighter text-pText/60 ml-3">
+                <label className="text-[12px] font-medium uppercase tracking-tighter text-pText/60 ml-3">
                   Deep_Analysis_Protocol (Full Description)*
                 </label>
                 <textarea
@@ -209,7 +209,7 @@ export default function CreateProductPage() {
                 className="group flex items-center gap-2 px-4 py-2 rounded-md bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all border border-primary/20"
               >
                 <Plus size={16} />
-                <span className="text-[12px] hidden md:block font-black uppercase tracking-tighter">
+                <span className="text-[12px] hidden md:block font-medium uppercase tracking-tighter">
                   Add_Spec
                 </span>
               </button>
@@ -222,7 +222,7 @@ export default function CreateProductPage() {
                 >
                   <input
                     placeholder="Field Name"
-                    className="flex-1 bg-card border border-border rounded-md p-4 text-xs font-black uppercase tracking-tighter outline-none focus:border-primary shadow-inner"
+                    className="flex-1 bg-card border border-border rounded-md p-4 text-xs font-medium uppercase tracking-tighter outline-none focus:border-primary shadow-inner"
                     value={spec.key}
                     onChange={(e) => {
                       const newSpecs = [...formData.specifications];
@@ -232,7 +232,7 @@ export default function CreateProductPage() {
                   />
                   <input
                     placeholder="Value Data"
-                    className="flex-1 bg-card border border-border rounded-md p-4 text-xs font-bold outline-none focus:border-primary shadow-inner text-primary"
+                    className="flex-1 bg-card border border-border rounded-md p-4 text-xs font-medium outline-none focus:border-primary shadow-inner text-primary"
                     value={spec.value}
                     onChange={(e) => {
                       const newSpecs = [...formData.specifications];
@@ -313,7 +313,7 @@ export default function CreateProductPage() {
                 placeholder="Asset URL + Press Enter"
                 onKeyDown={addImageUrl}
                 disabled={formData.images.length >= 5}
-                className="w-full bg-card border border-border rounded-[1.2rem] p-4 text-[12px] font-black uppercase tracking-tighter outline-none focus:border-primary disabled:opacity-30 transition-all shadow-md pr-12"
+                className="w-full bg-card border border-border rounded-[1.2rem] p-4 text-[12px] font-medium uppercase tracking-tighter outline-none focus:border-primary disabled:opacity-30 transition-all shadow-md pr-12"
               />
               <Plus
                 size={16}
@@ -362,11 +362,11 @@ export default function CreateProductPage() {
                 required
               />
               <div className="space-y-3">
-                <label className="text-[12px] font-black uppercase tracking-tighter text-pText/60 ml-3">
+                <label className="text-[12px] font-medium uppercase tracking-tighter text-pText/60 ml-3">
                   Market Classification
                 </label>
                 <select
-                  className="w-full bg-bg/80 border border-border rounded-md p-4 text-[12px] font-black uppercase tracking-tighter outline-none focus:border-primary text-primary cursor-pointer shadow-inner appearance-none"
+                  className="w-full bg-bg/80 border border-border rounded-md p-4 text-[12px] font-medium uppercase tracking-tighter outline-none focus:border-primary text-primary cursor-pointer shadow-inner appearance-none"
                   onChange={(e) => setFormData({ ...formData, productType: e.target.value })}
                 >
                   {['Regular', 'FlashSale', 'HotDeals', 'Featured', 'BestSeller', 'NewArrival'].map(
@@ -385,7 +385,7 @@ export default function CreateProductPage() {
                 type="submit"
                 size="xl"
                 disabled={btnLoading}
-                className={`w-full py-8 rounded-lg shadow-primary/20 shadow-xl active:scale-95 transition-all font-black text-xs tracking-wide italic ${btnLoading ? 'grayscale opacity-50' : 'hover:scale-[1.02]'}`}
+                className={`w-full py-8 rounded-lg shadow-primary/20 shadow-xl active:scale-95 transition-all font-medium text-xs tracking-wide italic ${btnLoading ? 'grayscale opacity-50' : 'hover:scale-[1.02]'}`}
                 text={btnLoading ? <LoaderSpinner /> : 'Execute_Upload'}
               />
             </div>
@@ -420,7 +420,7 @@ function SelectionCard({ item, isSelected, onClick }) {
         )}
       </div>
       <p
-        className={`text-[12px] font-black uppercase tracking-tighterer text-center leading-tight transition-colors px-1 ${isSelected ? 'text-white' : 'text-pText/70'}`}
+        className={`text-[12px] font-medium uppercase tracking-tighterer text-center leading-tight transition-colors px-1 ${isSelected ? 'text-white' : 'text-pText/70'}`}
       >
         {item.name}
       </p>
@@ -439,7 +439,7 @@ function SectionHeader({ icon, title }) {
       <div className="p-3 bg-primary/10 rounded-md border border-primary/20 shadow-md backdrop-blur-sm">
         {icon}
       </div>
-      <h2 className="text-xs font-black uppercase tracking-wide italic">{title}</h2>
+      <h2 className="text-xs font-medium uppercase tracking-wide italic">{title}</h2>
     </div>
   );
 }
@@ -447,12 +447,12 @@ function SectionHeader({ icon, title }) {
 function CustomInput({ label, ...props }) {
   return (
     <div className="space-y-3 flex-1">
-      <label className="text-[12px] font-black uppercase tracking-tighter text-pText/60 ml-3">
+      <label className="text-[12px] font-medium uppercase tracking-tighter text-pText/60 ml-3">
         {label}
       </label>
       <input
         {...props}
-        className="w-full border border-border rounded-md p-4 md:p-5 bg-bg/50 focus:border-primary outline-none transition-all font-bold text-xs text-text placeholder:text-pText/10 shadow-inner"
+        className="w-full border border-border rounded-md p-4 md:p-5 bg-bg/50 focus:border-primary outline-none transition-all font-medium text-xs text-text placeholder:text-pText/10 shadow-inner"
       />
     </div>
   );

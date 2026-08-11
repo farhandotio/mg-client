@@ -1,24 +1,9 @@
-import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { ReduxProvider } from '@/store/Provider';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AuthInit from '@/components/AuthInit';
 import { Analytics } from '@vercel/analytics/next';
-
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-  display: 'swap',
-  adjustFontFallback: true,
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-  display: 'swap',
-  adjustFontFallback: true,
-});
 
 export const metadata = {
   title: 'গ্যাজেট বিডিএস – বাংলাদেশে অরিজিনাল গ্যাজেট ও ইলেকট্রনিক্স কিনুন অনলাইনে',
@@ -30,11 +15,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html
-      lang="bn"
-      suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable}`}
-    >
+    <html lang="bn" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://ik.imagekit.io" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://mg-server.vercel.app" crossOrigin="anonymous" />
