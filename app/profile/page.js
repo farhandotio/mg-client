@@ -164,13 +164,13 @@ export default function ProfilePage() {
   if (!mounted) return <div className="min-h-screen bg-bg" />;
 
   return (
-    <div className="min-h-screen h-full bg-bg pt-6 pb-20 relative animate-in fade-in duration-700 overflow-hidden">
+    <div className="min-h-screen h-full bg-bg pb-20 relative animate-in fade-in duration-700 overflow-hidden">
       {/* Background Ambience */}
       <div className="absolute top-0 left-0 w-full h-125 bg-linear-to-b from-primary/5 to-transparent pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto space-y-8 px-4 md:px-6 relative z-10">
+      <div className="space-y-8 relative z-10">
         {/* --- HERO SECTION: User Card --- */}
-        <div className="relative bg-card/30 backdrop-blur-3xl border border-white/5 md:border-border/40 rounded-0 md:rounded-0 p-6 md:p-10 overflow-hidden shadow-2xl">
+        <div className="relative bg-card/30 backdrop-blur-3xl border border-white/5 md:border-border/40 rounded-0 md:rounded-0 p-6 md:p-10 overflow-hidden ">
           {/* Decorative Elements */}
           <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/20 rounded-full blur-[80px]" />
           <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-primary/50 to-transparent opacity-50" />
@@ -178,7 +178,7 @@ export default function ProfilePage() {
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
             {/* Avatar Circle */}
             <div className="relative group">
-              <div className="w-32 h-32 md:w-48 md:h-48 rounded-full md:rounded-0 bg-bg border-[3px] border-border/60 flex items-center justify-center overflow-hidden shadow-[0_0_30px_rgba(0,0,0,0.3)] relative z-10">
+              <div className="w-32 h-32 md:w-48 md:h-48 rounded-full md:rounded-0 bg-bg border-[3px] border-border/60 flex items-center justify-center overflow-hidden relative z-10">
                 {user?.image || user?.avatar ? (
                   <img
                     src={user.image || user.avatar}
@@ -243,7 +243,7 @@ export default function ProfilePage() {
         </div>
 
         {/* --- MAIN GRID CONTENT --- */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 p-4 sm:p-6 md:p-8">
           {/* --- LEFT: ADDRESSES --- */}
           <div className="lg:col-span-5 space-y-6">
             <div className="flex justify-between items-end px-2">

@@ -268,7 +268,7 @@ export default function Navbar() {
           </Link>
         </div>
       </div>
-      <div className="h-17" aria-hidden="true" />
+      <div className="h-16 md:h-17" aria-hidden="true" />
     </>
   );
 }
