@@ -70,7 +70,7 @@ export default function ProductCard({ product, priority = false }) {
                 product.badge.toLowerCase() === 'new!'
                   ? 'bg-danger'
                   : product.badge.toLowerCase() === 'best seller'
-                    ? 'bg-primary'
+                    ? 'bg-secondary'
                     : 'bg-text/80 text-white'
               }`}
             >

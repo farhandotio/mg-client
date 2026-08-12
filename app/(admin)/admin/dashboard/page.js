@@ -110,7 +110,7 @@ export default function Dashboard() {
   return (
     <div className="bg-bg min-h-screen">
       <h1 className="text-3xl font-medium italic uppercase mb-8">
-        System <span className="text-primary">Overview</span>
+        System <span className="text-secondary">Overview</span>
       </h1>
 
       {/* --- Top Stats Cards --- */}
@@ -121,7 +121,9 @@ export default function Dashboard() {
               {stat.label}
             </p>
             <h2 className="text-4xl font-medium mt-2 text-text">{stat.value}</h2>
-            <span className="text-primary font-medium text-xs">{stat.change} since last month</span>
+            <span className="text-secondary font-medium text-xs">
+              {stat.change} since last month
+            </span>
           </div>
         ))}
       </div>
@@ -173,12 +175,14 @@ export default function Dashboard() {
                     </p>
                   </div>
                   <div className="text-right">
-                    <p className="text-xs font-medium text-primary">৳{order.pricing?.totalPrice}</p>
+                    <p className="text-xs font-medium text-secondary">
+                      ৳{order.pricing?.totalPrice}
+                    </p>
                     <span
                       className={`text-[10px] font-medium px-2 py-0.5 rounded-full uppercase ${
                         order.orderStatus === 'DELIVERED'
                           ? 'bg-green-500/10 text-green-500'
-                          : 'bg-primary/10 text-primary'
+                          : 'bg-secondary/10 text-secondary'
                       }`}
                     >
                       {order.orderStatus}
@@ -211,7 +215,7 @@ export default function Dashboard() {
                 </div>
                 <span
                   className={`text-[12px] font-medium ${
-                    product.stock < 5 ? 'text-red-500' : 'text-primary'
+                    product.stock < 5 ? 'text-danger' : 'text-secondary'
                   }`}
                 >
                   {product.stock} Units

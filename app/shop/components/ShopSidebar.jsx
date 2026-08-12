@@ -48,7 +48,7 @@ export default function ShopSidebar({
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Filter size={16} className="text-primary" />
+            <Filter size={16} className="text-secondary" />
             <h3 className="text-text font-medium uppercase tracking-tighterer text-sm italic">
               ফিল্টার
             </h3>
@@ -56,7 +56,7 @@ export default function ShopSidebar({
           <button
             aria-label="reset filters"
             onClick={resetFilters}
-            className="flex items-center gap-1.5 text-[12px] font-medium uppercase text-red-500 hover:text-red-400 transition-colors group"
+            className="flex items-center gap-1.5 text-[12px] font-medium uppercase text-danger hover:text-red-400 transition-colors group"
           >
             <RotateCcw
               size={12}
@@ -65,7 +65,7 @@ export default function ShopSidebar({
             রিসেট করুন
           </button>
         </div>
-        <div className="h-0.5 w-full bg-linear-to-r from-primary/50 via-border/20 to-transparent" />
+        <div className="h-0.5 w-full bg-linear-to-r from-secondary/50 via-border/20 to-transparent" />
       </div>
 
       {/* ২. কিওয়ার্ড সার্চ */}
@@ -75,18 +75,18 @@ export default function ShopSidebar({
           defaultValue={searchTerm}
           onChange={onSearchChange}
           placeholder="পণ্য খুঁজুন..."
-          className="w-full bg-white/5 border border-border/40 rounded-0 py-3 pl-11 pr-4 text-xs text-text focus:outline-none focus:border-primary/50 transition-all placeholder:text-pText/30"
+          className="w-full bg-white/5 border border-border/40 rounded-0 py-3 pl-11 pr-4 text-xs text-text focus:outline-none focus:border-secondary/50 transition-all placeholder:text-pText/30"
         />
         <Search
           size={14}
-          className="absolute left-4 top-1/2 -translate-y-1/2 text-pText/40 group-focus-within:text-primary transition-colors"
+          className="absolute left-4 top-1/2 -translate-y-1/2 text-pText/40 group-focus-within:text-secondary transition-colors"
         />
       </div>
 
       {/* ৩. ক্যাটাগরি লিস্ট (নতুন মিনিমাল ডিজাইন) */}
       <div className="space-y-4">
         <div className="flex items-center gap-2 px-1">
-          <LayoutGrid size={12} className="text-primary/60" />
+          <LayoutGrid size={12} className="text-secondary/60" />
           <label className="text-[12px] font-medium uppercase tracking-tighter text-pText/60">
             ক্যাটাগরি সমূহ
           </label>
@@ -96,13 +96,13 @@ export default function ShopSidebar({
           <Link
             href="/shop"
             className={`group flex items-center justify-between py-2 px-3 rounded-0 transition-all ${
-              !selectedCategory ? 'bg-primary/10 text-primary' : 'text-pText hover:bg-white/5'
+              !selectedCategory ? 'bg-secondary/10 text-secondary' : 'text-pText hover:bg-white/5'
             }`}
             onClick={() => setIsMobileFilterOpen?.(false)}
           >
             <span className="text-[11px] font-medium uppercase tracking-wide">সব পণ্য</span>
             <div
-              className={`w-1 h-1 rounded-full ${!selectedCategory ? 'bg-primary' : 'bg-transparent'}`}
+              className={`w-1 h-1 rounded-full ${!selectedCategory ? 'bg-secondary' : 'bg-transparent'}`}
             />
           </Link>
 
@@ -112,7 +112,7 @@ export default function ShopSidebar({
               href={`/shop?category=${cat.slug}${selectedType ? `&productType=${selectedType}` : ''}`}
               className={`group flex items-center justify-between py-2 px-3 rounded-0 transition-all ${
                 selectedCategory === cat.slug
-                  ? 'bg-primary/10 text-primary'
+                  ? 'bg-secondary/10 text-secondary'
                   : 'text-pText hover:bg-white/5'
               }`}
               onClick={() => setIsMobileFilterOpen?.(false)}
@@ -121,7 +121,10 @@ export default function ShopSidebar({
                 {cat.name}
               </span>
               {selectedCategory === cat.slug ? (
-                <ChevronRight size={12} className="text-primary animate-in slide-in-from-left-2" />
+                <ChevronRight
+                  size={12}
+                  className="text-secondary animate-in slide-in-from-left-2"
+                />
               ) : (
                 <span className="text-[11px] opacity-20 font-mono group-hover:opacity-100 transition-opacity italic">
                   #0{cat.slug.length}
@@ -144,13 +147,13 @@ export default function ShopSidebar({
               href={`/shop?productType=${type.slug}${selectedCategory ? `&category=${selectedCategory}` : ''}`}
               className={`flex items-center justify-between p-3 rounded-0 border text-[12px] font-medium uppercase tracking-tighterer transition-all ${
                 selectedType === type.slug
-                  ? 'bg-primary text-bg border-primary'
-                  : 'bg-white/5 border-border/20 text-pText hover:border-primary/40'
+                  ? 'bg-secondary text-bg border-secondary'
+                  : 'bg-white/5 border-border/20 text-pText hover:border-secondary/40'
               }`}
               onClick={() => setIsMobileFilterOpen?.(false)}
             >
               <div className="flex items-center gap-2">
-                <span className={selectedType === type.slug ? 'text-bg' : 'text-primary'}>
+                <span className={selectedType === type.slug ? 'text-bg' : 'text-secondary'}>
                   {type.icon}
                 </span>
                 {type.name}
@@ -172,7 +175,7 @@ export default function ShopSidebar({
               সর্বোচ্চ সীমা নির্ধারণ করুন
             </span>
           </div>
-          <span className="text-primary font-medium text-xs font-mono">
+          <span className="text-secondary font-medium text-xs font-mono">
             ৳{priceRange.toLocaleString()}
           </span>
         </div>
@@ -184,11 +187,11 @@ export default function ShopSidebar({
             step="500"
             value={priceRange}
             onChange={(e) => setPriceRange(e.target.value)}
-            className="w-full h-1 bg-white/10 rounded-full appearance-none cursor-pointer accent-primary"
+            className="w-full h-1 bg-white/10 rounded-full appearance-none cursor-pointer accent-secondary"
           />
           {/* স্লাইডার প্রগ্রেস ইন্ডিকেটর (Visual) */}
           <div
-            className="absolute left-0 h-1 bg-primary rounded-full pointer-events-none"
+            className="absolute left-0 h-1 bg-secondary rounded-full pointer-events-none"
             style={{ width: `${((priceRange - 500) / (200000 - 500)) * 100}%` }}
           />
         </div>

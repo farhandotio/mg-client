@@ -16,7 +16,7 @@ const Skeleton = ({ type = 'product', count = 1, className = '' }) => {
         initial="initial"
         animate="animate"
         transition={{ duration: 1.5, repeat: Infinity, ease: 'linear' }}
-        className="absolute inset-0 bg-linear-to-r from-transparent via-primary/5 to-transparent z-10"
+        className="absolute inset-0 bg-linear-to-r from-transparent via-secondary/5 to-transparent z-10"
       />
 
       {type === 'product' && (
@@ -26,8 +26,8 @@ const Skeleton = ({ type = 'product', count = 1, className = '' }) => {
             <div className="h-2 w-1/3 bg-pText/10 rounded-full" />
             <div className="h-4 w-full bg-pText/10 rounded-full" />
             <div className="flex justify-between items-center pt-2">
-              <div className="h-5 w-1/3 bg-primary/10 rounded-0" />
-              <div className="h-8 w-12 bg-primary/20 rounded-0" />
+              <div className="h-5 w-1/3 bg-secondary/10 rounded-0" />
+              <div className="h-8 w-12 bg-secondary/20 rounded-0" />
             </div>
           </div>
         </div>

@@ -17,8 +17,7 @@ function ToastSoundPlayer() {
 
           const audio = new Audio(t.type === 'success' ? successSound : errorSound);
           audio.volume = 0.3;
-          audio.play().catch(() => {
-          });
+          audio.play().catch(() => {});
         }
       });
   }, [toasts]);
@@ -53,11 +52,11 @@ export function ReduxProvider({ children }) {
           },
           success: {
             iconTheme: {
-              primary: 'var(--color-primary)',
+              primary: 'var(--color-secondary)',
               secondary: 'var(--color-bg)',
             },
             style: {
-              borderLeft: '4px solid var(--color-primary)',
+              borderLeft: '4px solid var(--color-secondary)',
             },
           },
           error: {

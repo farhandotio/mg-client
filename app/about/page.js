@@ -17,11 +17,11 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="bg-bg min-h-screen pt-16 pb-20">
+    <div className="bg-bg min-h-screen pt-20 md:pt-24 pb-20">
       {/* --- About Header Section --- */}
       <section className="px-6 text-center max-w-4xl mx-auto mb-20">
         <h1 className="text-5xl md:text-6xl font-medium text-text mb-6">
-          About <span className="text-primary">My Gadget</span>
+          About <span className="text-secondary">My Gadget</span>
         </h1>
         <p className="text-pText text-lg font-medium leading-relaxed">
           We're on a mission to make premium technology accessible to everyone. Since 2020, we've
@@ -34,7 +34,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-12">
           {stats.map((stat, i) => (
             <div key={i} className="text-center space-y-2">
-              <h2 className="text-4xl md:text-5xl font-medium text-primary">{stat.value}</h2>
+              <h2 className="text-4xl md:text-5xl font-medium text-secondary">{stat.value}</h2>
               <p className="text-pText font-medium uppercase tracking-tighter text-xs opacity-70">
                 {stat.label}
               </p>
@@ -103,10 +103,10 @@ export default function AboutPage() {
           {team.map((member, i) => (
             <div
               key={i}
-              className="bg-card border border-border p-10 rounded-0 flex flex-col items-center text-center group hover:border-primary transition-all duration-300"
+              className="bg-card border border-border p-10 rounded-0 flex flex-col items-center text-center group hover:border-secondary transition-all duration-300"
             >
               {/* Profile Avatar with Initials */}
-              <div className="w-20 h-20 rounded-full bg-primary flex items-center justify-center text-bg font-medium text-2xl mb-6 shadow-[0_0_20px_rgba(41,252,86,0.2)] group-hover:scale-110 transition-transform">
+              <div className="w-20 h-20 rounded-full bg-secondary flex items-center justify-center text-bg font-medium text-2xl mb-6 shadow-[0_0_20px_rgba(41,252,86,0.2)] group-hover:scale-110 transition-transform">
                 {member.initials}
               </div>
               <h4 className="text-text font-medium text-lg">{member.name}</h4>

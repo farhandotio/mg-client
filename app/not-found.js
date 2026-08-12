@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function NotFound() {
   return (
-    <div className="h-[80vh] flex items-center justify-center px-6">
+    <div className="h-screen flex items-center justify-center px-6">
       <div className="max-w-md w-full">
         {/* Google-style broken robot, rendered in SVG so no image asset is needed */}
         <div className="mb-6" aria-hidden="true">
@@ -79,14 +79,14 @@ export default function NotFound() {
           </svg>
         </div>
 
-        <h1 className="text-[22px] leading-8 font-normal text-[#202124]">That&rsquo;s an error.</h1>
+        <h1 className="text-[22px] leading-8 font-normal text-text">That&rsquo;s an error.</h1>
 
-        <p className="mt-2 text-sm leading-6 text-[#3c4043]">
+        <p className="mt-2 text-sm leading-6 text-pText">
           The requested URL was not found on this server. That&rsquo;s all we know.
         </p>
 
         <div className="mt-6">
-          <Link href="/" className="text-sm text-[#1a73e8] hover:underline underline-offset-2">
+          <Link href="/" className="text-sm text-secondary underline underline-offset-2">
             Go back to the homepage
           </Link>
         </div>

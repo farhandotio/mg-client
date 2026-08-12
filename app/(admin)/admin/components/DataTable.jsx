@@ -21,12 +21,12 @@ export default function DataTable({ columns, data, loading, onEdit, onDelete, on
               {columns.map((col) => (
                 <th
                   key={col.key}
-                  className="px-6 py-5 text-[12px] font-medium uppercase tracking-tighter text-primary"
+                  className="px-6 py-5 text-[12px] font-medium uppercase tracking-tighter text-secondary"
                 >
                   {col.label}
                 </th>
               ))}
-              <th className="px-6 py-5 text-[12px] font-medium uppercase tracking-tighter text-primary text-right">
+              <th className="px-6 py-5 text-[12px] font-medium uppercase tracking-tighter text-secondary text-right">
                 Actions
               </th>
             </tr>
@@ -55,14 +55,14 @@ export default function DataTable({ columns, data, loading, onEdit, onDelete, on
                       <button
                         aria-label="edit"
                         onClick={() => onEdit(item)}
-                        className="p-2 hover:bg-primary/10 text-primary rounded-0 transition-all"
+                        className="p-2 hover:bg-secondary/10 text-secondary rounded-0 transition-all"
                       >
                         <Edit size={16} />
                       </button>
                       <button
                         aria-label="delete"
                         onClick={() => onDelete(item._id)}
-                        className="p-2 hover:bg-red-500/10 text-red-400 rounded-0 transition-all"
+                        className="p-2 hover:bg-danger/10 text-red-400 rounded-0 transition-all"
                       >
                         <Trash2 size={16} />
                       </button>

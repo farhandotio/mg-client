@@ -30,7 +30,7 @@ export default function RootLayout({ children }) {
         <link rel="dns-prefetch" href="https://mg-server.vercel.app" />
       </head>
       <body
-        className="antialiased min-h-screen flex flex-col bg-bg text-text selection:bg-primary selection:text-white"
+        className="antialiased min-h-screen flex flex-col bg-bg text-text selection:bg-secondary selection:text-white"
         suppressHydrationWarning
       >
         <ReduxProvider>

@@ -5,12 +5,12 @@ import { RefreshCcw, ShieldCheck, Clock, AlertTriangle } from 'lucide-react';
 
 export default function RefundPolicy() {
   return (
-    <main className="pt-16 pb-20 bg-bg min-h-screen">
+    <main className="pt-20 md:pt-24 pb-20 bg-bg min-h-screen">
       <div className="max-w-4xl mx-auto px-6">
         {/* Header */}
-        <div className="mb-16 space-y-4 border-l-4 border-primary pl-8">
+        <div className="mb-16 space-y-4 border-l-4 border-secondary pl-8">
           <h1 className="text-5xl md:text-7xl font-medium text-text italic uppercase tracking-tighterer">
-            Return <span className="text-primary">& Refund</span>
+            Return <span className="text-secondary">& Refund</span>
           </h1>
           <p className="text-pText font-medium uppercase tracking-tighter text-sm opacity-60">
             Protocol_v2.1 // Last Updated: 2026
@@ -20,12 +20,12 @@ export default function RefundPolicy() {
         {/* Info Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
           <PolicyCard
-            icon={<Clock className="text-primary" />}
+            icon={<Clock className="text-secondary" />}
             title="7-Day Window"
             desc="You have 7 solar days to initiate a return if the hardware is found defective upon arrival."
           />
           <PolicyCard
-            icon={<ShieldCheck className="text-primary" />}
+            icon={<ShieldCheck className="text-secondary" />}
             title="Mint Condition"
             desc="Items must be in original packaging with all security seals intact for a successful refund."
           />

@@ -5,11 +5,11 @@ import { Award, Zap, Cpu, Settings } from 'lucide-react';
 
 export default function WarrantyPolicy() {
   return (
-    <main className="pt-16 pb-20 bg-bg min-h-screen">
+    <main className="pt-20 md:pt-24 pb-20 bg-bg min-h-screen">
       <div className="max-w-4xl mx-auto px-6">
         {/* Header */}
         <div className="mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-1 rounded-full text-primary">
+          <div className="inline-flex items-center gap-2 bg-secondary/10 px-4 py-1 rounded-full text-secondary">
             <Award size={14} />
             <span className="text-[12px] font-medium uppercase tracking-tighter">
               Premium Protection
@@ -17,7 +17,7 @@ export default function WarrantyPolicy() {
           </div>
           <h1 className="text-5xl md:text-7xl font-medium text-text italic uppercase tracking-tighterer leading-none">
             Warranty <br />
-            <span className="text-primary">Protocols</span>
+            <span className="text-secondary">Protocols</span>
           </h1>
         </div>
 
@@ -45,7 +45,7 @@ export default function WarrantyPolicy() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div className="space-y-4">
               <h3 className="text-2xl font-medium text-text uppercase italic flex items-center gap-3">
-                <Cpu size={20} className="text-primary" /> What's Covered
+                <Cpu size={20} className="text-secondary" /> What's Covered
               </h3>
               <p className="text-pText opacity-80 font-medium">
                 Our 2-Year Limited Warranty covers manufacturing defects in materials and
@@ -55,7 +55,7 @@ export default function WarrantyPolicy() {
             </div>
             <div className="space-y-4">
               <h3 className="text-2xl font-medium text-text uppercase italic flex items-center gap-3">
-                <Zap size={20} className="text-primary" /> Void Conditions
+                <Zap size={20} className="text-secondary" /> Void Conditions
               </h3>
               <p className="text-pText opacity-80 font-medium">
                 Warranty is void if: the serial number is tampered with, the device is
@@ -66,7 +66,7 @@ export default function WarrantyPolicy() {
           </div>
 
           {/* Support Call to Action */}
-          <div className="p-10 bg-primary rounded-0 text-bg flex flex-col md:flex-row justify-between items-center gap-8 shadow-[0_20px_50px_rgba(var(--primary-rgb),0.3)]">
+          <div className="p-10 bg-secondary rounded-0 text-bg flex flex-col md:flex-row justify-between items-center gap-8 shadow-[0_20px_50px_rgba(var(--secondary-rgb),0.3)]">
             <div className="space-y-2 text-center md:text-left">
               <h3 className="text-3xl font-medium uppercase italic leading-none">Need to Claim?</h3>
               <p className="font-medium opacity-80 uppercase tracking-tighter">
@@ -89,7 +89,7 @@ export default function WarrantyPolicy() {
 function Step({ number, title, desc }) {
   return (
     <div className="p-6 bg-card/20 border border-white/5 rounded-0 relative overflow-hidden group">
-      <span className="absolute -right-2 -top-2 text-6xl font-medium text-white/30 group-hover:text-primary/10 transition-colors">
+      <span className="absolute -right-2 -top-2 text-6xl font-medium text-white/30 group-hover:text-secondary/10 transition-colors">
         {number}
       </span>
       <h4 className="text-lg font-medium text-text uppercase italic mb-2 relative z-10">{title}</h4>

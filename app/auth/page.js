@@ -93,7 +93,7 @@ function AuthForm() {
       {/* ব্যাক বাটন - মোবাইল এবং ডেস্কটপ উভয়ের জন্য */}
       <button
         onClick={() => router.back()}
-        className="absolute top-6 right-6 z-50 flex items-center gap-2 px-3 py-2 rounded-0 bg-white/5 border border-white/5 text-pText hover:text-primary hover:bg-white/10 transition-all group"
+        className="absolute top-6 right-6 z-50 flex items-center gap-2 px-3 py-2 rounded-0 bg-white/5 border border-white/5 text-pText hover:text-secondary hover:bg-white/10 transition-all group"
       >
         <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
         <span className="text-[12px] font-medium uppercase tracking-tighter hidden sm:block">
@@ -128,7 +128,7 @@ function AuthForm() {
               )}
 
               {error && (
-                <p className="text-red-500 text-[12px] font-medium uppercase tracking-tighter bg-red-500/10 p-3 rounded-0 mb-4 animate-shake border border-red-500/20">
+                <p className="text-danger text-[12px] font-medium uppercase tracking-tighter bg-danger/10 p-3 rounded-0 mb-4 animate-shake border border-danger/20">
                   {error}
                 </p>
               )}
@@ -201,10 +201,10 @@ function AuthForm() {
               <button
                 aria-label="toggle auth"
                 onClick={toggleMode}
-                className="text-xs font-medium uppercase tracking-tighter text-pText hover:text-primary transition-colors"
+                className="text-xs font-medium uppercase tracking-tighter text-pText hover:text-secondary transition-colors"
               >
                 {isLogin ? 'নতুন ইউজার? ' : 'আগে থেকেই অ্যাকাউন্ট আছে? '}
-                <span className="text-primary underline ml-1 font-medium">
+                <span className="text-secondary underline ml-1 font-medium">
                   {isLogin ? 'নিবন্ধন করুন' : 'লগইন করুন'}
                 </span>
               </button>
@@ -233,7 +233,7 @@ export default function AuthPage() {
   return (
     <div className="bg-bg flex items-center justify-center overflow-hidden relative w-full">
       {/* গ্লো ইফেক্ট */}
-      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,rgba(var(--primary-rgb),0.05),transparent_70%)] pointer-events-none" />
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,rgba(var(--secondary-rgb),0.05),transparent_70%)] pointer-events-none" />
 
       <div className="w-full backdrop-blur-3xl  overflow-hidden min-h-screen flex items-center md:justify-center">
         <Suspense

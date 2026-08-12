@@ -4,7 +4,7 @@ import { Sparkles, ArrowRight, ArrowLeft } from 'lucide-react';
 export default function AuthOverlay({ isLogin, locked, toggleMode }) {
   return (
     <div
-      className={`hidden md:flex flex-1 bg-primary relative transition-all duration-700 ease-in-out items-center justify-center p-12 overflow-hidden ${
+      className={`hidden md:flex flex-1 bg-secondary relative transition-all duration-700 ease-in-out items-center justify-center p-12 overflow-hidden ${
         isLogin ? 'order-last' : 'order-first'
       }`}
     >
@@ -18,8 +18,8 @@ export default function AuthOverlay({ isLogin, locked, toggleMode }) {
         }`}
       >
         {/* আইকন বক্স */}
-        <div className="w-24 h-24 mx-auto bg-text rounded-0 flex items-center justify-center backdrop-blur-xl shadow-2xl rotate-12 group-hover:rotate-0 transition-transform duration-500">
-          <Sparkles size={48} className="text-primary animate-bounce" fill="currentColor" />
+        <div className="w-24 h-24 mx-auto bg-text rounded-0 flex items-center justify-center backdrop-blur-xl  rotate-12 group-hover:rotate-0 transition-transform duration-500">
+          <Sparkles size={48} className="text-secondary animate-bounce" fill="currentColor" />
         </div>
 
         <div className="space-y-4">
@@ -40,7 +40,7 @@ export default function AuthOverlay({ isLogin, locked, toggleMode }) {
           onClick={toggleMode}
           className="group relative px-12 py-5 overflow-hidden border-2 border-text rounded-0 font-medium uppercase tracking-tighter text-[12px] transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]"
         >
-          <span className="relative z-10 flex items-center justify-center gap-2 group-hover:text-primary transition-colors duration-300">
+          <span className="relative z-10 flex items-center justify-center gap-2 group-hover:text-secondary transition-colors duration-300">
             {isLogin ? (
               <>
                 নিবন্ধন করুন <ArrowRight size={14} />

@@ -105,12 +105,12 @@ export default function CreateProductPage() {
   }, [success, error, dispatch, router]);
 
   return (
-    <div className="bg-bg min-h-screen text-text selection:bg-primary/20">
+    <div className="bg-bg min-h-screen text-text selection:bg-secondary/20">
       {/* Header Section */}
       <header className="mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-b border-border/50 pb-10 relative overflow-hidden">
         <div className="relative z-10">
-          <div className="flex items-center gap-3 text-primary mb-3">
-            <div className="p-2 bg-primary/10 rounded-0 animate-pulse">
+          <div className="flex items-center gap-3 text-secondary mb-3">
+            <div className="p-2 bg-secondary/10 rounded-0 animate-pulse">
               <Cpu size={18} />
             </div>
             <span className="text-[12px] font-medium uppercase tracking-tighter opacity-70">
@@ -119,7 +119,7 @@ export default function CreateProductPage() {
           </div>
           <h1 className="text-5xl lg:text-7xl font-medium uppercase italic tracking-tighterer leading-none">
             Forge{' '}
-            <span className="text-primary drop-shadow-[0_0_15px_rgba(255,111,92,0.3)]">
+            <span className="text-secondary drop-shadow-[0_0_15px_rgba(255,111,92,0.3)]">
               Product
             </span>
           </h1>
@@ -127,16 +127,16 @@ export default function CreateProductPage() {
         <div className="flex items-center gap-4 bg-card/40 p-4 rounded-0 border border-border/50 backdrop-blur-md">
           <div className="text-right border-r border-border/50 pr-4">
             <p className="text-[10px] font-medium uppercase opacity-40">System_Status</p>
-            <p className="text-[12px] font-medium text-primary">CORE_ACTIVE</p>
+            <p className="text-[12px] font-medium text-secondary">CORE_ACTIVE</p>
           </div>
-          <Fingerprint size={32} className="text-primary opacity-20" />
+          <Fingerprint size={32} className="text-secondary opacity-20" />
         </div>
       </header>
 
       <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
         {/* Left Column: Core Data */}
         <div className="lg:col-span-7 space-y-8">
-          <section className="bg-card/40 p-5 rounded-0 border border-border/80 shadow-xl backdrop-blur-sm relative overflow-hidden transition-all hover:border-primary/20">
+          <section className="bg-card/40 p-5 rounded-0 border border-border/80 shadow-xl backdrop-blur-sm relative overflow-hidden transition-all hover:border-secondary/20">
             <SectionHeader icon={<LayoutDashboard size={20} />} title="Neural_Data_Entry" />
             <div className="grid gap-6 relative z-10">
               <CustomInput
@@ -155,7 +155,7 @@ export default function CreateProductPage() {
                   Deep_Analysis_Protocol (Full Description)*
                 </label>
                 <textarea
-                  className="w-full border border-border rounded-0 p-6 h-56 bg-bg/50 focus:border-primary outline-none transition-all font-medium text-sm text-text shadow-inner resize-none"
+                  className="w-full border border-border rounded-0 p-6 h-56 bg-bg/50 focus:border-secondary outline-none transition-all font-medium text-sm text-text shadow-inner resize-none"
                   required
                   placeholder="Enter complete product narrative..."
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
@@ -206,7 +206,7 @@ export default function CreateProductPage() {
                     specifications: [...formData.specifications, { key: '', value: '' }],
                   })
                 }
-                className="group flex items-center gap-2 px-4 py-2 rounded-0 bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all border border-primary/20"
+                className="group flex items-center gap-2 px-4 py-2 rounded-0 bg-secondary/10 text-secondary hover:bg-secondary hover:text-white transition-all border border-secondary/20"
               >
                 <Plus size={16} />
                 <span className="text-[12px] hidden md:block font-medium uppercase tracking-tighter">
@@ -222,7 +222,7 @@ export default function CreateProductPage() {
                 >
                   <input
                     placeholder="Field Name"
-                    className="flex-1 bg-card border border-border rounded-0 p-4 text-xs font-medium uppercase tracking-tighter outline-none focus:border-primary shadow-inner"
+                    className="flex-1 bg-card border border-border rounded-0 p-4 text-xs font-medium uppercase tracking-tighter outline-none focus:border-secondary shadow-inner"
                     value={spec.key}
                     onChange={(e) => {
                       const newSpecs = [...formData.specifications];
@@ -232,7 +232,7 @@ export default function CreateProductPage() {
                   />
                   <input
                     placeholder="Value Data"
-                    className="flex-1 bg-card border border-border rounded-0 p-4 text-xs font-medium outline-none focus:border-primary shadow-inner text-primary"
+                    className="flex-1 bg-card border border-border rounded-0 p-4 text-xs font-medium outline-none focus:border-secondary shadow-inner text-secondary"
                     value={spec.value}
                     onChange={(e) => {
                       const newSpecs = [...formData.specifications];
@@ -249,7 +249,7 @@ export default function CreateProductPage() {
                         specifications: formData.specifications.filter((_, i) => i !== index),
                       })
                     }
-                    className="sm:self-center p-3 text-pText/20 hover:text-primary transition-colors bg-card sm:bg-transparent rounded-0 border border-border sm:border-none"
+                    className="sm:self-center p-3 text-pText/20 hover:text-secondary transition-colors bg-card sm:bg-transparent rounded-0 border border-border sm:border-none"
                   >
                     <Trash2 size={18} />
                   </button>
@@ -313,11 +313,11 @@ export default function CreateProductPage() {
                 placeholder="Asset URL + Press Enter"
                 onKeyDown={addImageUrl}
                 disabled={formData.images.length >= 5}
-                className="w-full bg-card border border-border rounded-0 p-4 text-[12px] font-medium uppercase tracking-tighter outline-none focus:border-primary disabled:opacity-30 transition-all shadow-md pr-12"
+                className="w-full bg-card border border-border rounded-0 p-4 text-[12px] font-medium uppercase tracking-tighter outline-none focus:border-secondary disabled:opacity-30 transition-all shadow-md pr-12"
               />
               <Plus
                 size={16}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-primary opacity-50 group-hover:scale-125 transition-transform"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-secondary opacity-50 group-hover:scale-125 transition-transform"
               />
             </div>
             <div className="grid grid-cols-3 gap-3 mt-6">
@@ -331,7 +331,7 @@ export default function CreateProductPage() {
                     className="w-full h-full object-cover transition-transform group-hover:scale-110 duration-500"
                     alt="p-preview"
                   />
-                  <div className="absolute inset-0 bg-primary/90 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center backdrop-blur-[2px]">
+                  <div className="absolute inset-0 bg-secondary/90 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center backdrop-blur-[2px]">
                     <button
                       aria-label="closs image"
                       type="button"
@@ -341,7 +341,7 @@ export default function CreateProductPage() {
                           images: formData.images.filter((_, idx) => idx !== i),
                         })
                       }
-                      className="p-2 bg-white text-primary rounded-full shadow-xl active:scale-90 transition-transform"
+                      className="p-2 bg-white text-secondary rounded-full shadow-xl active:scale-90 transition-transform"
                     >
                       <X size={16} strokeWidth={4} />
                     </button>
@@ -352,7 +352,7 @@ export default function CreateProductPage() {
           </section>
 
           {/* Meta & Execution */}
-          <section className="bg-card/60 p-5 rounded-0 border-2 border-primary/20 space-y-6 shadow-2xl backdrop-blur-md">
+          <section className="bg-card/60 p-5 rounded-0 border-2 border-secondary/20 space-y-6  backdrop-blur-md">
             <SectionHeader icon={<Zap size={20} />} title="System_Registry" />
             <div className="grid gap-6">
               <CustomInput
@@ -366,7 +366,7 @@ export default function CreateProductPage() {
                   Market Classification
                 </label>
                 <select
-                  className="w-full bg-bg/80 border border-border rounded-0 p-4 text-[12px] font-medium uppercase tracking-tighter outline-none focus:border-primary text-primary cursor-pointer shadow-inner appearance-none"
+                  className="w-full bg-bg/80 border border-border rounded-0 p-4 text-[12px] font-medium uppercase tracking-tighter outline-none focus:border-secondary text-secondary cursor-pointer shadow-inner appearance-none"
                   onChange={(e) => setFormData({ ...formData, productType: e.target.value })}
                 >
                   {['Regular', 'FlashSale', 'HotDeals', 'Featured', 'BestSeller', 'NewArrival'].map(
@@ -385,7 +385,7 @@ export default function CreateProductPage() {
                 type="submit"
                 size="xl"
                 disabled={btnLoading}
-                className={`w-full py-8 rounded-0 shadow-primary/20 shadow-xl active:scale-95 transition-all font-medium text-xs tracking-wide italic ${btnLoading ? 'grayscale opacity-50' : 'hover:scale-[1.02]'}`}
+                className={`w-full py-8 rounded-0 shadow-secondary/20 shadow-xl active:scale-95 transition-all font-medium text-xs tracking-wide italic ${btnLoading ? 'grayscale opacity-50' : 'hover:scale-[1.02]'}`}
                 text={btnLoading ? <LoaderSpinner /> : 'Execute_Upload'}
               />
             </div>
@@ -402,7 +402,7 @@ function SelectionCard({ item, isSelected, onClick }) {
     <div
       onClick={onClick}
       className={`relative p-2 rounded-0 border-2 transition-all cursor-pointer overflow-hidden flex flex-col items-center justify-center gap-2 group
-      ${isSelected ? 'bg-primary border-primary shadow-[0_10px_20px_rgba(255,111,92,0.2)] -translate-y-1' : 'bg-bg border-border/60 hover:border-primary/40 hover:bg-card/50'}`}
+      ${isSelected ? 'bg-secondary border-secondary shadow-[0_10px_20px_rgba(255,111,92,0.2)] -translate-y-1' : 'bg-bg border-border/60 hover:border-secondary/40 hover:bg-card/50'}`}
     >
       <div
         className={`w-12 h-10 shrink-0 rounded-0 overflow-hidden flex items-center justify-center border transition-all ${isSelected ? 'bg-white/20 border-white/30' : 'bg-card border-border shadow-inner'}`}
@@ -425,7 +425,7 @@ function SelectionCard({ item, isSelected, onClick }) {
         {item.name}
       </p>
       {isSelected && (
-        <div className="absolute top-1 right-1 bg-white text-primary rounded-full p-0.5 shadow-md animate-in zoom-in">
+        <div className="absolute top-1 right-1 bg-white text-secondary rounded-full p-0.5 shadow-md animate-in zoom-in">
           <Check size={10} strokeWidth={4} />
         </div>
       )}
@@ -435,8 +435,8 @@ function SelectionCard({ item, isSelected, onClick }) {
 
 function SectionHeader({ icon, title }) {
   return (
-    <div className="flex items-center gap-4 text-primary mb-6">
-      <div className="p-3 bg-primary/10 rounded-0 border border-primary/20 shadow-md backdrop-blur-sm">
+    <div className="flex items-center gap-4 text-secondary mb-6">
+      <div className="p-3 bg-secondary/10 rounded-0 border border-secondary/20 shadow-md backdrop-blur-sm">
         {icon}
       </div>
       <h2 className="text-xs font-medium uppercase tracking-wide italic">{title}</h2>
@@ -452,7 +452,7 @@ function CustomInput({ label, ...props }) {
       </label>
       <input
         {...props}
-        className="w-full border border-border rounded-0 p-4 md:p-5 bg-bg/50 focus:border-primary outline-none transition-all font-medium text-xs text-text placeholder:text-pText/10 shadow-inner"
+        className="w-full border border-border rounded-0 p-4 md:p-5 bg-bg/50 focus:border-secondary outline-none transition-all font-medium text-xs text-text placeholder:text-pText/10 shadow-inner"
       />
     </div>
   );

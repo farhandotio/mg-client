@@ -77,7 +77,7 @@ export default function BrandsPage() {
                 className="w-full h-full object-contain"
               />
             ) : (
-              <Award size={18} className="text-primary/50" />
+              <Award size={18} className="text-secondary/50" />
             )}
           </div>
           <div className="flex flex-col">
@@ -103,7 +103,7 @@ export default function BrandsPage() {
       key: 'isActive',
       render: (item) => (
         <div className="flex items-center gap-2">
-          <div className="w-1 h-1 rounded-full bg-primary animate-pulse" />
+          <div className="w-1 h-1 rounded-full bg-secondary animate-pulse" />
           <span className="text-[11px] font-medium text-white uppercase tracking-tighter">
             Online
           </span>
@@ -116,14 +116,14 @@ export default function BrandsPage() {
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
         <div className="space-y-1">
-          <div className="flex items-center gap-2 text-primary">
+          <div className="flex items-center gap-2 text-secondary">
             <Globe size={14} className="animate-spin-slow" />
             <span className="text-[11px] font-medium uppercase tracking-wide">
               Neural_Supply_Chain
             </span>
           </div>
           <h1 className="text-4xl lg:text-5xl font-medium uppercase italic tracking-tighterer leading-none text-text">
-            Global <span className="text-primary">Brands</span>
+            Global <span className="text-secondary">Brands</span>
           </h1>
         </div>
         <div className="max-md:w-full">
@@ -136,7 +136,7 @@ export default function BrandsPage() {
         </div>
       </div>
 
-      <div className="relative bg-card/20 backdrop-blur-md border border-border/40 rounded-0 overflow-hidden shadow-2xl">
+      <div className="relative bg-card/20 backdrop-blur-md border border-border/40 rounded-0 overflow-hidden ">
         <DataTable
           columns={columns}
           data={brands}
@@ -150,13 +150,13 @@ export default function BrandsPage() {
       {/* --- Inline Update Modal with Image URL --- */}
       {isEditModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-300">
-          <div className="bg-card border border-border w-full max-w-md rounded-0 p-8 shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 blur-3xl rounded-full -mr-16 -mt-16"></div>
+          <div className="bg-card border border-border w-full max-w-md rounded-0 p-8  relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/5 blur-3xl rounded-full -mr-16 -mt-16"></div>
 
             <div className="flex justify-between items-center mb-8 relative">
               <div>
                 <h2 className="text-2xl font-medium italic uppercase tracking-tighterer text-text">
-                  Modify <span className="text-primary">Entity</span>
+                  Modify <span className="text-secondary">Entity</span>
                 </h2>
                 <p className="text-[10px] font-medium uppercase tracking-tighter text-pText opacity-50 mt-1">
                   ID: {selectedBrand?._id}
@@ -174,28 +174,28 @@ export default function BrandsPage() {
             <form onSubmit={handleUpdateSubmit} className="space-y-6 relative">
               {/* Name Input */}
               <div className="space-y-2">
-                <label className="text-[12px] font-medium uppercase tracking-tighter text-primary">
+                <label className="text-[12px] font-medium uppercase tracking-tighter text-secondary">
                   Brand_Name
                 </label>
                 <input
                   type="text"
                   value={editName}
                   onChange={(e) => setEditName(e.target.value)}
-                  className="w-full bg-white/5 border border-border rounded-0 px-4 py-3 text-xs font-medium text-text focus:outline-none focus:border-primary/50 transition-all shadow-inner"
+                  className="w-full bg-white/5 border border-border rounded-0 px-4 py-3 text-xs font-medium text-text focus:outline-none focus:border-secondary/50 transition-all shadow-inner"
                   placeholder="Brand identity..."
                 />
               </div>
 
               {/* Image URL Input */}
               <div className="space-y-2">
-                <label className="text-[12px] font-medium uppercase tracking-tighter text-primary flex items-center gap-2">
+                <label className="text-[12px] font-medium uppercase tracking-tighter text-secondary flex items-center gap-2">
                   Image_URL <LinkIcon size={10} />
                 </label>
                 <input
                   type="text"
                   value={editImage}
                   onChange={(e) => setEditImage(e.target.value)}
-                  className="w-full bg-white/5 border border-border rounded-0 px-4 py-3 text-xs font-medium text-text focus:outline-none focus:border-primary/50 transition-all shadow-inner"
+                  className="w-full bg-white/5 border border-border rounded-0 px-4 py-3 text-xs font-medium text-text focus:outline-none focus:border-secondary/50 transition-all shadow-inner"
                   placeholder="https://image-link.com/logo.png"
                 />
               </div>
@@ -216,7 +216,7 @@ export default function BrandsPage() {
                 aria-label="submit"
                 type="submit"
                 disabled={isUpdating}
-                className="w-full bg-primary hover:bg-primary/90 text-black font-medium uppercase italic py-4 rounded-0 transition-all active:scale-95 flex items-center justify-center gap-2 text-xs tracking-tighter disabled:opacity-50"
+                className="w-full bg-secondary hover:bg-secondary/90 text-black font-medium uppercase italic py-4 rounded-0 transition-all active:scale-95 flex items-center justify-center gap-2 text-xs tracking-tighter disabled:opacity-50"
               >
                 {isUpdating ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />}
                 {isUpdating ? 'Synchronizing...' : 'Commit Changes'}

@@ -61,7 +61,7 @@ export default function AdminProducts() {
       key: 'price',
       render: (item) => {
         const price = item.price?.discounted || item.price?.base || item.price || 0;
-        return <span className="font-medium text-primary italic">৳{price.toLocaleString()}</span>;
+        return <span className="font-medium text-secondary italic">৳{price.toLocaleString()}</span>;
       },
     },
     {
@@ -72,7 +72,7 @@ export default function AdminProducts() {
           <span className="text-[12px] font-medium text-white">{item.stock} Units</span>
           <div className="w-16 h-1 bg-white/10 rounded-full overflow-hidden">
             <div
-              className={`h-full ${item.stock > 0 ? 'bg-primary' : 'bg-red-600'}`}
+              className={`h-full ${item.stock > 0 ? 'bg-secondary' : 'bg-red-600'}`}
               style={{ width: `${Math.min(item.stock, 100)}%` }}
             />
           </div>
@@ -86,8 +86,8 @@ export default function AdminProducts() {
         <span
           className={`px-3 py-1.5 rounded-0 text-[10px] font-medium uppercase tracking-tighterer ${
             item.stock > 0
-              ? 'bg-primary/10 text-primary border border-primary/20'
-              : 'bg-red-500/10 text-red-500 border border-red-500/20'
+              ? 'bg-secondary/10 text-secondary border border-secondary/20'
+              : 'bg-danger/10 text-danger border border-danger/20'
           }`}
         >
           {item.stock > 0 ? 'Active' : 'Depleted'}
@@ -102,7 +102,7 @@ export default function AdminProducts() {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-10">
         <div>
           <h1 className="text-4xl font-medium uppercase italic tracking-tighterer leading-none">
-            Product <span className="text-primary">Inventory</span>
+            Product <span className="text-secondary">Inventory</span>
           </h1>
           <p className="text-pText text-[12px] font-medium uppercase tracking-tighter mt-2 opacity-60">
             Total Tracked Units: {pagination?.totalProducts || products.length}

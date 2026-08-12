@@ -69,7 +69,7 @@ export default function ProductDetailsPage({ params }) {
   };
 
   return (
-    <div className="bg-bg min-h-screen pt-6 pb-24  animate-in fade-in duration-700 overflow-x-hidden">
+    <div className="bg-bg min-h-screen pb-24  animate-in fade-in duration-700 overflow-x-hidden pt-20 md:pt-24">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -82,7 +82,7 @@ export default function ProductDetailsPage({ params }) {
           {/* গ্যালারি সেকশন */}
           <div className="lg:col-span-6 md:sticky top-4 z-10">
             <div className="relative group">
-              <div className="absolute -inset-1 bg-linear-to-r from-primary/20 to-transparent blur-2xl opacity-0 group-hover:opacity-100 transition duration-1000"></div>
+              <div className="absolute -inset-1 bg-linear-to-r from-secondary/20 to-transparent blur-2xl opacity-0 group-hover:opacity-100 transition duration-1000"></div>
 
               <ProductGallery
                 images={product.images}
@@ -117,17 +117,17 @@ export default function ProductDetailsPage({ params }) {
 const LoadingScreen = () => (
   <div className="fixed inset-0 z-9999 bg-bg flex flex-col items-center justify-center gap-8">
     <div className="relative">
-      <div className="w-20 h-20 rounded-full border-[3px] border-primary/10 border-t-primary animate-spin" />
+      <div className="w-20 h-20 rounded-full border-[3px] border-secondary/10 border-t-secondary animate-spin" />
       <div className="absolute inset-0 flex items-center justify-center">
-        <Zap size={24} className="text-primary animate-pulse" />
+        <Zap size={24} className="text-secondary animate-pulse" />
       </div>
     </div>
     <div className="flex flex-col items-center gap-3">
-      <h2 className="text-primary font-medium uppercase tracking-tighter text-[12px] ml-[0.5em]">
+      <h2 className="text-secondary font-medium uppercase tracking-tighter text-[12px] ml-[0.5em]">
         তথ্য লোড হচ্ছে...
       </h2>
       <div className="w-48 h-0.5 bg-white/5 overflow-hidden rounded-full">
-        <div className="h-full bg-primary animate-progress-line" />
+        <div className="h-full bg-secondary animate-progress-line" />
       </div>
     </div>
     <style jsx>{`
@@ -153,7 +153,7 @@ const ErrorScreen = () => (
         NOT_FOUND
       </h2>
       <div className="absolute inset-0 flex flex-col items-center justify-center space-y-2">
-        <span className="text-primary font-medium uppercase tracking-tighter text-xs">
+        <span className="text-secondary font-medium uppercase tracking-tighter text-xs">
           পণ্যটি খুঁজে পাওয়া যায়নি
         </span>
         <p className="text-pText/60 text-[12px] uppercase font-medium tracking-tighter">
@@ -163,14 +163,14 @@ const ErrorScreen = () => (
     </div>
 
     <Link href="/shop" className="flex items-center gap-6 group">
-      <div className="w-14 h-14 rounded-full border border-primary/30 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all duration-500">
+      <div className="w-14 h-14 rounded-full border border-secondary/30 flex items-center justify-center group-hover:bg-secondary group-hover:border-secondary transition-all duration-500">
         <ArrowLeft size={22} className="group-hover:text-bg transition-colors" />
       </div>
       <div className="text-left">
         <span className="block text-[11px] font-medium uppercase tracking-tighter text-pText/40 mb-1">
           পূর্বের পাতায় ফিরুন
         </span>
-        <span className="block text-lg font-medium uppercase italic tracking-tighterer group-hover:text-primary transition-colors">
+        <span className="block text-lg font-medium uppercase italic tracking-tighterer group-hover:text-secondary transition-colors">
           শপ পেজে যান
         </span>
       </div>

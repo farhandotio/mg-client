@@ -27,7 +27,7 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
               ease: [0.22, 1, 0.36, 1],
             }}
             exit={{ x: '100%' }}
-            className="fixed top-0 right-0 w-[85%] max-w-[320px] h-full bg-card border-l border-border/50 z-120 p-6 lg:hidden flex flex-col shadow-2xl"
+            className="fixed top-0 right-0 w-[85%] max-w-[320px] h-full bg-card border-l border-border/50 z-120 p-6 lg:hidden flex flex-col "
           >
             {/* Header */}
             <div className="flex items-center justify-between mb-10">
@@ -35,7 +35,7 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
               <button
                 aria-label="Close Mobile Sidebar"
                 onClick={onClose}
-                className="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-0 text-primary active:scale-90 transition-transform"
+                className="w-10 h-10 flex items-center justify-center bg-secondary/10 rounded-0 text-secondary active:scale-90 transition-transform"
               >
                 <X size={20} />
               </button>
@@ -63,7 +63,7 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
                 aria-label="View Hot Deals Page"
                 href="/shop?productType=HotDeals"
                 onClick={onClose}
-                className="text-2xl font-medium italic tracking-tighterer uppercase leading-none text-primary flex items-center gap-2"
+                className="text-2xl font-medium italic tracking-tighterer uppercase leading-none text-secondary flex items-center gap-2"
               >
                 DEALS <Zap size={30} fill="currentColor" />
               </Link>
@@ -81,10 +81,10 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
                         key={cat._id || cat.slug}
                         href={`/shop?category=${cat.slug}`}
                         onClick={onClose}
-                        className="group flex items-center justify-between py-2 transition-all active:text-primary"
+                        className="group flex items-center justify-between py-2 transition-all active:text-secondary"
                       >
                         <div className="flex items-center gap-4">
-                          <div className="w-10 h-10 rounded-0 bg-card border border-border/50 flex items-center justify-center text-primary overflow-hidden shadow-inner">
+                          <div className="w-10 h-10 rounded-0 bg-card border border-border/50 flex items-center justify-center text-secondary overflow-hidden shadow-inner">
                             {cat.image?.url ? (
                               <img
                                 src={cat.image.url}
@@ -99,11 +99,11 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
                             {cat.name}
                           </span>
                         </div>
-                        <span className="w-full h-0.5 mx-4 bg-primary/10" />
+                        <span className="w-full h-0.5 mx-4 bg-secondary/10" />
                         <span>
                           <ArrowRight
                             size={14}
-                            className="text-primary opacity-40 group-hover:opacity-100 transition-all"
+                            className="text-secondary opacity-40 group-hover:opacity-100 transition-all"
                           />
                         </span>
                       </Link>
@@ -129,7 +129,7 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
                       : '/profile'
                 }
                 onClick={onClose}
-                className="flex items-center gap-3 p-5 bg-primary text-bg rounded-0 font-medium justify-center shadow-[0_10px_30px_rgba(var(--primary-rgb),0.3)] uppercase text-[11px] tracking-tighter active:scale-95 transition-all"
+                className="flex items-center gap-3 p-5 bg-secondary text-bg rounded-0 font-medium justify-center shadow-[0_10px_30px_rgba(var(--secondary-rgb),0.3)] uppercase text-[11px] tracking-tighter active:scale-95 transition-all"
               >
                 <User size={18} />
                 {!isAuthenticated

@@ -101,7 +101,7 @@ export default function ProductInfo({ product }) {
     <div className="flex flex-col gap-6 md:gap-7 lg:pl-4">
       <div className="space-y-4">
         <div className="flex flex-wrap items-center gap-3">
-          <span className="px-3 py-1 bg-primary/10 border border-primary/20 text-primary text-[12px] font-medium uppercase tracking-tighter rounded-0">
+          <span className="px-3 py-1 bg-secondary/10 border border-secondary/20 text-secondary text-[12px] font-medium uppercase tracking-tighter rounded-0">
             {product.brand?.name || product.brand}
           </span>
           <span className="px-3 py-1 bg-card border border-border text-pText text-[12px] font-medium uppercase tracking-tighter rounded-0">
@@ -121,7 +121,7 @@ export default function ProductInfo({ product }) {
                 size={14}
                 className={
                   i < Math.round(product.ratings?.average || 0)
-                    ? 'fill-primary text-primary'
+                    ? 'fill-secondary text-secondary'
                     : 'text-border'
                 }
               />
@@ -142,24 +142,24 @@ export default function ProductInfo({ product }) {
           <span className="text-2xl font-medium text-text italic tracking-tighterer leading-none">
             ৳{salePrice.toLocaleString()}
           </span>
-          <span className="text-[11px] font-medium uppercase tracking-tighter mt-2 ml-1 text-primary">
+          <span className="text-[11px] font-medium uppercase tracking-tighter mt-2 ml-1 text-secondary">
             বর্তমান বাজার মূল্য
           </span>
         </div>
 
         {discountPercent > 0 && (
           <div className="flex flex-col border-l border-border/50 pl-6">
-            <span className="text-lg text-pText/30 line-through font-medium decoration-primary/40">
+            <span className="text-lg text-pText/30 line-through font-medium decoration-secondary/40">
               ৳{basePrice.toLocaleString()}
             </span>
-            <span className="text-[12px] font-medium text-bg bg-primary px-2 py-0.5 rounded-full mt-1 animate-pulse">
+            <span className="text-[12px] font-medium text-bg bg-secondary px-2 py-0.5 rounded-full mt-1 animate-pulse">
               -{discountPercent}% ছাড়
             </span>
           </div>
         )}
       </div>
 
-      <p className="text-pText/70 leading-relaxed font-medium italic border-l-4 border-primary/20 pl-6 max-w-xl">
+      <p className="text-pText/70 leading-relaxed font-medium italic border-l-4 border-secondary/20 pl-6 max-w-xl">
         {product.shortDescription ||
           'সেরা পারফরম্যান্স এবং অতুলনীয় স্থায়িত্ব নিশ্চিত করতে এটি বিশেষভাবে তৈরি।'}
       </p>
@@ -172,7 +172,7 @@ export default function ProductInfo({ product }) {
               aria-label="পরিমাণ কমান"
               disabled={quantity <= 1 || isOutOfStock || isLocalLoading}
               onClick={() => setQuantity((q) => q - 1)}
-              className="hover:text-primary transition-all disabled:opacity-20"
+              className="hover:text-secondary transition-all disabled:opacity-20"
             >
               <Minus size={18} strokeWidth={3} />
             </button>
@@ -181,7 +181,7 @@ export default function ProductInfo({ product }) {
               aria-label="পরিমাণ বাড়ান"
               disabled={quantity >= (product.stock || 50) || isOutOfStock || isLocalLoading}
               onClick={() => setQuantity((q) => q + 1)}
-              className="hover:text-primary transition-all disabled:opacity-20"
+              className="hover:text-secondary transition-all disabled:opacity-20"
             >
               <Plus size={18} strokeWidth={3} />
             </button>
@@ -205,11 +205,11 @@ export default function ProductInfo({ product }) {
             arialabel="সরাসরি কিনুন"
             onClick={handleBuyNow}
             text="সরাসরি অর্ডার করুন (Buy Now)"
-            fillColor="bg-primary"
+            fillColor="bg-secondary"
             size="lg"
             className="h-14"
           >
-            <Zap size={14} className="group-hover:fill-primary" />
+            <Zap size={14} className="group-hover:fill-secondary" />
           </Button>
         )}
       </div>
@@ -226,7 +226,7 @@ export default function ProductInfo({ product }) {
 function InfoBadge({ icon, title, desc }) {
   return (
     <div className="flex items-center gap-4 p-3 rounded-0 bg-card/20 border border-border/20 hover:bg-card/40 transition-all group">
-      <div className="text-primary group-hover:scale-110 transition-transform">{icon}</div>
+      <div className="text-secondary group-hover:scale-110 transition-transform">{icon}</div>
       <div>
         <div className="text-[12px] font-medium uppercase tracking-tighter text-text leading-none">
           {title}

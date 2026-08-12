@@ -34,15 +34,15 @@ export default function AdminProtection({ children }) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-black gap-4">
         <div className="relative">
-          <Loader2 className="animate-spin text-primary" size={40} />
+          <Loader2 className="animate-spin text-secondary" size={40} />
           <ShieldCheck
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-primary/40"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-secondary/40"
             size={18}
           />
         </div>
         <div className="text-center">
           <p className="text-[12px] font-medium uppercase tracking-tighter text-white">
-            Verifying <span className="text-primary">Admin</span> Session
+            Verifying <span className="text-secondary">Admin</span> Session
           </p>
           <p className="text-[10px] text-pText opacity-40 uppercase mt-1">
             Please wait, do not refresh

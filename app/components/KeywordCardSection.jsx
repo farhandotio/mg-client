@@ -53,7 +53,7 @@ export default function KeywordCardSection() {
                 ease: 'easeInOut',
                 delay: 0.2,
               }}
-              className="absolute right-[12%] top-[-40%] z-10 h-36 w-28 overflow-hidden rounded-0 shadow-2xl transition-shadow duration-300 hover:shadow-2xl sm:h-52 sm:w-40 md:h-60 md:w-44"
+              className="absolute right-[12%] top-[-40%] z-10 h-36 w-28 overflow-hidden rounded-0  transition-shadow duration-300 hover: sm:h-52 sm:w-40 md:h-60 md:w-44"
             >
               <Image
                 src="/images/Person_interacting_with_smartwatch_202608111348.jpeg"

@@ -22,7 +22,7 @@ const InternalCartItem = React.memo(({ item, onUpdate, onRemove, isProcessing })
     <div
       className={`relative transition-all ${isProcessing ? 'opacity-50 pointer-events-none' : ''}`}
     >
-      <div className="flex items-center gap-4 bg-card/20 backdrop-blur-md border border-border/40 rounded-0 p-3 hover:border-primary/40 transition-colors shadow-sm">
+      <div className="flex items-center gap-4 bg-card/20 backdrop-blur-md border border-border/40 rounded-0 p-3 hover:border-secondary/40 transition-colors shadow-sm">
         {/* অপ্টিমাইজড ইমেজ বক্স - সাইজ কমানো হয়েছে */}
         <div className="relative w-20 h-20 md:w-24 md:h-24 shrink-0 bg-bg/50 rounded-0 overflow-hidden border border-border/20">
           <img
@@ -37,7 +37,7 @@ const InternalCartItem = React.memo(({ item, onUpdate, onRemove, isProcessing })
         <div className="flex-1 min-w-0">
           <div className="flex justify-between items-start mb-2">
             <div className="truncate pr-4">
-              <h3 className="text-sm md:text-base font-medium text-text truncate group-hover:text-primary transition-colors">
+              <h3 className="text-sm md:text-base font-medium text-text truncate group-hover:text-secondary transition-colors">
                 {item?.title}
               </h3>
               <p className="text-[12px] text-pText/50 uppercase font-medium tracking-tighterer">
@@ -46,7 +46,7 @@ const InternalCartItem = React.memo(({ item, onUpdate, onRemove, isProcessing })
             </div>
             <button
               onClick={() => onRemove(item.productId)}
-              className="p-2 text-pText/40 hover:text-red-500 hover:bg-red-500/5 rounded-full transition-all"
+              className="p-2 text-pText/40 hover:text-danger hover:bg-danger/5 rounded-full transition-all"
             >
               <Trash2 size={16} />
             </button>
@@ -57,21 +57,21 @@ const InternalCartItem = React.memo(({ item, onUpdate, onRemove, isProcessing })
             <div className="flex items-center bg-bg/40 border border-border/20 rounded-0 p-0.5">
               <button
                 onClick={() => onUpdate(item.productId, -1)}
-                className="w-7 h-7 flex items-center justify-center text-pText hover:text-primary transition-colors disabled:opacity-30"
+                className="w-7 h-7 flex items-center justify-center text-pText hover:text-secondary transition-colors disabled:opacity-30"
                 disabled={isProcessing}
               >
                 <Minus size={14} />
               </button>
               <div className="w-8 text-center">
                 {isProcessing ? (
-                  <Loader2 size={12} className="animate-spin text-primary mx-auto" />
+                  <Loader2 size={12} className="animate-spin text-secondary mx-auto" />
                 ) : (
                   <span className="text-sm font-medium text-text">{item.quantity}</span>
                 )}
               </div>
               <button
                 onClick={() => onUpdate(item.productId, 1)}
-                className="w-7 h-7 flex items-center justify-center text-pText hover:text-primary transition-colors disabled:opacity-30"
+                className="w-7 h-7 flex items-center justify-center text-pText hover:text-secondary transition-colors disabled:opacity-30"
                 disabled={currentQty >= stockLimit || isProcessing}
               >
                 <Plus size={14} />
@@ -80,7 +80,7 @@ const InternalCartItem = React.memo(({ item, onUpdate, onRemove, isProcessing })
 
             {/* আধুনিক মূল্য প্রদর্শন */}
             <div className="text-right">
-              <p className="text-base md:text-xl font-medium text-primary tracking-tighterer">
+              <p className="text-base md:text-xl font-medium text-secondary tracking-tighterer">
                 ৳{(currentPrice * currentQty).toLocaleString()}
               </p>
               <p className="text-[11px] text-pText/40 font-medium">
@@ -164,26 +164,26 @@ export default function CartPage() {
   if (!mounted) return null;
 
   return (
-    <section className="min-h-screen bg-bg pb-20">
+    <section className="min-h-screen bg-bg pb-20 pt-16 md:pt-17">
       <div className="max-w-7xl mx-auto px-4 md:px-8 pt-6">
         {/* ছোট ও পরিচ্ছন্ন হেডার */}
         <header className="flex items-center justify-between mb-8 border-b border-border/20 pb-4">
           <div className="flex items-center gap-4">
             <Link
               href="/shop"
-              className="p-2 bg-card/40 rounded-full hover:text-primary transition-colors"
+              className="p-2 bg-card/40 rounded-full hover:text-secondary transition-colors"
             >
               <ArrowLeft size={20} />
             </Link>
             <h1 className="text-xl md:text-3xl font-medium text-text tracking-tighterer uppercase italic">
-              শপিং <span className="text-primary">ব্যাগ</span>
+              শপিং <span className="text-secondary">ব্যাগ</span>
             </h1>
           </div>
           <div className="text-right">
             <span className="text-[12px] font-medium text-pText/40 uppercase tracking-tighter block">
               আইটেম সংখ্যা
             </span>
-            <span className="text-sm font-medium text-primary">{cartItems.length} টি</span>
+            <span className="text-sm font-medium text-secondary">{cartItems.length} টি</span>
           </div>
         </header>
 
@@ -192,7 +192,7 @@ export default function CartPage() {
           <div className="lg:col-span-8 space-y-4">
             {loading && cartItems.length === 0 ? (
               <div className="py-20 flex flex-col items-center">
-                <Loader2 className="animate-spin text-primary" size={32} />
+                <Loader2 className="animate-spin text-secondary" size={32} />
               </div>
             ) : cartItems.length > 0 ? (
               cartItems.map((item) => (
@@ -210,7 +210,7 @@ export default function CartPage() {
                 <p className="text-sm font-medium text-pText/40 mb-6">আপনার ব্যাগটি খালি!</p>
                 <Link
                   href="/shop"
-                  className="inline-block bg-primary text-bg font-medium px-8 py-3 rounded-0 text-sm transition-transform hover:scale-105"
+                  className="inline-block bg-secondary text-bg font-medium px-8 py-3 rounded-0 text-sm transition-transform hover:scale-105"
                 >
                   কেনাকাটা শুরু করুন
                 </Link>

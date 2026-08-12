@@ -27,7 +27,7 @@ export default function ProductTabs({ product }) {
           >
             <span
               className={`transition-colors duration-300 ${
-                activeTab === tab.id ? 'text-primary' : 'text-pText/40 group-hover:text-pText'
+                activeTab === tab.id ? 'text-secondary' : 'text-pText/40 group-hover:text-pText'
               }`}
             >
               {tab.icon}
@@ -43,7 +43,7 @@ export default function ProductTabs({ product }) {
             {activeTab === tab.id && (
               <motion.div
                 layoutId="activeTabUnderline"
-                className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary shadow-[0_-4px_10px_rgba(41,252,86,0.5)]"
+                className="absolute bottom-0 left-0 right-0 h-0.5 bg-secondary shadow-[0_-4px_10px_rgba(41,252,86,0.5)]"
                 transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
               />
             )}
@@ -63,7 +63,7 @@ export default function ProductTabs({ product }) {
           >
             {activeTab === 'description' && (
               <div className="max-w-4xl">
-                <p className="text-pText/80 text-base md:text-lg leading-relaxed italic font-medium border-l-2 border-primary/20 pl-6">
+                <p className="text-pText/80 text-base md:text-lg leading-relaxed italic font-medium border-l-2 border-secondary/20 pl-6">
                   {product?.description || 'এই পণ্যটির জন্য কোন বর্ণনা পাওয়া যায়নি।'}
                 </p>
               </div>
@@ -77,7 +77,7 @@ export default function ProductTabs({ product }) {
                       key={item._id || i}
                       className="flex justify-between items-center py-5 border-b border-border/10 group/item transition-all hover:px-2"
                     >
-                      <span className="text-pText/40 font-medium uppercase text-[11px] group-hover/item:text-primary transition-colors">
+                      <span className="text-pText/40 font-medium uppercase text-[11px] group-hover/item:text-secondary transition-colors">
                         {item.key}
                       </span>
                       <span className="font-medium text-sm tracking-tighter text-text/90 italic">
@@ -98,7 +98,7 @@ export default function ProductTabs({ product }) {
 
             {activeTab === 'reviews' && (
               <div className="flex flex-col items-center justify-center py-16 text-center border-2 border-dashed border-border/20 rounded-0">
-                <Star className="text-primary/20 mb-4" size={32} />
+                <Star className="text-secondary/20 mb-4" size={32} />
                 <p className="text-pText font-medium uppercase text-[12px]">
                   এখনও কোনো রিভিউ দেওয়া হয়নি
                 </p>

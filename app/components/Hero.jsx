@@ -6,7 +6,7 @@ import { ArrowRight } from 'lucide-react';
 
 const Hero = () => {
   return (
-    <section className="relative overflow-hidden bg-bg">
+    <section className="relative overflow-hidden bg-bg pt-18 md:pt-22">
       <div className="fixed top-0 left-0 inset-0">
         <Image
           src="/images/Consumer_robot_and_gadgets_in_202608111351.jpeg"
@@ -22,8 +22,8 @@ const Hero = () => {
       <div className="relative mx-auto flex min-h-[78vh] max-w-7xl flex-col justify-center px-4 pb-10 md:pb-20 pt-2 md:pt-15 sm:px-6 lg:px-8">
         <div className="max-w-3xl space-y-8 text-white">
           <h1 className="text-5xl font-medium leading-tight text-white sm:text-5xl md:text-6xl">
-            Your <span className="text-primary">style + function</span> together online in audio and
-            gadgets.
+            Your <span className="text-secondary">style + function</span> together online in audio
+            and gadgets.
           </h1>
 
           <p className="max-w-2xl text-base leading-8 text-white/80 md:text-lg">
@@ -37,7 +37,7 @@ const Hero = () => {
               text="Explore Collection"
               icon={ArrowRight}
               size="lg"
-              className="max-w-max bg-primary text-bg border-transparent hover:bg-primary/90"
+              className="max-w-max bg-secondary text-bg border-transparent hover:bg-secondary/90"
             />
           </div>
         </div>

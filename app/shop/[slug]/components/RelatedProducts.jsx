@@ -13,12 +13,12 @@ export default function RelatedProducts({ products, currentId }) {
     <div className="relative">
       {/* --- Header Section --- */}
       <div className="flex flex-col mb-8 gap-3">
-        <div className="flex items-center gap-2 text-primary">
-          <Sparkles size={14} className="animate-pulse fill-primary" />
+        <div className="flex items-center gap-2 text-secondary">
+          <Sparkles size={14} className="animate-pulse fill-secondary" />
           <span className="text-[11px] font-medium uppercase tracking-tighter">আপনার জন্য আরও</span>
         </div>
         <h2 className="text-2xl md:text-3xl font-medium text-text tracking-tighterer uppercase italic leading-none">
-          সম্পর্কিত <span className="text-primary">পণ্যসমূহ</span>
+          সম্পর্কিত <span className="text-secondary">পণ্যসমূহ</span>
         </h2>
       </div>
 
@@ -32,7 +32,7 @@ export default function RelatedProducts({ products, currentId }) {
       </div>
 
       {/* Background Decor */}
-      <div className="absolute -top-10 -right-10 w-64 h-64 bg-primary/5 blur-[100px] rounded-full -z-10 pointer-events-none" />
+      <div className="absolute -top-10 -right-10 w-64 h-64 bg-secondary/5 blur-[100px] rounded-full -z-10 pointer-events-none" />
     </div>
   );
 }

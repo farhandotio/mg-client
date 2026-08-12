@@ -18,7 +18,7 @@ export default function Feature() {
 
   return (
     <section className="py-12 px-4 sm:px-6 md:px-8 bg-bg relative overflow-hidden border-t border-border/10">
-      <div className="absolute top-0 right-0 w-80 h-80 bg-primary/5 blur-[120px] rounded-full -z-10" />
+      <div className="absolute top-0 right-0 w-80 h-80 bg-secondary/5 blur-[120px] rounded-full -z-10" />
 
       <div className="">
         <div className="flex justify-between items-end mb-8 gap-4 border-b border-border/10 pb-4">

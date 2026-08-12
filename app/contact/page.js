@@ -9,9 +9,9 @@ export default function ContactPage() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-16 space-y-4">
           <h1 className="text-6xl md:text-8xl font-medium text-text italic uppercase tracking-tighterer">
-            Get In <span className="text-primary">Touch.</span>
+            Get In <span className="text-secondary">Touch.</span>
           </h1>
-          <p className="text-pText text-xl max-w-2xl font-medium border-l-2 border-primary pl-6">
+          <p className="text-pText text-xl max-w-2xl font-medium border-l-2 border-secondary pl-6">
             Have a technical query or need support? Our engineering team is ready to assist you
             24/7.
           </p>
@@ -61,8 +61,8 @@ export default function ContactPage() {
 
 function ContactCard({ icon, title, detail, sub }) {
   return (
-    <div className="p-10 bg-card/20 border border-white/5 rounded-0 hover:border-primary/50 transition-all group">
-      <div className="w-14 h-14 bg-primary/10 rounded-0 flex items-center justify-center text-primary mb-8 group-hover:scale-110 transition-transform">
+    <div className="p-10 bg-card/20 border border-white/5 rounded-0 hover:border-secondary/50 transition-all group">
+      <div className="w-14 h-14 bg-secondary/10 rounded-0 flex items-center justify-center text-secondary mb-8 group-hover:scale-110 transition-transform">
         {icon}
       </div>
       <p className="text-[12px] font-medium uppercase tracking-tighter text-pText mb-2">{title}</p>

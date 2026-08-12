@@ -6,7 +6,7 @@ import { ChevronRight } from 'lucide-react';
 export default function Breadcrumbs({ category, title }) {
   return (
     <nav className="flex items-center gap-3 text-[12px] md:text-sm font-medium uppercase tracking-tighter text-pText mb-5 w-fit">
-      <Link href="/shop" className="hover:text-primary transition-colors">
+      <Link href="/shop" className="hover:text-secondary transition-colors">
         শপ
       </Link>
 
@@ -16,7 +16,7 @@ export default function Breadcrumbs({ category, title }) {
         <>
           <Link
             href={`/category/${category.slug}`}
-            className="text-primary hover:opacity-80 transition-opacity"
+            className="text-secondary hover:opacity-80 transition-opacity"
           >
             {category.name}
           </Link>

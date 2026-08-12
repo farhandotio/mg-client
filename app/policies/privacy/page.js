@@ -5,11 +5,11 @@ import { ShieldCheck, EyeOff, Lock, Server, FileLock2 } from 'lucide-react';
 
 export default function PrivacyPolicy() {
   return (
-    <main className="pt-16 pb-20 bg-bg min-h-screen">
+    <main className="pt-20 md:pt-24 pb-20 bg-bg min-h-screen">
       <div className="max-w-4xl mx-auto px-6">
         {/* Header Section */}
         <div className="mb-16 space-y-6 relative">
-          <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-0 text-primary mb-4 border border-primary/20">
+          <div className="inline-flex items-center gap-2 bg-secondary/10 px-4 py-2 rounded-0 text-secondary mb-4 border border-secondary/20">
             <Lock size={14} />
             <span className="text-[12px] font-medium uppercase tracking-tighter">
               Data_Protection_Enabled
@@ -17,9 +17,9 @@ export default function PrivacyPolicy() {
           </div>
           <h1 className="text-6xl md:text-8xl font-medium text-text italic uppercase tracking-tighterer leading-none">
             Privacy <br />
-            <span className="text-primary">Shield</span>
+            <span className="text-secondary">Shield</span>
           </h1>
-          <p className="text-pText text-lg font-medium border-l-2 border-primary/30 pl-6 max-w-2xl italic">
+          <p className="text-pText text-lg font-medium border-l-2 border-secondary/30 pl-6 max-w-2xl italic">
             Your privacy is our primary directive. We employ military-grade encryption to ensure
             your neural and physical data remains yours alone.
           </p>
@@ -48,7 +48,7 @@ export default function PrivacyPolicy() {
         <div className="space-y-16">
           <section className="space-y-4">
             <h3 className="text-2xl font-medium text-text uppercase italic flex items-center gap-3">
-              <div className="w-2 h-2 bg-primary rounded-full shadow-[0_0_10px_rgba(var(--primary-rgb),0.8)]" />
+              <div className="w-2 h-2 bg-secondary rounded-full shadow-[0_0_10px_rgba(var(--secondary-rgb),0.8)]" />
               01. Information Acquisition
             </h3>
             <p className="text-pText font-medium leading-relaxed opacity-80">
@@ -74,7 +74,7 @@ export default function PrivacyPolicy() {
 
           <section className="space-y-4">
             <h3 className="text-2xl font-medium text-text uppercase italic flex items-center gap-3">
-              <div className="w-2 h-2 bg-primary rounded-full" />
+              <div className="w-2 h-2 bg-secondary rounded-full" />
               03. System Security
             </h3>
             <p className="text-pText font-medium leading-relaxed opacity-80">
@@ -90,8 +90,8 @@ export default function PrivacyPolicy() {
 
 function SecurityFeature({ icon, title, desc }) {
   return (
-    <div className="p-8 bg-card/30 border border-white/5 rounded-0 group hover:border-primary/50 transition-all duration-500">
-      <div className="text-primary mb-6 group-hover:scale-110 transition-transform">{icon}</div>
+    <div className="p-8 bg-card/30 border border-white/5 rounded-0 group hover:border-secondary/50 transition-all duration-500">
+      <div className="text-secondary mb-6 group-hover:scale-110 transition-transform">{icon}</div>
       <h4 className="text-lg font-medium text-text uppercase italic mb-2 tracking-tighterer">
         {title}
       </h4>

@@ -66,7 +66,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
           <div className="max-w-4xl mx-auto h-full flex flex-col">
             {/* --- Header Section --- */}
             <div className="flex justify-between items-center mb-6">
-              <div className="flex items-center gap-2 text-primary">
+              <div className="flex items-center gap-2 text-secondary">
                 <Database size={16} className={loading ? 'animate-pulse' : ''} />
                 <span className="text-[12px] font-medium uppercase tracking-tighter">
                   ইনভেন্টরি সিনক্রোনাইজেশন
@@ -89,11 +89,11 @@ export default function SearchOverlay({ isOpen, onClose }) {
                 value={searchTerm}
                 onChange={handleInputChange}
                 placeholder="পণ্য খুঁজুন..."
-                className="w-full bg-transparent border-b-2 border-border focus:border-primary py-8 px-2 outline-none text-3xl md:text-5xl font-medium italic tracking-tighterer transition-all placeholder:text-white/5 text-text"
+                className="w-full bg-transparent border-b-2 border-border focus:border-secondary py-8 px-2 outline-none text-3xl md:text-5xl font-medium italic tracking-tighterer transition-all placeholder:text-white/5 text-text"
               />
               <div className="absolute right-4 top-1/2 -translate-y-1/2">
                 {loading ? (
-                  <Loader2 className="animate-spin text-primary" size={28} />
+                  <Loader2 className="animate-spin text-secondary" size={28} />
                 ) : (
                   <Search className="text-white/10" size={28} />
                 )}
@@ -109,13 +109,13 @@ export default function SearchOverlay({ isOpen, onClose }) {
                       aria-label={`Use Search Suggestion: ${item}`}
                       key={idx}
                       onClick={() => handleSuggestionClick(item)}
-                      className="group flex items-center gap-2 px-5 py-2.5 bg-card/30 border border-border/50 rounded-full hover:border-primary/50 transition-all active:scale-95"
+                      className="group flex items-center gap-2 px-5 py-2.5 bg-card/30 border border-border/50 rounded-full hover:border-secondary/50 transition-all active:scale-95"
                     >
                       <Zap
                         size={12}
-                        className="text-primary group-hover:fill-primary transition-all"
+                        className="text-secondary group-hover:fill-secondary transition-all"
                       />
-                      <span className="text-[11px] font-medium uppercase tracking-wider text-pText/70 group-hover:text-primary">
+                      <span className="text-[11px] font-medium uppercase tracking-wider text-pText/70 group-hover:text-secondary">
                         {item}
                       </span>
                     </button>
@@ -150,7 +150,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: idx * 0.04 }}
-                          className="p-3 bg-card/20 border border-border/20 rounded-0 hover:border-primary/40 transition-all flex gap-4 group"
+                          className="p-3 bg-card/20 border border-border/20 rounded-0 hover:border-secondary/40 transition-all flex gap-4 group"
                         >
                           <div className="w-20 h-20 bg-bg rounded-0 border border-border/10 flex items-center justify-center shrink-0 overflow-hidden">
                             <img
@@ -160,7 +160,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
                             />
                           </div>
                           <div className="flex flex-col justify-center min-w-0 flex-1">
-                            <h4 className="text-sm md:text-base font-medium italic uppercase truncate tracking-tighterer group-hover:text-primary transition-colors text-text">
+                            <h4 className="text-sm md:text-base font-medium italic uppercase truncate tracking-tighterer group-hover:text-secondary transition-colors text-text">
                               {product.title}
                             </h4>
                             <div className="flex items-center gap-3 mt-1">
@@ -177,7 +177,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
                           <div className="flex items-center pr-2">
                             <ArrowUpRight
                               size={16}
-                              className="text-pText/20 group-hover:text-primary group-hover:translate-x-1 transition-all"
+                              className="text-pText/20 group-hover:text-secondary group-hover:translate-x-1 transition-all"
                             />
                           </div>
                         </motion.div>

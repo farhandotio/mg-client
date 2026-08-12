@@ -166,13 +166,13 @@ export default function CheckoutPage() {
         <div className="flex items-center justify-between mb-8">
           <Link
             href="/cart"
-            className="flex items-center gap-1.5 text-xs font-medium text-pText hover:text-primary transition-colors uppercase tracking-tighter"
+            className="flex items-center gap-1.5 text-xs font-medium text-pText hover:text-secondary transition-colors uppercase tracking-tighter"
           >
             <ArrowLeft size={16} /> ব্যাগে ফিরুন
           </Link>
           <div className="text-center hidden md:block">
             <h1 className="text-xl font-medium uppercase italic tracking-tighter">
-              নিরাপদ <span className="text-primary">চেকআউট</span>
+              নিরাপদ <span className="text-secondary">চেকআউট</span>
             </h1>
           </div>
           <div className="flex items-center gap-1.5 text-[12px] font-medium uppercase text-green-500 bg-green-500/10 px-3 py-1 rounded-full border border-green-500/20">
@@ -187,12 +187,12 @@ export default function CheckoutPage() {
             <section className="bg-card/20 border border-border/40 rounded-0 overflow-hidden shadow-sm">
               <div className="px-5 py-4 border-b border-border/40 bg-white/5 flex justify-between items-center">
                 <h2 className="text-xs font-medium uppercase tracking-wider flex items-center gap-2">
-                  <MapPin size={16} className="text-primary" /> ১. ডেলিভারি ঠিকানা
+                  <MapPin size={16} className="text-secondary" /> ১. ডেলিভারি ঠিকানা
                 </h2>
                 {!showAddressForm && addresses?.length > 0 && (
                   <button
                     onClick={() => setShowAddressForm(true)}
-                    className="text-[12px] font-medium text-primary flex items-center gap-1 hover:underline uppercase tracking-tighterer"
+                    className="text-[12px] font-medium text-secondary flex items-center gap-1 hover:underline uppercase tracking-tighterer"
                   >
                     <Plus size={14} /> নতুন ঠিকানা
                   </button>
@@ -245,7 +245,7 @@ export default function CheckoutPage() {
                     <div className="flex gap-3 pt-2">
                       <button
                         type="submit"
-                        className="bg-primary text-bg px-6 py-2.5 rounded-0 text-[11px] font-medium uppercase hover:scale-[1.02] transition-transform shadow-lg shadow-primary/20"
+                        className="bg-secondary text-bg px-6 py-2.5 rounded-0 text-[11px] font-medium uppercase hover:scale-[1.02] transition-transform shadow-lg shadow-secondary/20"
                       >
                         ঠিকানা সংরক্ষণ করুন
                       </button>
@@ -266,10 +266,13 @@ export default function CheckoutPage() {
                       <div
                         key={addr._id}
                         onClick={() => setSelectedAddress(addr)}
-                        className={`relative p-4 rounded-0 border-2 transition-all cursor-pointer ${selectedAddress?._id === addr._id ? 'border-primary bg-primary/5 shadow-md' : 'border-border/30 bg-bg/40'}`}
+                        className={`relative p-4 rounded-0 border-2 transition-all cursor-pointer ${selectedAddress?._id === addr._id ? 'border-secondary bg-secondary/5 shadow-md' : 'border-border/30 bg-bg/40'}`}
                       >
                         {selectedAddress?._id === addr._id && (
-                          <CheckCircle2 size={16} className="absolute top-3 right-3 text-primary" />
+                          <CheckCircle2
+                            size={16}
+                            className="absolute top-3 right-3 text-secondary"
+                          />
                         )}
                         <p className="text-[10px] font-medium text-pText/50 uppercase tracking-tighterer mb-1">
                           শিপিং ঠিকানা
@@ -280,7 +283,7 @@ export default function CheckoutPage() {
                         <p className="text-pText text-[12px]">
                           {addr.city}, {addr.state}
                         </p>
-                        <div className="text-[12px] font-mono text-primary font-medium mt-2">
+                        <div className="text-[12px] font-mono text-secondary font-medium mt-2">
                           {addr.phone}
                         </div>
                       </div>
@@ -294,7 +297,7 @@ export default function CheckoutPage() {
             <section className="bg-card/20 border border-border/40 rounded-0 overflow-hidden shadow-sm">
               <div className="px-5 py-4 border-b border-border/40 bg-white/5">
                 <h2 className="text-xs font-medium uppercase tracking-wider flex items-center gap-2">
-                  <CreditCard size={16} className="text-primary" /> ২. পেমেন্ট পদ্ধতি
+                  <CreditCard size={16} className="text-secondary" /> ২. পেমেন্ট পদ্ধতি
                 </h2>
               </div>
               <div className="p-5 flex flex-wrap gap-4">
@@ -316,7 +319,7 @@ export default function CheckoutPage() {
 
           {/* ডান পাশ: সামারি (Sticky) */}
           <div className="lg:col-span-5">
-            <div className="bg-card border border-border/40 rounded-0 p-5 md:p-6 sticky top-6 shadow-2xl">
+            <div className="bg-card border border-border/40 rounded-0 p-5 md:p-6 sticky top-6 ">
               <h3 className="text-sm font-medium uppercase italic border-b border-border/20 pb-4 mb-5 flex justify-between items-center">
                 অর্ডার সামারি <span>{cartItems.length} টি পণ্য</span>
               </h3>
@@ -341,7 +344,7 @@ export default function CheckoutPage() {
                         </p>
                         <button
                           onClick={() => handleRemoveItem(item.productId)}
-                          className="text-pText hover:text-red-500 transition-colors"
+                          className="text-pText hover:text-danger transition-colors"
                         >
                           <Trash2 size={14} />
                         </button>
@@ -354,7 +357,7 @@ export default function CheckoutPage() {
                             onClick={() =>
                               handleUpdateQty(item.productId, item.quantity, 'decrease')
                             }
-                            className="text-pText hover:text-primary disabled:opacity-20"
+                            className="text-pText hover:text-secondary disabled:opacity-20"
                             disabled={item.quantity <= 1}
                           >
                             <Minus size={12} strokeWidth={3} />
@@ -364,12 +367,12 @@ export default function CheckoutPage() {
                             onClick={() =>
                               handleUpdateQty(item.productId, item.quantity, 'increase')
                             }
-                            className="text-pText hover:text-primary"
+                            className="text-pText hover:text-secondary"
                           >
                             <Plus size={12} strokeWidth={3} />
                           </button>
                         </div>
-                        <span className="text-[11px] font-medium text-primary font-mono italic">
+                        <span className="text-[11px] font-medium text-secondary font-mono italic">
                           ৳{(item.price * item.quantity).toLocaleString()}
                         </span>
                       </div>
@@ -388,10 +391,10 @@ export default function CheckoutPage() {
                   <span className="text-text font-mono">৳{shipping}</span>
                 </div>
                 <div className="flex justify-between items-center pt-4 border-t border-border/20">
-                  <span className="text-[11px] font-medium uppercase italic text-primary tracking-tighter">
+                  <span className="text-[11px] font-medium uppercase italic text-secondary tracking-tighter">
                     মোট প্রদেয়
                   </span>
-                  <span className="text-3xl font-medium text-primary font-mono tracking-tighterer drop-shadow-sm">
+                  <span className="text-3xl font-medium text-secondary font-mono tracking-tighterer drop-shadow-sm">
                     ৳{total.toLocaleString()}
                   </span>
                 </div>
@@ -400,13 +403,13 @@ export default function CheckoutPage() {
               <Button
                 onClick={handlePlaceOrder}
                 disabled={orderLoading || authLoading}
-                className="w-full mt-8 py-5 rounded-0 shadow-xl shadow-primary/10 uppercase tracking-tighter text-[11px] font-medium"
+                className="w-full mt-8 py-5 rounded-0 shadow-xl shadow-secondary/10 uppercase tracking-tighter text-[11px] font-medium"
                 text={orderLoading ? 'প্রসেসিং...' : 'অর্ডার সম্পন্ন করুন'}
                 icon={ChevronRight}
               />
 
               <p className="text-[10px] font-medium uppercase text-pText/40 mt-5 text-center tracking-tighter flex items-center justify-center gap-2">
-                <ShieldCheck size={12} className="text-primary" /> SSL এনক্রিপ্টেড পেমেন্ট গেটওয়ে
+                <ShieldCheck size={12} className="text-secondary" /> SSL এনক্রিপ্টেড পেমেন্ট গেটওয়ে
               </p>
             </div>
           </div>
@@ -421,9 +424,9 @@ function PaymentOption({ active, onClick, icon, title }) {
   return (
     <div
       onClick={onClick}
-      className={`flex-1 flex items-center gap-3 p-4 rounded-0 border-2 cursor-pointer transition-all ${active ? 'border-primary bg-primary/5 shadow-md scale-[1.02]' : 'border-border/20 bg-bg/40'}`}
+      className={`flex-1 flex items-center gap-3 p-4 rounded-0 border-2 cursor-pointer transition-all ${active ? 'border-secondary bg-secondary/5 shadow-md scale-[1.02]' : 'border-border/20 bg-bg/40'}`}
     >
-      <div className={`${active ? 'text-primary' : 'text-pText opacity-40'}`}>{icon}</div>
+      <div className={`${active ? 'text-secondary' : 'text-pText opacity-40'}`}>{icon}</div>
       <span className="text-[11px] font-medium uppercase tracking-tighterer">{title}</span>
     </div>
   );
@@ -438,9 +441,9 @@ function CheckoutInput({ label, icon, ...props }) {
       <div className="relative group">
         <input
           {...props}
-          className="w-full bg-bg/50 border border-border/40 rounded-0 p-3 text-[11px] font-medium text-text outline-none focus:border-primary transition-all pl-10 placeholder:text-pText/30"
+          className="w-full bg-bg/50 border border-border/40 rounded-0 p-3 text-[11px] font-medium text-text outline-none focus:border-secondary transition-all pl-10 placeholder:text-pText/30"
         />
-        <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-pText group-focus-within:text-primary transition-colors">
+        <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-pText group-focus-within:text-secondary transition-colors">
           {icon || <Navigation size={14} />}
         </div>
       </div>

@@ -29,10 +29,9 @@ export default function FloatingHeadphoneSection() {
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none overflow-hidden"
         >
-          {/* Separate layer for the continuous float loop, so it doesn't fight the entrance animation */}
           <motion.div
-            animate={{ y: [-0, -15, 0] }}
-            transition={{ duration: 5.5, repeat: Infinity, ease: 'easeIn' }}
+            animate={{ y: [-0, -15] }}
+            transition={{ duration: 1.5, ease: 'easeIn' }}
             className="relative h-150 w-150"
           >
             <Image
@@ -40,7 +39,7 @@ export default function FloatingHeadphoneSection() {
               alt="Floating Sonos Headphone"
               fill
               priority
-              className="object-contain drop-shadow-2xl scale-150 md:scale-100"
+              className="object-contain drop-shadow-lg scale-150 md:scale-100"
               sizes="(max-width: 768px) 300px, 500px"
             />
           </motion.div>

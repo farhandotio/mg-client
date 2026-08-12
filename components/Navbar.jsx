@@ -129,7 +129,7 @@ export default function Navbar() {
                 >
                   TRENDING
                 </Link>
-                <Link href="/privacy" className="hover:text-white/90 transition-colors">
+                <Link href="/policies/privacy" className="hover:text-white/90 transition-colors">
                   PRIVACY
                 </Link>
                 <Link href="/about" className="hover:text-white/90 transition-colors">
@@ -157,7 +157,10 @@ export default function Navbar() {
             >
               {/* Desktop Menu */}
               <div className="flex items-center gap-3 lg:gap-6">
-                <Link href="/orders" className="max-md:hidden hover:text-white/90 transition-colors">
+                <Link
+                  href="/orders"
+                  className="max-md:hidden hover:text-white/90 transition-colors"
+                >
                   Orders
                 </Link>
 
@@ -268,7 +271,6 @@ export default function Navbar() {
           </Link>
         </div>
       </div>
-      <div className="h-16 md:h-17" aria-hidden="true" />
     </>
   );
 }

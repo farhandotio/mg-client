@@ -71,17 +71,17 @@ export default function AdminSidebar({ closeSidebar }) {
   return (
     <div className="w-full lg:w-72 bg-bg border-r border-border/60 h-full flex flex-col relative overflow-hidden">
       {/* --- Background Accent --- */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-secondary/50 to-transparent" />
 
       {/* --- Brand Header --- */}
       <div className="p-8">
         <div className="flex items-center gap-3 mb-6">
-          <div className="p-2 bg-primary rounded-0 shadow-[0_0_15px_rgba(255,111,92,0.4)]">
+          <div className="p-2 bg-secondary rounded-0 shadow-[0_0_15px_rgba(255,111,92,0.4)]">
             <Cpu size={20} className="text-white" />
           </div>
           <h2 className="text-2xl font-medium italic text-text uppercase tracking-tighterer leading-none">
             VAULT{' '}
-            <span className="text-primary text-sm block tracking-wide not-italic mt-1">
+            <span className="text-secondary text-sm block tracking-wide not-italic mt-1">
               OS_v2.6
             </span>
           </h2>
@@ -90,7 +90,7 @@ export default function AdminSidebar({ closeSidebar }) {
         <Link
           href="/"
           target="_blank"
-          className="flex items-center justify-between gap-2 px-4 py-3 bg-card/50 border border-border/50 rounded-0 text-[11px] font-medium uppercase tracking-tighter text-pText hover:text-primary transition-all group backdrop-blur-md"
+          className="flex items-center justify-between gap-2 px-4 py-3 bg-card/50 border border-border/50 rounded-0 text-[11px] font-medium uppercase tracking-tighter text-pText hover:text-secondary transition-all group backdrop-blur-md"
         >
           Explore Store
           <ExternalLink
@@ -103,7 +103,7 @@ export default function AdminSidebar({ closeSidebar }) {
       {/* --- Navigation --- */}
       <nav className="flex-1 px-4 space-y-2 overflow-y-auto no-scrollbar">
         <div className="px-4 mb-4 flex items-center gap-2">
-          <Activity size={10} className="text-primary animate-pulse" />
+          <Activity size={10} className="text-secondary animate-pulse" />
           <p className="text-[10px] font-medium text-pText/40 uppercase tracking-wide">
             Core_Management
           </p>
@@ -119,14 +119,14 @@ export default function AdminSidebar({ closeSidebar }) {
                   onClick={closeSidebar}
                   className={`flex-1 flex items-center gap-4 px-4 py-3.5 rounded-0 font-medium text-[12px] uppercase tracking-tighter transition-all duration-300 relative overflow-hidden ${
                     isActive
-                      ? 'bg-primary text-white shadow-[0_10px_20px_rgba(255,111,92,0.2)]'
+                      ? 'bg-secondary text-white shadow-[0_10px_20px_rgba(255,111,92,0.2)]'
                       : 'text-pText/60 hover:bg-card hover:text-text'
                   }`}
                 >
                   <item.icon
                     size={18}
                     className={`${
-                      isActive ? 'text-white' : 'text-primary/50 group-hover:text-primary'
+                      isActive ? 'text-white' : 'text-secondary/50 group-hover:text-secondary'
                     } transition-colors`}
                   />
                   <span className="relative z-10">{item.name}</span>
@@ -143,8 +143,8 @@ export default function AdminSidebar({ closeSidebar }) {
                     onClick={closeSidebar}
                     className={`p-3.5 rounded-0 border transition-all hover:scale-105 active:scale-90 ${
                       isActive
-                        ? 'bg-primary/20 border-primary/30 text-white hover:bg-primary/40'
-                        : 'bg-card border-border/50 text-pText/40 hover:text-primary hover:border-primary/40'
+                        ? 'bg-secondary/20 border-secondary/30 text-white hover:bg-secondary/40'
+                        : 'bg-card border-border/50 text-pText/40 hover:text-secondary hover:border-secondary/40'
                     }`}
                     title={`Create New ${item.name}`}
                   >
@@ -177,9 +177,9 @@ export default function AdminSidebar({ closeSidebar }) {
         <button
           aria-label="logout"
           onClick={handleLogout}
-          className="flex items-center gap-4 w-full px-4 py-5 text-red-500 font-medium text-[12px] uppercase tracking-tighter hover:bg-red-500/10 rounded-0 transition-all group relative overflow-hidden border border-transparent hover:border-red-500/20"
+          className="flex items-center gap-4 w-full px-4 py-5 text-danger font-medium text-[12px] uppercase tracking-tighter hover:bg-danger/10 rounded-0 transition-all group relative overflow-hidden border border-transparent hover:border-danger/20"
         >
-          <div className="absolute inset-0 bg-red-500/5 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300" />
+          <div className="absolute inset-0 bg-danger/5 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300" />
           <LogOut
             size={18}
             className="group-hover:-translate-x-1 transition-transform relative z-10"

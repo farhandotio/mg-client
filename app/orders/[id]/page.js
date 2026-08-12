@@ -37,10 +37,10 @@ export default function OrderDetailsPage() {
 
   if (loading || !order) {
     return (
-      <div className="min-h-screen bg-bg flex items-center justify-center">
+      <div className="min-h-screen bg-bg flex items-center justify-center pt-16 md:pt-17">
         <div className="flex flex-col items-center gap-4">
-          <Loader2 className="animate-spin text-primary" size={40} />
-          <p className="text-[12px] font-medium uppercase tracking-tighter text-primary animate-pulse">
+          <Loader2 className="animate-spin text-secondary" size={40} />
+          <p className="text-[12px] font-medium uppercase tracking-tighter text-secondary animate-pulse">
             লোড হচ্ছে...
           </p>
         </div>
@@ -61,14 +61,14 @@ export default function OrderDetailsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-bg text-text py-12 selection:bg-primary selection:text-bg">
+    <div className="min-h-screen bg-bg text-text py-12 selection:bg-secondary selection:text-bg">
       <div className="max-w-7xl px-5 md:px-6 mx-auto space-y-10">
         {/* --- টপ বার --- */}
         <div className="flex  md:flex-row justify-between items-center gap-6">
           <button
             aria-label="পিছনে ফিরে যান"
             onClick={() => router.back()}
-            className="flex items-center gap-3 text-[12px] font-medium uppercase tracking-tighter text-pText hover:text-primary transition-all group"
+            className="flex items-center gap-3 text-[12px] font-medium uppercase tracking-tighter text-pText hover:text-secondary transition-all group"
           >
             <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> ফিরে
             যান
@@ -88,12 +88,12 @@ export default function OrderDetailsPage() {
         {/* --- প্রিন্টযোগ্য ডকুমেন্ট --- */}
         <div ref={componentRef} className="print:p-10 print:bg-white print:text-black">
           {/* হেডার কার্ড */}
-          <div className="bg-card/30 rounded-0 p-8 md:p-16 border border-border/30 relative overflow-hidden shadow-2xl">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
+          <div className="bg-card/30 rounded-0 p-8 md:p-16 border border-border/30 relative overflow-hidden ">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/5 rounded-full blur-[100px] pointer-events-none" />
 
             <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
               <div className="md:col-span-9 space-y-6">
-                <div className="flex items-center gap-3 bg-primary/10 w-fit px-4 py-1 rounded-full text-primary border border-primary/20">
+                <div className="flex items-center gap-3 bg-secondary/10 w-fit px-4 py-1 rounded-full text-secondary border border-secondary/20">
                   <Zap size={14} fill="currentColor" />
                   <span className="text-[10px] md:text-[12px] font-medium uppercase tracking-tighter">
                     অর্ডারটি এখন: {getStatusInBangla(order.orderStatus)}
@@ -101,7 +101,7 @@ export default function OrderDetailsPage() {
                 </div>
                 <h1 className="text-5xl md:text-8xl font-medium uppercase tracking-tighterer leading-none italic">
                   {getStatusInBangla(order.orderStatus)}
-                  <span className="text-primary opacity-50">.</span>
+                  <span className="text-secondary opacity-50">.</span>
                 </h1>
                 <div className="flex flex-wrap gap-6 text-[11px] font-medium text-pText uppercase tracking-tighter bg-bg/40 p-4 rounded-0 w-fit border border-white/5">
                   <p>
@@ -143,7 +143,7 @@ export default function OrderDetailsPage() {
                 {order.orderItems?.map((item, idx) => (
                   <div
                     key={idx}
-                    className="absolute w-40 h-40 md:w-56 md:h-56 rounded-0 border-4 border-bg bg-card overflow-hidden shadow-2xl transition-all duration-500 hover:z-50 hover:scale-105"
+                    className="absolute w-40 h-40 md:w-56 md:h-56 rounded-0 border-4 border-bg bg-card overflow-hidden  transition-all duration-500 hover:z-50 hover:scale-105"
                     style={{
                       transform: `translateX(${idx * 30}px) translateY(${idx * -15}px) rotate(${idx * 5}deg)`,
                       zIndex: idx,
@@ -163,7 +163,7 @@ export default function OrderDetailsPage() {
                 {order.orderItems?.map((item, idx) => (
                   <div
                     key={idx}
-                    className="flex items-center justify-between p-5 bg-bg/40 rounded-0 border border-border/20 group hover:border-primary/40 transition-all"
+                    className="flex items-center justify-between p-5 bg-bg/40 rounded-0 border border-border/20 group hover:border-secondary/40 transition-all"
                   >
                     <div className="flex items-center gap-4">
                       <div className="relative w-14 h-14 rounded-0 overflow-hidden bg-card border border-white/5">
@@ -184,7 +184,7 @@ export default function OrderDetailsPage() {
                         </p>
                       </div>
                     </div>
-                    <p className="text-md font-medium font-mono text-primary italic">
+                    <p className="text-md font-medium font-mono text-secondary italic">
                       ৳{(item.price * item.quantity).toLocaleString()}
                     </p>
                   </div>
@@ -212,7 +212,7 @@ export default function OrderDetailsPage() {
                     বিভাগ: {order.shippingAddress?.state || 'প্রদান করা হয়নি'}
                   </p>
                   <div className="pt-4">
-                    <span className="px-4 py-2 bg-primary/10 text-primary text-[12px] font-medium rounded-full border border-primary/20">
+                    <span className="px-4 py-2 bg-secondary/10 text-secondary text-[12px] font-medium rounded-full border border-secondary/20">
                       {order.shippingAddress?.phone}
                     </span>
                   </div>
@@ -220,7 +220,7 @@ export default function OrderDetailsPage() {
               </div>
 
               {/* আর্থিক হিসাব */}
-              <div className="bg-primary text-white rounded-0 p-8 md:p-10 space-y-8 shadow-2xl shadow-primary/20 print:bg-black print:text-white">
+              <div className="bg-secondary text-white rounded-0 p-8 md:p-10 space-y-8  shadow-secondary/20 print:bg-black print:text-white">
                 <div className="space-y-4 text-[12px] font-medium uppercase tracking-tighter opacity-90">
                   <div className="flex justify-between border-b border-bg/10 pb-2">
                     <span>পণ্যের মোট দাম</span>

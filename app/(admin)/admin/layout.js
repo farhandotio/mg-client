@@ -21,7 +21,7 @@ export default function AdminLayout({ children }) {
               className="absolute inset-0 bg-black/80 backdrop-blur-sm animate-in fade-in duration-300"
               onClick={() => setIsSidebarOpen(false)}
             />
-            <div className="absolute left-0 top-0 h-full w-70 bg-card border-r border-border animate-in slide-in-from-left duration-500 shadow-2xl">
+            <div className="absolute left-0 top-0 h-full w-70 bg-card border-r border-border animate-in slide-in-from-left duration-500 ">
               <div className="absolute right-4 top-5">
                 <button
                   aria-label="closs sidebar"

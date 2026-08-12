@@ -65,7 +65,7 @@ export default function ProductGallery({ images = [], title, discount }) {
               rounded-0 overflow-hidden border-2 transition-all duration-300
               ${
                 activeImg === index
-                  ? 'border-primary opacity-100 ring-2 ring-primary/20'
+                  ? 'border-secondary opacity-100 ring-2 ring-secondary/20'
                   : 'border-bg/5 opacity-60 hover:opacity-100 hover:border-bg/20'
               }
             `}
@@ -89,12 +89,12 @@ export default function ProductGallery({ images = [], title, discount }) {
         className={`
           flex-1 relative aspect-square md:aspect-auto md:h-110 lg:h-123 
           bg-card/40 border border-border/40 rounded-0 overflow-hidden 
-          group/gallery shadow-2xl cursor-crosshair
+          group/gallery  cursor-crosshair
         `}
       >
         {/* ডেকোরেশন কর্নার */}
-        <div className="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-primary/30 rounded-tl-2xl pointer-events-none z-10" />
-        <div className="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-primary/30 rounded-br-2xl pointer-events-none z-10" />
+        <div className="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-secondary/30 rounded-tl-2xl pointer-events-none z-10" />
+        <div className="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-secondary/30 rounded-br-2xl pointer-events-none z-10" />
 
         {/* ব্যাজসমূহ */}
         <div className="absolute top-5 left-5 z-20 flex flex-col gap-2 pointer-events-none">
@@ -104,11 +104,11 @@ export default function ProductGallery({ images = [], title, discount }) {
               animate={{ opacity: 1, x: 0 }}
               className="flex flex-col gap-1.5"
             >
-              <span className="bg-primary text-bg text-[12px] font-medium px-3 py-1 rounded-0 italic uppercase clip-path-tag-gallery shadow-[0_0_15px_rgba(41,252,86,0.3)]">
+              <span className="bg-secondary text-bg text-[12px] font-medium px-3 py-1 rounded-0 italic uppercase clip-path-tag-gallery shadow-[0_0_15px_rgba(41,252,86,0.3)]">
                 {discount}% ছাড়
               </span>
               <div className="bg-text/60 backdrop-blur-md border border-bg/10 text-bg text-[11px] font-medium px-2 py-1 rounded flex items-center gap-1 w-fit">
-                <Box size={10} className="text-primary" /> নিরাপদ প্যাকিং
+                <Box size={10} className="text-secondary" /> নিরাপদ প্যাকিং
               </div>
             </motion.div>
           )}
@@ -130,7 +130,7 @@ export default function ProductGallery({ images = [], title, discount }) {
               e.stopPropagation();
               prevImg();
             }}
-            className="p-3 bg-text/60 backdrop-blur-xl rounded-0 border border-bg/10 text-bg hover:bg-primary hover:text-bg transition-all shadow-xl pointer-events-auto active:scale-95"
+            className="p-3 bg-text/60 backdrop-blur-xl rounded-0 border border-bg/10 text-bg hover:bg-secondary hover:text-bg transition-all shadow-xl pointer-events-auto active:scale-95"
           >
             <ChevronLeft size={20} />
           </button>
@@ -139,7 +139,7 @@ export default function ProductGallery({ images = [], title, discount }) {
               e.stopPropagation();
               nextImg();
             }}
-            className="p-3 bg-text/60 backdrop-blur-xl rounded-0 border border-bg/10 text-bg hover:bg-primary hover:text-bg transition-all shadow-xl pointer-events-auto active:scale-95"
+            className="p-3 bg-text/60 backdrop-blur-xl rounded-0 border border-bg/10 text-bg hover:bg-secondary hover:text-bg transition-all shadow-xl pointer-events-auto active:scale-95"
           >
             <ChevronRight size={20} />
           </button>
@@ -189,7 +189,7 @@ export default function ProductGallery({ images = [], title, discount }) {
           <div className="fixed inset-0 z-[9999] bg-text/95 backdrop-blur-2xl flex flex-col items-center justify-center p-4">
             <button
               onClick={() => setIsFullScreen(false)}
-              className="absolute top-6 right-6 p-3 bg-bg/5 hover:bg-red-500 text-bg rounded-full transition-all border border-bg/10"
+              className="absolute top-6 right-6 p-3 bg-bg/5 hover:bg-danger text-bg rounded-full transition-all border border-bg/10"
             >
               <X size={24} />
             </button>
@@ -203,13 +203,13 @@ export default function ProductGallery({ images = [], title, discount }) {
               <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-4">
                 <button
                   onClick={prevImg}
-                  className="p-4 bg-text/50 rounded-full text-bg hover:bg-primary hover:text-black transition-all"
+                  className="p-4 bg-text/50 rounded-full text-bg hover:bg-secondary hover:text-black transition-all"
                 >
                   <ChevronLeft size={30} />
                 </button>
                 <button
                   onClick={nextImg}
-                  className="p-4 bg-text/50 rounded-full text-bg hover:bg-primary hover:text-black transition-all"
+                  className="p-4 bg-text/50 rounded-full text-bg hover:bg-secondary hover:text-black transition-all"
                 >
                   <ChevronRight size={30} />
                 </button>
@@ -223,7 +223,7 @@ export default function ProductGallery({ images = [], title, discount }) {
                   key={index}
                   onClick={() => setActiveImg(index)}
                   className={`relative w-16 h-16 rounded-0 overflow-hidden border-2 transition-all ${
-                    activeImg === index ? 'border-primary opacity-100' : 'border-bg/20 opacity-50'
+                    activeImg === index ? 'border-secondary opacity-100' : 'border-bg/20 opacity-50'
                   }`}
                 >
                   <Image src={img?.url} fill className="object-cover" alt="thumb" />

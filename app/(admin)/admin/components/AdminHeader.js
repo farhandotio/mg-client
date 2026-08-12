@@ -9,20 +9,20 @@ export default function AdminHeader({ onMenuClick }) {
         <button
           aria-label="menu toggle"
           onClick={onMenuClick}
-          className="lg:hidden p-2 bg-bg border border-border rounded-0 text-primary"
+          className="lg:hidden p-2 bg-bg border border-border rounded-0 text-secondary"
         >
           <Menu size={20} />
         </button>
 
         <h2 className="text-sm font-medium uppercase tracking-tighter hidden sm:block">
-          System <span className="text-primary">Console</span>
+          System <span className="text-secondary">Console</span>
         </h2>
       </div>
 
       <div className="flex items-center gap-4 md:gap-6">
         <button
           aria-label="bell"
-          className="text-pText hover:text-primary transition-colors hidden xs:block"
+          className="text-pText hover:text-secondary transition-colors hidden xs:block"
         >
           <Bell size={18} />
         </button>
@@ -31,8 +31,8 @@ export default function AdminHeader({ onMenuClick }) {
           <div className="text-right hidden md:block">
             <p className="text-[12px] font-medium uppercase text-white">Admin</p>
           </div>
-          <div className="w-9 h-9 bg-primary/20 rounded-full flex items-center justify-center border border-primary/30">
-            <User size={18} className="text-primary" />
+          <div className="w-9 h-9 bg-secondary/20 rounded-full flex items-center justify-center border border-secondary/30">
+            <User size={18} className="text-secondary" />
           </div>
         </div>
       </div>

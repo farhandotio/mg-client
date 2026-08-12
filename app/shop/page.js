@@ -16,7 +16,7 @@ function ShopLoadingFallback() {
   return (
     <div className="space-y-10 animate-in fade-in duration-500">
       <div className="space-y-4">
-        <div className="h-4 w-32 bg-primary/10 rounded-full animate-pulse" />
+        <div className="h-4 w-32 bg-secondary/10 rounded-full animate-pulse" />
         <div className="h-12 w-64 bg-card border border-border/50 rounded-0 animate-pulse" />
       </div>
 

@@ -164,16 +164,16 @@ export default function ProfilePage() {
   if (!mounted) return <div className="min-h-screen bg-bg" />;
 
   return (
-    <div className="min-h-screen h-full bg-bg pb-20 relative animate-in fade-in duration-700 overflow-hidden">
+    <div className="min-h-screen h-full bg-bg pb-20 relative animate-in fade-in duration-700 overflow-hidden pt-16 md:pt-17">
       {/* Background Ambience */}
-      <div className="absolute top-0 left-0 w-full h-125 bg-linear-to-b from-primary/5 to-transparent pointer-events-none" />
+      <div className="absolute top-0 left-0 w-full h-125 bg-linear-to-b from-secondary/5 to-transparent pointer-events-none" />
 
       <div className="space-y-8 relative z-10">
         {/* --- HERO SECTION: User Card --- */}
-        <div className="relative bg-card/30 backdrop-blur-3xl border border-white/5 md:border-border/40 rounded-0 md:rounded-0 p-6 md:p-10 overflow-hidden ">
+        <div className="relative bg-card/30 backdrop-blur-3xl border border-border/5 md:border-border/40 rounded-0 md:rounded-0 p-6 md:p-10 overflow-hidden ">
           {/* Decorative Elements */}
-          <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/20 rounded-full blur-[80px]" />
-          <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-primary/50 to-transparent opacity-50" />
+          <div className="absolute -top-24 -right-24 w-64 h-64 bg-secondary/20 rounded-full blur-[80px]" />
+          <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-secondary/50 to-transparent opacity-50" />
 
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
             {/* Avatar Circle */}
@@ -186,14 +186,14 @@ export default function ProfilePage() {
                     alt="profile"
                   />
                 ) : (
-                  <span className="text-5xl md:text-7xl font-medium text-primary/80 italic uppercase select-none">
+                  <span className="text-5xl md:text-7xl font-medium text-secondary/80 italic uppercase select-none">
                     {user?.fullname?.charAt(0)}
                   </span>
                 )}
               </div>
 
               {/* Edit Badge (Visual only, triggers modal via main button) */}
-              <div className="absolute bottom-2 right-2 md:-bottom-2 md:-right-2 bg-primary text-white p-2 md:p-3 rounded-0 shadow-lg z-20 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 pointer-events-none">
+              <div className="absolute bottom-2 right-2 md:-bottom-2 md:-right-2 bg-secondary text-white p-2 md:p-3 rounded-0 shadow-lg z-20 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 pointer-events-none">
                 <Edit3 size={16} />
               </div>
             </div>
@@ -204,7 +204,7 @@ export default function ProfilePage() {
                 <h1 className="text-3xl md:text-5xl lg:text-6xl font-medium text-text tracking-tighterer italic uppercase leading-[0.9]">
                   {user?.fullname || 'Unknown Entity'}
                 </h1>
-                <p className="text-xs md:text-sm font-medium text-primary/80 tracking-tighter uppercase mt-2">
+                <p className="text-xs md:text-sm font-medium text-secondary/80 tracking-tighter uppercase mt-2">
                   {user?.role === 'admin' ? 'System Administrator' : 'Authorized User'}
                 </p>
                 <p className="text-xs text-pText/50 font-mono mt-1">ID: {user?._id}</p>
@@ -214,7 +214,7 @@ export default function ProfilePage() {
                 <button
                   aria-label="edit open"
                   onClick={openEditModal}
-                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3 bg-white/5 border border-white/10 text-text font-medium uppercase text-[12px] tracking-tighter rounded-0 hover:bg-primary hover:text-white hover:border-primary hover:shadow-[0_0_20px_rgba(255,111,92,0.4)] transition-all duration-300"
+                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3 bg-secondary/5 border border-border/10 text-text font-medium uppercase text-[12px] tracking-tighter rounded-0 hover:bg-secondary hover:text-white hover:border-secondary hover:shadow-[0_0_20px_rgba(255,111,92,0.4)] transition-all duration-300"
                 >
                   <Edit3 size={14} /> Edit Profile
                 </button>
@@ -222,7 +222,7 @@ export default function ProfilePage() {
                   aria-label="logout"
                   onClick={handleLogout}
                   disabled={isLoggingOut}
-                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3 bg-red-500/5 text-red-500 border border-red-500/20 font-medium uppercase text-[12px] tracking-tighter rounded-0 hover:bg-red-500 hover:text-white transition-all duration-300 disabled:opacity-50"
+                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3 bg-danger/5 text-danger border border-danger/20 font-medium uppercase text-[12px] tracking-tighter rounded-0 hover:bg-danger hover:text-white transition-all duration-300 disabled:opacity-50"
                 >
                   {isLoggingOut ? (
                     <Loader2 size={14} className="animate-spin" />
@@ -259,7 +259,7 @@ export default function ProfilePage() {
                   resetAddressForm();
                   setIsAddressModalOpen(true);
                 }}
-                className="p-3 bg-primary text-white rounded-0 hover:scale-105 active:scale-95 transition shadow-lg shadow-primary/20"
+                className="p-3 bg-secondary text-white rounded-0 hover:scale-105 active:scale-95 transition shadow-lg shadow-secondary/20"
               >
                 <Plus size={20} />
               </button>
@@ -271,14 +271,14 @@ export default function ProfilePage() {
                   <div
                     key={addr._id}
                     style={{ animationDelay: `${idx * 100}ms` }}
-                    className="group relative bg-card/40 border border-white/5 p-5 rounded-0 hover:border-primary/40 transition-all duration-300 hover:bg-card/60 animate-in slide-in-from-bottom-4 fade-in fill-mode-backwards"
+                    className="group relative bg-card/40 border border-border/5 p-5 rounded-0 hover:border-secondary/40 transition-all duration-300 hover:bg-card/60 animate-in slide-in-from-bottom-4 fade-in fill-mode-backwards"
                   >
                     {/* Active Indicator Line */}
-                    <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-0 bg-primary group-hover:h-1/2 transition-all duration-300 rounded-r-full" />
+                    <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-0 bg-secondary group-hover:h-1/2 transition-all duration-300 rounded-r-full" />
 
                     <div className="flex justify-between items-start gap-4">
                       <div className="space-y-1.5">
-                        <div className="flex items-center gap-2 text-primary">
+                        <div className="flex items-center gap-2 text-secondary">
                           <MapPin size={14} className="shrink-0" />
                           <p className="text-xs font-medium uppercase tracking-tighter text-text line-clamp-1">
                             {addr.street}
@@ -288,11 +288,11 @@ export default function ProfilePage() {
                           {addr.city}, {addr.zip} • {addr.state}
                         </p>
                         <div className="flex items-center gap-2 pl-6">
-                          <p className="text-[12px] text-primary font-mono bg-primary/5 px-2 py-0.5 rounded">
+                          <p className="text-[12px] text-secondary font-mono bg-secondary/5 px-2 py-0.5 rounded">
                             {addr.phone}
                           </p>
                           {addr.isDefault && (
-                            <span className="text-[10px] font-medium bg-white/10 text-white px-2 py-0.5 rounded-full tracking-wider">
+                            <span className="text-[10px] font-medium bg-secondary/10 text-white px-2 py-0.5 rounded-full tracking-wider">
                               DEFAULT
                             </span>
                           )}
@@ -308,14 +308,14 @@ export default function ProfilePage() {
                             setIsEditingAddress(true);
                             setIsAddressModalOpen(true);
                           }}
-                          className="p-2 bg-bg text-pText hover:text-primary rounded-0 hover:bg-white/5 transition-colors"
+                          className="p-2 bg-bg text-pText hover:text-secondary rounded-0 hover:bg-secondary/5 transition-colors"
                         >
                           <Edit3 size={16} />
                         </button>
                         <button
                           aria-label="delete address"
                           onClick={() => handleDeleteAddress(addr._id)}
-                          className="p-2 bg-bg text-pText hover:text-red-500 rounded-0 hover:bg-red-500/10 transition-colors"
+                          className="p-2 bg-bg text-pText hover:text-danger rounded-0 hover:bg-danger/10 transition-colors"
                         >
                           <Trash2 size={16} />
                         </button>
@@ -344,7 +344,7 @@ export default function ProfilePage() {
               </div>
               <Link
                 href="/orders"
-                className="text-primary text-[12px] font-medium uppercase tracking-tighter hover:underline decoration-2 underline-offset-4"
+                className="text-secondary text-[12px] font-medium uppercase tracking-tighter hover:underline decoration-2 underline-offset-4"
               >
                 View Archive
               </Link>
@@ -353,7 +353,7 @@ export default function ProfilePage() {
             <div className="space-y-3">
               {orderLoading ? (
                 <div className="flex justify-center py-20">
-                  <Loader2 className="animate-spin text-primary" size={30} />
+                  <Loader2 className="animate-spin text-secondary" size={30} />
                 </div>
               ) : (
                 orders?.slice(0, 5).map((order, idx) => (
@@ -361,10 +361,10 @@ export default function ProfilePage() {
                     key={order._id}
                     href={`/orders/${order._id}`}
                     style={{ animationDelay: `${idx * 100}ms` }}
-                    className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 bg-card/30 border border-white/5 p-5 rounded-0 hover:bg-card/50 hover:border-primary/30 transition-all group animate-in slide-in-from-bottom-4 fade-in fill-mode-backwards"
+                    className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 bg-card/30 border border-border/5 p-5 rounded-0 hover:bg-card/50 hover:border-secondary/30 transition-all group animate-in slide-in-from-bottom-4 fade-in fill-mode-backwards"
                   >
                     <div className="flex items-center justify-between sm:justify-start w-full sm:w-auto gap-4">
-                      <div className="w-12 h-12 bg-bg rounded-0 flex items-center justify-center text-primary/80 border border-white/5 group-hover:text-primary group-hover:border-primary/50 transition-colors">
+                      <div className="w-12 h-12 bg-bg rounded-0 flex items-center justify-center text-secondary/80 border border-border/5 group-hover:text-secondary group-hover:border-secondary/50 transition-colors">
                         <Package size={20} />
                       </div>
                       <div className="sm:hidden">
@@ -372,7 +372,7 @@ export default function ProfilePage() {
                           className={`text-[11px] font-medium uppercase px-2.5 py-1 rounded-0 border ${
                             order.orderStatus === 'Delivered'
                               ? 'bg-green-500/10 border-green-500/20 text-green-500'
-                              : 'bg-primary/10 border-primary/20 text-primary'
+                              : 'bg-secondary/10 border-secondary/20 text-secondary'
                           }`}
                         >
                           {order.orderStatus}
@@ -381,7 +381,7 @@ export default function ProfilePage() {
                     </div>
 
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-medium text-sm text-text/90 uppercase truncate group-hover:text-primary transition-colors">
+                      <h4 className="font-medium text-sm text-text/90 uppercase truncate group-hover:text-secondary transition-colors">
                         Order #{order._id.slice(-6)}
                       </h4>
                       <p className="text-[12px] text-pText/60 font-medium mt-1 uppercase tracking-wider">
@@ -393,7 +393,7 @@ export default function ProfilePage() {
                       </p>
                     </div>
 
-                    <div className="flex items-center justify-between sm:justify-end gap-6 w-full sm:w-auto mt-2 sm:mt-0 border-t sm:border-t-0 border-white/5 pt-3 sm:pt-0">
+                    <div className="flex items-center justify-between sm:justify-end gap-6 w-full sm:w-auto mt-2 sm:mt-0 border-t sm:border-t-0 border-border/5 pt-3 sm:pt-0">
                       <div className="text-right">
                         <p className="text-base font-medium text-text font-mono">
                           ৳{order.pricing?.totalPrice?.toLocaleString()}
@@ -404,7 +404,7 @@ export default function ProfilePage() {
                           className={`text-[11px] font-medium uppercase px-3 py-1.5 rounded-0 border ${
                             order.orderStatus === 'Delivered'
                               ? 'bg-green-500/10 border-green-500/20 text-green-500'
-                              : 'bg-primary/10 border-primary/20 text-primary'
+                              : 'bg-secondary/10 border-secondary/20 text-secondary'
                           }`}
                         >
                           {order.orderStatus}
@@ -412,7 +412,7 @@ export default function ProfilePage() {
                       </div>
                       <ChevronRight
                         size={16}
-                        className="text-pText/50 group-hover:text-primary group-hover:translate-x-1 transition-all"
+                        className="text-pText/50 group-hover:text-secondary group-hover:translate-x-1 transition-all"
                       />
                     </div>
                   </Link>
@@ -434,13 +434,13 @@ export default function ProfilePage() {
             }}
           />
 
-          <div className="relative bg-card border border-white/10 w-full max-w-lg p-6 md:p-10 rounded-0 shadow-2xl animate-in zoom-in-95 duration-300 overflow-hidden">
+          <div className="relative bg-card border border-border/10 w-full max-w-lg p-6 md:p-10 rounded-0  animate-in zoom-in-95 duration-300 overflow-hidden">
             {/* Modal Glow */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-primary shadow-[0_0_20px_rgba(255,111,92,0.8)]" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-secondary shadow-[0_0_20px_rgba(255,111,92,0.8)]" />
 
             <button
               aria-label="cross model"
-              className="absolute top-2 right-2 md:top-6 md:right-6 text-pText hover:text-red-500 transition bg-white/5 p-2 rounded-full hover:bg-white/10"
+              className="absolute top-2 right-2 md:top-6 md:right-6 text-pText hover:text-danger transition bg-secondary/5 p-2 rounded-full hover:bg-secondary/10"
               onClick={() => {
                 setIsEditModalOpen(false);
                 setIsAddressModalOpen(false);
@@ -487,7 +487,7 @@ export default function ProfilePage() {
                           value={editData.image}
                           onChange={(e) => setEditData({ ...editData, image: e.target.value })}
                           placeholder="https://example.com/image.jpg"
-                          className="w-full bg-bg border border-border rounded-0 p-4 pl-11 text-xs font-medium text-text outline-none focus:border-primary transition-all shadow-inner placeholder:text-pText/20"
+                          className="w-full bg-bg border border-border rounded-0 p-4 pl-11 text-xs font-medium text-text outline-none focus:border-secondary transition-all shadow-inner placeholder:text-pText/20"
                         />
                         <div className="absolute left-4 top-1/2 -translate-y-1/2 text-pText">
                           <LinkIcon size={16} />
@@ -574,7 +574,7 @@ export default function ProfilePage() {
                   />
                 </div>
 
-                <div className="flex items-center gap-3 p-4 bg-bg/50 rounded-0 border border-white/5">
+                <div className="flex items-center gap-3 p-4 bg-bg/50 rounded-0 border border-border/5">
                   <input
                     type="checkbox"
                     id="isDefault"
@@ -582,7 +582,7 @@ export default function ProfilePage() {
                     onChange={(e) =>
                       setAddressData({ ...addressData, isDefault: e.target.checked })
                     }
-                    className="w-4 h-4 accent-primary cursor-pointer"
+                    className="w-4 h-4 accent-secondary cursor-pointer"
                   />
                   <label
                     htmlFor="isDefault"
@@ -615,10 +615,10 @@ export default function ProfilePage() {
 function StatCard({ label, value, delay }) {
   return (
     <div
-      className="bg-bg/40 backdrop-blur-md border border-white/5 p-4 rounded-0 text-center min-w-25 animate-in zoom-in-50 fill-mode-backwards duration-500"
+      className="bg-bg/40 backdrop-blur-md border border-border/5 p-4 rounded-0 text-center min-w-25 animate-in zoom-in-50 fill-mode-backwards duration-500"
       style={{ animationDelay: `${delay}ms` }}
     >
-      <p className="text-2xl font-medium text-primary drop-shadow-[0_0_8px_rgba(255,111,92,0.5)]">
+      <p className="text-2xl font-medium text-secondary drop-shadow-[0_0_8px_rgba(255,111,92,0.5)]">
         {value || 0}
       </p>
       <p className="text-[11px] uppercase tracking-tighter text-pText/70 mt-1">{label}</p>
@@ -636,11 +636,11 @@ function InputGroup({ label, icon, disabled, ...props }) {
         <input
           {...props}
           disabled={disabled}
-          className={`w-full bg-bg border border-border rounded-0 p-4 text-xs font-medium text-text outline-none focus:border-primary transition-all shadow-inner placeholder:text-pText/20
+          className={`w-full bg-bg border border-border rounded-0 p-4 text-xs font-medium text-text outline-none focus:border-secondary transition-all shadow-inner placeholder:text-pText/20
           ${icon ? 'pl-11' : ''} ${disabled ? 'opacity-50 cursor-not-allowed text-pText/50' : ''}`}
         />
         {icon && (
-          <div className="absolute left-4 top-1/2 -translate-y-1/2 text-pText group-focus-within:text-primary transition-colors">
+          <div className="absolute left-4 top-1/2 -translate-y-1/2 text-pText group-focus-within:text-secondary transition-colors">
             {icon}
           </div>
         )}

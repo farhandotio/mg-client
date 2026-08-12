@@ -34,10 +34,10 @@ export default function OrdersPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-bg flex items-center justify-center">
+      <div className="min-h-screen bg-bg flex items-center justify-center pt-16 md:pt-17">
         <div className="text-center space-y-4">
-          <div className="w-12 h-12 border-4 border-primary/20 border-t-primary rounded-full animate-spin mx-auto" />
-          <p className="text-[12px] font-medium uppercase tracking-tighter text-primary animate-pulse">
+          <div className="w-12 h-12 border-4 border-secondary/20 border-t-secondary rounded-full animate-spin mx-auto" />
+          <p className="text-[12px] font-medium uppercase tracking-tighter text-secondary animate-pulse">
             অর্ডার ভল্ট অ্যাক্সেস করা হচ্ছে...
           </p>
         </div>
@@ -62,12 +62,12 @@ export default function OrdersPage() {
           <div className="space-y-2">
             <Link
               href="/profile"
-              className="flex items-center gap-2 text-pText text-[12px] font-medium uppercase tracking-tighter hover:text-primary transition-colors mb-4"
+              className="flex items-center gap-2 text-pText text-[12px] font-medium uppercase tracking-tighter hover:text-secondary transition-colors mb-4"
             >
               <ArrowLeft size={14} /> প্রোফাইলে ফিরে যান
             </Link>
             <h1 className="text-5xl md:text-7xl font-medium italic uppercase tracking-tighterer leading-none">
-              অর্ডার <span className="text-primary">লগ</span>
+              অর্ডার <span className="text-secondary">লগ</span>
             </h1>
           </div>
 
@@ -80,7 +80,7 @@ export default function OrdersPage() {
                 onClick={() => setFilter(status)}
                 className={`px-4 py-2 rounded-0 text-[11px] font-medium uppercase tracking-tighter transition-all ${
                   filter === status
-                    ? 'bg-primary text-bg shadow-lg shadow-primary/20'
+                    ? 'bg-secondary text-bg shadow-lg shadow-secondary/20'
                     : 'text-pText hover:text-text'
                 }`}
               >
@@ -102,7 +102,7 @@ export default function OrdersPage() {
               </h3>
               <Link
                 href="/shop"
-                className="text-primary text-[12px] font-medium uppercase tracking-tighter mt-4 inline-block border-b border-primary/30 pb-1"
+                className="text-secondary text-[12px] font-medium uppercase tracking-tighter mt-4 inline-block border-b border-secondary/30 pb-1"
               >
                 প্রথম কেনাকাটা শুরু করুন
               </Link>
@@ -119,8 +119,8 @@ function OrderCard({ order }) {
     PENDING: 'text-yellow-500 bg-yellow-500/10 border-yellow-500/20',
     CONFIRMED: 'text-blue-500 bg-blue-500/10 border-blue-500/20',
     PROCESSING: 'text-purple-500 bg-purple-500/10 border-purple-500/20',
-    DELIVERED: 'text-primary bg-primary/10 border-primary/20',
-    CANCELLED: 'text-red-500 bg-red-500/10 border-red-500/20',
+    DELIVERED: 'text-secondary bg-secondary/10 border-secondary/20',
+    CANCELLED: 'text-danger bg-danger/10 border-danger/20',
   };
 
   const statusInBangla = {
@@ -132,7 +132,7 @@ function OrderCard({ order }) {
   };
 
   return (
-    <div className="group relative bg-card/30 border border-border/50 rounded-0 p-6 md:p-8 hover:border-primary/40 transition-all duration-500">
+    <div className="group relative bg-card/30 border border-border/50 rounded-0 p-6 md:p-8 hover:border-secondary/40 transition-all duration-500">
       <div className="flex flex-col lg:flex-row justify-between gap-8">
         {/* Left: Info */}
         <div className="space-y-6 flex-1">
@@ -156,7 +156,7 @@ function OrderCard({ order }) {
 
           <div className="flex flex-wrap gap-8">
             <div className="flex items-center gap-3">
-              <div className="p-2.5 bg-bg rounded-0 text-primary border border-border">
+              <div className="p-2.5 bg-bg rounded-0 text-secondary border border-border">
                 <Clock size={16} />
               </div>
               <div>
@@ -171,14 +171,14 @@ function OrderCard({ order }) {
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <div className="p-2.5 bg-bg rounded-0 text-primary border border-border">
+              <div className="p-2.5 bg-bg rounded-0 text-secondary border border-border">
                 <CreditCard size={16} />
               </div>
               <div>
                 <p className="text-[11px] font-medium text-pText uppercase">পেমেন্ট</p>
                 <p className="text-xs font-medium uppercase">
                   {order.payment?.method === 'COD' ? 'ক্যাশ অন ডেলিভারি' : 'অনলাইন'} -{' '}
-                  <span className="text-primary">
+                  <span className="text-secondary">
                     {order.payment?.status === 'Pending' ? 'বাকি' : 'পরিশোধিত'}
                   </span>
                 </p>
@@ -214,13 +214,13 @@ function OrderCard({ order }) {
             <p className="text-[11px] font-medium text-pText uppercase tracking-tighter mb-1">
               মোট প্রদেয়
             </p>
-            <h3 className="text-3xl font-medium text-primary font-mono tracking-tighterer italic">
+            <h3 className="text-3xl font-medium text-secondary font-mono tracking-tighterer italic">
               ৳{order.pricing?.totalPrice?.toLocaleString()}
             </h3>
           </div>
           <Link
             href={`/orders/${order._id}`}
-            className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-0 text-[12px] font-medium uppercase tracking-tighter hover:bg-primary hover:text-bg transition-all group/btn"
+            className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-0 text-[12px] font-medium uppercase tracking-tighter hover:bg-secondary hover:text-bg transition-all group/btn"
           >
             বিস্তারিত দেখুন{' '}
             <ChevronRight
