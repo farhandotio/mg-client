@@ -24,7 +24,7 @@ export default function OrderSummary({ subtotal = 0 }) {
   };
 
   return (
-    <div className="bg-card/40 backdrop-blur-xl border border-border/60 rounded-lg md:rounded-md p-6 md:p-10 shadow relative overflow-hidden">
+    <div className="bg-card/40 backdrop-blur-xl border border-border/60 rounded-0 md:rounded-0 p-6 md:p-10 shadow relative overflow-hidden">
       {/* হেডার ও প্রোটোকল */}
       <div className="flex flex-col gap-1 mb-8 relative z-10">
         <div className="flex items-center gap-2 text-primary">

@@ -40,7 +40,7 @@ export default function ContactPage() {
         </div>
 
         {/* Support Section */}
-        <div className="mt-12 p-12 bg-card/30 border border-white/5 rounded-2xl flex flex-col md:flex-row justify-between items-center gap-8">
+        <div className="mt-12 p-12 bg-card/30 border border-white/5 rounded-0 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="space-y-2">
             <h3 className="text-3xl font-medium italic uppercase text-text">Direct Message</h3>
             <p className="text-pText font-medium">
@@ -49,7 +49,7 @@ export default function ContactPage() {
           </div>
           <a
             href="https://wa.me/yournumber"
-            className="bg-[#25D366] text-white px-10 py-5 rounded-md font-medium uppercase tracking-tighter flex items-center gap-3 hover:scale-105 transition-transform"
+            className="bg-[#25D366] text-white px-10 py-5 rounded-0 font-medium uppercase tracking-tighter flex items-center gap-3 hover:scale-105 transition-transform"
           >
             <MessageSquare /> Chat on WhatsApp
           </a>
@@ -61,8 +61,8 @@ export default function ContactPage() {
 
 function ContactCard({ icon, title, detail, sub }) {
   return (
-    <div className="p-10 bg-card/20 border border-white/5 rounded-lg hover:border-primary/50 transition-all group">
-      <div className="w-14 h-14 bg-primary/10 rounded-md flex items-center justify-center text-primary mb-8 group-hover:scale-110 transition-transform">
+    <div className="p-10 bg-card/20 border border-white/5 rounded-0 hover:border-primary/50 transition-all group">
+      <div className="w-14 h-14 bg-primary/10 rounded-0 flex items-center justify-center text-primary mb-8 group-hover:scale-110 transition-transform">
         {icon}
       </div>
       <p className="text-[12px] font-medium uppercase tracking-tighter text-pText mb-2">{title}</p>

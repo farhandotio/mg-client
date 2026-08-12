@@ -109,12 +109,12 @@ export default function ShopPageContent({ categorySlug }) {
             <div className="flex items-center justify-between md:justify-end gap-4">
               <button
                 onClick={() => setIsMobileFilterOpen(true)}
-                className="lg:hidden flex items-center gap-2 bg-card border border-border/50 px-4 py-2.5 rounded-md text-[12px] font-medium uppercase tracking-wider"
+                className="lg:hidden flex items-center gap-2 bg-card border border-border/50 px-4 py-2.5 rounded-0 text-[12px] font-medium uppercase tracking-wider"
               >
                 <Filter size={14} className="text-primary" /> ফিল্টার
               </button>
 
-              <div className="bg-primary/5 border border-primary/20 px-4 py-2.5 rounded-md">
+              <div className="bg-primary/5 border border-primary/20 px-4 py-2.5 rounded-0">
                 <p className="text-primary text-[12px] font-medium uppercase tracking-tighter">
                   {loading
                     ? 'স্ক্যানিং...'
@@ -128,7 +128,7 @@ export default function ShopPageContent({ categorySlug }) {
         {/* --- Main Content Area --- */}
         <div className="flex grow overflow-hidden gap-5 pt-2">
           <aside className="hidden lg:block w-65 shrink-0 h-full overflow-y-auto no-scrollbar pb-10">
-            <nav className="bg-card/40 backdrop-blur-2xl no-scrollbar p-3 rounded-md border border-border/50 shadow-2xl shadow-primary/5">
+            <nav className="bg-card/40 backdrop-blur-2xl no-scrollbar p-3 rounded-0 border border-border/50 shadow-2xl shadow-primary/5">
               <ShopSidebar {...filterProps} />
             </nav>
           </aside>
@@ -157,7 +157,7 @@ export default function ShopPageContent({ categorySlug }) {
                       <span className="text-[12px] font-medium uppercase tracking-wide text-pText/40">
                         সিস্টেম নেভিগেশন
                       </span>
-                      <div className="flex items-center gap-4 bg-card/50 backdrop-blur-md px-10 py-4 rounded-md border border-border/50 shadow-xl shadow-primary/5">
+                      <div className="flex items-center gap-4 bg-card/50 backdrop-blur-md px-10 py-4 rounded-0 border border-border/50 shadow-xl shadow-primary/5">
                         <span className="text-xs font-medium tracking-tighter text-text">
                           পৃষ্ঠা <span className="text-primary ml-2">{page}</span>
                         </span>
@@ -174,7 +174,7 @@ export default function ShopPageContent({ categorySlug }) {
                         aria-label="Previous Page"
                         disabled={page === 1}
                         onClick={() => handlePagination(page - 1)}
-                        className="group flex items-center gap-3 pl-4 pr-6 py-3 bg-card border border-border/50 rounded-md disabled:opacity-20 hover:border-primary/50 transition-all active:scale-95 disabled:pointer-events-none"
+                        className="group flex items-center gap-3 pl-4 pr-6 py-3 bg-card border border-border/50 rounded-0 disabled:opacity-20 hover:border-primary/50 transition-all active:scale-95 disabled:pointer-events-none"
                       >
                         <ChevronLeft
                           size={18}
@@ -189,7 +189,7 @@ export default function ShopPageContent({ categorySlug }) {
                         aria-label="Next Page"
                         disabled={page === pagination.totalPages}
                         onClick={() => handlePagination(page + 1)}
-                        className="group flex items-center gap-3 pl-6 pr-4 py-3 bg-card border border-border/50 rounded-md disabled:opacity-20 hover:border-primary/50 transition-all active:scale-95 disabled:pointer-events-none"
+                        className="group flex items-center gap-3 pl-6 pr-4 py-3 bg-card border border-border/50 rounded-0 disabled:opacity-20 hover:border-primary/50 transition-all active:scale-95 disabled:pointer-events-none"
                       >
                         <span className="text-[12px] font-medium uppercase tracking-tighter">
                           পরেরটি
@@ -204,7 +204,7 @@ export default function ShopPageContent({ categorySlug }) {
                 )}
               </div>
             ) : (
-              <div className="flex flex-col items-center justify-center py-40 bg-card/10 border-2 border-dashed border-border/30 rounded-2xl">
+              <div className="flex flex-col items-center justify-center py-40 bg-card/10 border-2 border-dashed border-border/30 rounded-0">
                 <div className="bg-primary/10 p-8 rounded-full mb-6">
                   <Search size={48} className="text-primary opacity-40" />
                 </div>

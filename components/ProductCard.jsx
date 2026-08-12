@@ -61,12 +61,12 @@ export default function ProductCard({ product, priority = false }) {
   return (
     <div className="group relative w-full flex flex-col font-sans">
       {/* 1. Image Container with Rounded Corners & Soft Background */}
-      <div className="relative aspect-4/4 w-full rounded-2xl overflow-hidden flex items-center justify-center">
+      <div className="relative aspect-4/4 w-full rounded-0 overflow-hidden flex items-center justify-center">
         {/* Top Badges */}
         <div className="absolute top-4 left-4 z-20 flex gap-2">
           {product?.badge ? (
             <span
-              className={`text-[11px] font-medium px-3 py-1 rounded-md text-white ${
+              className={`text-[11px] font-medium px-3 py-1 rounded-0 text-white ${
                 product.badge.toLowerCase() === 'new!'
                   ? 'bg-danger'
                   : product.badge.toLowerCase() === 'best seller'
@@ -77,13 +77,13 @@ export default function ProductCard({ product, priority = false }) {
               {product.badge}
             </span>
           ) : discount > 0 ? (
-            <span className="bg-danger text-white text-[11px] font-medium px-2.5 py-1 rounded-md">
+            <span className="bg-danger text-white text-[11px] font-medium px-2.5 py-1 rounded-0">
               -{discount}%
             </span>
           ) : null}
 
           {isOutOfStock && (
-            <span className="bg-bg text-text text-[10px] font-medium px-2.5 py-1 rounded-md uppercase">
+            <span className="bg-bg text-text text-[10px] font-medium px-2.5 py-1 rounded-0 uppercase">
               Out of Stock
             </span>
           )}

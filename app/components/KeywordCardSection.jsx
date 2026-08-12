@@ -33,7 +33,7 @@ export default function KeywordCardSection() {
             </span>
 
             {/* Active Highlight Word */}
-            <span className="text-3xl font-extrabold text-[#D83B25] sm:text-5xl md:text-6xl lg:text-7xl">
+            <span className="text-3xl font-medium text-[#D83B25] sm:text-5xl md:text-6xl lg:text-7xl">
               Harmony
             </span>
 
@@ -53,7 +53,7 @@ export default function KeywordCardSection() {
                 ease: 'easeInOut',
                 delay: 0.2,
               }}
-              className="absolute right-[12%] top-[-40%] z-10 h-36 w-28 overflow-hidden rounded-2xl shadow-2xl transition-shadow duration-300 hover:shadow-2xl sm:h-52 sm:w-40 md:h-60 md:w-44"
+              className="absolute right-[12%] top-[-40%] z-10 h-36 w-28 overflow-hidden rounded-0 shadow-2xl transition-shadow duration-300 hover:shadow-2xl sm:h-52 sm:w-40 md:h-60 md:w-44"
             >
               <Image
                 src="/images/Person_interacting_with_smartwatch_202608111348.jpeg"

@@ -98,7 +98,7 @@ export default function FeatureShowcaseSection() {
             </div>
 
             {/* Left Small Image Card */}
-            <div className="relative h-28 w-56 overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+            <div className="relative h-28 w-56 overflow-hidden rounded-0 border border-white/10 bg-white/5">
               <Image
                 src="/images/Consumer_robot_standing_on_table_202608111343.jpeg"
                 alt="Wireless earbuds charging case detail"
@@ -117,7 +117,7 @@ export default function FeatureShowcaseSection() {
             transition={{ duration: 0.8, ease: 'easeOut', delay: 0.1 }}
             className="relative lg:col-span-7"
           >
-            <div className="group relative h-[320px] w-full overflow-hidden rounded-3xl sm:h-[400px]">
+            <div className="group relative h-[320px] w-full overflow-hidden rounded-0 sm:h-[400px]">
               {/* Main Image */}
               <Image
                 src="/images/Technology_products_and_robotics…_202608111349.jpeg"

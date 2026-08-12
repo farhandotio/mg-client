@@ -72,13 +72,13 @@ export default function OrdersPage() {
           </div>
 
           {/* Status Filter Tabs */}
-          <div className="flex flex-wrap gap-2 p-1 bg-card/30 border border-border/50 rounded-md">
+          <div className="flex flex-wrap gap-2 p-1 bg-card/30 border border-border/50 rounded-0">
             {['ALL', 'PENDING', 'CONFIRMED', 'DELIVERED', 'CANCELLED'].map((status) => (
               <button
                 aria-label="status filter"
                 key={status}
                 onClick={() => setFilter(status)}
-                className={`px-4 py-2 rounded-md text-[11px] font-medium uppercase tracking-tighter transition-all ${
+                className={`px-4 py-2 rounded-0 text-[11px] font-medium uppercase tracking-tighter transition-all ${
                   filter === status
                     ? 'bg-primary text-bg shadow-lg shadow-primary/20'
                     : 'text-pText hover:text-text'
@@ -95,7 +95,7 @@ export default function OrdersPage() {
           {filteredOrders?.length > 0 ? (
             filteredOrders.map((order) => <OrderCard key={order._id} order={order} />)
           ) : (
-            <div className="text-center py-32 bg-card/10 rounded-2xl border-2 border-dashed border-border/50">
+            <div className="text-center py-32 bg-card/10 rounded-0 border-2 border-dashed border-border/50">
               <Package size={48} className="mx-auto text-pText/20 mb-4" />
               <h3 className="text-xl font-medium italic text-pText uppercase">
                 কোন তথ্য পাওয়া যায়নি
@@ -132,7 +132,7 @@ function OrderCard({ order }) {
   };
 
   return (
-    <div className="group relative bg-card/30 border border-border/50 rounded-lg p-6 md:p-8 hover:border-primary/40 transition-all duration-500">
+    <div className="group relative bg-card/30 border border-border/50 rounded-0 p-6 md:p-8 hover:border-primary/40 transition-all duration-500">
       <div className="flex flex-col lg:flex-row justify-between gap-8">
         {/* Left: Info */}
         <div className="space-y-6 flex-1">
@@ -156,7 +156,7 @@ function OrderCard({ order }) {
 
           <div className="flex flex-wrap gap-8">
             <div className="flex items-center gap-3">
-              <div className="p-2.5 bg-bg rounded-md text-primary border border-border">
+              <div className="p-2.5 bg-bg rounded-0 text-primary border border-border">
                 <Clock size={16} />
               </div>
               <div>
@@ -171,7 +171,7 @@ function OrderCard({ order }) {
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <div className="p-2.5 bg-bg rounded-md text-primary border border-border">
+              <div className="p-2.5 bg-bg rounded-0 text-primary border border-border">
                 <CreditCard size={16} />
               </div>
               <div>
@@ -192,7 +192,7 @@ function OrderCard({ order }) {
           {order.orderItems?.slice(0, 3).map((item, idx) => (
             <div
               key={idx}
-              className="w-14 h-14 rounded-md border-2 border-bg overflow-hidden shadow-xl bg-card"
+              className="w-14 h-14 rounded-0 border-2 border-bg overflow-hidden shadow-xl bg-card"
             >
               <img
                 src={item.image}
@@ -202,7 +202,7 @@ function OrderCard({ order }) {
             </div>
           ))}
           {order.orderItems?.length > 3 && (
-            <div className="w-14 h-14 rounded-md border-2 border-bg bg-border flex items-center justify-center text-[12px] font-medium">
+            <div className="w-14 h-14 rounded-0 border-2 border-bg bg-border flex items-center justify-center text-[12px] font-medium">
               +{order.orderItems.length - 3}
             </div>
           )}
@@ -220,7 +220,7 @@ function OrderCard({ order }) {
           </div>
           <Link
             href={`/orders/${order._id}`}
-            className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-md text-[12px] font-medium uppercase tracking-tighter hover:bg-primary hover:text-bg transition-all group/btn"
+            className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-0 text-[12px] font-medium uppercase tracking-tighter hover:bg-primary hover:text-bg transition-all group/btn"
           >
             বিস্তারিত দেখুন{' '}
             <ChevronRight

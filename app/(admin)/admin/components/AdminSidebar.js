@@ -76,7 +76,7 @@ export default function AdminSidebar({ closeSidebar }) {
       {/* --- Brand Header --- */}
       <div className="p-8">
         <div className="flex items-center gap-3 mb-6">
-          <div className="p-2 bg-primary rounded-md shadow-[0_0_15px_rgba(255,111,92,0.4)]">
+          <div className="p-2 bg-primary rounded-0 shadow-[0_0_15px_rgba(255,111,92,0.4)]">
             <Cpu size={20} className="text-white" />
           </div>
           <h2 className="text-2xl font-medium italic text-text uppercase tracking-tighterer leading-none">
@@ -90,7 +90,7 @@ export default function AdminSidebar({ closeSidebar }) {
         <Link
           href="/"
           target="_blank"
-          className="flex items-center justify-between gap-2 px-4 py-3 bg-card/50 border border-border/50 rounded-md text-[11px] font-medium uppercase tracking-tighter text-pText hover:text-primary transition-all group backdrop-blur-md"
+          className="flex items-center justify-between gap-2 px-4 py-3 bg-card/50 border border-border/50 rounded-0 text-[11px] font-medium uppercase tracking-tighter text-pText hover:text-primary transition-all group backdrop-blur-md"
         >
           Explore Store
           <ExternalLink
@@ -117,7 +117,7 @@ export default function AdminSidebar({ closeSidebar }) {
                 <Link
                   href={item.path}
                   onClick={closeSidebar}
-                  className={`flex-1 flex items-center gap-4 px-4 py-3.5 rounded-md font-medium text-[12px] uppercase tracking-tighter transition-all duration-300 relative overflow-hidden ${
+                  className={`flex-1 flex items-center gap-4 px-4 py-3.5 rounded-0 font-medium text-[12px] uppercase tracking-tighter transition-all duration-300 relative overflow-hidden ${
                     isActive
                       ? 'bg-primary text-white shadow-[0_10px_20px_rgba(255,111,92,0.2)]'
                       : 'text-pText/60 hover:bg-card hover:text-text'
@@ -141,7 +141,7 @@ export default function AdminSidebar({ closeSidebar }) {
                   <Link
                     href={item.createPath}
                     onClick={closeSidebar}
-                    className={`p-3.5 rounded-md border transition-all hover:scale-105 active:scale-90 ${
+                    className={`p-3.5 rounded-0 border transition-all hover:scale-105 active:scale-90 ${
                       isActive
                         ? 'bg-primary/20 border-primary/30 text-white hover:bg-primary/40'
                         : 'bg-card border-border/50 text-pText/40 hover:text-primary hover:border-primary/40'
@@ -159,7 +159,7 @@ export default function AdminSidebar({ closeSidebar }) {
 
       {/* --- System Health / Stats --- */}
       <div className="px-6 py-4 space-y-3">
-        <div className="bg-card/30 rounded-md p-4 border border-border/40 backdrop-blur-sm">
+        <div className="bg-card/30 rounded-0 p-4 border border-border/40 backdrop-blur-sm">
           <div className="flex justify-between items-center mb-2">
             <span className="text-[10px] font-medium uppercase text-pText/40 tracking-tighter">
               Network_Stability
@@ -177,7 +177,7 @@ export default function AdminSidebar({ closeSidebar }) {
         <button
           aria-label="logout"
           onClick={handleLogout}
-          className="flex items-center gap-4 w-full px-4 py-5 text-red-500 font-medium text-[12px] uppercase tracking-tighter hover:bg-red-500/10 rounded-lg transition-all group relative overflow-hidden border border-transparent hover:border-red-500/20"
+          className="flex items-center gap-4 w-full px-4 py-5 text-red-500 font-medium text-[12px] uppercase tracking-tighter hover:bg-red-500/10 rounded-0 transition-all group relative overflow-hidden border border-transparent hover:border-red-500/20"
         >
           <div className="absolute inset-0 bg-red-500/5 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300" />
           <LogOut

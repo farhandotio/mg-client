@@ -72,7 +72,7 @@ export default function CategoriesPage() {
       key: 'name',
       render: (item) => (
         <div className="flex items-center gap-4">
-          <div className="w-10 h-10 rounded-md bg-primary/10 border border-primary/20 flex items-center justify-center overflow-hidden transition-transform group-hover:scale-110">
+          <div className="w-10 h-10 rounded-0 bg-primary/10 border border-primary/20 flex items-center justify-center overflow-hidden transition-transform group-hover:scale-110">
             {item?.image?.url ? (
               <img
                 src={item.image?.url || item.logo}
@@ -139,7 +139,7 @@ export default function CategoriesPage() {
       </div>
 
       {/* DataTable */}
-      <div className="relative bg-card/20 backdrop-blur-md border border-border/40 rounded-md overflow-hidden shadow-2xl">
+      <div className="relative bg-card/20 backdrop-blur-md border border-border/40 rounded-0 overflow-hidden shadow-2xl">
         <DataTable
           columns={columns}
           data={categories}
@@ -153,7 +153,7 @@ export default function CategoriesPage() {
       {/* --- Inline Update Modal --- */}
       {isEditModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-300">
-          <div className="bg-card border border-border w-full max-w-md rounded-md p-8 shadow-2xl relative overflow-hidden">
+          <div className="bg-card border border-border w-full max-w-md rounded-0 p-8 shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 blur-3xl rounded-full -mr-16 -mt-16"></div>
 
             <div className="flex justify-between items-center mb-8 relative">
@@ -183,7 +183,7 @@ export default function CategoriesPage() {
                   type="text"
                   value={editName}
                   onChange={(e) => setEditName(e.target.value)}
-                  className="w-full bg-white/5 border border-border rounded-md px-4 py-3 text-xs font-medium text-text focus:outline-none focus:border-primary/50 transition-all shadow-inner"
+                  className="w-full bg-white/5 border border-border rounded-0 px-4 py-3 text-xs font-medium text-text focus:outline-none focus:border-primary/50 transition-all shadow-inner"
                   placeholder="Class name..."
                 />
               </div>
@@ -196,17 +196,17 @@ export default function CategoriesPage() {
                   type="text"
                   value={editImage}
                   onChange={(e) => setEditImage(e.target.value)}
-                  className="w-full bg-white/5 border border-border rounded-md px-4 py-3 text-xs font-medium text-text focus:outline-none focus:border-primary/50 transition-all shadow-inner"
+                  className="w-full bg-white/5 border border-border rounded-0 px-4 py-3 text-xs font-medium text-text focus:outline-none focus:border-primary/50 transition-all shadow-inner"
                   placeholder="https://vault.com/category-img.png"
                 />
               </div>
 
               {editImage && (
-                <div className="w-16 h-16 rounded-md border border-border bg-white/5 p-2">
+                <div className="w-16 h-16 rounded-0 border border-border bg-white/5 p-2">
                   <img
                     src={editImage}
                     alt="Preview"
-                    className="w-full h-full object-cover rounded-md"
+                    className="w-full h-full object-cover rounded-0"
                     onError={(e) => (e.target.style.display = 'none')}
                   />
                 </div>
@@ -216,7 +216,7 @@ export default function CategoriesPage() {
                 aria-label="submit"
                 type="submit"
                 disabled={isUpdating}
-                className="w-full bg-primary hover:bg-primary/90 text-black font-medium uppercase italic py-4 rounded-md transition-all active:scale-95 flex items-center justify-center gap-2 text-xs tracking-tighter disabled:opacity-50"
+                className="w-full bg-primary hover:bg-primary/90 text-black font-medium uppercase italic py-4 rounded-0 transition-all active:scale-95 flex items-center justify-center gap-2 text-xs tracking-tighter disabled:opacity-50"
               >
                 {isUpdating ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />}
                 {isUpdating ? 'Synchronizing...' : 'Commit Changes'}

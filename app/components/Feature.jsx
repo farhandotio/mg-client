@@ -23,17 +23,17 @@ export default function Feature() {
       <div className="">
         <div className="flex justify-between items-end mb-8 gap-4 border-b border-border/10 pb-4">
           <div className="flex items-start justify-between gap-6 w-full h-fit">
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-text leading-[1.1] max-w-2xl">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-medium tracking-tight text-text leading-[1.1] max-w-2xl">
               Designed for seamless sound and advanced technology.
             </h2>
-              <div className="relative shrink-0 w-16 h-16 md:w-24 md:h-24 rounded-2xl overflow-hidden">
-                <Image
-                  src="/images/Audio_gadgets_commercial_product…_202608111342.jpeg"
-                  alt="Featured Lifestyle"
-                  fill
-                  className="object-cover"
-                />
-              </div>
+            <div className="relative shrink-0 w-16 h-16 md:w-24 md:h-24 rounded-0 overflow-hidden">
+              <Image
+                src="/images/Audio_gadgets_commercial_product…_202608111342.jpeg"
+                alt="Featured Lifestyle"
+                fill
+                className="object-cover"
+              />
+            </div>
           </div>
         </div>
 
@@ -52,7 +52,7 @@ export default function Feature() {
               </div>
             ))
           ) : (
-            <div className="col-span-full py-16 text-center border-2 border-dashed border-border/10 rounded-md">
+            <div className="col-span-full py-16 text-center border-2 border-dashed border-border/10 rounded-0">
               <p className="text-pText opacity-60 text-sm font-medium tracking-tighter uppercase">
                 No products found currently
               </p>
@@ -63,7 +63,7 @@ export default function Feature() {
         <div className="mt-8 flex justify-center">
           <Link
             href="/shop?productType=Featured"
-            className="w-full text-center py-3 bg-card border border-border/60 rounded-md text-sm font-medium text-text active:scale-95 transition-transform md:w-fit px-5"
+            className="w-full text-center py-3 bg-card border border-border/60 rounded-0 text-sm font-medium text-text active:scale-95 transition-transform md:w-fit px-5"
           >
             View All Products
             <ArrowRight size={16} className="inline-block ml-1 -rotate-45" />

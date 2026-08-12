@@ -60,7 +60,7 @@ export default function AboutPage() {
           </div>
 
           {/* Values Grid */}
-          <div className="bg-card border border-border p-8 md:p-12 rounded-lg grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="bg-card border border-border p-8 md:p-12 rounded-0 grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
                 title: 'Customer First',
@@ -103,7 +103,7 @@ export default function AboutPage() {
           {team.map((member, i) => (
             <div
               key={i}
-              className="bg-card border border-border p-10 rounded-md flex flex-col items-center text-center group hover:border-primary transition-all duration-300"
+              className="bg-card border border-border p-10 rounded-0 flex flex-col items-center text-center group hover:border-primary transition-all duration-300"
             >
               {/* Profile Avatar with Initials */}
               <div className="w-20 h-20 rounded-full bg-primary flex items-center justify-center text-bg font-medium text-2xl mb-6 shadow-[0_0_20px_rgba(41,252,86,0.2)] group-hover:scale-110 transition-transform">

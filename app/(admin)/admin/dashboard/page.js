@@ -116,10 +116,7 @@ export default function Dashboard() {
       {/* --- Top Stats Cards --- */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
         {stats.map((stat) => (
-          <div
-            key={stat.label}
-            className="bg-card border border-border/50 p-6 rounded-md shadow-sm"
-          >
+          <div key={stat.label} className="bg-card border border-border/50 p-6 rounded-0 shadow-sm">
             <p className="text-[12px] font-medium uppercase tracking-tighter text-pText/70">
               {stat.label}
             </p>
@@ -131,7 +128,7 @@ export default function Dashboard() {
 
       {/* --- Charts Section --- */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-        <div className="bg-card p-6 rounded-md border border-border/50">
+        <div className="bg-card p-6 rounded-0 border border-border/50">
           <Bar
             data={revenueChartData}
             options={{
@@ -140,7 +137,7 @@ export default function Dashboard() {
             }}
           />
         </div>
-        <div className="bg-card p-6 rounded-md border border-border/50">
+        <div className="bg-card p-6 rounded-0 border border-border/50">
           <div className="max-w-87 mx-auto">
             <Pie
               data={statusChartData}
@@ -156,7 +153,7 @@ export default function Dashboard() {
       {/* --- Detailed Lists --- */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Recent Orders */}
-        <div className="bg-card p-6 rounded-md border border-border/50">
+        <div className="bg-card p-6 rounded-0 border border-border/50">
           <h3 className="font-medium uppercase text-sm tracking-tighter mb-6 border-b border-border pb-2">
             Recent Terminals
           </h3>
@@ -193,7 +190,7 @@ export default function Dashboard() {
         </div>
 
         {/* Products Overview */}
-        <div className="bg-card p-6 rounded-md border border-border/50">
+        <div className="bg-card p-6 rounded-0 border border-border/50">
           <h3 className="font-medium uppercase text-sm tracking-tighter mb-6 border-b border-border pb-2">
             Stock Inventory
           </h3>
@@ -201,7 +198,7 @@ export default function Dashboard() {
             {products.slice(0, 6).map((product) => (
               <div key={product._id} className="flex justify-between items-center">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-bg rounded-md overflow-hidden border border-border">
+                  <div className="w-10 h-10 bg-bg rounded-0 overflow-hidden border border-border">
                     <img
                       src={product.images?.[0]?.url || '/placeholder.png'}
                       alt=""

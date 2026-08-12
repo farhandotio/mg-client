@@ -18,7 +18,7 @@ export default function ShippingInfo() {
               Logistics_System_Active
             </p>
           </div>
-          <div className="p-6 bg-primary text-bg rounded-md flex items-center gap-4 shadow-[0_20px_40px_rgba(var(--primary-rgb),0.2)]">
+          <div className="p-6 bg-primary text-bg rounded-0 flex items-center gap-4 shadow-[0_20px_40px_rgba(var(--primary-rgb),0.2)]">
             <Zap size={30} fill="currentColor" />
             <div className="font-medium italic uppercase leading-none">
               <p className="text-[12px]">Average Speed</p>
@@ -67,7 +67,7 @@ export default function ShippingInfo() {
           </div>
 
           {/* Damage Protection Note */}
-          <div className="p-10 bg-card/20 border border-bg/5 rounded-2xl text-center space-y-4">
+          <div className="p-10 bg-card/20 border border-bg/5 rounded-0 text-center space-y-4">
             <h4 className="text-xl font-medium text-text uppercase italic tracking-tighter">
               Transit Security
             </h4>
@@ -84,7 +84,7 @@ export default function ShippingInfo() {
 
 function ZoneCard({ location, time, price, detail }) {
   return (
-    <div className="p-10 bg-card/20 border border-bg/5 rounded-lg hover:bg-card/40 transition-all duration-500">
+    <div className="p-10 bg-card/20 border border-bg/5 rounded-0 hover:bg-card/40 transition-all duration-500">
       <div className="flex justify-between items-start mb-6">
         <h4 className="text-3xl font-medium text-text italic uppercase tracking-tighterer">
           {location}
@@ -108,7 +108,7 @@ function ZoneCard({ location, time, price, detail }) {
 
 function ProtocolItem({ icon, text }) {
   return (
-    <div className="flex items-center gap-4 p-5 bg-bg/20 rounded-md border border-bg/5">
+    <div className="flex items-center gap-4 p-5 bg-bg/20 rounded-0 border border-bg/5">
       <div className="text-primary">{icon}</div>
       <p className="text-sm font-medium text-pText uppercase tracking-tighter italic">{text}</p>
     </div>

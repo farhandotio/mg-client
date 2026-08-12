@@ -150,7 +150,7 @@ export default function AdminOrdersPage() {
           </h1>
         </div>
 
-        <div className="bg-card/50 backdrop-blur-xl border border-border/50 px-6 py-4 rounded-md flex items-center gap-4">
+        <div className="bg-card/50 backdrop-blur-xl border border-border/50 px-6 py-4 rounded-0 flex items-center gap-4">
           <Clock size={18} className="text-primary" />
           <div className="flex flex-col">
             <span className="text-xl font-medium text-text leading-none">
@@ -165,8 +165,8 @@ export default function AdminOrdersPage() {
 
       {/* ডাটা টেবিল */}
       <div className="relative group">
-        <div className="absolute -inset-1 bg-primary/5 rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition duration-1000"></div>
-        <div className="relative bg-card/20 backdrop-blur-md border border-border/40 rounded-md overflow-hidden shadow-2xl">
+        <div className="absolute -inset-1 bg-primary/5 rounded-0 blur-xl opacity-0 group-hover:opacity-100 transition duration-1000"></div>
+        <div className="relative bg-card/20 backdrop-blur-md border border-border/40 rounded-0 overflow-hidden shadow-2xl">
           <DataTable
             columns={columns}
             data={orders}
@@ -181,7 +181,7 @@ export default function AdminOrdersPage() {
       {/* স্ট্যাটাস আপডেট মোডাল */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-300">
-          <div className="bg-card border border-border w-full max-w-md rounded-md p-8 shadow-2xl relative">
+          <div className="bg-card border border-border w-full max-w-md rounded-0 p-8 shadow-2xl relative">
             <button
               aria-label="close"
               onClick={() => setIsModalOpen(false)}
@@ -199,7 +199,7 @@ export default function AdminOrdersPage() {
               <select
                 value={newStatus}
                 onChange={(e) => setNewStatus(e.target.value)}
-                className="w-full bg-bg rounded-md border border-border px-4 py-3 text-xs font-medium text-text focus:border-primary outline-none appearance-none"
+                className="w-full bg-bg rounded-0 border border-border px-4 py-3 text-xs font-medium text-text focus:border-primary outline-none appearance-none"
               >
                 <option value="PENDING">PENDING</option>
                 <option value="CONFIRMED">CONFIRMED</option>
@@ -210,7 +210,7 @@ export default function AdminOrdersPage() {
               </select>
               <button
                 onClick={submitStatusUpdate}
-                className="w-full bg-primary hover:bg-primary/80 text-black font-medium uppercase italic py-4 rounded-md transition-all text-xs tracking-tighter"
+                className="w-full bg-primary hover:bg-primary/80 text-black font-medium uppercase italic py-4 rounded-0 transition-all text-xs tracking-tighter"
               >
                 আপডেট করুন
               </button>

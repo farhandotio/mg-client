@@ -60,7 +60,7 @@ export default function OrderSuccessPage() {
         <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
           <div className="relative inline-block">
             <div className="absolute inset-0 bg-primary/20 blur-2xl rounded-full animate-pulse" />
-            <div className="relative inline-flex items-center justify-center w-24 h-24 rounded-md bg-card border-2 border-primary rotate-12 mb-8 shadow-2xl">
+            <div className="relative inline-flex items-center justify-center w-24 h-24 rounded-0 bg-card border-2 border-primary rotate-12 mb-8 shadow-2xl">
               <CheckCircle2 size={48} className="text-primary -rotate-12" />
             </div>
           </div>
@@ -79,7 +79,7 @@ export default function OrderSuccessPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* মেইন ইনফো কার্ড */}
           <div className="lg:col-span-8 space-y-6">
-            <div className="bg-card/50 backdrop-blur-xl border border-border rounded-lg overflow-hidden group">
+            <div className="bg-card/50 backdrop-blur-xl border border-border rounded-0 overflow-hidden group">
               <div className="p-1 bg-linear-to-r from-primary/50 via-transparent to-transparent" />
               <div className="p-8">
                 <div className="flex flex-wrap justify-between items-start gap-4 mb-10">
@@ -123,7 +123,7 @@ export default function OrderSuccessPage() {
 
                   <div className="space-y-6">
                     <SectionLabel icon={CreditCard} text="পেমেন্ট তথ্য" />
-                    <div className="bg-bg/50 border border-border p-4 rounded-md">
+                    <div className="bg-bg/50 border border-border p-4 rounded-0">
                       <p className="text-[12px] font-medium text-pText uppercase mb-1">
                         পদ্ধতি: {payment.method === 'COD' ? 'ক্যাশ অন ডেলিভারি' : 'অনলাইন'}
                       </p>
@@ -144,7 +144,7 @@ export default function OrderSuccessPage() {
                 arialabel="go to shop"
                 size="xl"
                 url="/shop"
-                className="flex-1 rounded-md py-4"
+                className="flex-1 rounded-0 py-4"
                 icon={ShoppingBag}
                 text="শপে ফিরে যান"
               />
@@ -152,7 +152,7 @@ export default function OrderSuccessPage() {
                 arialabel="go to order"
                 size="xl"
                 href={`/orders/${orderDetails._id}`}
-                className="flex-1 rounded-md py-4"
+                className="flex-1 rounded-0 py-4"
                 icon={Zap}
                 text="বিস্তারিত দেখুন"
               />
@@ -161,7 +161,7 @@ export default function OrderSuccessPage() {
 
           {/* প্রাইস সাইডবার */}
           <div className="lg:col-span-4">
-            <div className="bg-card border border-border rounded-lg p-8 sticky top-24 shadow-2xl">
+            <div className="bg-card border border-border rounded-0 p-8 sticky top-24 shadow-2xl">
               <h3 className="text-pText text-[11px] font-medium uppercase tracking-tighter mb-8 border-b border-border/20 pb-4">
                 অর্ডার লিস্ট
               </h3>
@@ -195,7 +195,7 @@ export default function OrderSuccessPage() {
                 </div>
               </div>
 
-              <div className="mt-8 p-4 bg-primary/5 rounded-md border border-primary/10">
+              <div className="mt-8 p-4 bg-primary/5 rounded-0 border border-primary/10">
                 <p className="text-[10px] text-primary font-medium text-center uppercase tracking-tighter leading-relaxed">
                   আপনার ইনভয়েস কপিটি ইমেইলে পাঠিয়ে দেওয়া হয়েছে।
                 </p>

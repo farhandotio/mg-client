@@ -10,7 +10,7 @@ export default function Button({
   size = 'md',
   className = '',
   type = 'button',
-  fillColor = 'bg-primary',
+  fillColor = 'bg-text',
   loading = false,
   arialabel,
   ...props
@@ -30,7 +30,7 @@ export default function Button({
 
   const baseClasses = `
     relative inline-flex items-center gap-3 overflow-hidden group font-medium justify-center 
-    text-text whitespace-nowrap rounded-md transition-all duration-500 w-full cursor-pointer disabled:opacity-70 bg-border border ${fillColor} md:bg-border max-md:text-white border-border/20 
+    text-text whitespace-nowrap rounded-0 transition-all duration-500 w-full cursor-pointer disabled:opacity-70 bg-border border ${fillColor} md:bg-border max-md:text-bg border-border/20 
     hover:border-transparent hover:-translate-y-[1px]
     ${sizeClasses} ${className}
   `;
@@ -46,7 +46,7 @@ export default function Button({
       {loading ? (
         <span className="flex items-center gap-2">
           <svg
-            className="animate-spin h-5 w-5 text-primary group-hover:text-white"
+            className="animate-spin h-5 w-5 text-primary group-hover:text-bg"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -65,16 +65,16 @@ export default function Button({
               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
             ></path>
           </svg>
-          <span className="group-hover:text-white transition-colors duration-300">
+          <span className="group-hover:text-bg transition-colors duration-300">
             Processing...
           </span>
         </span>
       ) : (
         <>
           {Icon && (
-            <Icon className="w-5 h-5 group-hover:text-white transition-colors duration-300" />
+            <Icon className="w-5 h-5 group-hover:text-bg transition-colors duration-300" />
           )}
-          <span className="uppercase tracking-tighter group-hover:text-white transition-colors duration-300">
+          <span className="uppercase tracking-tighter group-hover:text-bg transition-colors duration-300">
             {text}
           </span>
         </>

@@ -31,7 +31,7 @@ export default function GenericForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-8 bg-card p-8 rounded-lg border border-border/50"
+      className="space-y-8 bg-card p-8 rounded-0 border border-border/50"
     >
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-3xl font-medium italic uppercase tracking-tighterer text-text">
@@ -57,7 +57,7 @@ export default function GenericForm({
               <input
                 type={field.type}
                 required={field.required}
-                className="w-full bg-bg border border-border/50 rounded-md px-6 py-4 text-text focus:border-primary outline-none transition-all font-medium"
+                className="w-full bg-bg border border-border/50 rounded-0 px-6 py-4 text-text focus:border-primary outline-none transition-all font-medium"
                 value={
                   field.nested ? formData[field.nested]?.[field.name] : formData[field.name] || ''
                 }
@@ -69,7 +69,7 @@ export default function GenericForm({
               />
             ) : field.type === 'select' ? (
               <select
-                className="w-full bg-bg border border-border/50 rounded-md px-6 py-4 text-text focus:border-primary outline-none transition-all font-medium appearance-none"
+                className="w-full bg-bg border border-border/50 rounded-0 px-6 py-4 text-text focus:border-primary outline-none transition-all font-medium appearance-none"
                 value={formData[field.name] || ''}
                 onChange={(e) => handleChange(field.name, e.target.value)}
               >
@@ -83,7 +83,7 @@ export default function GenericForm({
             ) : field.type === 'textarea' ? (
               <textarea
                 rows={4}
-                className="w-full bg-bg border border-border/50 rounded-md px-6 py-4 text-text focus:border-primary outline-none transition-all font-medium"
+                className="w-full bg-bg border border-border/50 rounded-0 px-6 py-4 text-text focus:border-primary outline-none transition-all font-medium"
                 value={formData[field.name] || ''}
                 onChange={(e) => handleChange(field.name, e.target.value)}
               />

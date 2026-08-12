@@ -184,7 +184,7 @@ export default function CheckoutPage() {
           {/* বাম পাশ: ইনফরমেশন */}
           <div className="lg:col-span-7 space-y-6">
             {/* ঠিকানা সেকশন */}
-            <section className="bg-card/20 border border-border/40 rounded-2xl overflow-hidden shadow-sm">
+            <section className="bg-card/20 border border-border/40 rounded-0 overflow-hidden shadow-sm">
               <div className="px-5 py-4 border-b border-border/40 bg-white/5 flex justify-between items-center">
                 <h2 className="text-xs font-medium uppercase tracking-wider flex items-center gap-2">
                   <MapPin size={16} className="text-primary" /> ১. ডেলিভারি ঠিকানা
@@ -245,7 +245,7 @@ export default function CheckoutPage() {
                     <div className="flex gap-3 pt-2">
                       <button
                         type="submit"
-                        className="bg-primary text-bg px-6 py-2.5 rounded-md text-[11px] font-medium uppercase hover:scale-[1.02] transition-transform shadow-lg shadow-primary/20"
+                        className="bg-primary text-bg px-6 py-2.5 rounded-0 text-[11px] font-medium uppercase hover:scale-[1.02] transition-transform shadow-lg shadow-primary/20"
                       >
                         ঠিকানা সংরক্ষণ করুন
                       </button>
@@ -266,7 +266,7 @@ export default function CheckoutPage() {
                       <div
                         key={addr._id}
                         onClick={() => setSelectedAddress(addr)}
-                        className={`relative p-4 rounded-2xl border-2 transition-all cursor-pointer ${selectedAddress?._id === addr._id ? 'border-primary bg-primary/5 shadow-md' : 'border-border/30 bg-bg/40'}`}
+                        className={`relative p-4 rounded-0 border-2 transition-all cursor-pointer ${selectedAddress?._id === addr._id ? 'border-primary bg-primary/5 shadow-md' : 'border-border/30 bg-bg/40'}`}
                       >
                         {selectedAddress?._id === addr._id && (
                           <CheckCircle2 size={16} className="absolute top-3 right-3 text-primary" />
@@ -291,7 +291,7 @@ export default function CheckoutPage() {
             </section>
 
             {/* পেমেন্ট পদ্ধতি */}
-            <section className="bg-card/20 border border-border/40 rounded-2xl overflow-hidden shadow-sm">
+            <section className="bg-card/20 border border-border/40 rounded-0 overflow-hidden shadow-sm">
               <div className="px-5 py-4 border-b border-border/40 bg-white/5">
                 <h2 className="text-xs font-medium uppercase tracking-wider flex items-center gap-2">
                   <CreditCard size={16} className="text-primary" /> ২. পেমেন্ট পদ্ধতি
@@ -316,7 +316,7 @@ export default function CheckoutPage() {
 
           {/* ডান পাশ: সামারি (Sticky) */}
           <div className="lg:col-span-5">
-            <div className="bg-card border border-border/40 rounded-2xl p-5 md:p-6 sticky top-6 shadow-2xl">
+            <div className="bg-card border border-border/40 rounded-0 p-5 md:p-6 sticky top-6 shadow-2xl">
               <h3 className="text-sm font-medium uppercase italic border-b border-border/20 pb-4 mb-5 flex justify-between items-center">
                 অর্ডার সামারি <span>{cartItems.length} টি পণ্য</span>
               </h3>
@@ -325,9 +325,9 @@ export default function CheckoutPage() {
                 {cartItems.map((item) => (
                   <div
                     key={item.productId}
-                    className="flex gap-3 items-center bg-bg/40 p-2.5 rounded-2xl border border-white/5 group relative"
+                    className="flex gap-3 items-center bg-bg/40 p-2.5 rounded-0 border border-white/5 group relative"
                   >
-                    <div className="w-14 h-14 rounded-lg overflow-hidden bg-white shrink-0 border border-border/20">
+                    <div className="w-14 h-14 rounded-0 overflow-hidden bg-white shrink-0 border border-border/20">
                       <img
                         src={item.image}
                         className="w-full h-full object-contain p-1 transition-transform group-hover:scale-110"
@@ -400,7 +400,7 @@ export default function CheckoutPage() {
               <Button
                 onClick={handlePlaceOrder}
                 disabled={orderLoading || authLoading}
-                className="w-full mt-8 py-5 rounded-2xl shadow-xl shadow-primary/10 uppercase tracking-tighter text-[11px] font-medium"
+                className="w-full mt-8 py-5 rounded-0 shadow-xl shadow-primary/10 uppercase tracking-tighter text-[11px] font-medium"
                 text={orderLoading ? 'প্রসেসিং...' : 'অর্ডার সম্পন্ন করুন'}
                 icon={ChevronRight}
               />
@@ -421,7 +421,7 @@ function PaymentOption({ active, onClick, icon, title }) {
   return (
     <div
       onClick={onClick}
-      className={`flex-1 flex items-center gap-3 p-4 rounded-2xl border-2 cursor-pointer transition-all ${active ? 'border-primary bg-primary/5 shadow-md scale-[1.02]' : 'border-border/20 bg-bg/40'}`}
+      className={`flex-1 flex items-center gap-3 p-4 rounded-0 border-2 cursor-pointer transition-all ${active ? 'border-primary bg-primary/5 shadow-md scale-[1.02]' : 'border-border/20 bg-bg/40'}`}
     >
       <div className={`${active ? 'text-primary' : 'text-pText opacity-40'}`}>{icon}</div>
       <span className="text-[11px] font-medium uppercase tracking-tighterer">{title}</span>
@@ -438,7 +438,7 @@ function CheckoutInput({ label, icon, ...props }) {
       <div className="relative group">
         <input
           {...props}
-          className="w-full bg-bg/50 border border-border/40 rounded-2xl p-3 text-[11px] font-medium text-text outline-none focus:border-primary transition-all pl-10 placeholder:text-pText/30"
+          className="w-full bg-bg/50 border border-border/40 rounded-0 p-3 text-[11px] font-medium text-text outline-none focus:border-primary transition-all pl-10 placeholder:text-pText/30"
         />
         <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-pText group-focus-within:text-primary transition-colors">
           {icon || <Navigation size={14} />}

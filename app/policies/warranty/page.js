@@ -66,7 +66,7 @@ export default function WarrantyPolicy() {
           </div>
 
           {/* Support Call to Action */}
-          <div className="p-10 bg-primary rounded-2xl text-bg flex flex-col md:flex-row justify-between items-center gap-8 shadow-[0_20px_50px_rgba(var(--primary-rgb),0.3)]">
+          <div className="p-10 bg-primary rounded-0 text-bg flex flex-col md:flex-row justify-between items-center gap-8 shadow-[0_20px_50px_rgba(var(--primary-rgb),0.3)]">
             <div className="space-y-2 text-center md:text-left">
               <h3 className="text-3xl font-medium uppercase italic leading-none">Need to Claim?</h3>
               <p className="font-medium opacity-80 uppercase tracking-tighter">
@@ -75,7 +75,7 @@ export default function WarrantyPolicy() {
             </div>
             <button
               aria-label="open ticket"
-              className="bg-bg text-text px-10 py-4 rounded-md font-medium uppercase tracking-tighter hover:scale-105 transition-transform"
+              className="bg-bg text-text px-10 py-4 rounded-0 font-medium uppercase tracking-tighter hover:scale-105 transition-transform"
             >
               Open Ticket
             </button>
@@ -88,7 +88,7 @@ export default function WarrantyPolicy() {
 
 function Step({ number, title, desc }) {
   return (
-    <div className="p-6 bg-card/20 border border-white/5 rounded-md relative overflow-hidden group">
+    <div className="p-6 bg-card/20 border border-white/5 rounded-0 relative overflow-hidden group">
       <span className="absolute -right-2 -top-2 text-6xl font-medium text-white/30 group-hover:text-primary/10 transition-colors">
         {number}
       </span>

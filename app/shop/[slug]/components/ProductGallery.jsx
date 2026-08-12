@@ -41,7 +41,7 @@ export default function ProductGallery({ images = [], title, discount }) {
 
   if (!images?.length)
     return (
-      <div className="aspect-square bg-card/20 rounded-md animate-pulse border border-border/20" />
+      <div className="aspect-square bg-card/20 rounded-0 animate-pulse border border-border/20" />
     );
 
   return (
@@ -62,7 +62,7 @@ export default function ProductGallery({ images = [], title, discount }) {
             className={`
               relative shrink-0 
               w-15 h-15 md:w-full md:h-auto md:aspect-square 
-              rounded-md overflow-hidden border-2 transition-all duration-300
+              rounded-0 overflow-hidden border-2 transition-all duration-300
               ${
                 activeImg === index
                   ? 'border-primary opacity-100 ring-2 ring-primary/20'
@@ -88,7 +88,7 @@ export default function ProductGallery({ images = [], title, discount }) {
         onMouseLeave={() => setZoomPos({ ...zoomPos, show: false })}
         className={`
           flex-1 relative aspect-square md:aspect-auto md:h-110 lg:h-123 
-          bg-card/40 border border-border/40 rounded-md overflow-hidden 
+          bg-card/40 border border-border/40 rounded-0 overflow-hidden 
           group/gallery shadow-2xl cursor-crosshair
         `}
       >
@@ -104,7 +104,7 @@ export default function ProductGallery({ images = [], title, discount }) {
               animate={{ opacity: 1, x: 0 }}
               className="flex flex-col gap-1.5"
             >
-              <span className="bg-primary text-bg text-[12px] font-medium px-3 py-1 rounded-md italic uppercase clip-path-tag-gallery shadow-[0_0_15px_rgba(41,252,86,0.3)]">
+              <span className="bg-primary text-bg text-[12px] font-medium px-3 py-1 rounded-0 italic uppercase clip-path-tag-gallery shadow-[0_0_15px_rgba(41,252,86,0.3)]">
                 {discount}% ছাড়
               </span>
               <div className="bg-text/60 backdrop-blur-md border border-bg/10 text-bg text-[11px] font-medium px-2 py-1 rounded flex items-center gap-1 w-fit">
@@ -118,7 +118,7 @@ export default function ProductGallery({ images = [], title, discount }) {
         <button
           aria-label="Full Screen"
           onClick={() => setIsFullScreen(true)}
-          className="absolute top-5 right-5 z-20 p-3 bg-text/40 backdrop-blur-md border border-bg/10 rounded-md text-bg md:opacity-0 md:group-hover/gallery:opacity-100 transition-all active:scale-90 hover:bg-bg/10"
+          className="absolute top-5 right-5 z-20 p-3 bg-text/40 backdrop-blur-md border border-bg/10 rounded-0 text-bg md:opacity-0 md:group-hover/gallery:opacity-100 transition-all active:scale-90 hover:bg-bg/10"
         >
           <Maximize2 size={18} />
         </button>
@@ -130,7 +130,7 @@ export default function ProductGallery({ images = [], title, discount }) {
               e.stopPropagation();
               prevImg();
             }}
-            className="p-3 bg-text/60 backdrop-blur-xl rounded-md border border-bg/10 text-bg hover:bg-primary hover:text-bg transition-all shadow-xl pointer-events-auto active:scale-95"
+            className="p-3 bg-text/60 backdrop-blur-xl rounded-0 border border-bg/10 text-bg hover:bg-primary hover:text-bg transition-all shadow-xl pointer-events-auto active:scale-95"
           >
             <ChevronLeft size={20} />
           </button>
@@ -139,7 +139,7 @@ export default function ProductGallery({ images = [], title, discount }) {
               e.stopPropagation();
               nextImg();
             }}
-            className="p-3 bg-text/60 backdrop-blur-xl rounded-md border border-bg/10 text-bg hover:bg-primary hover:text-bg transition-all shadow-xl pointer-events-auto active:scale-95"
+            className="p-3 bg-text/60 backdrop-blur-xl rounded-0 border border-bg/10 text-bg hover:bg-primary hover:text-bg transition-all shadow-xl pointer-events-auto active:scale-95"
           >
             <ChevronRight size={20} />
           </button>
@@ -222,7 +222,7 @@ export default function ProductGallery({ images = [], title, discount }) {
                 <button
                   key={index}
                   onClick={() => setActiveImg(index)}
-                  className={`relative w-16 h-16 rounded-md overflow-hidden border-2 transition-all ${
+                  className={`relative w-16 h-16 rounded-0 overflow-hidden border-2 transition-all ${
                     activeImg === index ? 'border-primary opacity-100' : 'border-bg/20 opacity-50'
                   }`}
                 >

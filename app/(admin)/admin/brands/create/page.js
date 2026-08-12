@@ -93,14 +93,14 @@ export default function CreateBrandPage() {
           </div>
         </div>
 
-        <div className="flex gap-4 items-center bg-card/50 p-4 rounded-md border border-border/50 backdrop-blur-sm shadow-inner">
+        <div className="flex gap-4 items-center bg-card/50 p-4 rounded-0 border border-border/50 backdrop-blur-sm shadow-inner">
           <div className="text-right border-r border-border/50 pr-4">
             <p className="text-[10px] font-medium text-pText uppercase tracking-tighter opacity-40">
               Security_Level
             </p>
             <p className="text-[12px] font-medium text-primary italic">Admin_Restricted</p>
           </div>
-          <div className="p-2 bg-primary/10 rounded-md text-primary animate-pulse">
+          <div className="p-2 bg-primary/10 rounded-0 text-primary animate-pulse">
             <ShieldCheck size={24} />
           </div>
         </div>
@@ -109,7 +109,7 @@ export default function CreateBrandPage() {
       <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-12 gap-10">
         {/* Left Side: Visual Asset Preview */}
         <div className="lg:col-span-5 xl:col-span-5 group">
-          <section className="bg-card/40 p-5 md:p-8 rounded-md border border-border/80 shadow-sm space-y-6 h-full flex flex-col relative overflow-hidden transition-all group-hover:border-primary/30 group-hover:shadow-lg">
+          <section className="bg-card/40 p-5 md:p-8 rounded-0 border border-border/80 shadow-sm space-y-6 h-full flex flex-col relative overflow-hidden transition-all group-hover:border-primary/30 group-hover:shadow-lg">
             {/* Background Tech Accent */}
             <div className="absolute -bottom-10 -left-10 text-primary opacity-[0.03] group-hover:opacity-[0.05] transition-opacity">
               <ImageIcon size={250} />
@@ -123,14 +123,14 @@ export default function CreateBrandPage() {
                   type="text"
                   placeholder="Insert Logo URL & Enter"
                   onKeyDown={handleImageUrl}
-                  className="w-full border border-border/80 rounded-md p-4 bg-bg/60 text-[12px] font-medium uppercase tracking-tighter outline-none focus:border-primary focus:ring-4 focus:ring-primary/5 transition-all shadow-inner"
+                  className="w-full border border-border/80 rounded-0 p-4 bg-bg/60 text-[12px] font-medium uppercase tracking-tighter outline-none focus:border-primary focus:ring-4 focus:ring-primary/5 transition-all shadow-inner"
                 />
-                <div className="absolute right-4 top-1/2 -translate-y-1/2 p-1 bg-primary/10 rounded-md group-hover/input:bg-primary transition-colors">
+                <div className="absolute right-4 top-1/2 -translate-y-1/2 p-1 bg-primary/10 rounded-0 group-hover/input:bg-primary transition-colors">
                   <Plus size={14} className="group-hover/input:text-white" />
                 </div>
               </div>
 
-              <div className="grow min-h-75 lg:min-h-0 relative rounded-lg border-2 border-dashed border-border flex flex-col items-center justify-center bg-bg/40 backdrop-blur-sm overflow-hidden shadow-inner group-hover:border-primary/50 transition-colors">
+              <div className="grow min-h-75 lg:min-h-0 relative rounded-0 border-2 border-dashed border-border flex flex-col items-center justify-center bg-bg/40 backdrop-blur-sm overflow-hidden shadow-inner group-hover:border-primary/50 transition-colors">
                 {formData.image.url ? (
                   <div className="relative w-full h-full p-8 flex items-center justify-center">
                     <img
@@ -143,7 +143,7 @@ export default function CreateBrandPage() {
                       aria-label="check image"
                       type="button"
                       onClick={() => setFormData({ ...formData, image: { url: '', fileId: '' } })}
-                      className="absolute bottom-6 right-6 bg-primary text-white p-3 rounded-md shadow-xl hover:bg-text transition-all active:scale-90 z-20"
+                      className="absolute bottom-6 right-6 bg-primary text-white p-3 rounded-0 shadow-xl hover:bg-text transition-all active:scale-90 z-20"
                     >
                       <Check size={18} strokeWidth={3} />
                     </button>
@@ -160,7 +160,7 @@ export default function CreateBrandPage() {
                 )}
               </div>
 
-              <div className="bg-bg/60 p-3 rounded-md border border-border/50 flex justify-between items-center">
+              <div className="bg-bg/60 p-3 rounded-0 border border-border/50 flex justify-between items-center">
                 <span className="text-[10px] font-medium uppercase text-pText/40 tracking-tighter">
                   Global_ID
                 </span>
@@ -174,7 +174,7 @@ export default function CreateBrandPage() {
 
         {/* Right Side: Core Parameters */}
         <div className="lg:col-span-7 xl:col-span-7 space-y-8">
-          <section className="bg-card/40 p-5 md:p-8 rounded-md border border-border/80 shadow-sm relative overflow-hidden h-full flex flex-col justify-center transition-all hover:border-primary/30">
+          <section className="bg-card/40 p-5 md:p-8 rounded-0 border border-border/80 shadow-sm relative overflow-hidden h-full flex flex-col justify-center transition-all hover:border-primary/30">
             {/* Background Dashboard Accent */}
             <div className="absolute top-0 right-0 p-10 text-primary opacity-[0.02] -rotate-12">
               <LayoutDashboard size={300} />
@@ -196,7 +196,7 @@ export default function CreateBrandPage() {
                   type="text"
                   required
                   placeholder="e.g. Cyberdyne Systems"
-                  className="w-full border border-border rounded-md p-6 bg-bg/60 focus:border-primary outline-none transition-all font-medium text-lg text-text placeholder:text-pText/10 shadow-inner"
+                  className="w-full border border-border rounded-0 p-6 bg-bg/60 focus:border-primary outline-none transition-all font-medium text-lg text-text placeholder:text-pText/10 shadow-inner"
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 />
               </div>
@@ -212,7 +212,7 @@ export default function CreateBrandPage() {
                       key={status}
                       type="button"
                       onClick={() => setFormData({ ...formData, status })}
-                      className={`group relative overflow-hidden py-5 rounded-md border-2 font-medium text-[12px] uppercase tracking-tighter transition-all 
+                      className={`group relative overflow-hidden py-5 rounded-0 border-2 font-medium text-[12px] uppercase tracking-tighter transition-all 
                       ${
                         formData.status === status
                           ? 'bg-primary border-primary text-white shadow-[0_10px_20px_rgba(255,111,92,0.3)]'
@@ -236,7 +236,7 @@ export default function CreateBrandPage() {
                   type="submit"
                   size="xl"
                   disabled={isLoading}
-                  className={`w-full py-8 rounded-md shadow-2xl active:scale-[0.97] transition-all font-medium text-sm tracking-wide italic
+                  className={`w-full py-8 rounded-0 shadow-2xl active:scale-[0.97] transition-all font-medium text-sm tracking-wide italic
                     ${isLoading ? 'opacity-50 grayscale' : 'hover:shadow-primary/30'}
                   `}
                   text={isLoading ? <Loader2 className="animate-spin mx-auto" /> : 'Execute_Entry'}
@@ -257,7 +257,7 @@ export default function CreateBrandPage() {
 function SectionHeader({ icon, title }) {
   return (
     <div className="flex items-center gap-4 text-primary mb-8">
-      <div className="p-3 bg-primary/10 rounded-md border border-primary/20 shadow-sm backdrop-blur-md">
+      <div className="p-3 bg-primary/10 rounded-0 border border-primary/20 shadow-sm backdrop-blur-md">
         {icon}
       </div>
       <h2 className="text-xs font-medium uppercase tracking-wide">{title}</h2>

@@ -75,7 +75,7 @@ export default function ShopSidebar({
           defaultValue={searchTerm}
           onChange={onSearchChange}
           placeholder="পণ্য খুঁজুন..."
-          className="w-full bg-white/5 border border-border/40 rounded-md py-3 pl-11 pr-4 text-xs text-text focus:outline-none focus:border-primary/50 transition-all placeholder:text-pText/30"
+          className="w-full bg-white/5 border border-border/40 rounded-0 py-3 pl-11 pr-4 text-xs text-text focus:outline-none focus:border-primary/50 transition-all placeholder:text-pText/30"
         />
         <Search
           size={14}
@@ -95,7 +95,7 @@ export default function ShopSidebar({
         <div className="flex flex-col gap-0.5">
           <Link
             href="/shop"
-            className={`group flex items-center justify-between py-2 px-3 rounded-md transition-all ${
+            className={`group flex items-center justify-between py-2 px-3 rounded-0 transition-all ${
               !selectedCategory ? 'bg-primary/10 text-primary' : 'text-pText hover:bg-white/5'
             }`}
             onClick={() => setIsMobileFilterOpen?.(false)}
@@ -110,7 +110,7 @@ export default function ShopSidebar({
             <Link
               key={cat._id}
               href={`/shop?category=${cat.slug}${selectedType ? `&productType=${selectedType}` : ''}`}
-              className={`group flex items-center justify-between py-2 px-3 rounded-md transition-all ${
+              className={`group flex items-center justify-between py-2 px-3 rounded-0 transition-all ${
                 selectedCategory === cat.slug
                   ? 'bg-primary/10 text-primary'
                   : 'text-pText hover:bg-white/5'
@@ -142,7 +142,7 @@ export default function ShopSidebar({
             <Link
               key={type.slug}
               href={`/shop?productType=${type.slug}${selectedCategory ? `&category=${selectedCategory}` : ''}`}
-              className={`flex items-center justify-between p-3 rounded-md border text-[12px] font-medium uppercase tracking-tighterer transition-all ${
+              className={`flex items-center justify-between p-3 rounded-0 border text-[12px] font-medium uppercase tracking-tighterer transition-all ${
                 selectedType === type.slug
                   ? 'bg-primary text-bg border-primary'
                   : 'bg-white/5 border-border/20 text-pText hover:border-primary/40'

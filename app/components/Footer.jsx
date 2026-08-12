@@ -101,7 +101,7 @@ export default function Footer() {
 
           {/* Right Column - Hero Banner Image Card */}
           <div className="relative lg:col-span-5">
-            <div className="relative h-[480px] w-full overflow-hidden rounded-3xl sm:h-[560px] lg:h-full min-h-[480px]">
+            <div className="relative h-[480px] w-full overflow-hidden rounded-0 sm:h-[560px] lg:h-full min-h-[480px]">
               {/* Main Image */}
               <Image
                 src="/images/Man_interacting_with_consumer_robot_202608111350.jpeg"
@@ -121,7 +121,7 @@ export default function Footer() {
               {/* Overlay Bottom CTA Badge */}
               <Link
                 href="/shop/sonos-ace"
-                className="absolute bottom-6 right-6 z-10 flex items-center justify-between gap-4 rounded-2xl bg-white p-4 text-black shadow-xl transition-transform hover:scale-[1.02]"
+                className="absolute bottom-6 right-6 z-10 flex items-center justify-between gap-4 rounded-0 bg-white p-4 text-black shadow-xl transition-transform hover:scale-[1.02]"
               >
                 <div className="text-left">
                   <span className="block text-xs font-medium leading-tight">See the Product</span>

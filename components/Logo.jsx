@@ -38,7 +38,7 @@ export default function Logo({
   if (!useLink) {
     return (
       <div
-        className={`flex items-center gap-2 outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md transition-transform active:scale-95 ${className}`}
+        className={`flex items-center gap-2 outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-0 transition-transform active:scale-95 ${className}`}
         aria-label="My Gadget Home"
       >
         {content}
@@ -49,7 +49,7 @@ export default function Logo({
   return (
     <Link
       href="/"
-      className={`flex items-center gap-2 outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md transition-transform active:scale-95 ${className}`}
+      className={`flex items-center gap-2 outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-0 transition-transform active:scale-95 ${className}`}
       aria-label="My Gadget Home"
     >
       {content}

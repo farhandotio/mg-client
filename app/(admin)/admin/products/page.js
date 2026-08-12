@@ -36,7 +36,7 @@ export default function AdminProducts() {
       key: 'title',
       render: (item) => (
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-md bg-white/5 border border-border overflow-hidden shrink-0">
+          <div className="w-12 h-12 rounded-0 bg-white/5 border border-border overflow-hidden shrink-0">
             <img
               src={
                 Array.isArray(item.images) ? item.images[0]?.url : item.image || '/placeholder.png'
@@ -84,7 +84,7 @@ export default function AdminProducts() {
       key: 'status',
       render: (item) => (
         <span
-          className={`px-3 py-1.5 rounded-md text-[10px] font-medium uppercase tracking-tighterer ${
+          className={`px-3 py-1.5 rounded-0 text-[10px] font-medium uppercase tracking-tighterer ${
             item.stock > 0
               ? 'bg-primary/10 text-primary border border-primary/20'
               : 'bg-red-500/10 text-red-500 border border-red-500/20'

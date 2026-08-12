@@ -101,10 +101,10 @@ export default function ProductInfo({ product }) {
     <div className="flex flex-col gap-6 md:gap-7 lg:pl-4">
       <div className="space-y-4">
         <div className="flex flex-wrap items-center gap-3">
-          <span className="px-3 py-1 bg-primary/10 border border-primary/20 text-primary text-[12px] font-medium uppercase tracking-tighter rounded-md">
+          <span className="px-3 py-1 bg-primary/10 border border-primary/20 text-primary text-[12px] font-medium uppercase tracking-tighter rounded-0">
             {product.brand?.name || product.brand}
           </span>
-          <span className="px-3 py-1 bg-card border border-border text-pText text-[12px] font-medium uppercase tracking-tighter rounded-md">
+          <span className="px-3 py-1 bg-card border border-border text-pText text-[12px] font-medium uppercase tracking-tighter rounded-0">
             এসকিউ (SKU): {product.sku || 'N/A'}
           </span>
         </div>
@@ -137,7 +137,7 @@ export default function ProductInfo({ product }) {
         </div>
       </div>
 
-      <div className="flex items-center gap-3 rounded-md backdrop-blur-sm w-fit">
+      <div className="flex items-center gap-3 rounded-0 backdrop-blur-sm w-fit">
         <div className="flex flex-col">
           <span className="text-2xl font-medium text-text italic tracking-tighterer leading-none">
             ৳{salePrice.toLocaleString()}
@@ -167,7 +167,7 @@ export default function ProductInfo({ product }) {
       {/* Actions */}
       <div className="space-y-4">
         <div className="flex flex-wrap gap-4">
-          <div className="flex justify-between px-5 items-center bg-card border border-border/50 rounded-md p-1 h-14 w-40">
+          <div className="flex justify-between px-5 items-center bg-card border border-border/50 rounded-0 p-1 h-14 w-40">
             <button
               aria-label="পরিমাণ কমান"
               disabled={quantity <= 1 || isOutOfStock || isLocalLoading}
@@ -205,7 +205,7 @@ export default function ProductInfo({ product }) {
             arialabel="সরাসরি কিনুন"
             onClick={handleBuyNow}
             text="সরাসরি অর্ডার করুন (Buy Now)"
-            fillColor="bg-success"
+            fillColor="bg-primary"
             size="lg"
             className="h-14"
           >
@@ -225,7 +225,7 @@ export default function ProductInfo({ product }) {
 
 function InfoBadge({ icon, title, desc }) {
   return (
-    <div className="flex items-center gap-4 p-3 rounded-md bg-card/20 border border-border/20 hover:bg-card/40 transition-all group">
+    <div className="flex items-center gap-4 p-3 rounded-0 bg-card/20 border border-border/20 hover:bg-card/40 transition-all group">
       <div className="text-primary group-hover:scale-110 transition-transform">{icon}</div>
       <div>
         <div className="text-[12px] font-medium uppercase tracking-tighter text-text leading-none">

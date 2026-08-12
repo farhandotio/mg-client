@@ -35,7 +35,7 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
               <button
                 aria-label="Close Mobile Sidebar"
                 onClick={onClose}
-                className="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-md text-primary active:scale-90 transition-transform"
+                className="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-0 text-primary active:scale-90 transition-transform"
               >
                 <X size={20} />
               </button>
@@ -84,7 +84,7 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
                         className="group flex items-center justify-between py-2 transition-all active:text-primary"
                       >
                         <div className="flex items-center gap-4">
-                          <div className="w-10 h-10 rounded-md bg-card border border-border/50 flex items-center justify-center text-primary overflow-hidden shadow-inner">
+                          <div className="w-10 h-10 rounded-0 bg-card border border-border/50 flex items-center justify-center text-primary overflow-hidden shadow-inner">
                             {cat.image?.url ? (
                               <img
                                 src={cat.image.url}
@@ -129,7 +129,7 @@ export default function MobileSidebar({ isOpen, onClose, isAuthenticated, catego
                       : '/profile'
                 }
                 onClick={onClose}
-                className="flex items-center gap-3 p-5 bg-primary text-bg rounded-md font-medium justify-center shadow-[0_10px_30px_rgba(var(--primary-rgb),0.3)] uppercase text-[11px] tracking-tighter active:scale-95 transition-all"
+                className="flex items-center gap-3 p-5 bg-primary text-bg rounded-0 font-medium justify-center shadow-[0_10px_30px_rgba(var(--primary-rgb),0.3)] uppercase text-[11px] tracking-tighter active:scale-95 transition-all"
               >
                 <User size={18} />
                 {!isAuthenticated

@@ -4,14 +4,13 @@
 
 @theme {
   --color-bg: #ffffff;
-  --color-pText: #222222;
+  --color-pText: #2b2b2b;
   --color-text: #000000;
   --color-primary: #6dd053;
   --color-secondary: #b8c9d2;
-  --color-card: #ffffff;
-  --color-border: #ddd;
+  --color-card: #eee;
+  --color-border: #c4c4c4;
   --color-danger: #ff4d4f;
-  --color-success: #22c55e;
 }
 
 .dark {
@@ -20,7 +19,6 @@
   --color-pText: #cfcfcf;
   --color-card: #353535;
   --color-border: #444;
-  --color-success: #22c55e;
 }
 
 html,

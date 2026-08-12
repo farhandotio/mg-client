@@ -44,7 +44,7 @@ export default function RefundPolicy() {
             </p>
           </section>
 
-          <section className="space-y-4 bg-card/20 p-8 rounded-md border border-white/5">
+          <section className="space-y-4 bg-card/20 p-8 rounded-0 border border-white/5">
             <h3 className="text-2xl font-medium text-text uppercase italic flex items-center gap-3">
               <AlertTriangle className="text-yellow-500" /> Non-Returnable Items
             </h3>
@@ -71,7 +71,7 @@ export default function RefundPolicy() {
 
 function PolicyCard({ icon, title, desc }) {
   return (
-    <div className="p-8 bg-card/30 border border-white/5 rounded-md">
+    <div className="p-8 bg-card/30 border border-white/5 rounded-0">
       <div className="mb-4">{icon}</div>
       <h4 className="text-xl font-medium text-text uppercase italic mb-2">{title}</h4>
       <p className="text-sm opacity-70">{desc}</p>
