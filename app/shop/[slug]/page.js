@@ -75,7 +75,7 @@ export default function ProductDetailsPage({ params }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
+      <div className="">
         <Breadcrumbs category={product.category} title={product.title} />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
@@ -94,13 +94,13 @@ export default function ProductDetailsPage({ params }) {
           </div>
 
           {/* তথ্য সেকশন */}
-          <div className="lg:col-span-6">
+          <div className="lg:col-span-6 px-4 sm:px-6 md:pr-8 md:pl-0">
             <ProductInfo product={product} />
           </div>
         </div>
 
         {/* স্পেসিফিকেশন এবং রিলেটেড আইটেমস */}
-        <div className="mt-16 space-y-12">
+        <div className="mt-16 space-y-12 px-4 sm:px-6 md:px-8">
           <ProductTabs product={product} />
 
           <div className="border-t border-border/40 pt-8">

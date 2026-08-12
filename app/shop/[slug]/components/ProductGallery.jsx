@@ -45,14 +45,14 @@ export default function ProductGallery({ images = [], title, discount }) {
     );
 
   return (
-    <div className="w-full flex flex-col-reverse md:flex-row gap-4">
+    <div className="w-full flex flex-col-reverse md:flex-row gap-4 md:pl-8">
       <div
         className={`
         flex md:flex-col gap-2 
         overflow-x-auto md:overflow-y-auto no-scrollbar 
         w-full md:w-18 lg:w-23 
         h-auto md:h-100 lg:h-125 
-        shrink-0
+        shrink-0 px-4 sm:px-6 md:px-0
       `}
       >
         {images.map((img, index) => (
@@ -93,8 +93,8 @@ export default function ProductGallery({ images = [], title, discount }) {
         `}
       >
         {/* ডেকোরেশন কর্নার */}
-        <div className="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-secondary/30 rounded-tl-2xl pointer-events-none z-10" />
-        <div className="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-secondary/30 rounded-br-2xl pointer-events-none z-10" />
+        <div className="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-secondary/30 pointer-events-none z-10" />
+        <div className="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-secondary/30 pointer-events-none z-10" />
 
         {/* ব্যাজসমূহ */}
         <div className="absolute top-5 left-5 z-20 flex flex-col gap-2 pointer-events-none">

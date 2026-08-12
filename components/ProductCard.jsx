@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { ArrowRight, Loader2 } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCartAPI, addToCartLocal } from '@/store/features/cartSlice';
+import { redirect } from 'next/navigation';
 
 export default function ProductCard({ product, priority = false }) {
   const dispatch = useDispatch();
@@ -106,22 +107,20 @@ export default function ProductCard({ product, priority = false }) {
           />
         </Link>
 
-        {/* Hover "Shop Now" / "Add to Cart" Pill Button */}
         <div className="absolute inset-0 flex items-center justify-center bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-30 pointer-events-none group-hover:pointer-events-auto">
-          <Link
-            href={`/shop/${product?.slug}`}
-            onClick={handleAddToCart}
+          <button
+            onClick={isInCart ? ()=> redirect(`/cart`) : handleAddToCart}
             className="flex items-center gap-2 bg-black text-white text-xs font-medium px-5 py-3 rounded-full shadow-lg hover:bg-white hover:text-black transition-all transform translate-y-2 group-hover:translate-y-0 duration-300"
           >
             {isAdding ? (
               <Loader2 size={14} className="animate-spin" />
             ) : (
               <>
-                <span>{isInCart ? 'In Bag' : 'Shop Now'}</span>
+                <span>{isInCart ? 'In Bag' : 'Add to Cart'}</span>
                 <ArrowRight size={14} />
               </>
             )}
-          </Link>
+          </button>
         </div>
       </div>
 
